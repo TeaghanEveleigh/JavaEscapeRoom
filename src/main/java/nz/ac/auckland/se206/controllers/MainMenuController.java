@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MainMenuController {
   @FXML private Button startGameButton;
@@ -13,7 +14,7 @@ public class MainMenuController {
 
   @FXML
   private void onSettingsPressed(ActionEvent event) throws IOException {
-    App.setRoot("gamesettings");
+    App.setRoot(AppUi.GAME_SETTINGS);
   }
 
   @FXML

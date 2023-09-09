@@ -50,11 +50,6 @@
                   <Image url="@../images/Vase%20Icon.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="rightVaseImage" fitHeight="54.0" fitWidth="58.0" layoutX="442.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Vase%20Icon.png" />
-               </image>
-            </ImageView>
             <Button fx:id="tutorialButton" layoutX="411.0" layoutY="367.0" mnemonicParsing="false" onAction="#onTutorialPressed" prefHeight="47.0" prefWidth="116.0" text="Tutorial" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
@@ -65,6 +60,11 @@
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
             </Button>
+            <ImageView fx:id="leftVaseImage1" fitHeight="59.0" fitWidth="61.0" layoutX="440.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Vase%20Icon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </center>
