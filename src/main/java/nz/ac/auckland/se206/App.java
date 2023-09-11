@@ -48,10 +48,11 @@ public class App extends Application {
     // Load all the views
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
+    SceneManager.addUi(AppUi.MEMORY_GAME, loadFxml("memorygame"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 600, 500);
+    scene = new Scene(SceneManager.getUiRoot(AppUi.MEMORY_GAME), 600, 500);
     stage.setScene(scene);
     stage.show();
-    SceneManager.getUiRoot(AppUi.MAIN_MENU).requestFocus();
+    SceneManager.getUiRoot(AppUi.MEMORY_GAME).requestFocus();
   }
 }
