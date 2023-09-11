@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.CanvasRenderer;
+import nz.ac.auckland.se206.KeyState;
 import nz.ac.auckland.se206.game.Player;
 
 public class GameController {
@@ -26,6 +27,7 @@ public class GameController {
 
           @Override
           public void handle(long now) {
+            player.updateMovement();
             renderer.renderEntities();
           }
         };
@@ -35,11 +37,11 @@ public class GameController {
 
   @FXML
   public void keyPressedHandler(KeyEvent keyEvent) {
-    return;
+    KeyState.keyPressed(keyEvent.getCode());
   }
 
   @FXML
   public void keyReleasedHandler(KeyEvent keyEvent) {
-    return;
+    KeyState.keyReleased(keyEvent.getCode());
   }
 }
