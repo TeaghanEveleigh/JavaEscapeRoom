@@ -3,10 +3,12 @@ package nz.ac.auckland.se206;
 import java.util.HashMap;
 import javafx.scene.Parent;
 
-public class SceneManager {
 
+/** Manages the different views of the application. */
+public class SceneManager {
   public enum AppUi {
-    GAME,
+    MAIN_MENU,
+    GAME_SETTINGS,
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
@@ -16,7 +18,6 @@ public class SceneManager {
   }
 
   public static Parent getUiRoot(AppUi appUi) {
-    ;
     return sceneMap.get(appUi);
   }
 }

@@ -20,8 +20,8 @@ public class App extends Application {
     launch();
   }
 
-  public static void setRoot(String fxml) throws IOException {
-    scene.setRoot(loadFxml(fxml));
+  public static void setRoot(AppUi appUi) throws IOException {
+    scene.setRoot(SceneManager.getUiRoot(appUi));
   }
 
   /**
@@ -44,13 +44,13 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    // Initialise SceneManager with UI scenes
-    SceneManager.addUi(AppUi.GAME, loadFxml("game"));
+    // Load all the views
+    SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
+    SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
 
-    Parent gameRoot = SceneManager.getUiRoot(AppUi.GAME);
-    scene = new Scene(gameRoot, 600, 700);
+    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 600, 500);
     stage.setScene(scene);
     stage.show();
-    gameRoot.requestFocus();
+    SceneManager.getUiRoot(AppUi.MAIN_MENU).requestFocus();
   }
 }
