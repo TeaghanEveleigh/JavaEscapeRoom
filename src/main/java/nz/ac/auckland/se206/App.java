@@ -44,7 +44,6 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-
     // Load all the views
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));

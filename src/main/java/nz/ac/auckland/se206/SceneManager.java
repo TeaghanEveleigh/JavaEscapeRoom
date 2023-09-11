@@ -3,9 +3,9 @@ package nz.ac.auckland.se206;
 import java.util.HashMap;
 import javafx.scene.Parent;
 
+
 /** Manages the different views of the application. */
 public class SceneManager {
-
   public enum AppUi {
     MAIN_MENU,
     GAME_SETTINGS,
