@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@../css/MainMenu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
    <top>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="600.0" BorderPane.alignment="CENTER" />
    </top>
@@ -40,7 +40,7 @@
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="startGameButton" layoutX="211.0" layoutY="356.0" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="68.0" prefWidth="150.0" text="START" textFill="#825000">
+            <Button id="btn" fx:id="startGameButton" layoutX="211.0" layoutY="356.0" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="68.0" prefWidth="150.0" styleClass="button" text="START" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="23.0" />
                </font>
@@ -50,12 +50,12 @@
                   <Image url="@../images/Vase%20Icon.png" />
                </image>
             </ImageView>
-            <Button fx:id="tutorialButton" layoutX="411.0" layoutY="367.0" mnemonicParsing="false" onAction="#onTutorialPressed" prefHeight="47.0" prefWidth="116.0" text="Tutorial" textFill="#825000">
+            <Button id="btn" fx:id="tutorialButton" layoutX="411.0" layoutY="367.0" mnemonicParsing="false" onAction="#onTutorialPressed" prefHeight="47.0" prefWidth="116.0" styleClass="button" text="Tutorial" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="gameSettingsButton" layoutX="44.0" layoutY="367.0" mnemonicParsing="false" onAction="#onSettingsPressed" prefHeight="47.0" prefWidth="116.0" text="Game Settings" textFill="#825000">
+            <Button id="btn" fx:id="gameSettingsButton" layoutX="44.0" layoutY="367.0" mnemonicParsing="false" onAction="#onSettingsPressed" prefHeight="47.0" prefWidth="116.0" styleClass="button" text="Settings" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
