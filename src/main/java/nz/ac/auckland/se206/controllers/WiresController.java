@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,11 +30,18 @@ public class WiresController implements Initializable {
   @FXML private Circle twoCircle;
   @FXML private Circle threeCircle;
   @FXML private Circle fourCircle;
+  private List<Circle> endpoints;
 
-  DraggableMaker draggableMaker = new DraggableMaker();
+  // DraggableMaker
+  private DraggableMaker draggableMaker;
 
+  /*
+   * This method initialises the wires game window. It makes all the wires draggable and defines the coordinates of the corners of the control panel.
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    endpoints = List.of(oneCircle, twoCircle, threeCircle, fourCircle);
+    draggableMaker = new DraggableMaker(endpoints);
     draggableMaker.makeDraggable(blueWire);
     draggableMaker.makeDraggable(greenWire);
     draggableMaker.makeDraggable(redWire);
