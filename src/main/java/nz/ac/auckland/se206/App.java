@@ -47,10 +47,11 @@ public class App extends Application {
     // Load all the views
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
+    SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 600, 500);
+    scene = new Scene(SceneManager.getUiRoot(AppUi.WIRES_GAME), 800, 500);
     stage.setScene(scene);
     stage.show();
-    SceneManager.getUiRoot(AppUi.MAIN_MENU).requestFocus();
+    stage.requestFocus();
   }
 }

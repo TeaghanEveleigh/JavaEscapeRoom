@@ -10,12 +10,12 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameSettingsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameSettingsController">
    <top>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="600.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="800.0" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="600.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="800.0" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="500.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
@@ -26,74 +26,74 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="titleLabel" alignment="CENTER" layoutX="13.0" layoutY="19.0" prefHeight="69.0" prefWidth="546.0" text="GAME SETTINGS" textFill="#825000">
+            <Label fx:id="titleLabel" alignment="CENTER" layoutX="159.0" layoutY="20.0" prefHeight="69.0" prefWidth="452.0" text="GAME SETTINGS" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="32.0" />
                </font>
             </Label>
-            <Button fx:id="backButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="52.0" prefWidth="43.0" textFill="#825000">
+            <Button fx:id="backButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="50.0" prefWidth="50.0" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Arrow.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Label alignment="CENTER" layoutX="28.0" layoutY="169.0" prefHeight="37.0" prefWidth="151.0" text="Difficulty" textFill="#825000">
+            <Label alignment="CENTER" layoutX="84.0" layoutY="163.0" prefHeight="37.0" prefWidth="151.0" text="Difficulty" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="210.0" layoutY="169.0" prefHeight="37.0" prefWidth="151.0" text="Time Limit" textFill="#825000">
+            <Label alignment="CENTER" layoutX="310.0" layoutY="167.0" prefHeight="37.0" prefWidth="151.0" text="Time Limit" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="393.0" layoutY="169.0" prefHeight="37.0" prefWidth="151.0" text="TextToSpeech" textFill="#825000">
+            <Label alignment="CENTER" layoutX="545.0" layoutY="167.0" prefHeight="37.0" prefWidth="151.0" text="TextToSpeech" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="25.0" />
                </font>
             </Label>
-            <CheckBox fx:id="easyCheckBox" layoutX="28.0" layoutY="249.0" mnemonicParsing="false" onAction="#onEasyPressed" prefHeight="30.0" prefWidth="151.0" text="Easy" textFill="#825000">
+            <CheckBox fx:id="easyCheckBox" layoutX="84.0" layoutY="243.0" mnemonicParsing="false" onAction="#onEasyPressed" prefHeight="30.0" prefWidth="151.0" text="Easy" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="hardCheckBox" layoutX="28.0" layoutY="367.0" mnemonicParsing="false" onAction="#onHardPressed" prefHeight="30.0" prefWidth="151.0" text="Hard" textFill="#825000">
+            <CheckBox fx:id="hardCheckBox" layoutX="84.0" layoutY="361.0" mnemonicParsing="false" onAction="#onHardPressed" prefHeight="30.0" prefWidth="151.0" text="Hard" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="mediumCheckBox" layoutX="28.0" layoutY="309.0" mnemonicParsing="false" onAction="#onMediumPressed" prefHeight="30.0" prefWidth="151.0" text="Medium" textFill="#825000">
+            <CheckBox fx:id="mediumCheckBox" layoutX="84.0" layoutY="303.0" mnemonicParsing="false" onAction="#onMediumPressed" prefHeight="30.0" prefWidth="151.0" text="Medium" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="twoMinutesCheckBox" layoutX="210.0" layoutY="250.0" mnemonicParsing="false" onAction="#onTwoPressed" prefHeight="30.0" prefWidth="151.0" text="2 minutes" textFill="#825000">
+            <CheckBox fx:id="twoMinutesCheckBox" layoutX="310.0" layoutY="248.0" mnemonicParsing="false" onAction="#onTwoPressed" prefHeight="30.0" prefWidth="151.0" text="2 minutes" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="sixMinutesCheckBox" layoutX="210.0" layoutY="368.0" mnemonicParsing="false" onAction="#onSixPressed" prefHeight="30.0" prefWidth="151.0" text="6 minutes" textFill="#825000">
+            <CheckBox fx:id="sixMinutesCheckBox" layoutX="310.0" layoutY="366.0" mnemonicParsing="false" onAction="#onSixPressed" prefHeight="30.0" prefWidth="151.0" text="6 minutes" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="fourMinutesCheckBox" layoutX="210.0" layoutY="310.0" mnemonicParsing="false" onAction="#onFourPressed" prefHeight="30.0" prefWidth="151.0" text="4 minutes" textFill="#825000">
+            <CheckBox fx:id="fourMinutesCheckBox" layoutX="310.0" layoutY="308.0" mnemonicParsing="false" onAction="#onFourPressed" prefHeight="30.0" prefWidth="151.0" text="4 minutes" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="enableCheckBox" layoutX="393.0" layoutY="249.0" mnemonicParsing="false" onAction="#onEnablePressed" prefHeight="30.0" prefWidth="151.0" text="Enable" textFill="#825000">
+            <CheckBox fx:id="enableCheckBox" layoutX="545.0" layoutY="247.0" mnemonicParsing="false" onAction="#onEnablePressed" prefHeight="30.0" prefWidth="151.0" text="Enable" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="disableCheckBox" layoutX="393.0" layoutY="311.0" mnemonicParsing="false" onAction="#onDisablePressed" prefHeight="30.0" prefWidth="151.0" text="Disable" textFill="#825000">
+            <CheckBox fx:id="disableCheckBox" layoutX="545.0" layoutY="309.0" mnemonicParsing="false" onAction="#onDisablePressed" prefHeight="30.0" prefWidth="151.0" text="Disable" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="20.0" />
                </font>
