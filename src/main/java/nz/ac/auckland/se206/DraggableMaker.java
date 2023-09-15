@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import java.util.List;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 
 public class DraggableMaker {
@@ -44,11 +45,10 @@ public class DraggableMaker {
     rectangle.setOnMouseReleased(
         e -> {
           for (Circle endpoint : endpoints) {
-            // If the rectangle intersects with the endpoint
-            if (!rectangle.getBoundsInParent().intersects(endpoint.getBoundsInParent())) {
-              continue;
-            } else {
-              System.out.println(endpoint.getBoundsInParent());
+            // If the end of the rectangle intersects with the endpoint
+            Shape intersect = Shape.intersect(rectangle, endpoint);
+            if (intersect.getBoundsInLocal().getWidth() != -1.0) {
+              System.out.println(rectangle.getBoundsInParent());
               // Calculate the distance between the centre of the rectangle and the centre of the
               // endpoint
               double xDistance = endpoint.getLayoutX() - rectangle.getLayoutX();
