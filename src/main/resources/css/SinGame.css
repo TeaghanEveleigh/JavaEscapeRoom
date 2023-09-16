@@ -1,0 +1,13 @@
+.slider{
+    -fx-background-color:rgb(35, 34, 34);
+}
+.slider .track {
+    -fx-background-color: rgb(146, 134, 134);  /* Your desired color for the track */
+}
+.slider .thumb {
+    -fx-background-color: rgb(100, 100, 100);  /* Your desired color for the thumb */
+}
+.slider .fill {
+    -fx-background-color: rgb(100, 109, 100);  /* Your desired color for the fill */
+}
+
