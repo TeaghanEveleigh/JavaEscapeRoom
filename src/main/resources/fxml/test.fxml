@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="406.0" prefWidth="600.0" stylesheets="@../css/SinGame.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.FrequencyGameController">
+
+    <Rectangle fx:id="mainBackground" fill="#303539" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"/>
+    
+    <Rectangle fx:id="leftSidebar" fill="#303539" width="57.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0"/>
+    <Rectangle fx:id="rightSidebar" fill="#303539" width="57.0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"/>
+
+    <!-- Adding your components directly into the structure -->
+
+    <Text fx:id="failureText" fill="RED" layoutX="46.0" layoutY="187.0" text="Suspicion rises Time lost!" wrappingWidth="522.21630859375">
+        <font>
+            <Font name="BM HANNA Air OTF" size="47.0" />
+        </font>
+    </Text>
+    <Rectangle fx:id="blurryscreen" arcHeight="5.0" arcWidth="5.0" fill="#8a8282" height="406.0" layoutX="-2.0" layoutY="-1.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="606.0" />
+      <Text fx:id="sucessTxt" fill="#0f8300" layoutX="97.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suspicion subverted!">
+         <font>
+            <Font name="BM HANNA Air OTF" size="47.0" />
+         </font>
+      </Text>
+        <Button fx:id="backButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="52.0" prefWidth="43.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: rgb(255,255,255); -fx-border-color: rgb(169, 95, 31);" styleClass="backButton" textFill="#825000">
+            <font>
+                <Font name="Baskerville Old Face" size="16.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/Arrow.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+
+
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#303539" height="408.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#303539" height="408.0" layoutX="540.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#195122" height="301.0" layoutX="54.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="487.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="58.0" />
+        
+        <!-- X and Y axis for the LineChart -->
+        <NumberAxis autoRanging="false" layoutX="54.0" layoutY="359.0" lowerBound="0" prefWidth="487.0" side="BOTTOM" tickUnit="10" upperBound="480" visible="false" fx:id="xAxis" />
+        <NumberAxis fx:id="yAxis" autoRanging="false" layoutX="54.0" layoutY="58.0" lowerBound="-100" prefHeight="301.0" side="LEFT" tickUnit="10" upperBound="100" visible="false" />
+
+        <!-- LineChart for sine waves -->
+        <LineChart fx:id="sineWaveChart" alternativeColumnFillVisible="false" alternativeRowFillVisible="false" animated="false" createSymbols="false" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="58.0" layoutY="60.0" legendVisible="false" opacity="0.0" prefHeight="301.0" prefWidth="480.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+            <xAxis>
+                <NumberAxis side="BOTTOM" visible="false" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" visible="false" />
+            </yAxis>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="1.07" specularConstant="0.21" surfaceScale="1.96">
+               <light>
+                  <Light.Distant azimuth="161.53" elevation="99.1" />
+               </light>
+            </Lighting>
+         </effect>
+        </LineChart>
+
+        <!-- Paths for targetSineWave and userSineWave -->
+        <Path fx:id="targetSineWave" stroke="#9a1a25" strokeWidth="3.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="150.0" />
+        <Path fx:id="userSineWave" stroke="#232c90" strokeWidth="3.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="150.0" />
+
+    <!-- ... Remaining components ... -->
+    
+    <Slider fx:id="amplitudeSlider" layoutX="68.0" layoutY="370.0" value="50.0">
+        <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+        </cursor>
+    </Slider>
+
+    <Slider fx:id="frequencySlider" layoutX="555.0" layoutY="60.0" value="0.01" orientation="VERTICAL">
+        <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+        </cursor>
+    </Slider>
+
+</AnchorPane>

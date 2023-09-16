@@ -54,7 +54,6 @@ Media media = new Media(policeSound);
   
   @FXML
   public void initialize() {
-    startSound.play();
     amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
     frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
  
@@ -87,6 +86,7 @@ Media media = new Media(policeSound);
     }
   }
   private void initializeCountdown() {
+    startSound.play();
     countdownTimeline = new Timeline(new KeyFrame(Duration.millis(1), e -> {
         timeInSeconds--;
 

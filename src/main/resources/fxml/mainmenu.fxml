@@ -9,58 +9,53 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@../css/MainMenu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/MainMenu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
    <top>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="600.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="823.0" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="600.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="814.0" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="500.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="607.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="500.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="590.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="titleLabel" alignment="CENTER" layoutX="13.0" layoutY="19.0" prefHeight="69.0" prefWidth="546.0" text="MUSEUM HEIST: ENIGMA ESCAPE" textFill="#825000">
+            <Label fx:id="titleLabel" alignment="CENTER" layoutX="87.0" layoutY="7.0" prefHeight="69.0" prefWidth="618.0" text="MUSEUM HEIST ESCAPE" textFill="#070707">
                <font>
-                  <Font name="Baskerville Old Face" size="32.0" />
+                  <Font name="BM HANNA Air OTF" size="39.0" />
                </font>
             </Label>
-            <Label fx:id="courseLabel" alignment="CENTER" layoutX="13.0" layoutY="88.0" prefHeight="28.0" prefWidth="546.0" text="SOFTENG 206" textFill="#825000">
+            <Label fx:id="descriptionLabel" layoutX="88.0" layoutY="86.0" prefHeight="183.0" prefWidth="625.0" text="You're trapped in the renowned Hest Museum after trying to steal the precious Golden Statue of the Pharaohs. Luckily, you have a hacker friend on the outside trying to help. Escape before you get caught!" textAlignment="CENTER" textFill="#825000" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
-                  <Font name="Baskerville Old Face" size="23.0" />
+                  <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="descriptionLabel" layoutX="44.0" layoutY="136.0" prefHeight="165.0" prefWidth="484.0" text="You're trapped in the renowned Hest Museum after trying to steal the precious Golden Statue of the Pharaohs. Luckily, you have a hacker friend on the outside trying to help. Escape before you get caught!" textAlignment="CENTER" textFill="#825000" textOverrun="WORD_ELLIPSIS" wrapText="true">
+            <Button id="btn" fx:id="startGameButton" layoutX="312.0" layoutY="389.0" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="85.0" prefWidth="183.0" styleClass="button" text="START" textFill="#825000">
                <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </Label>
-            <Button id="btn" fx:id="startGameButton" layoutX="211.0" layoutY="356.0" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="68.0" prefWidth="150.0" styleClass="button" text="START" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="23.0" />
+                  <Font name="BM HANNA Air OTF" size="37.0" />
                </font>
             </Button>
-            <ImageView fx:id="leftVaseImage" fitHeight="59.0" fitWidth="61.0" layoutX="73.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="leftVaseImage" fitHeight="101.0" fitWidth="94.0" layoutX="115.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Vase%20Icon.png" />
                </image>
             </ImageView>
-            <Button id="btn" fx:id="tutorialButton" layoutX="411.0" layoutY="367.0" mnemonicParsing="false" onAction="#onTutorialPressed" prefHeight="47.0" prefWidth="116.0" styleClass="button" text="Tutorial" textFill="#825000">
+            <Button id="btn" fx:id="tutorialButton" layoutX="557.0" layoutY="405.0" mnemonicParsing="false" onAction="#onTutorialPressed" prefHeight="57.0" prefWidth="166.0" styleClass="button" text="Tutorial" textFill="#825000">
                <font>
-                  <Font name="Baskerville Old Face" size="16.0" />
+                  <Font name="BM HANNA Air OTF" size="28.0" />
                </font>
             </Button>
-            <Button id="btn" fx:id="gameSettingsButton" layoutX="44.0" layoutY="367.0" mnemonicParsing="false" onAction="#onSettingsPressed" prefHeight="47.0" prefWidth="116.0" styleClass="button" text="Settings" textFill="#825000">
+            <Button id="btn" fx:id="gameSettingsButton" layoutX="77.0" layoutY="409.0" mnemonicParsing="false" onAction="#onSettingsPressed" prefHeight="57.0" prefWidth="166.0" styleClass="button" text="Settings" textFill="#825000">
                <font>
-                  <Font name="Baskerville Old Face" size="16.0" />
+                  <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </Button>
-            <ImageView fx:id="leftVaseImage1" fitHeight="59.0" fitWidth="61.0" layoutX="440.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="leftVaseImage1" fitHeight="101.0" fitWidth="94.0" layoutX="568.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Vase%20Icon.png" />
                </image>
