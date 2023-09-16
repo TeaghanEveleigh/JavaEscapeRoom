@@ -15,6 +15,9 @@ public class WiresController implements Initializable {
   // Buttons
   @FXML private Button backButton;
 
+  // Control panel
+  @FXML private Rectangle controlPanel;
+
   // Wires
   @FXML private Rectangle greenWire;
   @FXML private Rectangle redWire;
@@ -41,7 +44,7 @@ public class WiresController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     endpoints = List.of(oneCircle, twoCircle, threeCircle, fourCircle);
-    draggableMaker = new DraggableMaker(endpoints);
+    draggableMaker = new DraggableMaker(endpoints, controlPanel);
     draggableMaker.makeDraggable(blueWire);
     draggableMaker.makeDraggable(greenWire);
     draggableMaker.makeDraggable(redWire);
