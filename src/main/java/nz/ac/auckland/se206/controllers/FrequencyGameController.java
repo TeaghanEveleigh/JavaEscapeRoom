@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
@@ -12,11 +15,25 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.CubicCurveTo;
 import javafx.util.Duration;
 import java.util.Random;
+
+
+
+import java.io.File;
 import java.time.LocalTime;
 
 
+
+
 public class FrequencyGameController {
+  String policeSound = getClass().getResource("/sounds/618971__mrrap4food__radio-police-inside-car.mp3").toString();
+Media media = new Media(policeSound);
+
+  MediaPlayer startSound = new MediaPlayer(media);
+  
     private boolean matched = false;
+    @FXML private Button backButton;
+    @FXML private Text guideTop;
+    @FXML private Text guideBottom;
     @FXML private Text failureText;
   @FXML private Text timer;
   @FXML private Rectangle blurryscreen;
@@ -28,7 +45,8 @@ public class FrequencyGameController {
   @FXML private Path targetSineWave;
 
   @FXML private Path userSineWave;
-
+ private boolean hasLost= false;
+ private boolean hasWon = false;
 
   private Timeline countdownTimeline;
   private int timeInSeconds = 10000;  // 10 seconds * 1000 milliseconds
@@ -36,9 +54,10 @@ public class FrequencyGameController {
   
   @FXML
   public void initialize() {
+    startSound.play();
     amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
     frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
-
+ 
     // Set a random wave without updating immediately.
     setRandomInitialWave(false);
     drawTargetWave();
@@ -131,9 +150,13 @@ public class FrequencyGameController {
     return true;
   }
   private void gameOver(String reason) {
+    guideBottom.setOpacity(0);
+    guideTop.setOpacity(0);
+    startSound.stop();
     switch (reason) {
         case "timer_done":
             // Handle the game over due to timer running out.
+            if(hasWon!=true){
             targetSineWave.setStroke(javafx.scene.paint.Color.RED);
             userSineWave.setStroke(javafx.scene.paint.Color.RED);
             amplitudeSlider.setDisable(true);
@@ -141,8 +164,11 @@ public class FrequencyGameController {
             blurryscreen.toFront();
             failureText.toFront();
             // Handle other logic if needed.
+            hasLost = true;
+            }
             break;
         case "game_won":
+        if(hasLost!=true){
             // Handle the game being won.
             // If needed, additional logic for when the game is won can be added here.
             targetSineWave.setStroke(javafx.scene.paint.Color.GREEN);
@@ -152,11 +178,14 @@ public class FrequencyGameController {
             blurryscreen.toFront();
             sucessTxt.toFront();
             countdownTimeline.stop();
+        }
             break;
         default:
             // Handle any other scenarios or ignore.
             break;
     }
+    backButton.toFront();
+    backButton.setOpacity(1);
 }
 
 }
