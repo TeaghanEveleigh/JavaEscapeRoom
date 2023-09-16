@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.DraggableMaker;
@@ -15,8 +16,11 @@ public class WiresController implements Initializable {
   // Buttons
   @FXML private Button backButton;
 
-  // Control panel
-  @FXML private Rectangle controlPanel;
+  // Opacity rectangle
+  @FXML private Rectangle opacityRectangle;
+
+  // Win label
+  @FXML private Label winLabel;
 
   // Wires
   @FXML private Rectangle greenWire;
@@ -43,8 +47,9 @@ public class WiresController implements Initializable {
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    winLabel.setVisible(false);
     endpoints = List.of(oneCircle, twoCircle, threeCircle, fourCircle);
-    draggableMaker = new DraggableMaker(endpoints, controlPanel);
+    draggableMaker = new DraggableMaker(endpoints, opacityRectangle, winLabel);
     draggableMaker.makeDraggable(blueWire);
     draggableMaker.makeDraggable(greenWire);
     draggableMaker.makeDraggable(redWire);

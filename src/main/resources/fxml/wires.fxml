@@ -12,6 +12,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WiresController">
    <children>
+      <Rectangle fx:id="opacityRectangle" arcHeight="5.0" arcWidth="5.0" fill="#8a8282" height="500.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#55606b" height="500.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
       <Rectangle fx:id="controlPanel" arcHeight="5.0" arcWidth="5.0" height="400.0" layoutX="99.0" layoutY="83.0" stroke="#aaaaaa" strokeType="OUTSIDE" strokeWidth="5.0" width="600.0" />
       <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="199.0" layoutY="83.0" pickOnBounds="true">
@@ -80,6 +81,14 @@
          </effect>
       </Label>
       <Label alignment="CENTER" layoutX="97.0" layoutY="14.0" prefHeight="50.0" prefWidth="600.0" text="Drag the wires to the correct numbers!">
+         <font>
+            <Font name="Baskerville Old Face" size="30.0" />
+         </font>
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="winLabel" alignment="CENTER" layoutY="219.0" prefHeight="62.0" prefWidth="800.0" text="Wires connected! The lasers have been disabled!">
          <font>
             <Font name="Baskerville Old Face" size="30.0" />
          </font>
