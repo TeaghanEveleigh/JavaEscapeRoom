@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -11,6 +12,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /*
  * This is the controller class for the wires game window. The wires are made draggable and are checked if they're connected to the right endpoints.
@@ -70,6 +73,16 @@ public class WiresController implements Initializable {
     makeDraggable(greenWire);
     makeDraggable(redWire);
     makeDraggable(yellowWire);
+  }
+
+  /**
+   * This method returns the user to the main menu.
+   *
+   * @throws IOException
+   */
+  @FXML
+  public void onBackPressed() throws IOException {
+    App.setRoot(AppUi.MAIN_MENU);
   }
 
   /**
@@ -137,19 +150,40 @@ public class WiresController implements Initializable {
               // Rotate the rectangle to the correct angle
               rectangle.getTransforms().add(new Rotate(deltaAngle, 0, rectangle.getHeight() / 2));
 
-              // Checks if the wire has matched to the right endpoint
-              if ((rectangle.getId().equals("greenWire"))
-                  && (endpoint.getId().equals("twoCircle"))) {
-                isGreenCorrect = true;
-              } else if ((rectangle.getId().equals("redWire"))
-                  && (endpoint.getId().equals("oneCircle"))) {
-                isRedCorrect = true;
-              } else if ((rectangle.getId().equals("blueWire"))
-                  && (endpoint.getId().equals("fourCircle"))) {
-                isBlueCorrect = true;
-              } else if ((rectangle.getId().equals("yellowWire"))
-                  && (endpoint.getId().equals("threeCircle"))) {
-                isYellowCorrect = true;
+              // Checks if the green wire has matched to the right endpoint
+              if (rectangle.getId().equals("greenWire")) {
+                if (endpoint.getId().equals("twoCircle")) {
+                  isGreenCorrect = true;
+                } else {
+                  isGreenCorrect = false;
+                }
+              }
+
+              // Checks if the red wire has matched to the right endpoint
+              if (rectangle.getId().equals("redWire")) {
+                if (endpoint.getId().equals("oneCircle")) {
+                  isRedCorrect = true;
+                } else {
+                  isRedCorrect = false;
+                }
+              }
+
+              // Checks if the blue wire has matched to the right endpoint
+              if (rectangle.getId().equals("blueWire")) {
+                if (endpoint.getId().equals("fourCircle")) {
+                  isBlueCorrect = true;
+                } else {
+                  isBlueCorrect = false;
+                }
+              }
+
+              // Checks if the yellow wire has matched to the right endpoint
+              if (rectangle.getId().equals("yellowWire")) {
+                if (endpoint.getId().equals("threeCircle")) {
+                  isYellowCorrect = true;
+                } else {
+                  isYellowCorrect = false;
+                }
               }
 
               // Checks if all the wires have matched to the right endpoints
