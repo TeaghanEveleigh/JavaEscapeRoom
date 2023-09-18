@@ -6,38 +6,46 @@ import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 public class MemoryGameController {
   private static double sequenceSeconds = 0.5;
   private static int maxSequenceLength = 4;
 
-  @FXML private Circle lightOne;
-  @FXML private Circle lightTwo;
-  @FXML private Circle lightThree;
-  @FXML private Circle lightFour;
-  @FXML private Circle lightFive;
-  @FXML private Circle lightSix;
-  @FXML private Circle lightEight;
-  @FXML private Circle lightSeven;
-  @FXML private Circle lightNine;
+  @FXML private ImageView lightOne;
+  @FXML private ImageView lightTwo;
+  @FXML private ImageView lightThree;
+  @FXML private ImageView lightFour;
+  @FXML private ImageView lightFive;
+  @FXML private ImageView lightSix;
+  @FXML private ImageView lightEight;
+  @FXML private ImageView lightSeven;
+  @FXML private ImageView lightNine;
 
-  private ArrayList<Circle> lights;
-  private ArrayList<Circle> sequence;
-  private ArrayList<Circle> lightsPressed;
-  private Color baseColor = Color.AQUAMARINE;
+  private ArrayList<ImageView> lights;
+  private ArrayList<ImageView> sequence;
+  private ArrayList<ImageView> lightsPressed;
+  private Image baseLightImage =
+      new Image(getClass().getResource("/images/push-button.png").toExternalForm());
+  private Image lightPressedImage =
+      new Image(getClass().getResource("/images/push-button-glow.png").toExternalForm());
+  private Image lightGlowRedImage =
+      new Image(getClass().getResource("/images/push-button-glow-red.png").toExternalForm());
+  private Image lightGlowGreenImage =
+      new Image(getClass().getResource("/images/push-button-glow-green.png").toExternalForm());
+
   private boolean playerWon;
   private boolean showingSequence = false;
   private int currentSequenceLength = 1;
 
   @FXML
   public void initialize() {
-    this.lights = new ArrayList<Circle>();
-    this.sequence = new ArrayList<Circle>();
-    this.lightsPressed = new ArrayList<Circle>();
+    this.lights = new ArrayList<ImageView>();
+    this.sequence = new ArrayList<ImageView>();
+    this.lightsPressed = new ArrayList<ImageView>();
 
     lights.add(lightOne);
     lights.add(lightTwo);
@@ -49,7 +57,7 @@ public class MemoryGameController {
     lights.add(lightEight);
     lights.add(lightNine);
 
-    resetLights();
+    resetAllLights();
     ChooseSequence(4);
     showSequence(currentSequenceLength);
   }
@@ -57,7 +65,7 @@ public class MemoryGameController {
   private void ChooseSequence(int sequenceLength) {
     Random random = new Random();
     for (int i = 0; i < sequenceLength; i++) {
-      Circle chosen = lights.get(random.nextInt(lights.size()));
+      ImageView chosen = lights.get(random.nextInt(lights.size()));
       while (sequence.contains(chosen)) {
         chosen = lights.get(random.nextInt(lights.size()));
       }
@@ -69,17 +77,17 @@ public class MemoryGameController {
     showingSequence = true;
     Timeline timeline = new Timeline();
     timeline.setCycleCount(1);
-    ArrayList<Circle> lightsQueue = new ArrayList<Circle>(sequence);
+    ArrayList<ImageView> lightsQueue = new ArrayList<ImageView>(sequence);
     System.out.println(lightsQueue.size());
     for (int i = 0; i < sequenceLength; i++) {
-      Circle light = lightsQueue.get(i);
+      ImageView light = lightsQueue.get(i);
       timeline
           .getKeyFrames()
           .add(
               new KeyFrame(
                   Duration.seconds((i + 1) * sequenceSeconds),
                   e -> {
-                    setLight(light, Color.YELLOW);
+                    setLight(light, lightPressedImage);
                   }));
       timeline
           .getKeyFrames()
@@ -87,7 +95,7 @@ public class MemoryGameController {
               new KeyFrame(
                   Duration.seconds((i + 2) * sequenceSeconds),
                   e -> {
-                    setLight(light, baseColor);
+                    resetLight(light);
                   }));
     }
     timeline.play();
@@ -97,19 +105,24 @@ public class MemoryGameController {
         });
   }
 
-  private void setLight(Circle light, Color color) {
-    light.setFill(color);
+  private void setLight(ImageView light, Image lightImage) {
+    light.setImage(lightImage);
   }
 
-  private void setAllLights(Color color) {
-    System.out.println(color);
-    for (Circle light : this.lights) {
-      light.setFill(color);
+  private void resetLight(ImageView light) {
+    light.setImage(baseLightImage);
+  }
+
+  private void setAllLights(Image lightImage) {
+    for (ImageView light : this.lights) {
+      setLight(light, lightImage);
     }
   }
 
-  private void resetLights() {
-    setAllLights(baseColor);
+  private void resetAllLights() {
+    for (ImageView light : this.lights) {
+      resetLight(light);
+    }
   }
 
   private void checkSequence() {
@@ -118,13 +131,13 @@ public class MemoryGameController {
 
     for (int i = 0; i < currentSequenceLength; i++) {
       if (!lightsPressed.get(i).equals(sequence.get(i))) {
-        Timeline timeline = flashLights(Color.RED);
+        Timeline timeline = flashLights(lightGlowRedImage);
         timeline.setOnFinished(e -> showSequence(currentSequenceLength));
         return;
       }
     }
 
-    Timeline timeline = flashLights(Color.GREEN);
+    Timeline timeline = flashLights(lightGlowGreenImage);
     if (currentSequenceLength++ >= maxSequenceLength) {
       playerWon = true;
       System.out.println("WON");
@@ -133,15 +146,15 @@ public class MemoryGameController {
     }
   }
 
-  private Timeline flashLights(Color color) {
+  private Timeline flashLights(Image lightImage) {
 
     Timeline timeline = new Timeline();
 
     // Create a keyframe to set the lights to the specified color
-    KeyFrame colorFrame = new KeyFrame(Duration.seconds(0.1), e -> setAllLights(color));
+    KeyFrame colorFrame = new KeyFrame(Duration.seconds(0.1), e -> setAllLights(lightImage));
 
     // Create a keyframe to reset the lights to the base color
-    KeyFrame resetFrame = new KeyFrame(Duration.seconds(0.2), e -> setAllLights(baseColor));
+    KeyFrame resetFrame = new KeyFrame(Duration.seconds(0.2), e -> resetAllLights());
 
     // Add the keyframes to the timeline
     timeline.getKeyFrames().addAll(colorFrame, resetFrame);
@@ -159,8 +172,8 @@ public class MemoryGameController {
   private void onLightPressed(MouseEvent event) throws IOException {
     if (showingSequence) return;
 
-    Circle pressed = (Circle) event.getSource();
-    pressed.setFill(Color.PINK);
+    ImageView pressed = (ImageView) event.getSource();
+    setLight(pressed, lightPressedImage);
     lightsPressed.add(pressed);
     System.out.println("size " + lightsPressed.size());
     System.out.println("seq leng " + currentSequenceLength);
