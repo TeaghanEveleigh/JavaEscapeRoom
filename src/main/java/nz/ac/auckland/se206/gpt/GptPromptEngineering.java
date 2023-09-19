@@ -37,6 +37,11 @@ public class GptPromptEngineering {
         + " the friend. The friend will then be able to figure out the correct matchings.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the wires game hint.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getHintForWiresGame() {
     return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
         + " steal an object that is guarded by lasers. He has found a panel with some wires"
@@ -49,6 +54,60 @@ public class GptPromptEngineering {
         + " someone to be able to figure out the correct matchings. You have given this"
         + " information to the friend and they are stuck with what to do. Give them a hint"
         + " about the order of the correct matching of the wires. Do not give them the"
+        + " answer directly";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for when the user solves the wires game.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getWiresRiddleSolvedPrompt() {
+    return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
+        + " steal an object that is guarded by lasers. Your friend has just disabled the"
+        + " lasers. Congradulate your friend on their success and urge them to steal the"
+        + " object";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for the hacker introducing itself to the user.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getIntroduction() {
+    return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
+        + " steal an object that is guarded by lasers. Introduce yourself to them and tell"
+        + " them that you are their eyes and ears in the museum. Tell them that you have"
+        + " hacked into the museum's database and can use the information from it to help"
+        + " them. Tell them that you will also help them solve the puzzles that they will"
+        + " encounter in the museum. Tell them that you will give them hints if they get"
+        + " stuck.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for when the user solves the memory game.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getMemoryGameSolved() {
+    return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
+        + " steal an object that is guarded by lasers. Your friend has just solved the"
+        + " memory game which has unlocked a safe. Inside the safe contains a keycode."
+        + " Congradulate your friend on their success and hint to them that the keycode"
+        + " could be important";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for the memory game hint.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getMemoryGameHint() {
+    return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
+        + " steal an object that is guarded by lasers. He is currently playing a memory game"
+        + " during which he has to match the sequence of flashing lights by pressing the"
+        + " buttons int the order they flash in. He is stuck and needs a hint. Give him a"
+        + " hint about the order of the sequence of flashing lights. Do not give him the"
         + " answer directly";
   }
 }
