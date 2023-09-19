@@ -23,7 +23,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#947489" height="97.0" layoutX="-77.0" layoutY="292.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
       <ImageView fitHeight="334.0" fitWidth="553.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/exhibition-hall-museum-illustration-precious-antiques-showcase-historical-showpieces-exposition-old-pottery-headless-marble-sculpture-stone-plate-with-ancient-language-carving/museum_02.jpg" />
+            <Image url="@../images/exhibitionImage/museum_02.jpg" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="202.0" layoutX="583.0" layoutY="-26.0" rotate="-24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
@@ -131,5 +131,6 @@
             <Font size="22.0" />
          </font>
       </Text>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
