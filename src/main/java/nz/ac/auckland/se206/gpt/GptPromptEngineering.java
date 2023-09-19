@@ -77,11 +77,12 @@ public class GptPromptEngineering {
   public static String getIntroduction() {
     return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
         + " steal an object that is guarded by lasers. Introduce yourself to them and tell"
-        + " them that you are their eyes and ears in the museum. Tell them that you have"
-        + " hacked into the museum's database and can use the information from it to help"
-        + " them. Tell them that you will also help them solve the puzzles that they will"
-        + " encounter in the museum. Tell them that you will give them hints if they get"
-        + " stuck.";
+        + " them that they need to steal the Pharoah's vase and escape before the time runs"
+        + " out. Tell them that you are their eyes and ears in the museum. Tell them that"
+        + " you have hacked into the museum's database and can use the information from it"
+        + " to help them. Tell them that you can also help them solve the puzzles that they"
+        + " will encounter in the museum. Tell them that you will give them hints if they"
+        + " get stuck.";
   }
 
   /**
@@ -106,8 +107,46 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
         + " steal an object that is guarded by lasers. He is currently playing a memory game"
         + " during which he has to match the sequence of flashing lights by pressing the"
-        + " buttons int the order they flash in. He is stuck and needs a hint. Give him a"
-        + " hint about the order of the sequence of flashing lights. Do not give him the"
-        + " answer directly";
+        + " buttons in the order they flash in. He is stuck and needs a hint. Give him a"
+        + " hint about the order of the sequence of flashing lights that you found in the"
+        + " museum database. Do not give him the answer directly";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for the memory game introduction.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getMemoryGameIntroduction() {
+    return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
+        + " steal an object that is guarded by lasers. He is currently playing a memory game"
+        + " during which he has to match the sequence of flashing lights by pressing the"
+        + " buttons in the order they flash in. Tell the user that you think its some sort"
+        + " of memory game and that they have to match the sequence of flashing lights by"
+        + " pressing the buttons in the order they flash in. Tell them that you will look"
+        + " through the museum database and give them hints if they get stuck.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for the keypad hint.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getKeypadHint() {
+    return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
+        + " steal an object that is guarded by lasers. Tell the user that you think the"
+        + " keycode that they found in the safe might have something to with the keypad.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for when the user steals the object.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getObjectStolen() {
+    return "You are a hacker trying to help your friend escape from a museum heist. He is trying to"
+        + " steal an object that is guarded by lasers. Your friend has just stolen the"
+        + " object. Congradulate your friend on their success and tell them that they need"
+        + " to try and escape the museum now before the time runs out.";
   }
 }
