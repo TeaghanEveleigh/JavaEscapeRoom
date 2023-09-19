@@ -1,0 +1,16 @@
+
+Button.backButton{
+    -fx-border-color: rgb(191, 125, 74);
+    -fx-background-color: rgb(255, 255, 255);
+
+}
+
+Button.backButton:hover{
+    -fx-background-color: rgb(191, 125, 74);
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-text-fill:rgb(255, 255, 255);
+    -fx-scale-y: 1.05;
+     -fx-scale-x: 1.05;
+     /* This defines the duration for the hover transition */
+     -fx-transition: scale-x 0.8s, scale-y 0.8s;
+}

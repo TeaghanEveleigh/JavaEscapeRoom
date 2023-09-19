@@ -47,9 +47,14 @@ public class App extends Application {
     // Load all the views
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
+
     SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.WIRES_GAME), 800, 500);
+
+    // SceneManager.addUi(AppUi.SIN_MINIGAME,loadFxml("frequencyMinigame"));
+
+    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
+
     stage.setScene(scene);
     stage.show();
     stage.requestFocus();

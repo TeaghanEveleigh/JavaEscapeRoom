@@ -8,7 +8,11 @@ public class SceneManager {
   public enum AppUi {
     MAIN_MENU,
     GAME_SETTINGS,
-    WIRES_GAME;
+
+    WIRES_GAME,
+
+    SIN_MINIGAME;
+
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

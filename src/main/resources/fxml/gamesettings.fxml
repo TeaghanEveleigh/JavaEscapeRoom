@@ -7,97 +7,175 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameSettingsController">
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/GameSetting.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameSettingsController">
    <top>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="800.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="19.0" stroke="#825000" strokeType="INSIDE" width="828.0" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="800.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="18.0" stroke="#825000" strokeType="INSIDE" width="787.0" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="500.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="560.0" stroke="#825000" strokeType="INSIDE" width="18.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="500.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="591.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="548.0" prefWidth="764.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="titleLabel" alignment="CENTER" layoutX="159.0" layoutY="20.0" prefHeight="69.0" prefWidth="452.0" text="GAME SETTINGS" textFill="#825000">
+
+            <Label alignment="CENTER" layoutX="309.0" layoutY="111.0" prefHeight="36.0" prefWidth="164.0" text="Time Limit">
+
                <font>
-                  <Font name="Baskerville Old Face" size="32.0" />
+                  <Font name="BM HANNA Air OTF" size="35.0" />
                </font>
             </Label>
-            <Button fx:id="backButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="50.0" prefWidth="50.0" textFill="#825000">
+
+            <Label alignment="CENTER" layoutX="539.0" layoutY="111.0" prefHeight="32.0" prefWidth="227.0" text="TextToSpeech">
+               <font>
+                  <Font name="BM HANNA Air OTF" size="35.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="easyCheckBox" layoutX="74.0" layoutY="187.0" mnemonicParsing="false" onAction="#onEasyPressed" prefHeight="30.0" prefWidth="151.0" text="Easy" textFill="#825000">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="30.0" />
+               </font>
+
+            </CheckBox>
+            <CheckBox fx:id="hardCheckBox" layoutX="74.0" layoutY="353.0" mnemonicParsing="false" onAction="#onHardPressed" prefHeight="30.0" prefWidth="151.0" text="Hard" textFill="#825000">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="30.0" />
+               </font>
+
+            </CheckBox>
+            <CheckBox fx:id="mediumCheckBox" layoutX="73.0" layoutY="269.0" mnemonicParsing="false" onAction="#onMediumPressed" prefHeight="30.0" prefWidth="151.0" text="Medium" textFill="#825000">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="30.0" />
+               </font>
+            </CheckBox>
+
+            <CheckBox fx:id="twoMinutesCheckBox" layoutX="311.0" layoutY="188.0" mnemonicParsing="false" onAction="#onTwoPressed" prefHeight="41.0" prefWidth="193.0" text="2 minutes" textFill="#825000">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="30.0" />
+               </font>
+            </CheckBox>
+
+            <CheckBox fx:id="sixMinutesCheckBox" layoutX="310.0" layoutY="352.0" mnemonicParsing="false" onAction="#onSixPressed" prefHeight="34.0" prefWidth="184.0" text="6 minutes" textFill="#825000">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="30.0" />
+               </font>
+            </CheckBox>
+
+            <CheckBox fx:id="fourMinutesCheckBox" layoutX="311.0" layoutY="268.0" mnemonicParsing="false" onAction="#onFourPressed" prefHeight="40.0" prefWidth="185.0" text="4 minutes" textFill="#825000">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="30.0" />
+               </font>
+            </CheckBox>
+
+            <CheckBox fx:id="enableCheckBox" layoutX="546.0" layoutY="186.0" mnemonicParsing="false" onAction="#onEnablePressed" prefHeight="30.0" prefWidth="151.0" text="Enable" textFill="#825000">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="30.0" />
+               </font>
+            </CheckBox>
+
+            <CheckBox fx:id="disableCheckBox" layoutX="545.0" layoutY="269.0" mnemonicParsing="false" onAction="#onDisablePressed" prefHeight="30.0" prefWidth="151.0" text="Disable" textFill="#825000">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="30.0" />
+               </font>
+            </CheckBox>
+
+            <Label fx:id="titleLabel" alignment="CENTER" layoutX="134.0" layoutY="21.0" prefHeight="69.0" prefWidth="546.0" text="GAME SETTINGS">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="50.0" />
+               </font>
+
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" blue="0.4833333194255829" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="0.5098039507865906" green="0.3137255012989044" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.6710526347160339" green="0.5902777910232544" blue="0.26717835664749146" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label alignment="CENTER" layoutX="67.0" layoutY="110.0" prefHeight="37.0" prefWidth="151.0" text="Difficulty">
+
+               <font>
+                  <Font name="BM HANNA Air OTF" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="52.0" prefWidth="43.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: rgb(255,255,255); -fx-border-color: rgb(169, 95, 31);" styleClass="backButton" textFill="#825000">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Arrow.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Label alignment="CENTER" layoutX="84.0" layoutY="163.0" prefHeight="37.0" prefWidth="151.0" text="Difficulty" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="25.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="310.0" layoutY="167.0" prefHeight="37.0" prefWidth="151.0" text="Time Limit" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="25.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="545.0" layoutY="167.0" prefHeight="37.0" prefWidth="151.0" text="TextToSpeech" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="25.0" />
-               </font>
-            </Label>
-            <CheckBox fx:id="easyCheckBox" layoutX="84.0" layoutY="243.0" mnemonicParsing="false" onAction="#onEasyPressed" prefHeight="30.0" prefWidth="151.0" text="Easy" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="hardCheckBox" layoutX="84.0" layoutY="361.0" mnemonicParsing="false" onAction="#onHardPressed" prefHeight="30.0" prefWidth="151.0" text="Hard" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="mediumCheckBox" layoutX="84.0" layoutY="303.0" mnemonicParsing="false" onAction="#onMediumPressed" prefHeight="30.0" prefWidth="151.0" text="Medium" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="twoMinutesCheckBox" layoutX="310.0" layoutY="248.0" mnemonicParsing="false" onAction="#onTwoPressed" prefHeight="30.0" prefWidth="151.0" text="2 minutes" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="sixMinutesCheckBox" layoutX="310.0" layoutY="366.0" mnemonicParsing="false" onAction="#onSixPressed" prefHeight="30.0" prefWidth="151.0" text="6 minutes" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="fourMinutesCheckBox" layoutX="310.0" layoutY="308.0" mnemonicParsing="false" onAction="#onFourPressed" prefHeight="30.0" prefWidth="151.0" text="4 minutes" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="enableCheckBox" layoutX="545.0" layoutY="247.0" mnemonicParsing="false" onAction="#onEnablePressed" prefHeight="30.0" prefWidth="151.0" text="Enable" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="disableCheckBox" layoutX="545.0" layoutY="309.0" mnemonicParsing="false" onAction="#onDisablePressed" prefHeight="30.0" prefWidth="151.0" text="Disable" textFill="#825000">
-               <font>
-                  <Font name="Baskerville Old Face" size="20.0" />
-               </font>
-            </CheckBox>
+            <Line endX="112.0" layoutX="106.0" layoutY="149.0" startX="-39.0" />
+            <Line endX="81.0" endY="-1.0" layoutX="392.0" layoutY="150.0" startX="-75.44699096679688" />
+            <Line endX="109.7325439453125" layoutX="653.0" layoutY="151.0" startX="-106.82965087890625" />
+            <Line endX="271.5533447265625" layoutX="328.0" layoutY="90.0" startX="-110.65328979492188" strokeWidth="3.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" blue="0.4833333194255829" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="0.5098039507865906" green="0.3137255012989044" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.6710526347160339" green="0.5902777910232544" blue="0.26717835664749146" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Line>
+            <Line endX="-11.021575927734375" endY="1.52587890625E-5" layoutX="276.0" layoutY="130.0" startX="-11.021575927734375" startY="285.3498229980469" />
+            <Line endX="-133.816650390625" endY="1.52587890625E-5" layoutX="653.0" layoutY="130.0" startX="-133.816650390625" startY="283.5653991699219" />
+            <Line endX="552.4473266601562" layoutX="187.0" layoutY="454.0" startX="-100.0" />
          </children>
       </Pane>
    </center>
