@@ -14,6 +14,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/GameSetting.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameSettingsController">
    <top>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="19.0" stroke="#825000" strokeType="INSIDE" width="828.0" BorderPane.alignment="CENTER" />
@@ -30,60 +32,81 @@
    <center>
       <Pane prefHeight="548.0" prefWidth="764.0" BorderPane.alignment="CENTER">
          <children>
+
             <Label alignment="CENTER" layoutX="309.0" layoutY="111.0" prefHeight="36.0" prefWidth="164.0" text="Time Limit">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="35.0" />
                </font>
             </Label>
+
             <Label alignment="CENTER" layoutX="539.0" layoutY="111.0" prefHeight="32.0" prefWidth="227.0" text="TextToSpeech">
                <font>
                   <Font name="BM HANNA Air OTF" size="35.0" />
                </font>
             </Label>
             <CheckBox fx:id="easyCheckBox" layoutX="74.0" layoutY="187.0" mnemonicParsing="false" onAction="#onEasyPressed" prefHeight="30.0" prefWidth="151.0" text="Easy" textFill="#825000">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
+
             </CheckBox>
             <CheckBox fx:id="hardCheckBox" layoutX="74.0" layoutY="353.0" mnemonicParsing="false" onAction="#onHardPressed" prefHeight="30.0" prefWidth="151.0" text="Hard" textFill="#825000">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
+
             </CheckBox>
             <CheckBox fx:id="mediumCheckBox" layoutX="73.0" layoutY="269.0" mnemonicParsing="false" onAction="#onMediumPressed" prefHeight="30.0" prefWidth="151.0" text="Medium" textFill="#825000">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
+
             <CheckBox fx:id="twoMinutesCheckBox" layoutX="311.0" layoutY="188.0" mnemonicParsing="false" onAction="#onTwoPressed" prefHeight="41.0" prefWidth="193.0" text="2 minutes" textFill="#825000">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
+
             <CheckBox fx:id="sixMinutesCheckBox" layoutX="310.0" layoutY="352.0" mnemonicParsing="false" onAction="#onSixPressed" prefHeight="34.0" prefWidth="184.0" text="6 minutes" textFill="#825000">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
+
             <CheckBox fx:id="fourMinutesCheckBox" layoutX="311.0" layoutY="268.0" mnemonicParsing="false" onAction="#onFourPressed" prefHeight="40.0" prefWidth="185.0" text="4 minutes" textFill="#825000">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
+
             <CheckBox fx:id="enableCheckBox" layoutX="546.0" layoutY="186.0" mnemonicParsing="false" onAction="#onEnablePressed" prefHeight="30.0" prefWidth="151.0" text="Enable" textFill="#825000">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
+
             <CheckBox fx:id="disableCheckBox" layoutX="545.0" layoutY="269.0" mnemonicParsing="false" onAction="#onDisablePressed" prefHeight="30.0" prefWidth="151.0" text="Disable" textFill="#825000">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
+
             <Label fx:id="titleLabel" alignment="CENTER" layoutX="134.0" layoutY="21.0" prefHeight="69.0" prefWidth="546.0" text="GAME SETTINGS">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="50.0" />
                </font>
+
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -107,6 +130,7 @@
                </textFill>
             </Label>
             <Label alignment="CENTER" layoutX="67.0" layoutY="110.0" prefHeight="37.0" prefWidth="151.0" text="Difficulty">
+
                <font>
                   <Font name="BM HANNA Air OTF" size="36.0" />
                </font>
