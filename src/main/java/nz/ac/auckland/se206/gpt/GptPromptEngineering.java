@@ -176,4 +176,57 @@ public class GptPromptEngineering {
         + " museum. Congradulate your partner on their success and tell them that they have"
         + " successfully escaped while stealing the Pharaoh's treasure";
   }
+
+  /**
+   * Generate a GPT prompt engineering string for the frequency game hint.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFrequencyHint() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. He is currently playing a"
+        + " frequency game during which he has to match the frequency of the wave by"
+        + " adjusting the slider. He is stuck and needs a hint. Tell your partner that uoi"
+        + " have found some information in the museum database that hints at matching the"
+        + " two waves together by moving the sliders. Do not give him the answer directly";
+  }
+
+  /**
+   * Generate a GPT prompt engineering string for the frequency game introduction.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFrequencyIntroduction() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. He is currently playing a"
+        + " frequency game that will cut the communications of the police outside the"
+        + " museum. Tell your partner that they need to complete the game quickly before the"
+        + " ime runs out so that the police don't raise their suspicions.";
+  }
+
+  /**
+   * Generate a GPT prompt engineering string for the frequency game solved.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFrequencyWon() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Your partner has just solved the"
+        + " frequency game which has cut the communications of the police outside the"
+        + " museum. Congradulate your partner on their success and tell them that the police"
+        + " aren't suspicious of their activities.";
+  }
+
+  /**
+   * Generate a GPT prompt engineering string for the frequency game lost.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFrequencyLost() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Your partner has just lost the"
+        + " frequency game which has alerted the police outside the museum. Tell your"
+        + " partner that the police are now suspicious of their activities and that they"
+        + " need to escape quickly and in less time.";
+  }
 }
