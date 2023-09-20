@@ -51,6 +51,9 @@ public class App extends Application {
     SceneManager.addUi(AppUi.LASER_ROOM, loadFxml("room1"));
 
     // SceneManager.addUi(AppUi.SIN_MINIGAME,loadFxml("frequencyMinigame"));
+    SceneManager.addUi(AppUi.LASER_ROOM,loadFxml("securityroom"));
+    SceneManager.addUi(AppUi.DINOSAUR_ROOM, loadFxml("room1"));
+    SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
 
     scene = new Scene(SceneManager.getUiRoot(AppUi.LASER_ROOM), 816, 585);
     Parent root = SceneManager.getUiRoot(AppUi.LASER_ROOM);

@@ -1,40 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
+      <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="258.0" layoutY="384.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
+      <Text fill="WHITE" layoutX="261.0" layoutY="408.0" onMouseClicked="#handleMouseClicked" strokeType="OUTSIDE" strokeWidth="0.0" text=" 0" wrappingWidth="28.741643820546756" AnchorPane.leftAnchor="261.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="zero1" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="256.0" layoutY="385.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="35.0" />
+      <Rectangle fx:id="enter" arcHeight="5.0" arcWidth="5.0" fill="#0c9e11" height="34.0" layoutX="302.0" layoutY="385.0" onMouseClicked="#handleClearEnter" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" AnchorPane.bottomAnchor="166.0" AnchorPane.topAnchor="385.0" />
+      <Rectangle fx:id="clear" arcHeight="5.0" arcWidth="5.0" fill="#9c120c" height="34.0" layoutX="215.0" layoutY="385.0" onMouseClicked="#handleClearEnter" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
+      <Rectangle fx:id="keypadRectangle" arcHeight="5.0" arcWidth="5.0" fill="#7b7e80" height="246.0" layoutX="176.0" layoutY="186.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="199.0" />
+      <ImageView fx:id="keypad" fitHeight="213.0" fitWidth="224.0" layoutX="169.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/—Pngtree—pin%20code_8442941.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="numberRectangle" arcHeight="5.0" arcWidth="5.0" fill="#cdd4da" height="33.0" layoutX="207.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
+      <Text fx:id="number6" fill="WHITE" layoutX="311.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6" wrappingWidth="20.0" AnchorPane.leftAnchor="311.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numbers" layoutX="221.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="147.73785400390625">
+         <font>
+            <Font size="21.0" />
+         </font></Text>
+      <Text fx:id="number3" fill="WHITE" layoutX="311.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" AnchorPane.leftAnchor="311.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="number1" fill="WHITE" layoutX="227.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="number2" fill="WHITE" layoutX="269.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="number9" fill="WHITE" layoutX="311.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="9" AnchorPane.bottomAnchor="212.0" AnchorPane.rightAnchor="491.421875">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="number8" fill="WHITE" layoutX="268.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="number4" fill="WHITE" layoutX="225.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="number7" fill="WHITE" layoutX="225.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="number5" fill="WHITE" layoutX="269.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="seven" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="33.0" layoutX="216.0" layoutY="345.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="32.0" />
+      <Rectangle fx:id="eight" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="33.0" layoutX="260.0" layoutY="345.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="32.0" />
+      <Rectangle fx:id="nine" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="33.0" layoutX="303.0" layoutY="342.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="32.0" />
+      <Rectangle fx:id="six" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="35.0" layoutX="302.0" layoutY="301.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="35.0" />
+      <Rectangle fx:id="five" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="33.0" layoutX="259.0" layoutY="301.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="32.0" />
+      <Rectangle fx:id="two" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="33.0" layoutX="258.0" layoutY="258.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="33.0" />
+      <Rectangle fx:id="one" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="33.0" layoutX="216.0" layoutY="259.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="32.0" />
+      <Rectangle fx:id="four" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="33.0" layoutX="216.0" layoutY="301.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="32.0" />
+      <Rectangle fx:id="three" arcHeight="5.0" arcWidth="5.0" fill="#565a5e" height="33.0" layoutX="302.0" layoutY="259.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="keypad" width="32.0" />
+      <Text fx:id="incorrectTxt" layoutX="237.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect">
+         <font>
+            <Font name="BM HANNA Air OTF" size="19.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="incorrectColor" arcHeight="5.0" arcWidth="5.0" fill="#ff0000af" height="33.0" layoutX="208.0" layoutY="217.0" opacity="0.58" stroke="BLACK" strokeType="INSIDE" width="140.0" />
+      <Ellipse fill="#bc3a3a" layoutX="515.0" layoutY="428.0" opacity="0.34" radiusX="199.0" radiusY="108.0" rotate="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Rectangle fx:id="correctColor" arcHeight="5.0" arcWidth="5.0" fill="#47d13b84" height="32.0" layoutX="211.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" width="140.0" AnchorPane.rightAnchor="470.0" />
+      <Text fx:id="correctTxt" layoutX="247.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="correct">
+         <font>
+            <Font name="BM HANNA Air OTF" size="19.0" />
+         </font>
+      </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="197.0" layoutX="553.0" layoutY="199.0" rotate="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="68.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a7171f0" height="191.0" layoutX="388.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="213.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a7171f0" height="191.0" layoutX="388.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="220.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3f3f3f" height="200.0" layoutX="515.0" layoutY="-73.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#55416fa6" height="206.0" layoutX="539.0" layoutY="73.0" rotate="41.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="193.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a8a8a8a6" height="206.0" layoutX="486.0" layoutY="52.0" rotate="130.8" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="193.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="187.0" layoutX="-3.0" layoutY="321.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="605.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9a93a4" height="212.0" layoutX="492.0" layoutY="52.0" rotate="130.8" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="193.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="268.0" layoutX="-3.0" layoutY="321.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="604.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a6c6c" height="200.0" layoutX="-130.0" layoutY="246.0" rotate="128.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf7f66" height="171.0" layoutX="62.0" layoutY="332.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="42.0" AnchorPane.topAnchor="332.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf7f66" height="171.0" layoutX="62.0" layoutY="332.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="42.0" AnchorPane.rightAnchor="713.0" AnchorPane.topAnchor="332.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#947489" height="97.0" layoutX="-77.0" layoutY="292.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
-      <ImageView fitHeight="334.0" fitWidth="553.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="337.0" fitWidth="553.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/exhibitionImage/museum_02.jpg" />
          </image>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="635.0" layoutY="126.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="181.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="202.0" layoutX="583.0" layoutY="-26.0" rotate="-24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="215.0" layoutX="553.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="199.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e5a44" height="167.0" layoutX="545.0" layoutY="26.0" rotate="-4.2" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="199.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="202.0" layoutX="602.0" layoutY="117.0" rotate="36.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="204.0" />
-      <Line endX="62.42608642578125" endY="128.5" layoutX="658.0" layoutY="229.0" startX="-111.12628173828125" startY="-3.7075042724609375" stroke="#252424" strokeWidth="2.5" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf7f66" height="145.0" layoutX="104.0" layoutY="332.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="237.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf7f66" height="168.0" layoutX="341.0" layoutY="331.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="55.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="213.0" layoutX="550.0" layoutY="295.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="198.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf7f66" height="154.0" layoutX="99.0" layoutY="326.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="237.0" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="332.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf7f66" height="168.0" layoutX="338.0" layoutY="331.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="55.0" AnchorPane.leftAnchor="340.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="293.0" layoutX="412.0" layoutY="295.0" rotate="359.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="330.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.topAnchor="295.0" />
       <Line endX="14.31756591796875" endY="-2.2945404052734375" layoutX="577.0" layoutY="200.0" startX="-25.0" startY="0.8846282958984375" stroke="#7c9b99" strokeWidth="2.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#837f7c" height="93.0" layoutX="401.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0">
          <effect>
@@ -48,93 +137,50 @@
       </ImageView>
       <Circle fill="#434d57" layoutX="432.0" layoutY="146.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="579.0" layoutY="23.0" rotate="20.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="204.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="612.0" layoutY="126.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="204.0" />
       <Circle fill="#434d57" layoutX="450.0" layoutY="146.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="130.0" layoutX="514.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="210.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#948aa1" height="6.0" layoutX="500.0" layoutY="238.0" rotate="37.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="118.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="546.0" layoutY="-22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="206.0" AnchorPane.leftAnchor="548.5" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3f3f3f" height="187.0" layoutX="451.0" layoutY="-174.0" rotate="-27.6" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+      <ImageView fitHeight="61.0" fitWidth="49.0" layoutX="155.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_warl_Fotor.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="145.0" fitWidth="98.0" layoutX="179.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/image_2023-09-18_145336022-fotor-bg-remover-20230918145356.png" />
          </image>
          <effect>
-            <Reflection bottomOpacity="0.04" fraction="1.0" topOpacity="0.25" />
+            <Reflection bottomOpacity="0.04" fraction="1.0" topOffset="-10.0" topOpacity="0.25" />
          </effect>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7b7e80" height="24.0" layoutX="485.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-      <ImageView fitHeight="24.0" fitWidth="28.0" layoutX="483.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="662.0" layoutY="-34.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="204.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="287.0" layoutX="631.0" layoutY="391.0" rotate="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="199.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="692.0" layoutY="192.0" rotate="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="210.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="44.0" layoutX="601.0" layoutY="259.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="330.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="650.0" layoutY="158.0" rotate="37.6" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="210.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="184.0" layoutX="619.0" layoutY="150.0" rotate="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="210.0" />
+      <Line endX="160.38946533203125" endY="208.064453125" layoutX="658.0" layoutY="229.0" startX="-111.12628173828125" startY="-3.7075042724609375" stroke="#252424" strokeWidth="2.5" />
+      <Line endX="36.53265380859375" endY="88.67892456054688" layoutX="636.0" layoutY="233.0" startX="-55.25146484375" startY="15.335418701171875" stroke="#7f3717" strokeWidth="2.0" />
+      <Line endX="69.84063720703125" endY="96.92391967773438" layoutX="593.0" layoutY="253.0" startX="-105.858154296875" startY="-52.81639099121094" stroke="#9f98a8" strokeWidth="2.0" />
+      <Line endX="100.0" layoutX="653.0" layoutY="99.0" opacity="0.0" startX="-39.0670166015625" startY="70.50978088378906" stroke="#29da56" strokeWidth="3.0" />
+      <Line endX="30.9329833984375" endY="11.509780883789062" layoutX="583.0" layoutY="158.0" opacity="0.0" startX="48.896728515625" startY="-20.512527465820312" stroke="#2ba13e" strokeWidth="3.0" />
+      <Line endX="4.07940673828125" endY="-63.679901123046875" layoutX="645.0" layoutY="241.0" opacity="0.0" startX="-31.77410888671875" startY="-70.78309631347656" stroke="#24ab3d" strokeWidth="3.0" />
+      <Label fx:id="doorLabel" alignment="CENTER" layoutX="400.0" layoutY="98.0" onMouseClicked="#showKeyPad" onMouseEntered="#showDoorLabel" onMouseExited="#hideDoorLabel" opacity="0.0" prefHeight="97.0" prefWidth="80.0" style="-fx-background-color: none; -fx-border-color: rgb(255,255,255);" text="DOOR" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="26.0" />
+         </font></Label>
+      <ImageView fitHeight="25.0" fitWidth="44.0" layoutX="482.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="440.0">
          <image>
             <Image url="@../images/—Pngtree—pin%20code_8442941.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7b7e80" height="226.0" layoutX="235.0" layoutY="113.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="213.0" />
-      <ImageView fitHeight="213.0" fitWidth="224.0" layoutX="242.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/—Pngtree—pin%20code_8442941.png" />
-         </image>
-      </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cdd4da" height="33.0" layoutX="280.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="375.0" layoutY="228.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="332.0" layoutY="228.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="289.0" layoutY="228.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="289.0" layoutY="186.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="242.0" layoutY="207.0" stroke="BLACK" strokeType="INSIDE" width="33.0" />
-      <Text fill="WHITE" layoutX="382.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6" wrappingWidth="20.0" AnchorPane.leftAnchor="384.0">
+      <Label fx:id="wireLabel" alignment="TOP_CENTER" layoutX="147.0" layoutY="170.0" onMouseEntered="#showWireLabel" onMouseExited="#hideWireLabel" opacity="0.0" prefHeight="83.0" prefWidth="67.0" style="-fx-background-color: none; -fx-border-color: rgb(255,255,255); -fx-border-radius: 10;" text="Wires" textFill="WHITE">
          <font>
-            <Font size="22.0" />
+            <Font name="BM HANNA Air OTF" size="20.0" />
          </font>
-      </Text>
-      <Text layoutX="300.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 2 3 4 5 6" wrappingWidth="129.21630859375">
-         <font>
-            <Font size="21.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="300.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="342.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="298.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="342.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="289.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="333.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" layoutX="376.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-      <Text fill="WHITE" layoutX="382.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" AnchorPane.leftAnchor="384.0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="298.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="341.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="388.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="9" AnchorPane.bottomAnchor="98.0" AnchorPane.rightAnchor="201.0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <AnchorPane onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Canvas fx:id="gameCanvas" height="400.0" width="605.0" />
-         </children></AnchorPane>
+      </Label>
    </children>
 </AnchorPane>
