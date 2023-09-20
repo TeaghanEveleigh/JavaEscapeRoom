@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -45,6 +47,11 @@ public class SecurityController {
     @FXML private Text number7;
     @FXML private Text number8;
     @FXML private Text number9;
+    @FXML private Line securityLine1;
+    @FXML private Line securityLine2;
+    @FXML private Line securityLine3;
+    @FXML private Text securityText;
+
     // @FXML private Text number0;
     @FXML 
     private void handleClearEnter(MouseEvent event){
@@ -64,6 +71,35 @@ public class SecurityController {
     }
     @FXML void hideDoorLabel(){
         doorLabel.setOpacity(0);
+    }
+    @FXML
+    private void showSecurity() {
+        // Change the stroke width of all three security lines to 3
+
+
+        // Change the fill of all three security lines to white
+        securityLine1.setStroke(Color.WHITE);
+        securityLine2.setStroke(Color.WHITE);
+        securityLine3.setStroke(Color.WHITE);
+
+        // Change the opacity of the security text to 1 (fully visible)
+        securityText.setOpacity(1);
+    }
+
+    @FXML
+    private void hideSecurity() {
+        // Reset the stroke width of all three security lines (assuming it was originally 1, adjust as necessary)
+        securityLine1.setStrokeWidth(3);
+        securityLine2.setStrokeWidth(3);
+        securityLine3.setStrokeWidth(3);
+
+        // Reset the fill of all three security lines (assuming it was originally null, adjust as necessary)
+        securityLine1.setStroke(Color.TRANSPARENT);
+        securityLine2.setStroke(Color.TRANSPARENT);
+        securityLine3.setStroke(Color.TRANSPARENT);
+
+        // Change the opacity of the security text to 0 (completely hidden)
+        securityText.setOpacity(0);
     }
     @FXML
     private void handleMouseClicked(MouseEvent event) {
