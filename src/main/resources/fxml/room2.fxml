@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -16,26 +17,114 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#371b65" height="200.0" layoutX="-40.0" layoutY="450.0" rotate="-57.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="201.0" layoutX="-28.0" layoutY="487.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="910.0">
          <fill>
-            <LinearGradient endX="0.7957244655581948" endY="1.0" startX="0.18527315914489312">
+            <LinearGradient endX="0.5391923990498813" endY="1.0" startX="0.20902612826603326">
                <stops>
                   <Stop>
                      <color>
                         <Color red="0.2705882489681244" green="0.19607843458652496" blue="0.27450981736183167" />
                      </color>
                   </Stop>
-                  <Stop offset="0.27439024390243894">
+                  <Stop offset="0.060402684563758385">
+                     <color>
+                        <Color red="0.2705882489681244" green="0.19607843458652496" blue="0.27450981736183167" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.07975937141921739">
                      <color>
                         <Color red="0.41960784792900085" green="0.3686274588108063" blue="0.48627451062202454" />
                      </color>
                   </Stop>
-                  <Stop offset="0.3600425601571452">
+                  <Stop offset="0.5226919299394336">
                      <color>
-                        <Color red="0.26622000336647034" green="0.19439999759197235" blue="0.27000001072883606" />
+                        <Color red="0.35160818696022034" green="0.38486841320991516" blue="0.6842105388641357" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.6452774594860042">
+                     <color>
+                        <Color red="0.3746345043182373" green="0.4973806142807007" blue="0.6578947305679321" />
                      </color>
                   </Stop>
                   <Stop offset="0.6524390243902439">
                      <color>
                         <Color red="0.5732293725013733" green="0.4931773841381073" blue="0.5789473652839661" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8288590604026845">
+                     <color>
+                        <Color red="0.2843140959739685" green="0.18628168106079102" blue="0.28947368264198303" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.29814815521240234" green="0.21296297013759613" blue="0.30263158679008484" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="474.0" layoutX="363.0" layoutY="410.0" rotate="33.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="584.0">
+         <fill>
+            <LinearGradient endX="0.515439429928741" endY="0.05463182897862229" startX="0.2897862232779097" startY="0.9073634204275534">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.3815789520740509" green="0.41447368264198303" blue="0.7105262875556946" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.12751677852348994">
+                     <color>
+                        <Color red="0.3815789520740509" green="0.41447368264198303" blue="0.7105262875556946" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.19270748076608285">
+                     <color>
+                        <Color red="0.40109649300575256" green="0.3594054579734802" blue="0.7763158082962036" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.28523489932885904">
+                     <color>
+                        <Color red="0.3479532301425934" green="0.38026314973831177" blue="0.6710526347160339" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.42953020134228187">
+                     <color>
+                        <Color red="0.3874269127845764" green="0.43433237075805664" blue="0.7894737124443054" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5302013422818791">
+                     <color>
+                        <Color red="0.35160818696022034" green="0.38486841320991516" blue="0.6842105388641357" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5459363234571941">
+                     <color>
+                        <Color red="0.3113304078578949" green="0.22660818696022034" blue="0.31578946113586426" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.6502291700769355">
+                     <color>
+                        <Color red="0.28626543283462524" green="0.22344054281711578" blue="0.3684210479259491" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.7982280242265509">
+                     <color>
+                        <Color red="0.3638157844543457" green="0.2763157784938812" blue="0.3684210479259491" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8322147651006712">
+                     <color>
+                        <Color red="0.2843140959739685" green="0.18628168106079102" blue="0.28947368264198303" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9372237682108363">
+                     <color>
+                        <Color red="0.2069200724363327" green="0.1384015530347824" blue="0.21052631735801697" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9865771812080537">
+                     <color>
+                        <Color red="0.2705882489681244" green="0.19607843458652496" blue="0.27450981736183167" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
@@ -50,7 +139,7 @@
       <Line endX="125.73968505859375" endY="-12.0" layoutX="634.0" layoutY="499.0" startX="242.09375" startY="65.79461669921875" stroke="#3f364a" />
       <Line endX="493.11529541015625" endY="-57.999969482421875" layoutX="158.0" layoutY="545.0" startX="593.0494995117188" startY="49.52935791015625" stroke="#5f5071" />
       <Line endX="55.3653564453125" endY="118.4376220703125" layoutX="557.0" layoutY="532.0" startX="-17.6483154296875" startY="-45.0" stroke="#5f5071" strokeWidth="3.0" />
-      <Line endX="79.8193359375" endY="85.65106201171875" layoutX="401.0" layoutY="541.0" startX="55.34564208984375" startY="-53.999969482421875" stroke="#5f5071" />
+      <Line endX="108.55450439453125" endY="270.0418701171875" layoutX="401.0" layoutY="541.0" startX="55.34564208984375" startY="-53.999969482421875" stroke="#5f5071" />
       <Line endX="92.45687866210938" endY="-70.0" layoutX="257.0" layoutY="557.0" startX="51.523345947265625" startY="169.56549072265625" stroke="#5f5071" />
       <Line endX="74.03125" endY="-36.0" layoutX="185.0" layoutY="523.0" startX="-31.258819580078125" startY="197.09967041015625" stroke="#5f5071" strokeWidth="2.5" />
       <Line endX="78.34577941894531" endY="-19.000030517578125" layoutX="68.0" layoutY="506.0" startX="-84.81206512451172" startY="182.1876220703125" stroke="#5f5071" />
@@ -81,11 +170,19 @@
          </fill>
       </Rectangle>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343572" height="130.0" layoutX="741.0" layoutY="185.0" rotate="20.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="183.0" />
+      <Line endX="524.6370239257812" layoutX="308.0" layoutY="520.0" startX="-325.5191955566406" startY="-6.5478515625" stroke="#5f5071" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#371b65" height="28.0" layoutX="-19.0" layoutY="470.0" rotate="-35.2" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="64.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37225d" height="93.0" layoutX="715.0" layoutY="417.0" rotate="33.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="205.0" />
       <ImageView fitHeight="494.0" fitWidth="784.0" layoutX="30.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/security-control-cctv-room-interior-with-multiple-monitors-displaying-video-from-surveillance-cameras/1624.jpg" />
          </image>
       </ImageView>
-      <Line endX="524.6370239257812" layoutX="308.0" layoutY="520.0" startX="-325.5191955566406" startY="-6.5478515625" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#391e59" height="214.0" layoutX="-101.0" layoutY="-245.0" rotate="37.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="227.0" />
+      <Label fx:id="computerLabel" alignment="CENTER" layoutX="297.0" layoutY="258.0" onMouseEntered="#showComputerLabel" onMouseExited="#hideComputerLabel" opacity="0.0" prefHeight="52.0" prefWidth="94.0" style="-fx-border-color: rgb(255,255,255); -fx-background-color: rgb(0,0,0);" text="Computer" textFill="#f5f2f2">
+         <font>
+            <Font name="BM HANNA Air OTF" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
