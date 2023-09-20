@@ -9,7 +9,7 @@ public class GptPromptEngineering {
    * @param message the word to be guessed in the riddle
    * @return the generated prompt engineering string
    */
-  public static String getRiddleWithGivenWord(String message) {
+  public static String getInteractionMessage(String message) {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. He is interacting with you and has"
         + " just said: "
@@ -26,7 +26,7 @@ public class GptPromptEngineering {
    *
    * @return the generated prompt engineering string
    */
-  public static String getRiddleForWiresGame() {
+  public static String getWiresRiddle() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. He has found a panel with some"
         + " wires in it. There are four wires. The wire colours are green, red, yellow and"
@@ -45,7 +45,7 @@ public class GptPromptEngineering {
    *
    * @return the generated prompt engineering string
    */
-  public static String getHintForWiresGame() {
+  public static String getWiresHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. He has found a panel with some"
         + " wires in it. There are four wires. The wire colours are green, red, yellow and"
@@ -290,5 +290,17 @@ public class GptPromptEngineering {
         + " to steal an object that is guarded by lasers. Your partner has successfully"
         + " disabled the lasers to steal the objects. Tell the user that they can now steal"
         + " the treasure";
+  }
+
+  /**
+   * Generate a GPT prompt engineering string for a random sequence of the numbers 1 through to 4
+   * inclusive for the wires game.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getRandomWiresSequence() {
+    return "Give me a 4 digit number containing the numbers one, two, three, and four exactly once"
+        + " in a random order. Do not include anyting else in the message apart from the 4"
+        + " digit number.";
   }
 }

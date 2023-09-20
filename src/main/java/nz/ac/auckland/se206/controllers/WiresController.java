@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -15,6 +17,10 @@ import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.Ai;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /*
  * This is the controller class for the wires game window. The wires are made draggable and are checked if they're connected to the right endpoints.
@@ -23,6 +29,13 @@ public class WiresController implements Initializable {
 
   // Buttons
   @FXML private Button backButton;
+  @FXML private Button hintButton;
+
+  // Hacker panel
+  @FXML private Rectangle hackerRectangle;
+  @FXML private TextArea hackerTextArea;
+  @FXML private ImageView hackerIcon;
+  @FXML private ImageView exitHackerPanelImage;
 
   // Opacity rectangle
   @FXML private Rectangle opacityRectangle;
@@ -93,6 +106,7 @@ public class WiresController implements Initializable {
     makeDraggable(greenWire);
     makeDraggable(redWire);
     makeDraggable(yellowWire);
+    disableHackrPanel();
   }
 
   /**
@@ -261,5 +275,37 @@ public class WiresController implements Initializable {
     double tanAngle = opposite / adjacent;
     double angle = Math.atan(tanAngle);
     return Math.toDegrees(angle);
+  }
+
+  /**
+   * This method gives a hint to the user through the AI
+   *
+   * @throws ApiProxyException
+   */
+  @FXML
+  public void onHintPressed() throws ApiProxyException {
+    enableHackrPanel();
+    Ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+  }
+
+  @FXML
+  public void onExitClicked() {
+    disableHackrPanel();
+  }
+
+  public void disableHackrPanel() {
+    hackerIcon.setVisible(false);
+    hackerRectangle.setVisible(false);
+    hackerTextArea.setVisible(false);
+    exitHackerPanelImage.setVisible(false);
+    exitHackerPanelImage.setDisable(true);
+  }
+
+  public void enableHackrPanel() {
+    hackerIcon.setVisible(true);
+    hackerRectangle.setVisible(true);
+    hackerTextArea.setVisible(true);
+    exitHackerPanelImage.setVisible(true);
+    exitHackerPanelImage.setDisable(false);
   }
 }

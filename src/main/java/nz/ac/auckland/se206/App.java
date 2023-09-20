@@ -47,9 +47,7 @@ public class App extends Application {
     // Load all the views
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
-
     SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
-
 
     // SceneManager.addUi(AppUi.SIN_MINIGAME,loadFxml("frequencyMinigame"));
 
