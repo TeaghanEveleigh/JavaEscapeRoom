@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -7,19 +8,24 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.KeyState;
+import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
 
 public class GameController {
-  @FXML private Canvas gameCanvas;
+  @FXML protected Canvas gameCanvas;
 
-  private GraphicsContext graphicsContext;
-  private CanvasRenderer renderer;
+  protected GraphicsContext graphicsContext;
+  protected CanvasRenderer renderer;
+  protected Player player;
+  protected ArrayList<BoundsObject> boundsObjects;
 
   public void initialize() {
+    gameCanvas.requestFocus();
     graphicsContext = gameCanvas.getGraphicsContext2D();
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
+    boundsObjects = new ArrayList<BoundsObject>();
 
-    Player player = new Player(50, 50, 50, 50);
+    player = new Player(100, 100, 50, 50);
     renderer.addEntity(player);
 
     AnimationTimer timer =
@@ -37,6 +43,7 @@ public class GameController {
 
   @FXML
   public void keyPressedHandler(KeyEvent keyEvent) {
+    System.out.println("pressed");
     KeyState.keyPressed(keyEvent.getCode());
   }
 

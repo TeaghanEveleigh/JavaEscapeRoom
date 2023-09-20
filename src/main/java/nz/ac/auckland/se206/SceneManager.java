@@ -11,8 +11,8 @@ public class SceneManager {
 
     WIRES_GAME,
 
-    SIN_MINIGAME;
-
+    SIN_MINIGAME,
+    LASER_ROOM,
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

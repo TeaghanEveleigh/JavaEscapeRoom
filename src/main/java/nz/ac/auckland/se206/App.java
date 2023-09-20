@@ -47,16 +47,15 @@ public class App extends Application {
     // Load all the views
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
-
     SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
-
+    SceneManager.addUi(AppUi.LASER_ROOM, loadFxml("room1"));
 
     // SceneManager.addUi(AppUi.SIN_MINIGAME,loadFxml("frequencyMinigame"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
-
+    scene = new Scene(SceneManager.getUiRoot(AppUi.LASER_ROOM), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.LASER_ROOM);
     stage.setScene(scene);
     stage.show();
-    stage.requestFocus();
+    root.requestFocus();
   }
 }
