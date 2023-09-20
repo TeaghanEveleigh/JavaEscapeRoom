@@ -12,13 +12,13 @@ public class Player extends Sprite {
   private int moveSpeed = 5;
   private int oldX;
   private int oldY;
-  private ArrayList<SolidBox> boundingBoxes;
+  private ArrayList<BoundsObject> boundingBoxes;
 
   public Player(int width, int height, int posX, int posY) {
     super(imagePath, width, height, posX, posY);
     oldX = posX;
     oldY = posY;
-    boundingBoxes = new ArrayList<SolidBox>();
+    boundingBoxes = new ArrayList<BoundsObject>();
   }
 
   public void updateMovement() {
@@ -45,7 +45,7 @@ public class Player extends Sprite {
       }
     }
 
-    preventBoundingBoxCollision();
+    handleCollisions();
   }
 
   private void moveLeft() {
@@ -78,21 +78,31 @@ public class Player extends Sprite {
     }
   }
 
-  public void setBoundingBoxes(ArrayList<SolidBox> boundingBoxes) {
+  public void setBoundingBoxes(ArrayList<BoundsObject> boundingBoxes) {
     this.boundingBoxes = boundingBoxes;
   }
 
-  private void preventBoundingBoxCollision() {
-    for (SolidBox box : this.boundingBoxes) {
-      if (this.getBounds().intersects(box.getBounds())) {
-        this.posX = oldX;
-        this.posY = oldY;
-        return;
+  private void handleCollisions() {
+    for (BoundsObject boundsObject : this.boundingBoxes) {
+      if (this.getBounds().intersects(boundsObject.getBounds())) {
+        if (boundsObject instanceof SolidBox) {
+          preventBoundingBoxCollision();
+          return;
+        } else if (boundsObject instanceof Interactable
+            && KeyState.getKeysPressed().contains(KeyCode.E)) {
+          Interactable interactable = (Interactable) boundsObject;
+          interactable.interact();
+        }
       }
     }
 
     oldX = posX;
     oldY = posY;
+  }
+
+  private void preventBoundingBoxCollision() {
+    this.posX = oldX;
+    this.posY = oldY;
   }
 
   public Rectangle2D getBounds() {

@@ -1,5 +1,12 @@
 package nz.ac.auckland.se206.game;
 
-public class Interactable {
-  public Interactable() {}
+import javafx.scene.shape.Rectangle;
+
+public abstract class Interactable extends BoundsObject {
+
+  public Interactable(Rectangle rectangle) {
+    super(rectangle);
+  }
+
+  public abstract void interact();
 }

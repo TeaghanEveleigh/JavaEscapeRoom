@@ -8,25 +8,22 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.KeyState;
-import nz.ac.auckland.se206.game.Interactable;
+import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
-import nz.ac.auckland.se206.game.SolidBox;
 
 public class GameController {
   @FXML protected Canvas gameCanvas;
 
   protected GraphicsContext graphicsContext;
   protected CanvasRenderer renderer;
-  protected ArrayList<Interactable> interactables;
   protected Player player;
-  protected ArrayList<SolidBox> solidBoxes;
+  protected ArrayList<BoundsObject> boundsObjects;
 
   public void initialize() {
     gameCanvas.requestFocus();
     graphicsContext = gameCanvas.getGraphicsContext2D();
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
-    interactables = new ArrayList<Interactable>();
-    solidBoxes = new ArrayList<SolidBox>();
+    boundsObjects = new ArrayList<BoundsObject>();
 
     player = new Player(50, 50, 50, 50);
     renderer.addEntity(player);
