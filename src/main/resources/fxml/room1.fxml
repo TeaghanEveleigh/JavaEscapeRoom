@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="373.0" layoutX="-15.0" layoutY="-11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="394.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="403.0" layoutX="357.0" layoutY="-28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="461.0" />
@@ -183,5 +184,8 @@
             <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
          </image>
       </ImageView>
+      <Canvas fx:id="gameCanvas" height="585.0" layoutX="2.0" layoutY="6.0" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" width="816.0" />
+      <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="169.0" layoutX="307.0" layoutY="360.0" stroke="TRANSPARENT" strokeType="INSIDE" width="211.0" />
+      <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="68.0" layoutX="-2.0" layoutY="167.0" stroke="TRANSPARENT" strokeType="INSIDE" width="825.0" />
    </children>
 </AnchorPane>
