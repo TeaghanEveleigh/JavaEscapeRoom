@@ -25,7 +25,7 @@ public class GameController {
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
     boundsObjects = new ArrayList<BoundsObject>();
 
-    player = new Player(50, 50, 50, 50);
+    player = new Player(100, 100, 50, 50);
     renderer.addEntity(player);
 
     AnimationTimer timer =
