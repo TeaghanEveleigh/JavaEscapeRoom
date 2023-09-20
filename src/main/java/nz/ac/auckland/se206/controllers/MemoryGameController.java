@@ -13,7 +13,7 @@ import javafx.util.Duration;
 
 public class MemoryGameController {
   private static double sequenceSeconds = 0.5;
-  private static int maxSequenceLength = 4;
+  private static int maxSequenceLength = 6;
 
   @FXML private ImageView lightOne;
   @FXML private ImageView lightTwo;
@@ -24,6 +24,7 @@ public class MemoryGameController {
   @FXML private ImageView lightEight;
   @FXML private ImageView lightSeven;
   @FXML private ImageView lightNine;
+  @FXML private ImageView lightTen;
 
   private ArrayList<ImageView> lights;
   private ArrayList<ImageView> sequence;
@@ -56,9 +57,10 @@ public class MemoryGameController {
     lights.add(lightSeven);
     lights.add(lightEight);
     lights.add(lightNine);
+    lights.add(lightTen);
 
     resetAllLights();
-    ChooseSequence(4);
+    ChooseSequence(6);
     showSequence(currentSequenceLength);
   }
 
