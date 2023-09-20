@@ -10,7 +10,9 @@ public class SceneManager {
     MAIN_MENU,
     GAME_SETTINGS,
     SIN_MINIGAME,
-    SECURITY_ROOM;
+    SECURITY_ROOM,
+    LASER_ROOM,
+    DINOSAUR_ROOM;
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

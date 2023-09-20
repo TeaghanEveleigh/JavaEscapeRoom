@@ -183,6 +183,5 @@
             <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
          </image>
       </ImageView>
-      <Line endX="554.0109252929688" endY="-3.0517578125E-5" layoutX="281.0" layoutY="266.0" startX="-300.1678161621094" startY="-3.0517578125E-5" />
    </children>
 </AnchorPane>

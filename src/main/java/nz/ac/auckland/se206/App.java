@@ -48,11 +48,13 @@ public class App extends Application {
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
     // SceneManager.addUi(AppUi.SIN_MINIGAME,loadFxml("frequencyMinigame"));
-    SceneManager.addUi(AppUi.SECURITY_ROOM,loadFxml("securityroom"));
+    SceneManager.addUi(AppUi.LASER_ROOM,loadFxml("securityroom"));
+    SceneManager.addUi(AppUi.DINOSAUR_ROOM, loadFxml("room1"));
+    SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.SECURITY_ROOM), 816, 585);
+    scene = new Scene(SceneManager.getUiRoot(AppUi.LASER_ROOM), 816, 585);
     stage.setScene(scene);
     stage.show();
-    SceneManager.getUiRoot(AppUi.SECURITY_ROOM).requestFocus();
+    SceneManager.getUiRoot(AppUi.LASER_ROOM).requestFocus();
   }
 }

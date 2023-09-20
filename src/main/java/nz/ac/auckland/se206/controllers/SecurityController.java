@@ -3,11 +3,13 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 public class SecurityController {
+    @FXML Label wireLabel;
     @FXML Label doorLabel;
     @FXML Rectangle correctColor;
     @FXML Rectangle incorrectColor;
@@ -25,8 +27,21 @@ public class SecurityController {
     @FXML private Rectangle zero1;
     @FXML private Rectangle clear;
     @FXML private Rectangle enter;
+    @FXML private ImageView keypad;
+    @FXML private Rectangle numberRectangle;
     @FXML private Text numbers;
+    @FXML private Rectangle keypadRectangle;
     private int numberOfnumbers=0;
+    @FXML private Text number1;
+    @FXML private Text number2;
+    @FXML private Text number3;
+    @FXML private Text number4;
+    @FXML private Text number5;
+    @FXML private Text number6;
+    @FXML private Text number7;
+    @FXML private Text number8;
+    @FXML private Text number9;
+    // @FXML private Text number0;
     @FXML 
     private void handleClearEnter(MouseEvent event){
         Rectangle clickRectangle = (Rectangle) event.getSource();
@@ -100,5 +115,65 @@ public class SecurityController {
         }
         
         
+    }
+    @FXML 
+    private void showKeyPad() {
+        keypadRectangle.toFront();
+        
+        keypad.toFront();
+    
+        numberRectangle.toFront();
+        numbers.toFront();
+        // number0.toFront();
+        number1.toFront();
+        number2.toFront();
+        number3.toFront();
+        number4.toFront();
+        number5.toFront();
+        number6.toFront();
+        number7.toFront();
+        number8.toFront();
+        number9.toFront(); // Making sure the keypad image is in front of its background
+        one.toFront();
+        two.toFront();
+        three.toFront();
+        four.toFront();
+        five.toFront();
+        six.toFront();
+        seven.toFront();
+        eight.toFront();
+        nine.toFront();
+        zero1.toFront();
+        clear.toFront();
+        enter.toFront(); // This makes sure the numbers text is visible on the top
+    }
+
+    @FXML
+    private void hideKeyPad() {
+        keypadRectangle.toBack();
+        keypad.toBack();
+        one.toBack();
+        two.toBack();
+        three.toBack();
+        four.toBack();
+        five.toBack();
+        six.toBack();
+        seven.toBack();
+        eight.toBack();
+        nine.toBack();
+        zero1.toBack();
+        clear.toBack();
+        enter.toBack();
+        numbers.setOpacity(0);
+        correctColor.setOpacity(0);
+        incorrectColor.setOpacity(0);
+        correctTxt.setOpacity(0);
+        incorrectTxt.setOpacity(0);
+    }
+    @FXML private void showWireLabel(){
+        wireLabel.setOpacity(1);
+    }
+    @FXML private void hideWireLabel(){
+        wireLabel.setOpacity(0);;
     }
 }
