@@ -229,4 +229,66 @@ public class GptPromptEngineering {
         + " partner that the police are now suspicious of their activities and that they"
         + " need to escape quickly and in less time.";
   }
+
+  /**
+   * Generate a GPT prompt engineering string for when the user hasn't completed any tasks.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getNothingDisabledHint() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Tell your partner that they need"
+        + " to find a way to disable the laser to steal the treasure, and disable the"
+        + " camera by the exit to escape, before the time runs out";
+  }
+
+  /**
+   * Generate a GPT prompt engineering string for when the user has disabled the lasers but not the
+   * cameras.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getLasersButNotCameraHint() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Tell your partner that they need"
+        + " to find a way to disable the cameras by the exit to escape before the time runs out";
+  }
+
+  /**
+   * Generate a GPT prompt engineering string for when the user has disabled the cameras but not the
+   * lasers.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getCameraButNotLasersHint() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Tell your partner that they need"
+        + " to find a way to disable the lasers to steal the treasure before the time runs out";
+  }
+
+  /**
+   * Generate a GPT prompt engineering string for when the user has disabled the lasers and the
+   * cameras.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getBothDisabledHint() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Your partner has successfully"
+        + " disabled the lasers to steal the objects and has disabled the camera to escape."
+        + " Tell the user that they can now escape the museum before the time runs out";
+  }
+
+  /**
+   * Generate a GPT prompt engineering string for when the user has disabled the lasers but not
+   * stolen the object.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getLasersDisabledButNotStolenHint() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Your partner has successfully"
+        + " disabled the lasers to steal the objects. Tell the user that they can now steal"
+        + " the treasure";
+  }
 }
