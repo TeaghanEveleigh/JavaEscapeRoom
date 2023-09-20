@@ -1,6 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 
+import javafx.util.Duration;
+
+
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -102,19 +106,34 @@ public class SecurityController {
         String pin = " 1 3 4 6 9 8";
         System.out.println(numbers.getText());
         if(pin.equals(numbers.getText())){
-
             correctColor.toFront();
             correctTxt.toFront();
             numbers.setOpacity(0);
-            
-        }else{
+    
+            // Wait for 0.5 seconds then hide the keypad
+            PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+            pause.setOnFinished(event -> hideKeyPad());
+            pause.play();
+    
+        } else {
             incorrectColor.toFront();
             incorrectTxt.toFront();
             numbers.setOpacity(0);
             numbers.setText("");
+    
+            // Wait for 0.5 seconds then reset the numbers
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(event -> resetNumbers());
+            pause.play();
         }
-        
-        
+    }
+    
+    private void resetNumbers() {
+        numbers.setText("");
+        numberOfnumbers = 0;
+        incorrectColor.toBack();
+        incorrectTxt.toBack();
+        numbers.setOpacity(1);
     }
     @FXML 
     private void showKeyPad() {
@@ -151,6 +170,17 @@ public class SecurityController {
     @FXML
     private void hideKeyPad() {
         keypadRectangle.toBack();
+        numberRectangle.toBack();
+        number1.toBack();
+        number2.toBack();
+        number3.toBack();
+        number4.toBack();
+        number5.toBack();
+        number6.toBack();
+        number7.toBack();
+        number8.toBack();
+        number9.toBack();
+    
         keypad.toBack();
         one.toBack();
         two.toBack();
