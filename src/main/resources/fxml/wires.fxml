@@ -23,8 +23,8 @@
       </Label>
       <Rectangle fx:id="opacityRectangle" arcHeight="5.0" arcWidth="5.0" fill="#8a8282" height="585.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="815.0" />
       <Rectangle fx:id="backgroundRectangle" arcHeight="5.0" arcWidth="5.0" fill="#55606b" height="585.0" stroke="BLACK" strokeType="INSIDE" width="816.0" />
-      <Rectangle fx:id="controlPanelRectangle" arcHeight="5.0" arcWidth="5.0" height="410.0" layoutX="89.0" layoutY="101.0" stroke="#aaaaaa" strokeType="OUTSIDE" strokeWidth="5.0" width="647.0" />
-      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="194.0" layoutY="106.0" pickOnBounds="true">
+      <Rectangle fx:id="controlPanelRectangle" arcHeight="5.0" arcWidth="5.0" height="410.0" layoutX="84.0" layoutY="100.0" stroke="#aaaaaa" strokeType="OUTSIDE" strokeWidth="5.0" width="647.0" />
+      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="198.0" layoutY="105.0" pickOnBounds="true">
          <image>
             <Image url="@../images/Circuit%20Board%20Background%20-%20cropped.jpg" />
          </image>
@@ -32,7 +32,7 @@
             <ColorAdjust brightness="-0.41" />
          </effect>
       </ImageView>
-      <Label alignment="CENTER" layoutX="-4.0" layoutY="33.0" prefHeight="50.0" prefWidth="815.0" text="Drag the wires to the correct numbers!">
+      <Label alignment="CENTER" layoutX="-4.0" layoutY="26.0" prefHeight="50.0" prefWidth="815.0" text="Drag the wires to the correct numbers!">
          <font>
             <Font name="Baskerville Old Face" size="30.0" />
          </font>
@@ -40,64 +40,67 @@
             <ColorAdjust brightness="-1.0" />
          </effect>
       </Label>
-      <Button fx:id="backButton" layoutX="17.0" layoutY="33.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="50.0" prefWidth="50.0" textFill="#825000">
+      <Button fx:id="backButton" layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="47.0" prefWidth="81.0" textFill="#825000">
          <font>
             <Font name="Baskerville Old Face" size="16.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="30.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Arrow.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Circle fx:id="endpointoneCircle" fill="#55606b" layoutX="646.0" layoutY="156.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fx:id="endpointfourCircle" fill="#55606b" layoutX="646.0" layoutY="457.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fx:id="endpointthreeCircle" fill="#55606b" layoutX="646.0" layoutY="357.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fx:id="endpointtwoCircle" fill="#55606b" layoutX="646.0" layoutY="255.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Label fx:id="twoLabel" alignment="CENTER" layoutX="676.0" layoutY="224.0" prefHeight="62.0" prefWidth="62.0" text="2" textFill="#55606b">
+      <Circle fx:id="endpointoneCircle" fill="#55606b" layoutX="641.0" layoutY="155.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fx:id="endpointfourCircle" fill="#55606b" layoutX="641.0" layoutY="456.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fx:id="endpointthreeCircle" fill="#55606b" layoutX="641.0" layoutY="356.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fx:id="endpointtwoCircle" fill="#55606b" layoutX="641.0" layoutY="254.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Label fx:id="twoLabel" alignment="CENTER" layoutX="671.0" layoutY="223.0" prefHeight="62.0" prefWidth="62.0" text="2" textFill="#55606b">
          <font>
             <Font name="Baskerville Old Face" size="40.0" />
          </font>
       </Label>
-      <Label fx:id="threeLabel" alignment="CENTER" layoutX="676.0" layoutY="326.0" prefHeight="62.0" prefWidth="62.0" text="3" textFill="#55606b">
+      <Label fx:id="threeLabel" alignment="CENTER" layoutX="671.0" layoutY="325.0" prefHeight="62.0" prefWidth="62.0" text="3" textFill="#55606b">
          <font>
             <Font name="Baskerville Old Face" size="40.0" />
          </font>
       </Label>
-      <Label fx:id="fourLabel" alignment="CENTER" layoutX="676.0" layoutY="426.0" prefHeight="62.0" prefWidth="62.0" text="4" textFill="#55606b">
+      <Label fx:id="fourLabel" alignment="CENTER" layoutX="671.0" layoutY="425.0" prefHeight="62.0" prefWidth="62.0" text="4" textFill="#55606b">
          <font>
             <Font name="Baskerville Old Face" size="40.0" />
          </font>
       </Label>
-      <Label fx:id="oneLabel" alignment="CENTER" layoutX="676.0" layoutY="125.0" prefHeight="62.0" prefWidth="62.0" text="1" textFill="#55606b">
+      <Label fx:id="oneLabel" alignment="CENTER" layoutX="671.0" layoutY="124.0" prefHeight="62.0" prefWidth="62.0" text="1" textFill="#55606b">
          <font>
             <Font name="Baskerville Old Face" size="40.0" />
          </font>
       </Label>
-      <Rectangle fx:id="greenWire" arcHeight="5.0" arcWidth="5.0" fill="#326839" height="60.0" layoutX="143.0" layoutY="126.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0">
+      <Rectangle fx:id="greenWire" arcHeight="5.0" arcWidth="5.0" fill="#326839" height="60.0" layoutX="138.0" layoutY="125.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0">
       </Rectangle>
-      <Rectangle fx:id="redWire" arcHeight="5.0" arcWidth="5.0" fill="#7c2727" height="60.0" layoutX="143.0" layoutY="225.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0" />
-      <Rectangle fx:id="yellowWire" arcHeight="5.0" arcWidth="5.0" fill="#b6b915" height="60.0" layoutX="144.0" layoutY="327.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0" />
-      <Rectangle fx:id="blueWire" arcHeight="5.0" arcWidth="5.0" fill="#125a9e" height="60.0" layoutX="144.0" layoutY="427.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0" />
-      <Circle fx:id="greenCircle" fill="#326839" layoutX="143.0" layoutY="156.0" radius="30.0" stroke="#326839" strokeType="INSIDE" />
-      <Circle fx:id="redCircle" fill="#7c2727" layoutX="144.0" layoutY="255.0" radius="30.0" stroke="#7c2727" strokeType="INSIDE" />
-      <Circle fx:id="yellowCircle" fill="#b6b915" layoutX="144.0" layoutY="357.0" radius="30.0" stroke="#b6b915" strokeType="INSIDE" />
-      <Circle fx:id="blueCircle" fill="#125a9e" layoutX="144.0" layoutY="457.0" radius="30.0" stroke="#125a9e" strokeType="INSIDE" />
-      <Button fx:id="hintButton" layoutX="722.0" layoutY="34.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="50.0" text="Hint" textFill="#825000">
+      <Rectangle fx:id="redWire" arcHeight="5.0" arcWidth="5.0" fill="#7c2727" height="60.0" layoutX="138.0" layoutY="224.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0" />
+      <Rectangle fx:id="yellowWire" arcHeight="5.0" arcWidth="5.0" fill="#b6b915" height="60.0" layoutX="139.0" layoutY="326.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0" />
+      <Rectangle fx:id="blueWire" arcHeight="5.0" arcWidth="5.0" fill="#125a9e" height="60.0" layoutX="139.0" layoutY="426.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="60.0" />
+      <Circle fx:id="greenCircle" fill="#326839" layoutX="138.0" layoutY="155.0" radius="30.0" stroke="#326839" strokeType="INSIDE" />
+      <Circle fx:id="redCircle" fill="#7c2727" layoutX="139.0" layoutY="254.0" radius="30.0" stroke="#7c2727" strokeType="INSIDE" />
+      <Circle fx:id="yellowCircle" fill="#b6b915" layoutX="139.0" layoutY="356.0" radius="30.0" stroke="#b6b915" strokeType="INSIDE" />
+      <Circle fx:id="blueCircle" fill="#125a9e" layoutX="139.0" layoutY="456.0" radius="30.0" stroke="#125a9e" strokeType="INSIDE" />
+      <Button fx:id="hintButton" layoutX="717.0" layoutY="22.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
          <font>
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
-      <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="480.0" prefHeight="100.0" prefWidth="675.0" />
-      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" layoutX="680.0" layoutY="480.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
-      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="714.0" layoutY="499.0" pickOnBounds="true" preserveRatio="true">
+      <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="500.0" prefHeight="80.0" prefWidth="675.0" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font></TextArea>
+      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="680.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
+      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="714.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HackerIcon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="452.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="471.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/cross.png" />
          </image>

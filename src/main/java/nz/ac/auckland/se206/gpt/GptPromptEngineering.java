@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.gpt;
 
+import nz.ac.auckland.se206.GameState;
+
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
@@ -32,7 +34,15 @@ public class GptPromptEngineering {
         + " wires in it. There are four wires. The wire colours are green, red, yellow and"
         + " blue. Your partner has to connect each wire to the right endpoint. There are"
         + " four endpoints. The endpoints are labelled one, two, three, and four. The"
-        + " correct matchings are INSERT MATCHINGS HERE. You have hacked into the museum"
+        + " correct matchings are: green wire to endpoint "
+        + GameState.wiresSequence.charAt(0)
+        + ", red wire to endpoint "
+        + GameState.wiresSequence.charAt(1)
+        + ", yellow wire to endpoint "
+        + GameState.wiresSequence.charAt(2)
+        + ", and blue wire to endpoint "
+        + GameState.wiresSequence.charAt(3)
+        + ". You have hacked into the museum"
         + " database and found some information about the correct matchings. The information"
         + " doesn't give the correct matchings directly, but rather, gives enough"
         + " information for someone to be able to figure out the correct matchings. Give"
@@ -51,7 +61,15 @@ public class GptPromptEngineering {
         + " wires in it. There are four wires. The wire colours are green, red, yellow and"
         + " blue. Your partner has to connect each wire to the right endpoint. There are"
         + " four endpoints. The endpoints are labelled one, two, three, and four. The"
-        + " correct matchings are INSERT MATCHINGS HERE. You have hacked into the museum"
+        + " correct matchings are: green wire to endpoint "
+        + GameState.wiresSequence.charAt(0)
+        + ", red wire to endpoint "
+        + GameState.wiresSequence.charAt(1)
+        + ", yellow wire to endpoint "
+        + GameState.wiresSequence.charAt(2)
+        + ", and blue wire to endpoint "
+        + GameState.wiresSequence.charAt(3)
+        + ". You have hacked into the museum"
         + " database and found some information about the correct matchings. The information"
         + " doesn't give the correct matchings directly, but rather, gives enough"
         + " information for someone to be able to figure out the correct matchings. You have"

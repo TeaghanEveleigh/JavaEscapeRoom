@@ -10,7 +10,8 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class Ai {
 
-  private static ChatCompletionRequest chatCompletionRequest;
+  private static ChatCompletionRequest chatCompletionRequest =
+      new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(150);
 
   /**
    * Generates a response from API based on the prompt given to it and appends this message to the
@@ -38,8 +39,11 @@ public class Ai {
                 sb.append(letter);
                 if (sb.length() % 2 == 0) {
                   final String textToAppend = sb.toString();
-                  Platform.runLater(() -> textArea.appendText(textToAppend));
-                  sb.setLength(0);
+                  Platform.runLater(
+                      () -> {
+                        textArea.appendText(textToAppend);
+                        sb.setLength(0);
+                      });
                 }
                 try {
                   Thread.sleep(50);
@@ -50,11 +54,11 @@ public class Ai {
               if (sb.length() > 0) {
                 Platform.runLater(() -> textArea.appendText(sb.toString()));
               }
-              Platform.runLater(() -> textArea.appendText("\n\n"));
               return null;
             }
           };
       new Thread(task).start();
+      System.out.println("Done");
 
       return result.getChatMessage();
     } catch (ApiProxyException e) {
