@@ -294,14 +294,9 @@ public class WiresController implements Initializable {
 
               // Checks if all the wires have matched to the right endpoints
               if (isGreenCorrect && isRedCorrect && isBlueCorrect && isYellowCorrect) {
-
-                // Displays the win message and blurs the screen
-                opacityRectangle.toFront();
-                opacityRectangle.setOpacity(0.9);
-                winLabel.toFront();
-                winLabel.setVisible(true);
-                backButton.toFront();
+                onWiresGameWon();
               }
+
               break;
             }
           }
@@ -359,19 +354,41 @@ public class WiresController implements Initializable {
 
   public void disableHackerPanel() {
     hintButton.setDisable(false);
-    hackerIcon.setVisible(false);
-    hackerRectangle.setVisible(false);
-    hackerTextArea.setVisible(false);
-    exitHackerPanelImage.setVisible(false);
+    hackerIcon.toBack();
+    hackerRectangle.toBack();
+    hackerTextArea.toBack();
+    exitHackerPanelImage.toBack();
     exitHackerPanelImage.setDisable(true);
   }
 
   public void enableHackerPanel() {
     hintButton.setDisable(true);
-    hackerIcon.setVisible(true);
-    hackerRectangle.setVisible(true);
-    hackerTextArea.setVisible(true);
-    exitHackerPanelImage.setVisible(true);
+    hackerRectangle.toFront();
+    hackerIcon.toFront();
+    hackerTextArea.toFront();
+    exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);
+  }
+
+  public void onWiresGameWon() {
+    // Displays the win message and blurs the screen
+    opacityRectangle.toFront();
+    opacityRectangle.setOpacity(0.9);
+    winLabel.toFront();
+    winLabel.setVisible(true);
+    backButton.toFront();
+    enableHackerPanel();
+
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            Ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getWiresRiddleSolvedPrompt()),
+                hackerTextArea);
+            return null;
+          }
+        };
+    new Thread(task).start();
   }
 }

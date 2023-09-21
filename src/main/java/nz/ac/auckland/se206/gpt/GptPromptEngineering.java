@@ -42,12 +42,16 @@ public class GptPromptEngineering {
         + GameState.wiresSequence.charAt(2)
         + ", and blue wire to endpoint "
         + GameState.wiresSequence.charAt(3)
-        + ". You have hacked into the museum"
-        + " database and found some information about the correct matchings. The information"
-        + " doesn't give the correct matchings directly, but rather, gives enough"
-        + " information for someone to be able to figure out the correct matchings. Give"
-        + " this information to your partner. Your partner will then be able to figure out"
-        + " the correct matchings.";
+        + ". You have hacked into the museum database and found some information about the correct"
+        + " matchings, but you don't know what the correct matchings are. The information doesn't"
+        + " give the correct matchings directly, but rather, gives enough information for someone"
+        + " to be able to figure out the correct matchings easily. Give this information to your"
+        + " partner. Your partner must easily be able to figure out the correct matchings from the"
+        + " information you give them without having to guess anything. They should be able to use"
+        + " process of elimination to figure out the correct matchings based on the information you"
+        + " found. Do not give them the correct matchings directly. If they ask for the correct"
+        + " matchings, tell them that you can't find any information on it. Keep the message under"
+        + " 100 words";
   }
 
   /**
@@ -75,7 +79,7 @@ public class GptPromptEngineering {
         + " information for someone to be able to figure out the correct matchings. You have"
         + " given this information to your partner and they are stuck with what to do. Give"
         + " them a hint about the order of the correct matching of the wires. Do not give"
-        + " them the answer directly";
+        + " them the answer directly. Keep your message under 100 words";
   }
 
   /**
@@ -87,7 +91,7 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Your partner has just disabled the"
         + " lasers. Congradulate your partner on their success and urge them to steal the"
-        + " object";
+        + " treasure. Keep your message under 50 words";
   }
 
   /**
