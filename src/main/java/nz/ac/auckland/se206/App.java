@@ -48,6 +48,9 @@ public class App extends Application {
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
     SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
+
+    // SceneManager.addUi(AppUi.SIN_MINIGAME,loadFxml("frequencyMinigame"));
+
     SceneManager.addUi(AppUi.DINOSAUR_ROOM, loadFxml("room1"));
     SceneManager.addUi(AppUi.EXIT_ROOM, loadFxml("securityroom"));
     SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
