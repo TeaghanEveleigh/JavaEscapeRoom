@@ -377,9 +377,9 @@
          </font>
       </Text>
       <Canvas fx:id="gameCanvas" height="585.0" width="816.0" />
-      <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="6.0" stroke="BLACK" strokeType="INSIDE" width="816.0" />
-      <Rectangle fx:id="computerBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="279.0" layoutY="217.0" opacity="0.44" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle fx:id="safeBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="660.0" layoutY="389.0" opacity="0.26" stroke="BLACK" strokeType="INSIDE" width="93.0" />
-      <Rectangle fx:id="doorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="241.0" layoutX="-16.0" layoutY="217.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="6.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="816.0" />
+      <Rectangle fx:id="computerBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="279.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle fx:id="safeBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="660.0" layoutY="389.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="93.0" />
+      <Rectangle fx:id="doorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="241.0" layoutX="-16.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
    </children>
 </AnchorPane>

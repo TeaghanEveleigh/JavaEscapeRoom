@@ -9,11 +9,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ComputerListener;
+import nz.ac.auckland.se206.ExitRoomDoorListener;
+import nz.ac.auckland.se206.SafeListener;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Computer;
+import nz.ac.auckland.se206.game.ExitRoomDoor;
+import nz.ac.auckland.se206.game.Safe;
 import nz.ac.auckland.se206.game.SolidBox;
 
-public class Room2Controller extends GameController implements ComputerListener {
+public class Room2Controller extends GameController
+    implements ComputerListener, SafeListener, ExitRoomDoorListener {
   @FXML private Text interractHint;
   @FXML private Text passwordText;
   private Boolean computerOpen = false;
@@ -33,6 +40,7 @@ public class Room2Controller extends GameController implements ComputerListener 
   @FXML private Rectangle computerBounds;
   @FXML private Rectangle doorBounds;
   @FXML private Rectangle safeBounds;
+  private boolean safeOpened = false;
 
   @FXML Label computerLabel;
   @FXML Button btnHelp;
@@ -46,6 +54,8 @@ public class Room2Controller extends GameController implements ComputerListener 
     super.initialize();
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new Computer(computerBounds, this));
+    boundsObjects.add(new Safe(safeBounds, this));
+    boundsObjects.add(new ExitRoomDoor(doorBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(300);
@@ -132,6 +142,7 @@ public class Room2Controller extends GameController implements ComputerListener 
 
   @FXML
   private void safeOpen() {
+    safeOpened = true;
     openedSafe.toFront();
     note.toFront();
     noteLabel.toFront();
@@ -186,5 +197,44 @@ public class Room2Controller extends GameController implements ComputerListener 
   public void computerUntouched() {
     hideComputerLabel();
     hideComputer();
+  }
+
+  @Override
+  public void safeInteracted() {
+    if (safeOpened) {
+      showBigNote();
+    }
+    // need to swap to memory game
+  }
+
+  @Override
+  public void safeTouched() {
+    if (!safeOpened) {
+      showSafeLabel();
+    } else {
+      showNoteLabel();
+    }
+  }
+
+  @Override
+  public void safeUntouched() {
+    hideSafeLabel();
+    hideNoteLabel();
+  }
+
+  @Override
+  public void exitDoorInteracted() {
+    paused = true;
+    App.switchScenes(AppUi.EXIT_ROOM);
+  }
+
+  @Override
+  public void exitDoorTouched() {
+    showEntranceLabel();
+  }
+
+  @Override
+  public void exitDoorUntouched() {
+    hideEntranceLabel();
   }
 }
