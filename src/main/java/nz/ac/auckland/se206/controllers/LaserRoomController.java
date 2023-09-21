@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.game.SolidBox;
 
 public class LaserRoomController extends GameController {
   @FXML private Label dinoLabel1;
+  @FXML private Label dinoLabel2;
   @FXML private ImageView object;
   @FXML private ImageView laserShadow1;
   @FXML private ImageView laserShadow2;
@@ -60,6 +61,13 @@ public class LaserRoomController extends GameController {
   }
   @FXML private void hideDinoLabel1(){
     dinoLabel1.setOpacity(0);
+    
+  }
+  @FXML private void showDinoLabelTwo(){
+    dinoLabel2.setOpacity(1);
+  }
+  @FXML private void hideDinoLabelTwo(){
+    dinoLabel2.setOpacity(0);
     
   }
 }
