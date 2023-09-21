@@ -43,7 +43,6 @@ public class GameController {
 
   @FXML
   public void keyPressedHandler(KeyEvent keyEvent) {
-    System.out.println("pressed");
     KeyState.keyPressed(keyEvent.getCode());
   }
 

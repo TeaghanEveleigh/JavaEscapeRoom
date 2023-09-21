@@ -8,6 +8,7 @@ public class KeyState {
   private static Set<KeyCode> keysDown = new HashSet<KeyCode>();
 
   public static void keyPressed(KeyCode keyCode) {
+    System.out.println("pressed");
     keysDown.add(keyCode);
   }
 

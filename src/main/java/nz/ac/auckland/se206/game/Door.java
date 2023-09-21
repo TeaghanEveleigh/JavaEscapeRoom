@@ -22,4 +22,14 @@ public class Door extends Interactable {
       e.printStackTrace();
     }
   }
+
+  @Override
+  public void touched() {
+    return;
+  }
+
+  @Override
+  public void untouched() {
+    return;
+  }
 }
