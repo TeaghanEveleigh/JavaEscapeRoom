@@ -102,7 +102,7 @@ public class WiresController implements Initializable {
    */
   @FXML
   public void onBackPressed() throws IOException {
-    App.switchScenes(AppUi.KEYPAD_ROOM);
+    App.switchScenes(AppUi.EXIT_ROOM);
   }
 
   /**
