@@ -5,10 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.controllers.Room2Controller;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -51,17 +49,15 @@ public class App extends Application {
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
     SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
     SceneManager.addUi(AppUi.DINOSAUR_ROOM, loadFxml("room1"));
-    SceneManager.addUi(AppUi.EXIT_ROOM, loadFxml("room2"));
-    SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("securityroom"));
+    SceneManager.addUi(AppUi.EXIT_ROOM, loadFxml("securityroom"));
+    SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
 
+    scene = new Scene(SceneManager.getUiRoot(AppUi.EXIT_ROOM), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.SECURITY_ROOM), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.SECURITY_ROOM);
-    
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
-   
   }
 
   public static void switchScenes(AppUi ui) {
