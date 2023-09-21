@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.gpt;
 
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
@@ -22,13 +25,19 @@ public class Ai {
    * @return the response from the API
    * @throws ApiProxyException
    */
-  public static ChatMessage runGpt(ChatMessage msg, TextArea textArea) throws ApiProxyException {
+  public ChatMessage runGpt(ChatMessage msg, TextArea textArea) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
+    String hackingSound =
+        getClass().getResource("/sounds/computer-processing-sound-effect.mp3").toString();
+    Media media = new Media(hackingSound);
+    MediaPlayer hackingSoundPlayer = new MediaPlayer(media);
+    hackingSoundPlayer.play();
     try {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
       String content = result.getChatMessage().getContent();
+      hackingSoundPlayer.stop();
 
       StringBuilder sb = new StringBuilder();
       Task<Void> task =

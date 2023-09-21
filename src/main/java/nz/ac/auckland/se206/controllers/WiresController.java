@@ -93,6 +93,9 @@ public class WiresController implements Initializable {
   // Colour of endpoints
   private Color endpointColour = Color.rgb(85, 96, 107);
 
+  // Ai
+  private Ai ai = new Ai();
+
   /**
    * This method initialises the wires game window. The wires game allows the user to drag wires
    * around a control panel and try and match them to the correct endpoints
@@ -327,7 +330,7 @@ public class WiresController implements Initializable {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            Ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+            ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
             return null;
           }
         };
@@ -339,7 +342,7 @@ public class WiresController implements Initializable {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            Ai.runGpt(
+            ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getWiresRiddle()), hackerTextArea);
             return null;
           }
@@ -383,7 +386,7 @@ public class WiresController implements Initializable {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            Ai.runGpt(
+            ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getWiresRiddleSolvedPrompt()),
                 hackerTextArea);
             return null;
