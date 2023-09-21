@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
@@ -11,9 +12,20 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
    <children>
+      <Label fx:id="itemLabel" alignment="CENTER" layoutX="361.0" layoutY="291.0" onMouseEntered="#itemLabelShow" onMouseExited="#itemLabelHide" opacity="0.0" prefHeight="208.0" prefWidth="120.0" style="-fx-border-color: White; -fx-border-width: 4; -fx-border-radius: 10;" text="ITEM" textFill="WHITE">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="laserShadow3" fitHeight="593.0" fitWidth="700.0" layoutX="-22.0" layoutY="343.0" opacity="0.15" pickOnBounds="true" preserveRatio="true" rotate="159.3">
+         <image>
+            <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
+         </image>
+      </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="373.0" layoutX="-15.0" layoutY="-11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="394.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="403.0" layoutX="357.0" layoutY="-28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="461.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="319.0" layoutX="-88.0" layoutY="297.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="906.0" />
@@ -103,7 +115,7 @@
             </LinearGradient>
          </stroke>
       </Line>
-      <ImageView fitHeight="76.0" fitWidth="60.0" layoutX="389.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="367.0">
+      <ImageView fx:id="object" fitHeight="76.0" fitWidth="60.0" layoutX="389.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="367.0">
          <image>
             <Image url="@../images/Vase%20Icon.png" />
          </image>
@@ -154,32 +166,27 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="256.0" layoutX="476.0" layoutY="73.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="293.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="127.0" layoutX="333.0" layoutY="151.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
       <Line endX="682.9999389648438" endY="-38.9295654296875" layoutX="139.0" layoutY="292.0" opacity="0.0" startX="-152.40518188476562" startY="-38.9295654296875" strokeWidth="5.0" />
-      <ImageView fitHeight="690.0" fitWidth="563.0" layoutX="172.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-55.8">
+      <ImageView fx:id="laser2" fitHeight="690.0" fitWidth="563.0" layoutX="172.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-55.8">
          <image>
             <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="638.0" fitWidth="620.0" layoutX="84.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" rotate="-46.8" AnchorPane.leftAnchor="84.0">
+      <ImageView fx:id="laser3" fitHeight="638.0" fitWidth="620.0" layoutX="84.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" rotate="-46.8" AnchorPane.leftAnchor="84.0">
          <image>
             <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="593.0" fitWidth="700.0" layoutX="52.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true" rotate="-37.3">
+      <ImageView fx:id="laser1" fitHeight="593.0" fitWidth="700.0" layoutX="52.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true" rotate="-37.3">
          <image>
             <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="503.0" fitWidth="838.0" layoutX="190.0" layoutY="416.0" opacity="0.11" pickOnBounds="true" preserveRatio="true" rotate="132.5">
+      <ImageView fx:id="laserShadow2" fitHeight="503.0" fitWidth="838.0" layoutX="190.0" layoutY="416.0" opacity="0.11" pickOnBounds="true" preserveRatio="true" rotate="132.5">
          <image>
             <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="593.0" fitWidth="700.0" layoutX="309.0" layoutY="298.0" opacity="0.15" pickOnBounds="true" preserveRatio="true" rotate="103.8">
-         <image>
-            <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="593.0" fitWidth="700.0" layoutX="-22.0" layoutY="343.0" opacity="0.15" pickOnBounds="true" preserveRatio="true" rotate="159.3">
+      <ImageView fx:id="laserShadow1" fitHeight="593.0" fitWidth="700.0" layoutX="309.0" layoutY="298.0" opacity="0.15" pickOnBounds="true" preserveRatio="true" rotate="103.8">
          <image>
             <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
          </image>
@@ -188,5 +195,10 @@
       <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="137.0" layoutX="355.0" layoutY="352.0" stroke="TRANSPARENT" strokeType="INSIDE" width="128.0" />
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="68.0" layoutX="2.0" layoutY="119.0" stroke="TRANSPARENT" strokeType="INSIDE" width="825.0" />
       <Rectangle fx:id="doorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="738.0" layoutY="372.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
+      <Label fx:id="dinoLabel1" alignment="CENTER" layoutX="4.0" layoutY="9.0" onMouseEntered="#showDinoLabel1" onMouseExited="#hideDinoLabel1" opacity="0.0" prefHeight="302.0" prefWidth="242.0" style="-fx-border-color: WHITE; -fx-border-width: 3; -fx-border-radius: 15;" text="Dinosaur" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="46.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
