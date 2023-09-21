@@ -15,6 +15,7 @@ public class SceneManager {
     DINOSAUR_ROOM,
 
     WIRES_GAME,
+    EXIT_ROOM;
 
   }
 

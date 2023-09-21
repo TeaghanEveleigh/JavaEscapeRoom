@@ -5,8 +5,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.Room2Controller;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -51,14 +53,15 @@ public class App extends Application {
     SceneManager.addUi(AppUi.LASER_ROOM, loadFxml("room1"));
 
     // SceneManager.addUi(AppUi.SIN_MINIGAME,loadFxml("frequencyMinigame"));
-    SceneManager.addUi(AppUi.LASER_ROOM,loadFxml("securityroom"));
-    SceneManager.addUi(AppUi.DINOSAUR_ROOM, loadFxml("room1"));
+    SceneManager.addUi(AppUi.EXIT_ROOM,loadFxml("securityroom"));
     SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.LASER_ROOM), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.LASER_ROOM);
+    scene = new Scene(SceneManager.getUiRoot(AppUi.EXIT_ROOM), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);
+    
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
+   
   }
 }
