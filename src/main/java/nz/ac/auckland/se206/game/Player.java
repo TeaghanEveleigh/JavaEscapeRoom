@@ -64,15 +64,19 @@ public class Player extends Sprite {
     for (KeyCode key : keysPressed) {
       switch (key) {
         case A:
+        case LEFT:
           moveLeft();
           break;
         case D:
+        case RIGHT:
           moveRight();
           break;
         case W:
+        case UP:
           moveUp();
           break;
         case S:
+        case DOWN:
           moveDown();
           break;
         default:
