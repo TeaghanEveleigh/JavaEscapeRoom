@@ -14,49 +14,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.Room2Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#appendPassword" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.Room2Controller">
    <children>
-      <ImageView fx:id="bigNote" fitHeight="768.0" fitWidth="522.0" layoutX="163.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/AICutout_e96i_Fotor.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="password" layoutX="268.0" layoutY="249.0" rotate="11.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 1 2 3 4 5 ">
-         <font>
-            <Font name="BM HANNA Air OTF" size="57.0" />
-         </font>
-      </Text>
-      <ImageView fx:id="note" fitHeight="39.0" fitWidth="43.0" layoutX="678.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/AICutout_e96i_Fotor.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="openedSafe" fitHeight="114.0" fitWidth="101.0" layoutX="658.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/AICutout_5u4v_Fotor.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="noteLabel" alignment="TOP_CENTER" layoutX="659.0" layoutY="374.0" onMouseClicked="#showBigNote" onMouseEntered="#showNoteLabel" onMouseExited="#hideNoteLabel" prefHeight="150.0" prefWidth="105.0" style="-fx-border-color: WHITE; -fx-border-radius: 10; -fx-border-width: 3;" text="Note" textFill="WHITE">
-         <font>
-            <Font name="BM HANNA Air OTF" size="31.0" />
-         </font>
-      </Label>
-      <Text fx:id="titleComputer" layoutX="153.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password to login">
-         <font>
-            <Font name="BM HANNA Air OTF" size="55.0" />
-         </font>
-      </Text>
-      <Rectangle fx:id="rectangleText" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="43.0" layoutX="146.0" layoutY="274.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="546.0" />
-      <Button fx:id="btnLogin" layoutX="426.0" layoutY="335.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="93.0" text="Login">
-         <font>
-            <Font name="BM HANNA Air OTF" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnHelp" layoutX="318.0" layoutY="336.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="96.0" style="-fx-border-radius: 20;" text="Help">
-         <font>
-            <Font name="BM HANNA Air OTF" size="19.0" />
-         </font>
-      </Button>
       <Rectangle fx:id="monitorScreen" arcHeight="5.0" arcWidth="5.0" height="508.0" layoutX="-34.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="886.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
@@ -90,7 +49,58 @@
             </LinearGradient>
          </fill>
       </Rectangle>
+      <Text fx:id="titleComputer" layoutX="153.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password to login">
+         <font>
+            <Font name="BM HANNA Air OTF" size="55.0" />
+         </font>
+      </Text>
       <Rectangle fx:id="monitorStand" arcHeight="5.0" arcWidth="5.0" fill="#3b3c3c" height="233.0" layoutX="319.0" layoutY="542.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Button fx:id="btnLogin" layoutX="426.0" layoutY="335.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="93.0" text="Login">
+         <font>
+            <Font name="BM HANNA Air OTF" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnHelp" layoutX="318.0" layoutY="336.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="96.0" style="-fx-border-radius: 20;" text="Help">
+         <font>
+            <Font name="BM HANNA Air OTF" size="19.0" />
+         </font>
+      </Button>
+      <Text fx:id="passwordText" layoutX="162.0" layoutY="304.0" onKeyPressed="#appendPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="somepassword" wrappingWidth="539.8844310414531">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="rectangleText" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="43.0" layoutX="146.0" layoutY="274.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="546.0" />
+      <Button fx:id="exitBtn" layoutX="31.0" layoutY="68.0" mnemonicParsing="false" onAction="#hideComputer" text="Exit">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="bigNote" fitHeight="768.0" fitWidth="522.0" layoutX="163.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_e96i_Fotor.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="password" layoutX="268.0" layoutY="249.0" rotate="11.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 1 2 3 4 5 ">
+         <font>
+            <Font name="BM HANNA Air OTF" size="57.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="note" fitHeight="39.0" fitWidth="43.0" layoutX="678.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_e96i_Fotor.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="openedSafe" fitHeight="114.0" fitWidth="101.0" layoutX="658.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_5u4v_Fotor.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="noteLabel" alignment="TOP_CENTER" layoutX="659.0" layoutY="374.0" onMouseClicked="#showBigNote" onMouseEntered="#showNoteLabel" onMouseExited="#hideNoteLabel" prefHeight="150.0" prefWidth="105.0" style="-fx-border-color: WHITE; -fx-border-radius: 10; -fx-border-width: 3;" text="Note" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="31.0" />
+         </font>
+      </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4c3372" height="492.0" layoutX="-170.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#371b65" height="200.0" layoutX="-40.0" layoutY="450.0" rotate="-57.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="201.0" layoutX="-28.0" layoutY="487.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="910.0">
@@ -323,12 +333,12 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="5.0" layoutX="310.0" layoutY="443.0" opacity="0.23" stroke="BLACK" strokeType="INSIDE" width="68.0" />
       <Label fx:id="computerLabel" alignment="CENTER" layoutX="285.0" layoutY="251.0" onMouseClicked="#openComputer" onMouseEntered="#showComputerLabel" onMouseExited="#hideComputerLabel" opacity="0.0" prefHeight="62.0" prefWidth="115.0" style="-fx-border-color: rgb(255,255,255); -fx-background-color: rgb(0,0,0); -fx-border-radius: 7; -fx-background-radius: 7;" text="Computer" textFill="#f5f2f2">
          <font>
-            <Font name="BM HANNA Air OTF" size="20.0" />
+            <Font name="BM HANNA Air OTF" size="24.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#686b6f" height="233.0" layoutX="-161.0" layoutY="245.0" onMouseEntered="#showEntranceLabel" onMouseExited="#hideEntranceLabel" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="215.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#686b6f" height="249.0" layoutX="-223.0" layoutY="314.0" onMouseEntered="#showEntranceLabel" onMouseExited="#hideEntranceLabel" rotate="-34.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="223.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#686b6f" height="50.0" layoutX="-100.0" layoutY="244.0" onMouseEntered="#showEntranceLabel" onMouseExited="#hideEntranceLabel" rotate="-15.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="169.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#686b6f" height="233.0" layoutX="-161.0" layoutY="245.0" onMouseClicked="#gotoEntrance" onMouseEntered="#showEntranceLabel" onMouseExited="#hideEntranceLabel" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="215.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#686b6f" height="249.0" layoutX="-223.0" layoutY="314.0" onMouseClicked="#gotoEntrance" onMouseEntered="#showEntranceLabel" onMouseExited="#hideEntranceLabel" rotate="-34.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="223.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#686b6f" height="50.0" layoutX="-100.0" layoutY="244.0" onMouseClicked="#gotoEntrance" onMouseEntered="#showEntranceLabel" onMouseExited="#hideEntranceLabel" rotate="-15.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="169.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#322a6b" height="135.0" layoutX="54.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="18.0" />
       <Ellipse fill="#51565b" layoutX="39.0" layoutY="356.0" radiusX="13.0" radiusY="7.0" rotate="-35.2" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5f6061" height="87.0" layoutX="-31.0" layoutY="546.0" opacity="0.23" rotate="53.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="230.0" />
@@ -360,5 +370,10 @@
             <Font name="BM HANNA Air OTF" size="31.0" />
          </font>
       </Label>
+      <Text fx:id="interractHint" fill="#fff4f4" layoutX="78.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact when close" textAlignment="CENTER" wrappingWidth="675.0841674804688">
+         <font>
+            <Font name="BM HANNA Air OTF" size="55.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
