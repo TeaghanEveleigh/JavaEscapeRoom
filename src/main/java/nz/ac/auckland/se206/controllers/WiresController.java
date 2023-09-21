@@ -124,7 +124,7 @@ public class WiresController implements Initializable {
    */
   @FXML
   public void onBackPressed() throws IOException {
-    App.setRoot(AppUi.MAIN_MENU);
+    App.switchScenes(AppUi.EXIT_ROOM);
   }
 
   /**

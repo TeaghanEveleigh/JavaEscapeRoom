@@ -8,10 +8,12 @@ public class SceneManager {
   public enum AppUi {
     MAIN_MENU,
     GAME_SETTINGS,
-
     WIRES_GAME,
-
-    SIN_MINIGAME;
+    SIN_MINIGAME,
+    SECURITY_ROOM,
+    DINOSAUR_ROOM,
+    EXIT_ROOM
+    
 
   }
 

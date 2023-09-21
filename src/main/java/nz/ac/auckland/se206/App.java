@@ -48,14 +48,25 @@ public class App extends Application {
     SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
     SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
-    System.out.println(GameState.wiresSequence);
 
     // SceneManager.addUi(AppUi.SIN_MINIGAME,loadFxml("frequencyMinigame"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.WIRES_GAME), 816, 585);
+    SceneManager.addUi(AppUi.DINOSAUR_ROOM, loadFxml("room1"));
+    SceneManager.addUi(AppUi.EXIT_ROOM, loadFxml("securityroom"));
+    SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
+
+    scene = new Scene(SceneManager.getUiRoot(AppUi.EXIT_ROOM), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);
 
     stage.setScene(scene);
     stage.show();
-    stage.requestFocus();
+    root.requestFocus();
+  }
+
+  public static void switchScenes(AppUi ui) {
+    Parent root = SceneManager.getUiRoot(ui);
+    scene.setRoot(root);
+    root.requestFocus();
+    KeyState.resetKeys();
   }
 }
