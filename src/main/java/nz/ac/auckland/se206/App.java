@@ -50,6 +50,7 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     // Load all the views
+
     FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
     SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
     SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
@@ -73,6 +74,8 @@ public class App extends Application {
     FXMLLoader securityRoomLoader = getFxmlLoader("room2");
     SceneManager.addUi(AppUi.SECURITY_ROOM, securityRoomLoader.load());
     SceneManager.addController(AppUi.SECURITY_ROOM, securityRoomLoader.getController());
+
+    
 
     scene = new Scene(SceneManager.getUiRoot(AppUi.EXIT_ROOM), 816, 585);
     Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);

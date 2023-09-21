@@ -28,7 +28,6 @@ public class ChatController implements BaseController {
   public void initialize() throws ApiProxyException {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("Joint")));
   }
 
   private void appendChatMessage(ChatMessage msg) {
