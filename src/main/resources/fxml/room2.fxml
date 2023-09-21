@@ -16,6 +16,31 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.Room2Controller">
    <children>
+      <ImageView fx:id="bigNote" fitHeight="768.0" fitWidth="522.0" layoutX="163.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_e96i_Fotor.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="password" layoutX="268.0" layoutY="249.0" rotate="11.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 1 2 3 4 5 ">
+         <font>
+            <Font name="BM HANNA Air OTF" size="57.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="note" fitHeight="39.0" fitWidth="43.0" layoutX="678.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_e96i_Fotor.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="openedSafe" fitHeight="114.0" fitWidth="101.0" layoutX="658.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_5u4v_Fotor.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="noteLabel" alignment="TOP_CENTER" layoutX="659.0" layoutY="374.0" onMouseClicked="#showBigNote" onMouseEntered="#showNoteLabel" onMouseExited="#hideNoteLabel" prefHeight="150.0" prefWidth="105.0" style="-fx-border-color: WHITE; -fx-border-radius: 10; -fx-border-width: 3;" text="Note" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="31.0" />
+         </font>
+      </Label>
       <Text fx:id="titleComputer" layoutX="153.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password to login">
          <font>
             <Font name="BM HANNA Air OTF" size="55.0" />
@@ -222,7 +247,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343572" height="130.0" layoutX="741.0" layoutY="185.0" rotate="20.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="183.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#30316f" height="130.0" layoutX="741.0" layoutY="185.0" rotate="20.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="183.0" />
       <Line endX="524.6370239257812" layoutX="308.0" layoutY="520.0" startX="-325.5191955566406" startY="-6.5478515625" stroke="#5f5071" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#371b65" height="28.0" layoutX="-19.0" layoutY="470.0" rotate="-35.2" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="64.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#37225d" height="93.0" layoutX="715.0" layoutY="417.0" rotate="33.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="205.0" />
@@ -320,7 +345,7 @@
             <Image url="@../images/Screenshot%202023-09-21%20at%2011.22.15%20AM.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="111.0" fitWidth="98.0" layoutX="679.0" layoutY="470.0" opacity="0.1" pickOnBounds="true" preserveRatio="true" rotate="149.3">
+      <ImageView fitHeight="111.0" fitWidth="98.0" layoutX="679.0" layoutY="470.0" opacity="0.04" pickOnBounds="true" preserveRatio="true" rotate="149.3">
          <image>
             <Image url="@../images/AICutout_t6so_Fotor.png" />
          </image>
@@ -330,7 +355,7 @@
             <Image url="@../images/AICutout_t6so_Fotor.png" />
          </image>
       </ImageView>
-      <Label fx:id="safeLabel" alignment="TOP_CENTER" layoutX="655.0" layoutY="376.0" onMouseEntered="#showSafeLabel" onMouseExited="#hideSafeLabel" opacity="0.0" prefHeight="138.0" prefWidth="99.0" style="-fx-border-color: WHITE; -fx-border-radius: 10; -fx-border-width: 3;" text="Safe" textFill="WHITE">
+      <Label fx:id="safeLabel" alignment="TOP_CENTER" layoutX="655.0" layoutY="376.0" onMouseClicked="#memoryGame" onMouseEntered="#showSafeLabel" onMouseExited="#hideSafeLabel" opacity="0.0" prefHeight="138.0" prefWidth="99.0" style="-fx-border-color: WHITE; -fx-border-radius: 10; -fx-border-width: 3;" text="Safe" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="31.0" />
          </font>
