@@ -45,17 +45,17 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     // Load all the views
-    SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
-    SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
-    SceneManager.addUi(AppUi.MEMORY_GAME, loadFxml("memorygame"));
-    SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
+    // SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
+    // SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
+    // SceneManager.addUi(AppUi.MEMORY_GAME, loadFxml("memorygame"));
+    // SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
     // SceneManager.addUi(AppUi.SIN_MINIGAME, loadFxml("frequencyMinigame"));
     SceneManager.addUi(AppUi.DINOSAUR_ROOM, loadFxml("room1"));
-    SceneManager.addUi(AppUi.EXIT_ROOM, loadFxml("securityroom"));
-    SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
+    // SceneManager.addUi(AppUi.EXIT_ROOM, loadFxml("securityroom"));
+    // SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.MEMORY_GAME), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.MEMORY_GAME);
+    scene = new Scene(SceneManager.getUiRoot(AppUi.DINOSAUR_ROOM), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.DINOSAUR_ROOM);
 
     stage.setScene(scene);
     stage.show();

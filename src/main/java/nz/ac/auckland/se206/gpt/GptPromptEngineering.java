@@ -263,8 +263,9 @@ public class GptPromptEngineering {
   public static String getNothingDisabledHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Tell your partner that they need"
-        + " to find a way to disable the laser to steal the treasure, and disable the"
-        + " camera by the exit to escape, before the time runs out";
+        + " to find a way to disable the laser to steal the treasure, and disable the camera"
+        + " by the exit to escape, before the time runs out. Keep your message under 50"
+        + " words.";
   }
 
   /**
@@ -276,7 +277,8 @@ public class GptPromptEngineering {
   public static String getLasersButNotCameraHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Tell your partner that they need"
-        + " to find a way to disable the cameras by the exit to escape before the time runs out";
+        + " to find a way to disable the cameras by the exit to escape before the time runs"
+        + " out. Keep your message under 50 words.";
   }
 
   /**
@@ -288,7 +290,8 @@ public class GptPromptEngineering {
   public static String getCameraButNotLasersHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Tell your partner that they need"
-        + " to find a way to disable the lasers to steal the treasure before the time runs out";
+        + " to find a way to disable the lasers to steal the treasure before the time runs"
+        + " out. Keep your message under 50 words.";
   }
 
   /**
@@ -301,7 +304,8 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Your partner has successfully"
         + " disabled the lasers to steal the objects and has disabled the camera to escape."
-        + " Tell the user that they can now escape the museum before the time runs out";
+        + " Tell the user that they can now escape the museum before the time runs out. Keep"
+        + " your message under 50 words.";
   }
 
   /**
@@ -314,7 +318,7 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Your partner has successfully"
         + " disabled the lasers to steal the objects. Tell the user that they can now steal"
-        + " the treasure";
+        + " the treasure. Keep your message under 50 words.";
   }
 
   /**

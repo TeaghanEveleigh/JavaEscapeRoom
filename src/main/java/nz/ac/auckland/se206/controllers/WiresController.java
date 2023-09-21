@@ -395,6 +395,7 @@ public class WiresController implements Initializable {
     winLabel.setVisible(true);
     backButton.toFront();
     enableHackerPanel();
+    GameState.isLasersDisabled = true;
 
     Task<Void> task =
         new Task<Void>() {

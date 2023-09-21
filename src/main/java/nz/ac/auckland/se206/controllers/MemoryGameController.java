@@ -45,7 +45,7 @@ public class MemoryGameController {
   @FXML private Button hintButton;
   @FXML private Button backButton;
 
-  Ai ai = new Ai();
+  private Ai ai = new Ai();
   private ArrayList<ImageView> lights;
   private ArrayList<ImageView> sequence;
   private ArrayList<ImageView> lightsPressed;
