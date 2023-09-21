@@ -17,6 +17,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
+
+import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.Ai;
@@ -27,7 +29,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 /*
  * This is the controller class for the wires game window. The wires are made draggable and are checked if they're connected to the right endpoints.
  */
-public class WiresController implements Initializable {
+public class WiresController implements Initializable, BaseController {
 
   // Buttons
   @FXML private Button backButton;
