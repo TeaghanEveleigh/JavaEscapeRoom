@@ -4,27 +4,30 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
-public class Door extends Interactable {
+public class Portal extends Interactable {
 
-  private AppUi nextRoot;
+  AppUi nextRoom;
 
-  public Door(Rectangle rectangle, AppUi nextRoot) {
+  public Portal(Rectangle rectangle, AppUi nextRoom) {
     super(rectangle);
-    this.nextRoot = nextRoot;
+    this.nextRoom = nextRoom;
   }
 
   @Override
   public void interact() {
-    App.switchScenes(nextRoot);
+    return;
   }
 
   @Override
   public void touched() {
-    return;
+    if (touched) return;
+    App.switchScenes(nextRoom);
+    touched = true;
   }
 
   @Override
   public void untouched() {
-    return;
+    if (!touched) return;
+    touched = false;
   }
 }

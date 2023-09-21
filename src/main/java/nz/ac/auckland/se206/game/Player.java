@@ -146,11 +146,14 @@ public class Player extends Sprite {
         if (boundsObject instanceof SolidBox) {
           preventBoundingBoxCollision();
           return;
-        } else if (boundsObject instanceof Interactable
-            && KeyState.getKeysPressed().contains(KeyCode.E)) {
+        } else if (boundsObject instanceof Interactable) {
           Interactable interactable = (Interactable) boundsObject;
-          interactable.interact();
+          interactable.touched();
+          if (KeyState.getKeysPressed().contains(KeyCode.E)) interactable.interact();
         }
+      } else if (boundsObject instanceof Interactable) {
+        Interactable interactable = (Interactable) boundsObject;
+        interactable.untouched();
       }
     }
 

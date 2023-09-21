@@ -4,17 +4,25 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.Ai;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /*
  * This is the controller class for the wires game window. The wires are made draggable and are checked if they're connected to the right endpoints.
@@ -23,6 +31,13 @@ public class WiresController implements Initializable {
 
   // Buttons
   @FXML private Button backButton;
+  @FXML private Button hintButton;
+
+  // Hacker panel
+  @FXML private Rectangle hackerRectangle;
+  @FXML private TextArea hackerTextArea;
+  @FXML private ImageView hackerIcon;
+  @FXML private ImageView exitHackerPanelImage;
 
   // Opacity rectangle
   @FXML private Rectangle opacityRectangle;
@@ -41,6 +56,7 @@ public class WiresController implements Initializable {
   @FXML private Label twoLabel;
   @FXML private Label threeLabel;
   @FXML private Label fourLabel;
+  private List<Label> numberLabels;
 
   // Wires
   @FXML private Rectangle greenWire;
@@ -72,10 +88,13 @@ public class WiresController implements Initializable {
   private boolean isRedCorrect = false;
   private boolean isBlueCorrect = false;
   private boolean isYellowCorrect = false;
-  boolean[] isEndpointConnected = {false, false, false, false};
+  private boolean[] isEndpointConnected = {false, false, false, false};
 
   // Colour of endpoints
   private Color endpointColour = Color.rgb(85, 96, 107);
+
+  // Ai
+  private Ai ai = new Ai();
 
   /**
    * This method initialises the wires game window. The wires game allows the user to drag wires
@@ -89,10 +108,13 @@ public class WiresController implements Initializable {
     winLabel.setVisible(false);
     endpoints =
         List.of(endpointoneCircle, endpointtwoCircle, endpointthreeCircle, endpointfourCircle);
+    numberLabels = List.of(oneLabel, twoLabel, threeLabel, fourLabel);
     makeDraggable(blueWire);
     makeDraggable(greenWire);
     makeDraggable(redWire);
     makeDraggable(yellowWire);
+    getRiddle();
+    hackerTextArea.setEditable(false);
   }
 
   /**
@@ -102,7 +124,7 @@ public class WiresController implements Initializable {
    */
   @FXML
   public void onBackPressed() throws IOException {
-    App.setRoot(AppUi.MAIN_MENU);
+    App.switchScenes(AppUi.EXIT_ROOM);
   }
 
   /**
@@ -179,6 +201,7 @@ public class WiresController implements Initializable {
               // endpoint
               isEndpointConnected[i] = true;
               endpoints.get(i).setFill(rectangle.getFill());
+              numberLabels.get(i).setTextFill(rectangle.getFill());
               double xDistance = endpoints.get(i).getLayoutX() - rectangle.getLayoutX();
               double yDistance =
                   endpoints.get(i).getLayoutY() - rectangle.getLayoutY() - originalHeight / 2;
@@ -194,11 +217,21 @@ public class WiresController implements Initializable {
               // Rotate the rectangle to the correct angle
               rectangle.getTransforms().add(new Rotate(deltaAngle, 0, rectangle.getHeight() / 2));
 
-              // Checks if the green wire has matched to the right endpoint
               endpoints.get(i).toFront();
-              if (endpoints.get(i).getId().equals("endpointtwoCircle")) {
-                twoLabel.setTextFill(rectangle.getFill());
-                if (rectangle.getId().equals("greenWire")) {
+
+              // Checks if the green wire has matched to the right endpoint
+              if (rectangle.getId().equals("greenWire")) {
+                if ((GameState.wiresSequence.substring(0, 1).equals("1"))
+                    && (endpoints.get(i).getId().equals("endpointoneCircle"))) {
+                  isGreenCorrect = true;
+                } else if ((GameState.wiresSequence.substring(0, 1).equals("2"))
+                    && (endpoints.get(i).getId().equals("endpointtwoCircle"))) {
+                  isGreenCorrect = true;
+                } else if ((GameState.wiresSequence.substring(0, 1).equals("3"))
+                    && (endpoints.get(i).getId().equals("endpointthreeCircle"))) {
+                  isGreenCorrect = true;
+                } else if ((GameState.wiresSequence.substring(0, 1).equals("4"))
+                    && (endpoints.get(i).getId().equals("endpointfourCircle"))) {
                   isGreenCorrect = true;
                 } else {
                   isGreenCorrect = false;
@@ -206,9 +239,18 @@ public class WiresController implements Initializable {
               }
 
               // Checks if the red wire has matched to the right endpoint
-              if (endpoints.get(i).getId().equals("endpointoneCircle")) {
-                oneLabel.setTextFill(rectangle.getFill());
-                if (rectangle.getId().equals("redWire")) {
+              if (rectangle.getId().equals("redWire")) {
+                if ((GameState.wiresSequence.substring(1, 2).equals("1"))
+                    && (endpoints.get(i).getId().equals("endpointoneCircle"))) {
+                  isRedCorrect = true;
+                } else if ((GameState.wiresSequence.substring(1, 2).equals("2"))
+                    && (endpoints.get(i).getId().equals("endpointtwoCircle"))) {
+                  isRedCorrect = true;
+                } else if ((GameState.wiresSequence.substring(1, 2).equals("3"))
+                    && (endpoints.get(i).getId().equals("endpointthreeCircle"))) {
+                  isRedCorrect = true;
+                } else if ((GameState.wiresSequence.substring(1, 2).equals("4"))
+                    && (endpoints.get(i).getId().equals("endpointfourCircle"))) {
                   isRedCorrect = true;
                 } else {
                   isRedCorrect = false;
@@ -216,9 +258,18 @@ public class WiresController implements Initializable {
               }
 
               // Checks if the blue wire has matched to the right endpoint
-              if (endpoints.get(i).getId().equals("endpointfourCircle")) {
-                fourLabel.setTextFill(rectangle.getFill());
-                if (rectangle.getId().equals("blueWire")) {
+              if (rectangle.getId().equals("blueWire")) {
+                if ((GameState.wiresSequence.substring(3, 4).equals("1"))
+                    && (endpoints.get(i).getId().equals("endpointoneCircle"))) {
+                  isBlueCorrect = true;
+                } else if ((GameState.wiresSequence.substring(3, 4).equals("2"))
+                    && (endpoints.get(i).getId().equals("endpointtwoCircle"))) {
+                  isBlueCorrect = true;
+                } else if ((GameState.wiresSequence.substring(3, 4).equals("3"))
+                    && (endpoints.get(i).getId().equals("endpointthreeCircle"))) {
+                  isBlueCorrect = true;
+                } else if ((GameState.wiresSequence.substring(3, 4).equals("4"))
+                    && (endpoints.get(i).getId().equals("endpointfourCircle"))) {
                   isBlueCorrect = true;
                 } else {
                   isBlueCorrect = false;
@@ -226,9 +277,18 @@ public class WiresController implements Initializable {
               }
 
               // Checks if the yellow wire has matched to the right endpoint
-              if (endpoints.get(i).getId().equals("endpointthreeCircle")) {
-                threeLabel.setTextFill(rectangle.getFill());
-                if (rectangle.getId().equals("yellowWire")) {
+              if (rectangle.getId().equals("yellowWire")) {
+                if ((GameState.wiresSequence.substring(2, 3).equals("1"))
+                    && (endpoints.get(i).getId().equals("endpointoneCircle"))) {
+                  isYellowCorrect = true;
+                } else if ((GameState.wiresSequence.substring(2, 3).equals("2"))
+                    && (endpoints.get(i).getId().equals("endpointtwoCircle"))) {
+                  isYellowCorrect = true;
+                } else if ((GameState.wiresSequence.substring(2, 3).equals("3"))
+                    && (endpoints.get(i).getId().equals("endpointthreeCircle"))) {
+                  isYellowCorrect = true;
+                } else if ((GameState.wiresSequence.substring(2, 3).equals("4"))
+                    && (endpoints.get(i).getId().equals("endpointfourCircle"))) {
                   isYellowCorrect = true;
                 } else {
                   isYellowCorrect = false;
@@ -237,14 +297,9 @@ public class WiresController implements Initializable {
 
               // Checks if all the wires have matched to the right endpoints
               if (isGreenCorrect && isRedCorrect && isBlueCorrect && isYellowCorrect) {
-
-                // Displays the win message and blurs the screen
-                opacityRectangle.toFront();
-                opacityRectangle.setOpacity(0.9);
-                winLabel.toFront();
-                winLabel.setVisible(true);
-                backButton.toFront();
+                onWiresGameWon();
               }
+
               break;
             }
           }
@@ -261,5 +316,82 @@ public class WiresController implements Initializable {
     double tanAngle = opposite / adjacent;
     double angle = Math.atan(tanAngle);
     return Math.toDegrees(angle);
+  }
+
+  /**
+   * This method gives a hint to the user through the AI
+   *
+   * @throws ApiProxyException
+   */
+  @FXML
+  public void onHintPressed() throws ApiProxyException {
+    enableHackerPanel();
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+            return null;
+          }
+        };
+    new Thread(task).start();
+  }
+
+  public void getRiddle() {
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getWiresRiddle()), hackerTextArea);
+            return null;
+          }
+        };
+    new Thread(task).start();
+  }
+
+  @FXML
+  public void onExitClicked() {
+    disableHackerPanel();
+  }
+
+  public void disableHackerPanel() {
+    hintButton.setDisable(false);
+    hackerIcon.toBack();
+    hackerRectangle.toBack();
+    hackerTextArea.toBack();
+    exitHackerPanelImage.toBack();
+    exitHackerPanelImage.setDisable(true);
+  }
+
+  public void enableHackerPanel() {
+    hintButton.setDisable(true);
+    hackerRectangle.toFront();
+    hackerIcon.toFront();
+    hackerTextArea.toFront();
+    exitHackerPanelImage.toFront();
+    exitHackerPanelImage.setDisable(false);
+  }
+
+  public void onWiresGameWon() {
+    // Displays the win message and blurs the screen
+    opacityRectangle.toFront();
+    opacityRectangle.setOpacity(0.9);
+    winLabel.toFront();
+    winLabel.setVisible(true);
+    backButton.toFront();
+    enableHackerPanel();
+
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getWiresRiddleSolvedPrompt()),
+                hackerTextArea);
+            return null;
+          }
+        };
+    new Thread(task).start();
   }
 }
