@@ -16,7 +16,7 @@ public class LaserRoomController extends GameController {
     super.initialize();
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
-    boundsObjects.add(new Door(doorRectangle, AppUi.MAIN_MENU));
+    boundsObjects.add(new Door(doorRectangle, this, AppUi.MAIN_MENU));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(472);

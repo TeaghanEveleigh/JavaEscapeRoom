@@ -5,9 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
-public class GameSettingsController {
+public class GameSettingsController implements BaseController {
   @FXML private Button backButton;
   @FXML private CheckBox easyCheckBox;
   @FXML private CheckBox mediumCheckBox;

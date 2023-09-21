@@ -6,18 +6,20 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.KeyState;
 import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
 
-public class GameController {
+public class GameController implements BaseController {
   @FXML protected Canvas gameCanvas;
 
   protected GraphicsContext graphicsContext;
   protected CanvasRenderer renderer;
   protected Player player;
   protected ArrayList<BoundsObject> boundsObjects;
+  protected boolean paused = true;
 
   public void initialize() {
     gameCanvas.requestFocus();
@@ -33,12 +35,21 @@ public class GameController {
 
           @Override
           public void handle(long now) {
+            if (paused) return;
             player.updateMovement();
             renderer.renderEntities();
           }
         };
 
     timer.start();
+  }
+
+  public void pauseRoom() {
+    paused = true;
+  }
+
+  public void unpauseRoom() {
+    paused = false;
   }
 
   @FXML
