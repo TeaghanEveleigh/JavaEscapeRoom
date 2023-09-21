@@ -208,7 +208,7 @@
             <Image url="@../images/triangle-512.png" />
          </image>
       </ImageView>
-      <Text fx:id="interractHint" fill="WHITE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e when close to interact">
+      <Text fx:id="interractHint" fill="WHITE" layoutX="149.0" layoutY="67.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e when close to interact">
          <font>
             <Font name="BM HANNA Air OTF" size="40.0" />
          </font>
