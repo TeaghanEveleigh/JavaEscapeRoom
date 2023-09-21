@@ -8,11 +8,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.KeypadListener;
+import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.WiresListener;
 import nz.ac.auckland.se206.game.Keypad;
 import nz.ac.auckland.se206.game.SolidBox;
+import nz.ac.auckland.se206.game.Wires;
 
-public class SecurityController extends GameController implements KeypadListener {
+public class SecurityController extends GameController implements KeypadListener, WiresListener {
   @FXML Label wireLabel;
   @FXML Label doorLabel;
   @FXML Rectangle correctColor;
@@ -58,6 +62,7 @@ public class SecurityController extends GameController implements KeypadListener
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
     boundsObjects.add(new Keypad(keypadBounds, this));
+    boundsObjects.add(new Wires(wiresBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(472);
@@ -233,8 +238,7 @@ public class SecurityController extends GameController implements KeypadListener
 
   @Override
   public void keypadInteracted() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'keypadInteracted'");
+    showKeyPad();
   }
 
   @Override
@@ -245,5 +249,21 @@ public class SecurityController extends GameController implements KeypadListener
   @Override
   public void keypadUntouched() {
     hideDoorLabel();
+    hideKeyPad();
+  }
+
+  @Override
+  public void wiresInteracted() {
+    App.switchScenes(AppUi.WIRES_GAME);
+  }
+
+  @Override
+  public void wiresTouched() {
+    showWireLabel();
+  }
+
+  @Override
+  public void wiresUntouched() {
+    hideWireLabel();
   }
 }

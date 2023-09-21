@@ -58,4 +58,11 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
   }
+
+  public static void switchScenes(AppUi ui) {
+    Parent root = SceneManager.getUiRoot(ui);
+    scene.setRoot(root);
+    root.requestFocus();
+    KeyState.resetKeys();
+  }
 }
