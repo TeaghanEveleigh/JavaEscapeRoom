@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ComputerListener;
 import nz.ac.auckland.se206.ExitRoomDoorListener;
 import nz.ac.auckland.se206.SafeListener;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Computer;
 import nz.ac.auckland.se206.game.ExitRoomDoor;
@@ -141,11 +142,12 @@ public class Room2Controller extends GameController
   }
 
   @FXML
-  private void safeOpen() {
+  public void safeOpen() {
     safeOpened = true;
     openedSafe.toFront();
     note.toFront();
     noteLabel.toFront();
+    hideSafeLabel();
   }
 
   @FXML
@@ -203,8 +205,13 @@ public class Room2Controller extends GameController
   public void safeInteracted() {
     if (safeOpened) {
       showBigNote();
+    } else {
+      paused = true;
+      MemoryGameController memoryController =
+          (MemoryGameController) SceneManager.getUiController(AppUi.MEMORY_GAME);
+      memoryController.start();
+      App.switchScenes(AppUi.MEMORY_GAME);
     }
-    // need to swap to memory game
   }
 
   @Override

@@ -4,14 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.BaseController;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
-public class MemoryGameController {
+public class MemoryGameController implements BaseController {
   private static double sequenceSeconds = 0.5;
   private static int maxSequenceLength = 6;
 
@@ -58,10 +63,6 @@ public class MemoryGameController {
     lights.add(lightEight);
     lights.add(lightNine);
     lights.add(lightTen);
-
-    resetAllLights();
-    ChooseSequence(6);
-    showSequence(currentSequenceLength);
   }
 
   private void ChooseSequence(int sequenceLength) {
@@ -141,8 +142,16 @@ public class MemoryGameController {
 
     Timeline timeline = flashLights(lightGlowGreenImage);
     if (currentSequenceLength++ >= maxSequenceLength) {
-      playerWon = true;
-      System.out.println("WON");
+      Room2Controller roomController =
+          (Room2Controller) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+      roomController.safeOpen();
+      PauseTransition pause = new PauseTransition(Duration.seconds(0.75));
+      pause.setOnFinished(
+          e -> {
+            roomController.unpauseRoom();
+            App.switchScenes(AppUi.SECURITY_ROOM);
+          });
+      pause.play();
     } else {
       timeline.setOnFinished(e -> showSequence(currentSequenceLength));
     }
@@ -170,6 +179,12 @@ public class MemoryGameController {
     return timeline;
   }
 
+  public void start() {
+    resetAllLights();
+    ChooseSequence(6);
+    showSequence(currentSequenceLength);
+  }
+
   @FXML
   private void onLightPressed(MouseEvent event) throws IOException {
     if (showingSequence) return;
@@ -177,8 +192,6 @@ public class MemoryGameController {
     ImageView pressed = (ImageView) event.getSource();
     setLight(pressed, lightPressedImage);
     lightsPressed.add(pressed);
-    System.out.println("size " + lightsPressed.size());
-    System.out.println("seq leng " + currentSequenceLength);
     if (lightsPressed.size() == currentSequenceLength) {
       checkSequence();
       lightsPressed.clear();

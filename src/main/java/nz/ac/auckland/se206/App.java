@@ -75,7 +75,9 @@ public class App extends Application {
     SceneManager.addUi(AppUi.SECURITY_ROOM, securityRoomLoader.load());
     SceneManager.addController(AppUi.SECURITY_ROOM, securityRoomLoader.getController());
 
-    
+    FXMLLoader memoryGameLoader = getFxmlLoader("memorygame");
+    SceneManager.addUi(AppUi.MEMORY_GAME, memoryGameLoader.load());
+    SceneManager.addController(AppUi.MEMORY_GAME, memoryGameLoader.getController());
 
     scene = new Scene(SceneManager.getUiRoot(AppUi.EXIT_ROOM), 816, 585);
     Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);
