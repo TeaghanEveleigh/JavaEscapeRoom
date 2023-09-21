@@ -2,6 +2,8 @@ package nz.ac.auckland.se206;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -58,5 +60,8 @@ public class CanvasRenderer {
 
   public void clearBackground() {
     this.backgroundImage = null;
+  }
+  @FXML private void showDinoLabel1(){
+    
   }
 }

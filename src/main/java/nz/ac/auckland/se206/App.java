@@ -56,8 +56,8 @@ public class App extends Application {
     SceneManager.addUi(AppUi.EXIT_ROOM,loadFxml("securityroom"));
     SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.EXIT_ROOM), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);
+    scene = new Scene(SceneManager.getUiRoot(AppUi.LASER_ROOM), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.LASER_ROOM);
     
     stage.setScene(scene);
     stage.show();
