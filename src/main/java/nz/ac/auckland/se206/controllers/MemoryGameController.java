@@ -5,11 +5,21 @@ import java.util.ArrayList;
 import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.Ai;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class MemoryGameController {
   private static double sequenceSeconds = 0.5;
@@ -26,6 +36,16 @@ public class MemoryGameController {
   @FXML private ImageView lightNine;
   @FXML private ImageView lightTen;
 
+  // Hacker Panel
+  @FXML private ImageView exitHackerPanelImage;
+  @FXML private ImageView hackerIcon;
+  @FXML private Rectangle hackerRectangle;
+  @FXML private TextArea hackerTextArea;
+
+  @FXML private Button hintButton;
+  @FXML private Button backButton;
+
+  private Ai ai = new Ai();
   private ArrayList<ImageView> lights;
   private ArrayList<ImageView> sequence;
   private ArrayList<ImageView> lightsPressed;
@@ -47,6 +67,9 @@ public class MemoryGameController {
     this.lights = new ArrayList<ImageView>();
     this.sequence = new ArrayList<ImageView>();
     this.lightsPressed = new ArrayList<ImageView>();
+    enableHackerPanel();
+    getIntroduction();
+    hackerTextArea.setEditable(false);
 
     lights.add(lightOne);
     lights.add(lightTwo);
@@ -60,11 +83,11 @@ public class MemoryGameController {
     lights.add(lightTen);
 
     resetAllLights();
-    ChooseSequence(6);
+    chooseSequence(6);
     showSequence(currentSequenceLength);
   }
 
-  private void ChooseSequence(int sequenceLength) {
+  private void chooseSequence(int sequenceLength) {
     Random random = new Random();
     for (int i = 0; i < sequenceLength; i++) {
       ImageView chosen = lights.get(random.nextInt(lights.size()));
@@ -143,6 +166,21 @@ public class MemoryGameController {
     if (currentSequenceLength++ >= maxSequenceLength) {
       playerWon = true;
       System.out.println("WON");
+      enableHackerPanel();
+      Task<Void> task =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              disableHintAndExit();
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getMemoryGameSolved()),
+                  hackerTextArea);
+              enableHintAndExit();
+              exitHackerPanelImage.setDisable(false);
+              return null;
+            }
+          };
+      new Thread(task).start();
     } else {
       timeline.setOnFinished(e -> showSequence(currentSequenceLength));
     }
@@ -183,5 +221,86 @@ public class MemoryGameController {
       checkSequence();
       lightsPressed.clear();
     }
+  }
+
+  /**
+   * This method gives a hint to the user through the AI
+   *
+   * @throws ApiProxyException
+   */
+  @FXML
+  public void onHintPressed() throws ApiProxyException {
+    enableHackerPanel();
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            disableHintAndExit();
+            ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getMemoryGameHint()), hackerTextArea);
+            enableHintAndExit();
+            return null;
+          }
+        };
+    new Thread(task).start();
+  }
+
+  /**
+   * This method returns the user to the main menu.
+   *
+   * @throws IOException
+   */
+  @FXML
+  public void onBackPressed() throws IOException {
+    App.switchScenes(AppUi.MAIN_MENU);
+  }
+
+  @FXML
+  public void onExitClicked() {
+    disableHackerPanel();
+  }
+
+  public void getIntroduction() {
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            disableHintAndExit();
+            ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getMemoryGameIntroduction()),
+                hackerTextArea);
+            enableHintAndExit();
+            return null;
+          }
+        };
+    new Thread(task).start();
+  }
+
+  public void disableHackerPanel() {
+    hackerIcon.toBack();
+    hackerRectangle.toBack();
+    hackerTextArea.toBack();
+    exitHackerPanelImage.toBack();
+    exitHackerPanelImage.setDisable(true);
+  }
+
+  public void disableHintAndExit() {
+    hintButton.setDisable(true);
+    exitHackerPanelImage.setDisable(true);
+    backButton.setDisable(true);
+  }
+
+  public void enableHintAndExit() {
+    hintButton.setDisable(false);
+    exitHackerPanelImage.setDisable(false);
+    backButton.setDisable(false);
+  }
+
+  public void enableHackerPanel() {
+    hackerRectangle.toFront();
+    hackerIcon.toFront();
+    hackerTextArea.toFront();
+    exitHackerPanelImage.toFront();
+    exitHackerPanelImage.setDisable(false);
   }
 }

@@ -21,7 +21,8 @@ import nz.ac.auckland.se206.game.SolidBox;
 
 public class Room2Controller extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
-  @FXML private Text interractHint;
+
+@FXML private Text interractHint;
   @FXML private Text passwordText;
   private Boolean computerOpen = false;
   @FXML private Button exitBtn;
@@ -36,6 +37,7 @@ public class Room2Controller extends GameController
   @FXML private Line entranceLine2;
   @FXML private Line entranceLine3;
   @FXML private Text entranceLabel;
+
   @FXML private Rectangle boundingBoxOne;
   @FXML private Rectangle computerBounds;
   @FXML private Rectangle doorBounds;
@@ -48,6 +50,7 @@ public class Room2Controller extends GameController
   @FXML Rectangle monitorScreen;
   @FXML Rectangle rectangleText;
   @FXML Text titleComputer;
+
 
   @Override
   public void initialize() {

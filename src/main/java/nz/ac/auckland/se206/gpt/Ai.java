@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.gpt;
 
-
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
@@ -63,7 +62,7 @@ public class Ai {
               if (sb.length() > 0) {
                 Platform.runLater(() -> textArea.appendText(sb.toString()));
               }
-              Platform.runLater(() -> textArea.appendText("\n\n"));
+              Platform.runLater(() -> textArea.appendText("\n"));
               return null;
             }
           };
@@ -72,7 +71,6 @@ public class Ai {
 
       return result.getChatMessage();
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
       return null;
     }

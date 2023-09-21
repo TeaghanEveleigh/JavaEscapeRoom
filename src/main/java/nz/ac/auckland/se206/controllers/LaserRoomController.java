@@ -1,9 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.LeftDinosaurListener;
 import nz.ac.auckland.se206.ObjectListener;
 import nz.ac.auckland.se206.RightDinosaurListener;
@@ -13,6 +15,8 @@ import nz.ac.auckland.se206.game.Object;
 import nz.ac.auckland.se206.game.Portal;
 import nz.ac.auckland.se206.game.RightDinosaur;
 import nz.ac.auckland.se206.game.SolidBox;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class LaserRoomController extends GameController
     implements LeftDinosaurListener, RightDinosaurListener, ObjectListener {
@@ -76,8 +80,22 @@ public class LaserRoomController extends GameController
 
   @FXML
   private void stealItem() {
+    GameState.isTreasureStolen = true;
     object.toBack();
     itemLabel.toBack();
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            disableHintAndExit();
+            ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getObjectStolen()), hackerTextArea);
+            enableHintAndExit();
+            return null;
+          }
+        };
+    new Thread(task).start();
+
   }
 
   @FXML
@@ -88,6 +106,7 @@ public class LaserRoomController extends GameController
   @FXML
   private void hideDinoLabel1() {
     dinoLabel1.setOpacity(0);
+
   }
 
   @Override

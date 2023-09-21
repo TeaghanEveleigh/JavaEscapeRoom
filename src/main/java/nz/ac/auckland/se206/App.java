@@ -81,6 +81,7 @@ public class App extends Application {
     Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);
     GameController controller = (GameController) SceneManager.getUiController(AppUi.EXIT_ROOM);
     controller.unpauseRoom();
+
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
