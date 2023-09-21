@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
       <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="258.0" layoutY="384.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
       <Text fill="WHITE" layoutX="261.0" layoutY="408.0" onMouseClicked="#handleMouseClicked" strokeType="OUTSIDE" strokeWidth="0.0" text=" 0" wrappingWidth="28.741643820546756" AnchorPane.leftAnchor="261.0">
@@ -182,5 +182,8 @@
             <Font name="BM HANNA Air OTF" size="20.0" />
          </font>
       </Label>
+      <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="382.0" />
+      <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="168.0" layoutX="593.0" layoutY="38.0" stroke="BLACK" strokeType="INSIDE" width="213.0" />
+      <Canvas fx:id="gameCanvas" height="585.0" layoutX="3.0" layoutY="5.0" width="816.0" />
    </children>
 </AnchorPane>
