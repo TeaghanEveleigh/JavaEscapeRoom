@@ -86,26 +86,20 @@ public class GameController {
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getNothingDisabledHint()),
                   hackerTextArea);
-            }
-
-            if (GameState.isLasersDisabled) { // lasers disabled
+            } else if (GameState.isLasersDisabled) { // lasers disabled
               if (!GameState.isTreasureStolen) { // lasers disabled but treasure not stolen
 
                 ai.runGpt(
                     new ChatMessage(
                         "user", GptPromptEngineering.getLasersDisabledButNotStolenHint()),
                     hackerTextArea);
-              }
-
-              if (GameState
+              } else if (GameState
                   .isCamerasDisabled) { // lasers disabled, treasure stolen, and cameras disabled
 
                 ai.runGpt(
                     new ChatMessage("user", GptPromptEngineering.getBothDisabledHint()),
                     hackerTextArea);
-              }
-
-              if (!GameState
+              } else if (!GameState
                   .isCamerasDisabled) { // lasers disabled, treasure stolen, but cameras not
                 // disabled
 
@@ -113,9 +107,7 @@ public class GameController {
                     new ChatMessage("user", GptPromptEngineering.getLasersButNotCameraHint()),
                     hackerTextArea);
               }
-            }
-
-            if (GameState.isCamerasDisabled
+            } else if (GameState.isCamerasDisabled
                 && !GameState.isLasersDisabled) { // both lasers and camera disabled
 
               ai.runGpt(
