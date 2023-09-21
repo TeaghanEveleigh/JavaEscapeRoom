@@ -17,6 +17,7 @@ import nz.ac.auckland.se206.game.SolidBox;
 public class LaserRoomController extends GameController
     implements LeftDinosaurListener, RightDinosaurListener, ObjectListener {
   @FXML private Label dinoLabel1;
+  @FXML private Label dinoLabel2;
   @FXML private ImageView object;
   @FXML private ImageView laserShadow1;
   @FXML private ImageView laserShadow2;
@@ -43,6 +44,7 @@ public class LaserRoomController extends GameController
     boundsObjects.add(new Portal(doorRectangle, AppUi.EXIT_ROOM));
     boundsObjects.add(new LeftDinosaur(leftDinosaurBounds, this));
     boundsObjects.add(new RightDinosaur(rightDinosaurBounds, this));
+    boundsObjects.add(new Door(doorRectangle, this, AppUi.MAIN_MENU));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(472);
@@ -131,5 +133,12 @@ public class LaserRoomController extends GameController
   @Override
   public void objectUntouched() {
     itemLabelHide();
+  }
+  @FXML private void showDinoLabelTwo(){
+    dinoLabel2.setOpacity(1);
+  }
+  @FXML private void hideDinoLabelTwo(){
+    dinoLabel2.setOpacity(0);
+    
   }
 }
