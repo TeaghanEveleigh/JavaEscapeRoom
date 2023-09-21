@@ -5,9 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
-public class MainMenuController {
+public class MainMenuController implements BaseController {
   @FXML private Button startGameButton;
   @FXML private Button tutorialButton;
   @FXML private Button gameSettingButton;

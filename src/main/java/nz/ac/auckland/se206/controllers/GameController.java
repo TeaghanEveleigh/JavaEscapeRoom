@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.KeyState;
@@ -20,7 +21,7 @@ import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
-public class GameController {
+public class GameController implements BaseController {
   @FXML protected Canvas gameCanvas;
   @FXML protected Button hintButton;
   @FXML protected ImageView exitHackerPanelImage;
@@ -33,6 +34,7 @@ public class GameController {
   protected CanvasRenderer renderer;
   protected Player player;
   protected ArrayList<BoundsObject> boundsObjects;
+  protected boolean paused = true;
 
   public void initialize() {
     gameCanvas.requestFocus();
@@ -49,12 +51,21 @@ public class GameController {
 
           @Override
           public void handle(long now) {
+            if (paused) return;
             player.updateMovement();
             renderer.renderEntities();
           }
         };
 
     timer.start();
+  }
+
+  public void pauseRoom() {
+    paused = true;
+  }
+
+  public void unpauseRoom() {
+    paused = false;
   }
 
   @FXML

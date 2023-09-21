@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.GameController;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -36,6 +37,10 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
+  private static FXMLLoader getFxmlLoader(final String fxml) {
+    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
+  }
+
   /**
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
@@ -45,17 +50,37 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     // Load all the views
-    // SceneManager.addUi(AppUi.MAIN_MENU, loadFxml("mainmenu"));
-    // SceneManager.addUi(AppUi.GAME_SETTINGS, loadFxml("gamesettings"));
-    // SceneManager.addUi(AppUi.MEMORY_GAME, loadFxml("memorygame"));
-    // SceneManager.addUi(AppUi.WIRES_GAME, loadFxml("wires"));
-    // SceneManager.addUi(AppUi.SIN_MINIGAME, loadFxml("frequencyMinigame"));
-    SceneManager.addUi(AppUi.DINOSAUR_ROOM, loadFxml("room1"));
-    // SceneManager.addUi(AppUi.EXIT_ROOM, loadFxml("securityroom"));
-    // SceneManager.addUi(AppUi.SECURITY_ROOM, loadFxml("room2"));
 
-    scene = new Scene(SceneManager.getUiRoot(AppUi.DINOSAUR_ROOM), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.DINOSAUR_ROOM);
+    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
+    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
+    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
+
+    FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
+    SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
+    SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
+
+    FXMLLoader wiresLoader = getFxmlLoader("wires");
+    SceneManager.addUi(AppUi.WIRES_GAME, wiresLoader.load());
+    SceneManager.addController(AppUi.WIRES_GAME, wiresLoader.getController());
+
+    FXMLLoader dinosaurRoomLoader = getFxmlLoader("room1");
+    SceneManager.addUi(AppUi.DINOSAUR_ROOM, dinosaurRoomLoader.load());
+    SceneManager.addController(AppUi.DINOSAUR_ROOM, dinosaurRoomLoader.getController());
+
+    FXMLLoader exitRoomLoader = getFxmlLoader("securityroom");
+    SceneManager.addUi(AppUi.EXIT_ROOM, exitRoomLoader.load());
+    SceneManager.addController(AppUi.EXIT_ROOM, exitRoomLoader.getController());
+
+    FXMLLoader securityRoomLoader = getFxmlLoader("room2");
+    SceneManager.addUi(AppUi.SECURITY_ROOM, securityRoomLoader.load());
+    SceneManager.addController(AppUi.SECURITY_ROOM, securityRoomLoader.getController());
+
+    
+
+    scene = new Scene(SceneManager.getUiRoot(AppUi.EXIT_ROOM), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);
+    GameController controller = (GameController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    controller.unpauseRoom();
 
     stage.setScene(scene);
     stage.show();
@@ -64,6 +89,11 @@ public class App extends Application {
 
   public static void switchScenes(AppUi ui) {
     Parent root = SceneManager.getUiRoot(ui);
+    BaseController baseController = SceneManager.getUiController(ui);
+    if (baseController instanceof GameController) {
+      GameController gameController = (GameController) baseController;
+      gameController.unpauseRoom();
+    }
     scene.setRoot(root);
     root.requestFocus();
     KeyState.resetKeys();
