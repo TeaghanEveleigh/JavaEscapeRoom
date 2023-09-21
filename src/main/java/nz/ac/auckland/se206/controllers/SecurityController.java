@@ -10,11 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 public class SecurityController {
+    @FXML private Line cameraLine1;
+    @FXML private Line cameraLine2;
+    @FXML private Ellipse cameraBase;
+    @FXML private ImageView cameraTriangle;
+    @FXML private Text interractHint;
     @FXML Label wireLabel;
     @FXML Label doorLabel;
     @FXML Rectangle correctColor;
@@ -68,9 +74,12 @@ public class SecurityController {
     @FXML 
     private void showDoorLabel(){
         doorLabel.setOpacity(1);
+        interractHint.setOpacity(1);
+        
     }
     @FXML void hideDoorLabel(){
         doorLabel.setOpacity(0);
+        interractHint.setOpacity(0);
     }
     @FXML
     private void showSecurity() {
@@ -84,6 +93,9 @@ public class SecurityController {
 
         // Change the opacity of the security text to 1 (fully visible)
         securityText.setOpacity(1);
+        interractHint.setOpacity(1);
+    
+        
     }
 
     @FXML
@@ -100,6 +112,7 @@ public class SecurityController {
 
         // Change the opacity of the security text to 0 (completely hidden)
         securityText.setOpacity(0);
+        interractHint.setOpacity(0);
     }
     @FXML
     private void handleMouseClicked(MouseEvent event) {
@@ -131,8 +144,16 @@ public class SecurityController {
             enterValue(" 0");
         }
     }
+}
     
-    }
+    
+    @FXML private void disableCamera(){
+        cameraLine1.toBack();
+        cameraLine2.toBack();
+        cameraBase.toBack();
+        cameraTriangle.toBack();
+        //what you can do here is also remove obstacle preventing the player from moving into the camera area
+     }
 
     private void enterValue(String value) {
         numbers.setText(numbers.getText() + value);
@@ -238,8 +259,10 @@ public class SecurityController {
     }
     @FXML private void showWireLabel(){
         wireLabel.setOpacity(1);
+        interractHint.setOpacity(1);
     }
     @FXML private void hideWireLabel(){
-        wireLabel.setOpacity(0);;
+        wireLabel.setOpacity(0);
+        interractHint.setOpacity(0);
     }
 }

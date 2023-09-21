@@ -195,18 +195,23 @@
       <Line fx:id="securityLine3" endX="-57.14208984375" endY="-124.81639099121094" layoutX="680.0" layoutY="259.0" startX="-57.14208984375" startY="24.18359375" stroke="TRANSPARENT" strokeWidth="3.0" />
       <Ellipse fill="#57595b" layoutX="668.0" layoutY="250.0" radiusX="10.0" radiusY="6.0" rotate="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Line endX="50.3494873046875" endY="34.68359375" layoutX="572.0" layoutY="250.0" startX="-62.6505126953125" startY="-54.81639099121094" strokeWidth="3.0" />
-      <Ellipse fill="#ff1f1f" layoutX="455.0" layoutY="213.0" opacity="0.75" radiusX="59.0" radiusY="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="399.0" AnchorPane.topAnchor="199.0" />
+      <Ellipse fx:id="cameraBase" fill="#ff1f1f" layoutX="455.0" layoutY="213.0" opacity="0.75" radiusX="59.0" radiusY="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="399.0" AnchorPane.topAnchor="199.0" />
       <ImageView fitHeight="30.0" fitWidth="42.0" layoutX="443.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="443.0">
          <image>
             <Image url="@../images/AICutout_1g8o_Fotor.png" />
          </image>
       </ImageView>
-      <Line endX="76.3494873046875" endY="-123.81639099121094" layoutX="382.0" layoutY="169.0" opacity="0.53" startX="18.0" startY="49.18360900878906" stroke="RED" />
-      <Line endX="19.3494873046875" endY="99.18360900878906" layoutX="495.0" layoutY="110.0" opacity="0.47" startX="-37.6505126953125" startY="-59.81639099121094" stroke="RED" />
-      <ImageView fitHeight="191.0" fitWidth="117.0" layoutX="400.0" layoutY="35.0" opacity="0.34" pickOnBounds="true">
+      <Line fx:id="cameraLine1" endX="76.3494873046875" endY="-123.81639099121094" layoutX="382.0" layoutY="169.0" opacity="0.53" startX="18.0" startY="49.18360900878906" stroke="RED" />
+      <Line fx:id="cameraLine2" endX="19.3494873046875" endY="99.18360900878906" layoutX="495.0" layoutY="110.0" opacity="0.47" startX="-37.6505126953125" startY="-59.81639099121094" stroke="RED" />
+      <ImageView fx:id="cameraTriangle" fitHeight="191.0" fitWidth="117.0" layoutX="400.0" layoutY="35.0" opacity="0.34" pickOnBounds="true">
          <image>
             <Image url="@../images/triangle-512.png" />
          </image>
       </ImageView>
+      <Text fx:id="interractHint" fill="WHITE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e when close to interact">
+         <font>
+            <Font name="BM HANNA Air OTF" size="40.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

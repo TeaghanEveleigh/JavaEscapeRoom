@@ -370,7 +370,7 @@
             <Font name="BM HANNA Air OTF" size="31.0" />
          </font>
       </Label>
-      <Text fx:id="interractHint" fill="#fff4f4" layoutX="78.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact when close" textAlignment="CENTER" wrappingWidth="675.0841674804688">
+      <Text fx:id="interractHint" fill="#fff4f4" layoutX="78.0" layoutY="88.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact when close" textAlignment="CENTER" wrappingWidth="675.0841674804688">
          <font>
             <Font name="BM HANNA Air OTF" size="55.0" />
          </font>
