@@ -5,12 +5,17 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.LeftDinosaurListener;
+import nz.ac.auckland.se206.ObjectListener;
+import nz.ac.auckland.se206.RightDinosaurListener;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.LeftDinosaur;
+import nz.ac.auckland.se206.game.Object;
 import nz.ac.auckland.se206.game.Portal;
+import nz.ac.auckland.se206.game.RightDinosaur;
 import nz.ac.auckland.se206.game.SolidBox;
 
-public class LaserRoomController extends GameController implements LeftDinosaurListener {
+public class LaserRoomController extends GameController
+    implements LeftDinosaurListener, RightDinosaurListener, ObjectListener {
   @FXML private Label dinoLabel1;
   @FXML private ImageView object;
   @FXML private ImageView laserShadow1;
@@ -27,13 +32,17 @@ public class LaserRoomController extends GameController implements LeftDinosaurL
   @FXML private Rectangle rightDinosaurBounds;
   @FXML private Rectangle objectBounds;
 
+  private SolidBox laserBox;
+
   @Override
   public void initialize() {
     super.initialize();
-    boundsObjects.add(new SolidBox(boundingBoxOne));
+    laserBox = new SolidBox(boundingBoxOne);
+    boundsObjects.add(laserBox);
     boundsObjects.add(new SolidBox(boundingBoxTwo));
     boundsObjects.add(new Portal(doorRectangle, AppUi.EXIT_ROOM));
     boundsObjects.add(new LeftDinosaur(leftDinosaurBounds, this));
+    boundsObjects.add(new RightDinosaur(rightDinosaurBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(472);
@@ -48,6 +57,9 @@ public class LaserRoomController extends GameController implements LeftDinosaurL
     laserShadow2.toBack();
     laserShadow3.toBack();
     itemLabel.toFront();
+    boundsObjects.remove(laserBox);
+    boundsObjects.add(new Object(objectBounds, this));
+    player.setBoundingBoxes(boundsObjects);
   }
 
   @FXML
@@ -89,5 +101,35 @@ public class LaserRoomController extends GameController implements LeftDinosaurL
   @Override
   public void leftDinosaurUntouched() {
     hideDinoLabel1();
+  }
+
+  @Override
+  public void rightDinosaurInteracted() {
+    return;
+  }
+
+  @Override
+  public void rightDinosaurTouched() {
+    return;
+  }
+
+  @Override
+  public void rightDinosaurUntouched() {
+    return;
+  }
+
+  @Override
+  public void objectInteracted() {
+    stealItem();
+  }
+
+  @Override
+  public void objectTouched() {
+    itemLabelShow();
+  }
+
+  @Override
+  public void objectUntouched() {
+    itemLabelHide();
   }
 }
