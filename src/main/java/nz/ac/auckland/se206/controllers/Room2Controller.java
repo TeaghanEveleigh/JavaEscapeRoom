@@ -158,6 +158,11 @@ public class Room2Controller extends GameController
     password.toFront();
   }
 
+  private void hideBigNote() {
+    bigNote.toBack();
+    password.toBack();
+  }
+
   @FXML
   private void memoryGame() {
     // switch to memory game on this click
@@ -213,6 +218,7 @@ public class Room2Controller extends GameController
   public void safeUntouched() {
     hideSafeLabel();
     hideNoteLabel();
+    hideBigNote();
   }
 
   @Override
