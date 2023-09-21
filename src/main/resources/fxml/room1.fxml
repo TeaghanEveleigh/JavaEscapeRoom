@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="373.0" layoutX="-15.0" layoutY="-11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="394.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="403.0" layoutX="357.0" layoutY="-28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="461.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="319.0" layoutX="-88.0" layoutY="297.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="906.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="254.0" layoutX="-5.0" layoutY="362.0" opacity="0.76" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="847.0">
+         <effect>
+            <ColorAdjust brightness="-0.18" contrast="0.19" saturation="-0.07" />
+         </effect>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.08076009501187648">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.43529412150382996" green="0.3137255012989044" blue="0.2862745225429535" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.3815789520740509" green="0.2791473865509033" blue="0.25615254044532776" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.15290964151252245">
+                     <color>
+                        <Color red="0.9411764740943909" green="0.8392156958580017" blue="0.6941176652908325" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.32012195121951215">
+                     <color>
+                        <Color red="0.8947368264198303" green="0.8436484932899475" blue="0.7414717078208923" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.7370682599443444">
+                     <color>
+                        <Color red="0.7894737124443054" green="0.6452241539955139" blue="0.5190058350563049" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.912751677852349">
+                     <color>
+                        <Color red="0.3684210479259491" green="0.27290448546409607" blue="0.26608186960220337" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9966442953020134">
+                     <color>
+                        <Color red="0.2368421107530594" green="0.20568348467350006" blue="0.20285087823867798" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8026315569877625" green="0.7285615801811218" blue="0.7171661853790283" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="260.0" layoutX="318.0" layoutY="-24.0" stroke="WHITE" strokeType="INSIDE" width="211.0" />
+      <ImageView fitHeight="398.0" fitWidth="851.0" layoutX="-29.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dinosaurImage/114z_2209_w015_n001_140b_p12_140.jpg" />
+         </image>
+      </ImageView>
+      <Line endX="-90.86402893066406" endY="236.00006103515625" layoutX="282.0" layoutY="380.0" startX="2.379058837890625" startY="-14.77777099609375" stroke="#b98178" strokeWidth="3.3" />
+      <Line endX="748.9999389648438" layoutX="94.0" layoutY="365.0" startX="-100.0" strokeWidth="3.3">
+         <stroke>
+            <LinearGradient endX="0.7862232779097387" endY="0.11163895486935871">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9342105388641357" green="0.9160453081130981" blue="0.7525584697723389" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.4588235318660736" green="0.3137255012989044" blue="0.2980392277240753" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9451219512195123">
+                     <color>
+                        <Color red="0.7599999904632568" green="0.5022333264350891" blue="0.4787999987602234" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.42105263471603394" green="0.2798895239830017" blue="0.26705652475357056" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <ImageView fitHeight="76.0" fitWidth="60.0" layoutX="389.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="367.0">
+         <image>
+            <Image url="@../images/Vase%20Icon.png" />
+         </image>
+         <effect>
+            <Reflection topOffset="10.0" />
+         </effect>
+      </ImageView>
+      <Line endX="-98.10113525390625" endY="233.0" layoutX="616.0" layoutY="383.0" startX="-143.62445068359375" startY="-17.77777099609375" stroke="#b98178" strokeWidth="3.3" />
+      <Line endX="-268.4206848144531" endY="209.49603271484375" layoutX="176.0" layoutY="346.0" startX="-79.69906616210938" startY="16.0" stroke="#72504a" strokeWidth="3.3" />
+      <Line endX="748.9999389648438" layoutX="74.0" layoutY="461.0" startX="-100.0" strokeWidth="3.3">
+         <stroke>
+            <LinearGradient endX="1.0" endY="0.11163895486935871">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9342105388641357" green="0.9160453081130981" blue="0.7525584697723389" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.4588235318660736" green="0.3137255012989044" blue="0.2980392277240753" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9451219512195123">
+                     <color>
+                        <Color red="0.7599999904632568" green="0.5022333264350891" blue="0.4787999987602234" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.7631579041481018" green="0.5040611028671265" blue="0.4805068373680115" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <Line endX="55.0" endY="206.50006103515625" layoutX="768.0" layoutY="373.0" startX="-105.819091796875" startY="-8.0" stroke="#75504c" strokeWidth="3.3" />
+      <ImageView fitHeight="160.0" fitWidth="128.0" layoutX="350.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/museum-decorative-flat-color-icons-set_98292-2337_Fotor-removebg-preview%20(1).png" />
+         </image>
+         <effect>
+            <Reflection fraction="0.53" topOffset="-10.0" topOpacity="1.0" />
+         </effect>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="310.0" layoutY="-2.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="231.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="256.0" layoutX="476.0" layoutY="73.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="293.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="127.0" layoutX="333.0" layoutY="151.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Line endX="682.9999389648438" endY="-38.9295654296875" layoutX="139.0" layoutY="292.0" opacity="0.0" startX="-152.40518188476562" startY="-38.9295654296875" strokeWidth="5.0" />
+      <ImageView fitHeight="690.0" fitWidth="563.0" layoutX="172.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-55.8">
+         <image>
+            <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="638.0" fitWidth="620.0" layoutX="84.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" rotate="-46.8" AnchorPane.leftAnchor="84.0">
+         <image>
+            <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="593.0" fitWidth="700.0" layoutX="52.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true" rotate="-37.3">
+         <image>
+            <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="503.0" fitWidth="838.0" layoutX="190.0" layoutY="416.0" opacity="0.11" pickOnBounds="true" preserveRatio="true" rotate="132.5">
+         <image>
+            <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="593.0" fitWidth="700.0" layoutX="309.0" layoutY="298.0" opacity="0.15" pickOnBounds="true" preserveRatio="true" rotate="103.8">
+         <image>
+            <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="593.0" fitWidth="700.0" layoutX="-22.0" layoutY="343.0" opacity="0.15" pickOnBounds="true" preserveRatio="true" rotate="159.3">
+         <image>
+            <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
+         </image>
+      </ImageView>
+      <Canvas fx:id="gameCanvas" height="585.0" layoutX="2.0" layoutY="6.0" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" width="816.0" />
+      <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="137.0" layoutX="355.0" layoutY="352.0" stroke="TRANSPARENT" strokeType="INSIDE" width="128.0" />
+      <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="68.0" layoutX="2.0" layoutY="119.0" stroke="TRANSPARENT" strokeType="INSIDE" width="825.0" />
+      <Rectangle fx:id="doorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="738.0" layoutY="372.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
+   </children>
+</AnchorPane>

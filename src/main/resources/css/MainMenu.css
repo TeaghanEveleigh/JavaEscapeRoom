@@ -1,0 +1,28 @@
+Button.button {
+    -fx-background-color: rgb(253, 253, 253);
+    -fx-border-color: rgb(169, 95, 31);
+    -fx-border-radius: 15;
+    -fx-background-radius:15;
+  
+
+}
+
+Button.button:hover {
+    -fx-background-color: rgb(191, 125, 74);
+   -fx-border-color: rgb(255, 255, 255);
+   -fx-text-fill:rgb(255, 255, 255);
+   -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
+    /* This defines the duration for the hover transition */
+    -fx-transition: scale-x 0.8s, scale-y 0.8s;
+
+
+   
+
+   
+}
+
+Label.label {
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
