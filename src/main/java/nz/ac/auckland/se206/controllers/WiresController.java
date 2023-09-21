@@ -330,7 +330,9 @@ public class WiresController implements Initializable {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+            disableHackerPanel();
             ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+            enableHintAndExit();
             return null;
           }
         };
@@ -342,8 +344,10 @@ public class WiresController implements Initializable {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+            disableHintAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getWiresRiddle()), hackerTextArea);
+            enableHintAndExit();
             return null;
           }
         };
@@ -356,7 +360,6 @@ public class WiresController implements Initializable {
   }
 
   public void disableHackerPanel() {
-    hintButton.setDisable(false);
     hackerIcon.toBack();
     hackerRectangle.toBack();
     hackerTextArea.toBack();
@@ -364,8 +367,19 @@ public class WiresController implements Initializable {
     exitHackerPanelImage.setDisable(true);
   }
 
-  public void enableHackerPanel() {
+  public void disableHintAndExit() {
     hintButton.setDisable(true);
+    exitHackerPanelImage.setDisable(true);
+    backButton.setDisable(true);
+  }
+
+  public void enableHintAndExit() {
+    hintButton.setDisable(false);
+    exitHackerPanelImage.setDisable(false);
+    backButton.setDisable(false);
+  }
+
+  public void enableHackerPanel() {
     hackerRectangle.toFront();
     hackerIcon.toFront();
     hackerTextArea.toFront();
@@ -386,9 +400,11 @@ public class WiresController implements Initializable {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+            disableHintAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getWiresRiddleSolvedPrompt()),
                 hackerTextArea);
+            enableHintAndExit();
             return null;
           }
         };
