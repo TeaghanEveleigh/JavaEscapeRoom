@@ -54,7 +54,7 @@ public class LaserRoomController extends GameController
     laserBox = new SolidBox(boundingBoxOne);
     boundsObjects.add(laserBox);
     boundsObjects.add(new SolidBox(boundingBoxTwo));
-    boundsObjects.add(new Portal(doorRectangle, AppUi.EXIT_ROOM));
+    boundsObjects.add(new Portal(doorRectangle, this, AppUi.EXIT_ROOM));
     boundsObjects.add(new LeftDinosaur(leftDinosaurBounds, this));
     boundsObjects.add(new RightDinosaur(rightDinosaurBounds, this));
     boundsObjects.add(new Door(doorRectangle, this, AppUi.MAIN_MENU));
@@ -64,7 +64,7 @@ public class LaserRoomController extends GameController
   }
 
   @FXML
-  private void disableLasers() {
+  public void disableLasers() {
     laser1.toBack();
     laser2.toBack();
     laser3.toBack();

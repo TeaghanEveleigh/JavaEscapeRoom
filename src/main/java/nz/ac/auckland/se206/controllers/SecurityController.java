@@ -159,7 +159,7 @@ public class SecurityController extends GameController
     boundsObjects.add(new Keypad(keypadBounds, this));
     boundsObjects.add(new Wires(wiresBounds, this));
     boundsObjects.add(new SecurityRoomDoor(securityDoorBounds, this));
-    boundsObjects.add(new Portal(dinosaurRoomBounds, AppUi.DINOSAUR_ROOM));
+    boundsObjects.add(new Portal(dinosaurRoomBounds, this, AppUi.DINOSAUR_ROOM));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(300);
@@ -346,7 +346,7 @@ public class SecurityController extends GameController
 
   @Override
   public void securityDoorInteracted() {
-    paused = true;
+    pauseRoom();
     App.switchScenes(AppUi.SECURITY_ROOM);
   }
 

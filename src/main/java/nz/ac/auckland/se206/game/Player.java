@@ -5,6 +5,8 @@ import java.util.Set;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.KeyState;
 
 public class Player extends Sprite {
@@ -19,6 +21,7 @@ public class Player extends Sprite {
   private Image idleImage;
   private Image runRightImage;
   private Image runLeftImage;
+  private MediaPlayer mediaPlayer;
 
   public Player(int width, int height, int posX, int posY) {
     super(imagePath, width, height, posX, posY);
@@ -54,6 +57,9 @@ public class Player extends Sprite {
             false,
             false);
     this.width = width;
+    String runSound = getClass().getResource("/sounds/player-walk-sound.mp3").toExternalForm();
+    this.mediaPlayer = new MediaPlayer(new Media(runSound));
+    this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
   }
 
   public void updateMovement() {
@@ -86,6 +92,7 @@ public class Player extends Sprite {
 
     if (keysPressed.size() == 0) {
       resetScale();
+      stopRunSounds();
       this.image = idleImage;
     }
 
@@ -103,6 +110,7 @@ public class Player extends Sprite {
   }
 
   private void moveLeft() {
+    playRunSound();
     applyScale();
     this.image = runLeftImage;
     this.posX -= moveSpeed;
@@ -113,6 +121,7 @@ public class Player extends Sprite {
   }
 
   private void moveRight() {
+    playRunSound();
     applyScale();
     this.image = runRightImage;
     this.posX += moveSpeed;
@@ -122,6 +131,7 @@ public class Player extends Sprite {
   }
 
   private void moveUp() {
+    playRunSound();
     applyScale();
     this.image = runRightImage;
     this.posY -= moveSpeed;
@@ -132,6 +142,7 @@ public class Player extends Sprite {
   }
 
   private void moveDown() {
+    playRunSound();
     applyScale();
     this.image = runLeftImage;
     this.posY += moveSpeed;
@@ -184,5 +195,13 @@ public class Player extends Sprite {
   public void setPosY(int posY) {
     super.setPosY(posY);
     this.oldY = posY;
+  }
+
+  private void playRunSound() {
+    mediaPlayer.play();
+  }
+
+  public void stopRunSounds() {
+    mediaPlayer.stop();
   }
 }

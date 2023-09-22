@@ -23,7 +23,7 @@ import nz.ac.auckland.se206.game.SolidBox;
 public class Room2Controller extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
 
-@FXML private Text interractHint;
+  @FXML private Text interractHint;
   @FXML private Text passwordText;
   @FXML private Button exitBtn;
   @FXML private Text password;
@@ -52,7 +52,6 @@ public class Room2Controller extends GameController
   @FXML Rectangle monitorScreen;
   @FXML Rectangle rectangleText;
   @FXML Text titleComputer;
-
 
   @Override
   public void initialize() {
@@ -178,7 +177,7 @@ public class Room2Controller extends GameController
   @Override
   public void computerInteracted() {
     hideComputerLabel();
-    paused = true;
+    pauseRoom();
     computerOpened = true;
     passwordText.setText("");
     openComputer();
@@ -200,7 +199,7 @@ public class Room2Controller extends GameController
     if (safeOpened) {
       showBigNote();
     } else {
-      paused = true;
+      pauseRoom();
       MemoryGameController memoryController =
           (MemoryGameController) SceneManager.getUiController(AppUi.MEMORY_GAME);
       memoryController.start();
@@ -226,7 +225,7 @@ public class Room2Controller extends GameController
 
   @Override
   public void exitDoorInteracted() {
-    paused = true;
+    pauseRoom();
     App.switchScenes(AppUi.EXIT_ROOM);
   }
 

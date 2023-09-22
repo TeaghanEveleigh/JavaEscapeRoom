@@ -44,7 +44,7 @@ public class GameController implements BaseController {
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
     boundsObjects = new ArrayList<BoundsObject>();
 
-    player = new Player(100, 100, 50, 50);
+    player = new Player(50, 100, 50, 50);
     renderer.addEntity(player);
 
     AnimationTimer timer =
@@ -63,6 +63,7 @@ public class GameController implements BaseController {
 
   public void pauseRoom() {
     paused = true;
+    player.stopRunSounds();
   }
 
   public void unpauseRoom() {

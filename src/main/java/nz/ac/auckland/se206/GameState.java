@@ -25,6 +25,7 @@ public class GameState {
     for (String s : list) {
       sb.append(s);
     }
+    System.out.println(sb.toString());
     return sb.toString();
   }
 
