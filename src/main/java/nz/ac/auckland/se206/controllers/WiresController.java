@@ -130,7 +130,7 @@ public class WiresController implements Initializable, BaseController {
    * @throws IOException
    */
   @FXML
-  public void onBackPressed() throws IOException {
+  private void onBackPressed() throws IOException {
     App.switchScenes(AppUi.EXIT_ROOM);
   }
 
@@ -331,7 +331,7 @@ public class WiresController implements Initializable, BaseController {
    * @throws ApiProxyException
    */
   @FXML
-  public void onHintPressed() throws ApiProxyException {
+  private void onHintPressed() throws ApiProxyException {
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {

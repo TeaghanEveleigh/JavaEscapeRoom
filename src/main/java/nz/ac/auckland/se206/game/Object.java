@@ -25,7 +25,7 @@ public class Object extends Interactable {
   }
 
   @Override
-  public void untouched() {
+  public void notTouched() {
     if (!touched) return;
     listener.objectUntouched();
     touched = false;

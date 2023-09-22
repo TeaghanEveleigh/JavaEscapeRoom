@@ -50,14 +50,14 @@ public class Room2Controller extends GameController
   private boolean computerOpened = false;
   private boolean incorrectPassword = false;
 
-  @FXML Label computerLabel;
-  @FXML Button btnHelp;
-  @FXML Button btnLogin;
-  @FXML Rectangle monitorScreen;
-  @FXML Rectangle rectangleText;
-  @FXML Text titleComputer;
-  @FXML Rectangle boundingBox1;
-  @FXML Rectangle boundingBox5;
+  @FXML private Label computerLabel;
+  @FXML private Button btnHelp;
+  @FXML private Button btnLogin;
+  @FXML private Rectangle monitorScreen;
+  @FXML private Rectangle rectangleText;
+  @FXML private Text titleComputer;
+  @FXML private Rectangle boundingBox1;
+  @FXML private Rectangle boundingBox5;
 
   @Override
   public void initialize() {
@@ -87,7 +87,7 @@ public class Room2Controller extends GameController
   }
 
   @FXML
-  void openComputer() {
+  private void openComputer() {
     monitorScreen.toFront();
     btnHelp.toFront();
     btnLogin.toFront();
@@ -200,7 +200,7 @@ public class Room2Controller extends GameController
   }
 
   @Override
-  public void computerUntouched() {
+  public void computerNotTouched() {
     hideComputerLabel();
     hideComputer();
     helpHint.toBack();
@@ -238,7 +238,7 @@ public class Room2Controller extends GameController
   }
 
   @Override
-  public void safeUntouched() {
+  public void safeNotTouched() {
     hideSafeLabel();
     hideNoteLabel();
     hideBigNote();

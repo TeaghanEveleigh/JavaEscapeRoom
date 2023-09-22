@@ -66,7 +66,6 @@ public class MemoryGameController implements BaseController {
   private Image lightGlowGreenImage =
       new Image(getClass().getResource("/images/push-button-glow-green.png").toExternalForm());
 
-  private boolean playerWon;
   private boolean showingSequence = false;
   private int currentSequenceLength = 1;
 
@@ -181,7 +180,6 @@ public class MemoryGameController implements BaseController {
             App.switchScenes(AppUi.SECURITY_ROOM);
           });
 
-      playerWon = true;
       System.out.println("WON");
       enableHackerPanel();
       Task<Void> task =
@@ -250,7 +248,7 @@ public class MemoryGameController implements BaseController {
    * @throws ApiProxyException
    */
   @FXML
-  public void onHintPressed() throws ApiProxyException {
+  private void onHintPressed() throws ApiProxyException {
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
@@ -281,7 +279,7 @@ public class MemoryGameController implements BaseController {
    * @throws IOException
    */
   @FXML
-  public void onBackPressed() throws IOException {
+  private void onBackPressed() throws IOException {
     App.switchScenes(AppUi.SECURITY_ROOM);
   }
 

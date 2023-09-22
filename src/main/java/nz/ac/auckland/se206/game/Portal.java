@@ -7,8 +7,8 @@ import nz.ac.auckland.se206.controllers.GameController;
 
 public class Portal extends Interactable {
 
-  AppUi nextRoom;
-  GameController originalController;
+  private AppUi nextRoom;
+  private GameController originalController;
 
   public Portal(Rectangle rectangle, GameController originalController, AppUi nextRoom) {
     super(rectangle);
@@ -18,7 +18,7 @@ public class Portal extends Interactable {
 
   @Override
   public void interact() {
-    return;
+    
   }
 
   @Override
@@ -30,7 +30,7 @@ public class Portal extends Interactable {
   }
 
   @Override
-  public void untouched() {
+  public void notTouched() {
     if (!touched) return;
     touched = false;
   }

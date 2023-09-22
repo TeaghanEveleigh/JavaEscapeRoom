@@ -5,5 +5,5 @@ public interface KeypadListener {
 
   public void keypadTouched();
 
-  public void keypadUntouched();
+  public void keypadNotTouched();
 }

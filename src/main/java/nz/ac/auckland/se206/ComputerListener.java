@@ -5,5 +5,5 @@ public interface ComputerListener {
 
   public void computerTouched();
 
-  public void computerUntouched();
+  public void computerNotTouched();
 }

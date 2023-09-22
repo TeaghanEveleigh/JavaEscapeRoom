@@ -26,7 +26,7 @@ public class Wires extends Interactable {
   }
 
   @Override
-  public void untouched() {
+  public void notTouched() {
     if (!touched) return;
     listener.wiresUntouched();
     touched = false;

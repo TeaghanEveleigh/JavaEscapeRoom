@@ -168,7 +168,7 @@ public class Player extends Sprite {
         }
       } else if (boundsObject instanceof Interactable) {
         Interactable interactable = (Interactable) boundsObject;
-        interactable.untouched();
+        interactable.notTouched();
       }
     }
 

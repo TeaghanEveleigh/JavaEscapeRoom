@@ -14,5 +14,5 @@ public abstract class Interactable extends BoundsObject {
 
   public abstract void touched();
 
-  public abstract void untouched();
+  public abstract void notTouched();
 }

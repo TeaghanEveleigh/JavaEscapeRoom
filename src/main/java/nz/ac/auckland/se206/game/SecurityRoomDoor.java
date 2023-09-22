@@ -25,7 +25,7 @@ public class SecurityRoomDoor extends Interactable {
   }
 
   @Override
-  public void untouched() {
+  public void notTouched() {
     if (!touched) return;
     listener.securityDoorUntouched();
     touched = false;

@@ -26,9 +26,9 @@ public class Keypad extends Interactable {
   }
 
   @Override
-  public void untouched() {
+  public void notTouched() {
     if (!touched) return;
-    listener.keypadUntouched();
+    listener.keypadNotTouched();
     touched = false;
   }
 }

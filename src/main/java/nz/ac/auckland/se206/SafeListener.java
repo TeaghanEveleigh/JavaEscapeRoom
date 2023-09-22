@@ -5,5 +5,5 @@ public interface SafeListener {
 
   public void safeTouched();
 
-  public void safeUntouched();
+  public void safeNotTouched();
 }

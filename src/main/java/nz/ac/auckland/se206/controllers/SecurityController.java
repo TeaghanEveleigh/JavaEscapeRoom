@@ -43,12 +43,12 @@ public class SecurityController extends GameController
   @FXML private Ellipse cameraBase;
   @FXML private ImageView cameraTriangle;
   @FXML private Text interractHint;
-  @FXML Label wireLabel;
-  @FXML Label doorLabel;
-  @FXML Rectangle correctColor;
-  @FXML Rectangle incorrectColor;
-  @FXML Text incorrectTxt;
-  @FXML Text correctTxt;
+  @FXML private Label wireLabel;
+  @FXML private Label doorLabel;
+  @FXML private Rectangle correctColor;
+  @FXML private Rectangle incorrectColor;
+  @FXML private Text incorrectTxt;
+  @FXML private Text correctTxt;
   @FXML private Rectangle one;
   @FXML private Rectangle two;
   @FXML private Rectangle three;
@@ -182,7 +182,6 @@ public class SecurityController extends GameController
     // camera area
   }
 
-  // @FXML private Text number0;
 
   @Override
   public void initialize() {
@@ -397,7 +396,7 @@ public class SecurityController extends GameController
   }
 
   @Override
-  public void keypadUntouched() {
+  public void keypadNotTouched() {
     hideDoorLabel();
     hideKeyPad();
   }

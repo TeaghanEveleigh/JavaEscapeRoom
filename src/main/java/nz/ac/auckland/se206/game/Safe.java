@@ -25,9 +25,9 @@ public class Safe extends Interactable {
   }
 
   @Override
-  public void untouched() {
+  public void notTouched() {
     if (!touched) return;
-    listener.safeUntouched();
+    listener.safeNotTouched();
     touched = false;
   }
 }

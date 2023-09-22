@@ -25,18 +25,6 @@ public class App extends Application {
     scene.setRoot(SceneManager.getUiRoot(appUi));
   }
 
-  /**
-   * Returns the node associated to the input file. The method expects that the file is located in
-   * "src/main/resources/fxml".
-   *
-   * @param fxml The name of the FXML file (without extension).
-   * @return The node of the input file.
-   * @throws IOException If the file is not found.
-   */
-  private static Parent loadFxml(final String fxml) throws IOException {
-    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
-  }
-
   public static FXMLLoader getFxmlLoader(final String fxml) {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
   }
@@ -70,9 +58,6 @@ public class App extends Application {
 
     scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
     Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU);
-    // GameController controller = (GameController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-    // controller.unpauseRoom();
-
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
