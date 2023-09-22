@@ -17,6 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.Ai;
@@ -173,7 +174,6 @@ public class MemoryGameController implements BaseController {
             roomController.unpauseRoom();
             App.switchScenes(AppUi.SECURITY_ROOM);
           });
-      
 
       playerWon = true;
       System.out.println("WON");
@@ -221,7 +221,7 @@ public class MemoryGameController implements BaseController {
 
   public void start() {
     resetAllLights();
-    ChooseSequence(6);
+    chooseSequence(6);
     showSequence(currentSequenceLength);
   }
 
@@ -251,9 +251,18 @@ public class MemoryGameController implements BaseController {
           @Override
           protected Void call() throws Exception {
             disableHintAndExit();
-            ai.runGpt(
-                new ChatMessage("user", GptPromptEngineering.getMemoryGameHint()), hackerTextArea);
+            if (GameState.isHard || (GameState.hintsLeft <= 0)) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+            } else {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getMemoryGameHint()),
+                  hackerTextArea);
+            }
             enableHintAndExit();
+            if (GameState.isMedium) {
+              GameState.hintsLeft--;
+            }
             return null;
           }
         };

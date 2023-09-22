@@ -92,6 +92,12 @@ public class GameController implements BaseController {
           @Override
           protected Void call() throws Exception {
             disableHintAndExit();
+            if (GameState.isHard || (GameState.hintsLeft <= 0)) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+              enableHintAndExit();
+              return null;
+            }
             if (!GameState.isLasersDisabled
                 && !GameState.isCamerasDisabled) { // neither lasers or cameras are disabled
 
@@ -127,6 +133,9 @@ public class GameController implements BaseController {
                   hackerTextArea);
             }
             enableHintAndExit();
+            if (GameState.isMedium) {
+              GameState.hintsLeft--;
+            }
             return null;
           }
         };

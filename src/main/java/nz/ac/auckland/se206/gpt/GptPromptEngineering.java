@@ -321,15 +321,9 @@ public class GptPromptEngineering {
         + " the treasure. Keep your message under 50 words.";
   }
 
-  /**
-   * Generate a GPT prompt engineering string for a random sequence of the numbers 1 through to 4
-   * inclusive for the wires game.
-   *
-   * @return the generated prompt engineering string
-   */
-  public static String getRandomWiresSequence() {
-    return "Give me a 4 digit number containing the numbers one, two, three, and four exactly once"
-        + " in a random order. Do not include anyting else in the message apart from the 4"
-        + " digit number.";
+  public static String getCantGiveHint() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. You have been locked out of the"
+        + " museum database and can't give your partner any hints. Tell them this";
   }
 }
