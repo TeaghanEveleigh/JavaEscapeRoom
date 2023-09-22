@@ -263,6 +263,11 @@
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="718.0" layoutY="77.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
 
 
    </children>

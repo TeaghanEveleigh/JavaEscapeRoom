@@ -23,9 +23,8 @@ import nz.ac.auckland.se206.game.SolidBox;
 import nz.ac.auckland.se206.game.Wires;
 
 public class SecurityController extends GameController
-
     implements KeypadListener, WiresListener, SecurityRoomDoorListener {
-        @FXML private Label carvingLabel;
+  @FXML private Label carvingLabel;
   @FXML private ImageView stoneCarving;
   @FXML private Text stoneText;
   @FXML private Rectangle blurScreen;
@@ -359,20 +358,28 @@ public class SecurityController extends GameController
   public void securityDoorUntouched() {
     hideSecurity();
   }
-  @FXML private void showStoneCarving(){
+
+  @FXML
+  private void showStoneCarving() {
     blurScreen.toFront();
     stoneCarving.toFront();
     stoneText.toFront();
   }
-  @FXML private void hideStoneCarving(){
+
+  @FXML
+  private void hideStoneCarving() {
     blurScreen.toBack();
     stoneCarving.toBack();
     stoneText.toBack();
   }
-  @FXML private void showCarvingLabel(){
+
+  @FXML
+  private void showCarvingLabel() {
     carvingLabel.setOpacity(1);
   }
-  @FXML private void hideCarvingLabel(){
+
+  @FXML
+  private void hideCarvingLabel() {
     carvingLabel.setOpacity(0);
   }
 }

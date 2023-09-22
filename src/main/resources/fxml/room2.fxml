@@ -404,6 +404,11 @@
       <Rectangle fx:id="computerBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="279.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
       <Rectangle fx:id="safeBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="660.0" layoutY="389.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="93.0" />
       <Rectangle fx:id="doorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="241.0" layoutX="-16.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="721.0" layoutY="70.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>
