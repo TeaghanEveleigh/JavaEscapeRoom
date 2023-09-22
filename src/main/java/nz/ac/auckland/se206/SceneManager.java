@@ -15,8 +15,9 @@ public class SceneManager {
     SIN_MINIGAME,
     SECURITY_ROOM,
     DINOSAUR_ROOM,
-    EXIT_ROOM
-
+    EXIT_ROOM,
+    GAME_WON,
+    GAME_LOST;
   }
   private static Stack<AppUi> history = new Stack<>();
 
@@ -62,9 +63,12 @@ public static AppUi getLastScene() {
   public static BaseController getUiController(AppUi appUi) {
     return controllerMap.get(appUi);
   }
+
+  // Checks if the UI is in the scene map
   public static boolean containsUi(AppUi appUi) {
     return sceneMap.containsKey(appUi);
   }
+
 
   public static void deleteUi(AppUi appUi) {
     sceneMap.remove(appUi);

@@ -60,36 +60,37 @@ public class Timers {
 
   private Timeline createCountdownTimeline() {
     return new Timeline(
-      new KeyFrame(
-        Duration.seconds(1),
-        e -> {
-          timeInMilliseconds -= 1000;
-          if (timeInMilliseconds < 0) {
-            timeInMilliseconds = 0;
-            countdownTimeline.stop();
-          }
 
-          // Check if 30 seconds have passed
-          // Check if 30 seconds have passed
-if (!is30SecondTriggered && timeInMilliseconds <= (startingTimeInMilliseconds - 30000)) {
-  thirtySecondPassed();
+        new KeyFrame(
+            Duration.seconds(1),
+            e -> {
+              timeInMilliseconds -= 1000;
+              if (timeInMilliseconds < 0) {
+                timeInMilliseconds = 0;
+                countdownTimeline.stop();
+              }
+              if ((timeInMilliseconds / 1000 % 60) < 10) {
+                String time =
+                    (timeInMilliseconds / 1000 / 60) + " : 0" + (timeInMilliseconds / 1000 % 60);
+                for (Label label : subscribedLabels) {
+                  Platform.runLater(() -> label.setText(time));
+                }
+              } else {
+                String time =
+                    (timeInMilliseconds / 1000 / 60) + " : " + (timeInMilliseconds / 1000 % 60);
+                for (Label label : subscribedLabels) {
+                  Platform.runLater(() -> label.setText(time));
+                }
+              }
+
+              if (timeInMilliseconds == 0) {
+                App.switchScenes(AppUi.GAME_LOST);
+              }
+              if (!is30SecondTriggered && timeInMilliseconds <= (startingTimeInMilliseconds - 30000)) {
+          thirtySecondPassed();
   is30SecondTriggered = true;
-}
+} 
+            }));
 
-
-          // Format the remaining time string
-          String time = String.format(
-            "%d : %02d",
-            timeInMilliseconds / 1000 / 60,
-            timeInMilliseconds / 1000 % 60
-          );
-
-          // Update all subscribed labels
-          for (Label label : subscribedLabels) {
-            Platform.runLater(() -> label.setText(time));
-          }
-        }
-      )
-    );
   }
 }
