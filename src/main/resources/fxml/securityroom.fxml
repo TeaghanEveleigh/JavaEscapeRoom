@@ -17,6 +17,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
+      <ImageView fx:id="stoneCarving" fitHeight="330.0" fitWidth="481.0" layoutX="181.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_0nse_Fotor.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="stoneText" fill="#783680" layoutX="330.0" layoutY="371.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="17th century" wrappingWidth="199.0">
+         <font>
+            <Font name="BM HANNA Air OTF" size="30.0" />
+         </font></Text>
+      <Rectangle fx:id="blurScreen" arcHeight="5.0" arcWidth="5.0" fill="#3f4143" height="606.0" layoutX="-6.0" layoutY="-13.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="830.0" />
       <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="258.0" layoutY="384.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
       <Text fill="WHITE" layoutX="261.0" layoutY="408.0" onMouseClicked="#handleMouseClicked" strokeType="OUTSIDE" strokeWidth="0.0" text=" 0" wrappingWidth="28.741643820546756" AnchorPane.leftAnchor="261.0">
          <font>
@@ -226,6 +236,12 @@
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="545.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
       <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="213.0" layoutX="614.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="95.0" />
       <Rectangle fx:id="dinosaurRoomBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" layoutX="3.0" layoutY="553.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="810.0" />
+
+      <Label fx:id="carvingLabel" alignment="CENTER" layoutX="286.0" layoutY="119.0" onMouseClicked="#showStoneCarving" onMouseEntered="#showCarvingLabel" onMouseExited="#hideCarvingLabel" opacity="0.0" prefHeight="67.0" prefWidth="95.0" style="-fx-background-color: none; -fx-border-color: rgb(255,255,255); -fx-border-width: 2; -fx-border-radius: 10;" text="Carving" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="26.0" />
+         </font>
+      </Label>
       <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="501.0" prefHeight="80.0" prefWidth="675.0" wrapText="true">
          <font>
             <Font size="15.0" />
@@ -247,6 +263,7 @@
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
+
 
    </children>
 </AnchorPane>

@@ -40,6 +40,7 @@ public class LaserRoomController extends GameController
 
   private SolidBox laserBox;
 
+  
   @Override
   public void initialize() {
     super.initialize();
