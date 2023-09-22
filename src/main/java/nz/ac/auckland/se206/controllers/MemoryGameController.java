@@ -173,7 +173,6 @@ public class MemoryGameController implements BaseController {
             roomController.unpauseRoom();
             App.switchScenes(AppUi.SECURITY_ROOM);
           });
-      
 
       playerWon = true;
       System.out.println("WON");
@@ -221,7 +220,7 @@ public class MemoryGameController implements BaseController {
 
   public void start() {
     resetAllLights();
-    ChooseSequence(6);
+    chooseSequence(6);
     showSequence(currentSequenceLength);
   }
 
