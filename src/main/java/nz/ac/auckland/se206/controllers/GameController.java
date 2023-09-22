@@ -39,6 +39,7 @@ public class GameController implements BaseController {
   public void initialize() {
     gameCanvas.requestFocus();
     disableHackerPanel();
+    hackerTextArea.setEditable(false);
     graphicsContext = gameCanvas.getGraphicsContext2D();
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
     boundsObjects = new ArrayList<BoundsObject>();
@@ -138,6 +139,7 @@ public class GameController implements BaseController {
     hackerTextArea.toBack();
     exitHackerPanelImage.toBack();
     exitHackerPanelImage.setDisable(true);
+    gameCanvas.requestFocus();
   }
 
   public void disableHintAndExit() {
@@ -156,5 +158,6 @@ public class GameController implements BaseController {
     hackerTextArea.toFront();
     exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);
+    gameCanvas.requestFocus();
   }
 }

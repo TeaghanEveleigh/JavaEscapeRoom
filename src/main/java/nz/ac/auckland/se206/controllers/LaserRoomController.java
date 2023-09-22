@@ -10,6 +10,7 @@ import nz.ac.auckland.se206.LeftDinosaurListener;
 import nz.ac.auckland.se206.ObjectListener;
 import nz.ac.auckland.se206.RightDinosaurListener;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.game.Door;
 import nz.ac.auckland.se206.game.LeftDinosaur;
 import nz.ac.auckland.se206.game.Object;
 import nz.ac.auckland.se206.game.Portal;
@@ -95,7 +96,6 @@ public class LaserRoomController extends GameController
           }
         };
     new Thread(task).start();
-
   }
 
   @FXML
@@ -106,7 +106,6 @@ public class LaserRoomController extends GameController
   @FXML
   private void hideDinoLabel1() {
     dinoLabel1.setOpacity(0);
-
   }
 
   @Override
@@ -153,11 +152,14 @@ public class LaserRoomController extends GameController
   public void objectUntouched() {
     itemLabelHide();
   }
-  @FXML private void showDinoLabelTwo(){
+
+  @FXML
+  private void showDinoLabelTwo() {
     dinoLabel2.setOpacity(1);
   }
-  @FXML private void hideDinoLabelTwo(){
+
+  @FXML
+  private void hideDinoLabelTwo() {
     dinoLabel2.setOpacity(0);
-    
   }
 }
