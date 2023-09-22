@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class Timers {
 
@@ -67,6 +68,10 @@ public class Timers {
                 for (Label label : subscribedLabels) {
                   Platform.runLater(() -> label.setText(time));
                 }
+              }
+
+              if (timeInMilliseconds == 0) {
+                App.switchScenes(AppUi.GAME_LOST);
               }
             }));
   }

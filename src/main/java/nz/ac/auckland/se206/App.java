@@ -59,6 +59,14 @@ public class App extends Application {
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
     SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
 
+    FXMLLoader gameWonLoader = getFxmlLoader("gamewon");
+    SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
+    SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
+
+    FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
+    SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
+    SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
+
     scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
     Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU);
     // GameController controller = (GameController) SceneManager.getUiController(AppUi.EXIT_ROOM);

@@ -13,7 +13,9 @@ public class SceneManager {
     SIN_MINIGAME,
     SECURITY_ROOM,
     DINOSAUR_ROOM,
-    EXIT_ROOM
+    EXIT_ROOM,
+    GAME_WON,
+    GAME_LOST;
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
