@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
@@ -194,11 +196,44 @@
       <Canvas fx:id="gameCanvas" height="585.0" layoutX="2.0" layoutY="6.0" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" width="816.0" />
       <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="137.0" layoutX="355.0" layoutY="352.0" stroke="TRANSPARENT" strokeType="INSIDE" width="128.0" />
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="68.0" layoutX="2.0" layoutY="119.0" stroke="TRANSPARENT" strokeType="INSIDE" width="825.0" />
-      <Rectangle fx:id="doorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="738.0" layoutY="372.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
+
+      <Rectangle fx:id="doorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="232.0" layoutX="-2.0" layoutY="384.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
       <Label fx:id="dinoLabel1" alignment="CENTER" layoutX="4.0" layoutY="9.0" onMouseEntered="#showDinoLabel1" onMouseExited="#hideDinoLabel1" opacity="0.0" prefHeight="302.0" prefWidth="242.0" style="-fx-border-color: WHITE; -fx-border-width: 3; -fx-border-radius: 15;" text="Dinosaur" textFill="WHITE">
+
          <font>
-            <Font name="BM HANNA Air OTF" size="46.0" />
+            <Font name="BM HANNA Air OTF" size="33.0" />
          </font>
       </Label>
+      <Label fx:id="dinoLabel2" alignment="CENTER" layoutX="448.0" layoutY="41.0" onMouseEntered="#showDinoLabelTwo" onMouseExited="#hideDinoLabelTwo" opacity="0.0" prefHeight="230.0" prefWidth="341.0" style="-fx-border-color: WHITE; -fx-border-width: 3; -fx-border-radius: 15;" text="T-Rex" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="63.0" />
+         </font>
+      </Label>
+
+      <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="500.0" prefHeight="80.0" prefWidth="675.0" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="680.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
+      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="715.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/HackerIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="4.0" layoutY="472.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="hintButton" layoutX="721.0" layoutY="15.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Rectangle fx:id="leftDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="26.0" layoutY="137.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="179.0" />
+      <Rectangle fx:id="rightDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" layoutX="482.0" layoutY="176.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="306.0" />
+      <Rectangle fx:id="objectBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="370.0" layoutY="328.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="98.0" />
+
    </children>
 </AnchorPane>
