@@ -17,9 +17,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
-
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -398,6 +398,9 @@ public class WiresController implements Initializable, BaseController {
     backButton.toFront();
     enableHackerPanel();
     GameState.isLasersDisabled = true;
+    LaserRoomController laserRoomController =
+        (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
+    laserRoomController.disableLasers();
 
     Task<Void> task =
         new Task<Void>() {

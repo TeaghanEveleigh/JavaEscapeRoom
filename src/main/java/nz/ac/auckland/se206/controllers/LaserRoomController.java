@@ -56,7 +56,7 @@ public class LaserRoomController extends GameController
   }
 
   @FXML
-  private void disableLasers() {
+  public void disableLasers() {
     laser1.toBack();
     laser2.toBack();
     laser3.toBack();
