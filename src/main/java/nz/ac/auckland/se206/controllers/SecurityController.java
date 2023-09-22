@@ -341,7 +341,7 @@ public class SecurityController extends GameController
 
   @Override
   public void securityDoorInteracted() {
-    paused = true;
+    pauseRoom();
     App.switchScenes(AppUi.SECURITY_ROOM);
   }
 

@@ -63,6 +63,7 @@ public class GameController implements BaseController {
 
   public void pauseRoom() {
     paused = true;
+    player.stopRunSounds();
   }
 
   public void unpauseRoom() {
