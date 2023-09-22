@@ -22,12 +22,8 @@ public class Door extends Interactable {
   }
 
   @Override
-  public void touched() {
- 
-  }
+  public void touched() {}
 
   @Override
-  public void notTouched() {
-   
-  }
+  public void notTouched() {}
 }

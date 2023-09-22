@@ -60,20 +60,19 @@ public class LaserRoomController extends GameController
     this.player.setPosX(54);
     this.player.setPosY(472);
     enableHackerPanel();
-      Task<Void> task =
-          new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-              disableHintAndExit();
-              ai.runGpt(
-                  new ChatMessage("user", GptPromptEngineering.getIntroduction()),
-                  hackerTextArea);
-              enableHintAndExit();
-              exitHackerPanelImage.setDisable(false);
-              return null;
-            }
-          };
-      new Thread(task).start();
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            disableHintAndExit();
+            ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
+            enableHintAndExit();
+            exitHackerPanelImage.setDisable(false);
+            return null;
+          }
+        };
+    new Thread(task).start();
   }
 
   @FXML
