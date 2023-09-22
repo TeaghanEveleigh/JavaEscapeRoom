@@ -276,7 +276,7 @@ public class MemoryGameController implements BaseController {
    */
   @FXML
   public void onBackPressed() throws IOException {
-    App.switchScenes(AppUi.MAIN_MENU);
+    App.switchScenes(AppUi.SECURITY_ROOM);
   }
 
   @FXML
