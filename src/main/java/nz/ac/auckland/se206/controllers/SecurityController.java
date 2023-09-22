@@ -15,15 +15,18 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.KeypadListener;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SecurityRoomDoorListener;
+import nz.ac.auckland.se206.StoneCarvingListener;
 import nz.ac.auckland.se206.WiresListener;
 import nz.ac.auckland.se206.game.Keypad;
 import nz.ac.auckland.se206.game.Portal;
 import nz.ac.auckland.se206.game.SecurityRoomDoor;
 import nz.ac.auckland.se206.game.SolidBox;
+import nz.ac.auckland.se206.game.StoneCarving;
 import nz.ac.auckland.se206.game.Wires;
 
 public class SecurityController extends GameController
-    implements KeypadListener, WiresListener, SecurityRoomDoorListener {
+    implements KeypadListener, WiresListener, SecurityRoomDoorListener, StoneCarvingListener {
+
   @FXML private Label carvingLabel;
   @FXML private ImageView stoneCarving;
   @FXML private Text stoneText;
@@ -65,6 +68,25 @@ public class SecurityController extends GameController
   @FXML private Text number7;
   @FXML private Text number8;
   @FXML private Text number9;
+ 
+  @FXML private Rectangle boundingBox2;
+  @FXML private Rectangle boundingBox3;
+  @FXML private Rectangle boundingBox4;
+  @FXML private Rectangle boundingBox5;
+  @FXML private Rectangle boundingBox6;
+  @FXML private Rectangle boundingBox7;
+  @FXML private Rectangle boundingBox8;
+  @FXML private Rectangle boundingBox9;
+  @FXML private Rectangle boundingBox10;;
+  @FXML private Rectangle boundingBox11;
+  @FXML private Rectangle boundingBox12;
+  @FXML private Rectangle boundingBox13;;
+  @FXML private Rectangle boundingBox14;
+  @FXML private Rectangle boundingBox15;;
+  @FXML private Rectangle boundingBox16;
+  
+
+
   @FXML private Line securityLine1;
   @FXML private Line securityLine2;
   @FXML private Line securityLine3;
@@ -76,7 +98,9 @@ public class SecurityController extends GameController
   @FXML private Rectangle boundingBoxThree;
   @FXML private Rectangle securityDoorBounds;
   @FXML private Rectangle dinosaurRoomBounds;
+  @FXML private Rectangle stoneCarvingBounds;
   private SolidBox exitBlock;
+  @FXML private Rectangle boundingBox1;
 
   // @FXML private Text number0;
   @FXML
@@ -154,11 +178,28 @@ public class SecurityController extends GameController
     exitBlock = new SolidBox(boundingBoxThree);
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
+    boundsObjects.add(new SolidBox(boundingBox1));
+    boundsObjects.add(new SolidBox(boundingBox2));
+    boundsObjects.add(new SolidBox(boundingBox3));
+    boundsObjects.add(new SolidBox(boundingBox4));
+    boundsObjects.add(new SolidBox(boundingBox5));
+    boundsObjects.add(new SolidBox(boundingBox6));
+    boundsObjects.add(new SolidBox(boundingBox7));
+    boundsObjects.add(new SolidBox(boundingBox8));
+    boundsObjects.add(new SolidBox(boundingBox9));
+    boundsObjects.add(new SolidBox(boundingBox10));
+    boundsObjects.add(new SolidBox(boundingBox11));
+    boundsObjects.add(new SolidBox(boundingBox12));
+    boundsObjects.add(new SolidBox(boundingBox13));
+    boundsObjects.add(new SolidBox(boundingBox14));
+    boundsObjects.add(new SolidBox(boundingBox15));
+    boundsObjects.add(new SolidBox(boundingBox16));
     boundsObjects.add(exitBlock);
     boundsObjects.add(new Keypad(keypadBounds, this));
     boundsObjects.add(new Wires(wiresBounds, this));
     boundsObjects.add(new SecurityRoomDoor(securityDoorBounds, this));
     boundsObjects.add(new Portal(dinosaurRoomBounds, this, AppUi.DINOSAUR_ROOM));
+    boundsObjects.add(new StoneCarving(stoneCarvingBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(300);
@@ -381,5 +422,21 @@ public class SecurityController extends GameController
   @FXML
   private void hideCarvingLabel() {
     carvingLabel.setOpacity(0);
+  }
+
+  @Override
+  public void stoneCarvingInteracted() {
+    showStoneCarving();
+  }
+
+  @Override
+  public void stoneCarvingTouched() {
+    showCarvingLabel();
+  }
+
+  @Override
+  public void stoneCaringUntouched() {
+    hideCarvingLabel();
+    hideStoneCarving();
   }
 }

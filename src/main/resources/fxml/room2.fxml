@@ -372,7 +372,7 @@
             <Font name="BM HANNA Air OTF" size="31.0" />
          </font>
       </Label>
-      <Text fx:id="interractHint" fill="#fff4f4" layoutX="78.0" layoutY="88.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact when close" textAlignment="CENTER" wrappingWidth="675.0841674804688">
+      <Text fx:id="interractHint" fill="#fff4f4" layoutX="78.0" layoutY="88.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact " textAlignment="CENTER" wrappingWidth="675.0841674804688">
          <font>
             <Font name="BM HANNA Air OTF" size="55.0" />
          </font>
@@ -400,15 +400,18 @@
          </font>
       </Button>
       <Canvas fx:id="gameCanvas" height="585.0" width="816.0" />
-      <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="6.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="816.0" />
-      <Rectangle fx:id="computerBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="279.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle fx:id="safeBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="660.0" layoutY="389.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="93.0" />
+      <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="8.0" layoutY="136.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="816.0" />
+      <Rectangle fx:id="computerBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="279.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="130.0" AnchorPane.topAnchor="310.0" />
+      <Rectangle fx:id="safeBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="645.0" layoutY="419.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="120.0" AnchorPane.rightAnchor="51.0" />
       <Rectangle fx:id="doorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="241.0" layoutX="-16.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
       <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="721.0" layoutY="70.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
+
+      <Rectangle fx:id="boundingBox1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="138.0" layoutX="-32.0" layoutY="240.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
+      <Rectangle fx:id="boundingBox5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="168.0" layoutX="642.0" layoutY="262.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="201.0" />
 
    </children>
 </AnchorPane>

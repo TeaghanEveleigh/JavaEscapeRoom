@@ -42,12 +42,9 @@ public class LaserRoomController extends GameController
   @FXML private Text paroText;
   @FXML private Rectangle plaque;
   @FXML private Rectangle blur;
-  
-
 
   private SolidBox laserBox;
 
-  
   @Override
   public void initialize() {
     super.initialize();
@@ -118,7 +115,7 @@ public class LaserRoomController extends GameController
 
   @Override
   public void leftDinosaurInteracted() {
-    return;
+    showParoPlaque();
   }
 
   @Override
@@ -129,21 +126,23 @@ public class LaserRoomController extends GameController
   @Override
   public void leftDinosaurUntouched() {
     hideDinoLabel1();
+    hideParoPlaque();
   }
 
   @Override
   public void rightDinosaurInteracted() {
-    return;
+    showTrexPlaque();
   }
 
   @Override
   public void rightDinosaurTouched() {
-    return;
+    showDinoLabelTwo();
   }
 
   @Override
   public void rightDinosaurUntouched() {
-    return;
+    hideDinoLabelTwo();
+    hideTrexPlaque();
   }
 
   @Override
@@ -170,26 +169,32 @@ public class LaserRoomController extends GameController
   private void hideDinoLabelTwo() {
     dinoLabel2.setOpacity(0);
   }
-  @FXML private void showParoPlaque(){
+
+  @FXML
+  private void showParoPlaque() {
     blur.toFront();
     plaque.toFront();
     paroText.toFront();
   }
-  @FXML private void hideParoPlaque(){
+
+  @FXML
+  private void hideParoPlaque() {
     plaque.toBack();
     blur.toBack();
     paroText.toBack();
   }
-  @FXML private void showTrexPlaque(){
+
+  @FXML
+  private void showTrexPlaque() {
     blur.toFront();
     plaque.toFront();
     trexText.toFront();
-    
   }
-  @FXML private void hideTrexPlaque(){
+
+  @FXML
+  private void hideTrexPlaque() {
     plaque.toBack();
     blur.toBack();
     trexText.toBack();
-
   }
 }
