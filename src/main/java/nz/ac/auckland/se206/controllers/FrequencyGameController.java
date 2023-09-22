@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.time.LocalTime;
 import java.util.Random;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,10 +16,9 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.Timers;
-import nz.ac.auckland.se206.App;
-import javafx.animation.PauseTransition;
 
 public class FrequencyGameController implements BaseController {
   String policeSound =
@@ -50,18 +50,19 @@ public class FrequencyGameController implements BaseController {
 
   @FXML
   public void initialize() {
-      amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
-      frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
-  
-      // Set a random wave without updating immediately.
-      setRandomInitialWave(false);
-      drawTargetWave();
-      
-      PauseTransition delay = new PauseTransition(Duration.seconds(2)); // Delay for 2 seconds or adjust as needed
-      delay.setOnFinished(e -> updateWave()); // Start the game's matching mechanism after the delay
-      delay.play();
-  
-      initializeCountdown();
+    amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
+    frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
+
+    // Set a random wave without updating immediately.
+    setRandomInitialWave(false);
+    drawTargetWave();
+
+    PauseTransition delay =
+        new PauseTransition(Duration.seconds(2)); // Delay for 2 seconds or adjust as needed
+    delay.setOnFinished(e -> updateWave()); // Start the game's matching mechanism after the delay
+    delay.play();
+
+    initializeCountdown();
   }
 
   private void setRandomInitialWave(boolean updateImmediately) {
@@ -172,8 +173,6 @@ public class FrequencyGameController implements BaseController {
           hasLost = true;
           Timers mainTimer = Timers.getInstance();
           mainTimer.subtractTime(10);
-          
-
         }
         break;
       case "game_won":

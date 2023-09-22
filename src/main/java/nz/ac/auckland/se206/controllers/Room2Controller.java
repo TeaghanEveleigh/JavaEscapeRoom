@@ -25,6 +25,7 @@ import nz.ac.auckland.se206.game.SolidBox;
 
 public class Room2Controller extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
+        @FXML private Text helpHint;
   @FXML private Canvas gameCanvas;
   @FXML private Text interractHint;
   @FXML private Text passwordText;
@@ -110,6 +111,7 @@ public class Room2Controller extends GameController
     passwordText.toBack();
     computerOpened = false;
     paused = false;
+    helpHint.toBack();
   }
 
   @FXML
@@ -201,6 +203,7 @@ public class Room2Controller extends GameController
   public void computerUntouched() {
     hideComputerLabel();
     hideComputer();
+    helpHint.toBack();
   }
 
   @Override
@@ -295,5 +298,8 @@ public class Room2Controller extends GameController
       passwordText.setText("INCORRECT");
       incorrectPassword = true;
     }
+  }
+  @FXML private void showHelpHint(){
+    helpHint.toFront();
   }
 }

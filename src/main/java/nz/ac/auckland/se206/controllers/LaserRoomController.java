@@ -22,7 +22,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class LaserRoomController extends GameController
     implements LeftDinosaurListener, RightDinosaurListener, ObjectListener {
-      @FXML private Text interactHint;
+  @FXML private Text interactHint;
   @FXML private Label dinoLabel1;
   @FXML private Label dinoLabel2;
   @FXML private ImageView object;
@@ -59,6 +59,21 @@ public class LaserRoomController extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(472);
+    enableHackerPanel();
+      Task<Void> task =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              disableHintAndExit();
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getIntroduction()),
+                  hackerTextArea);
+              enableHintAndExit();
+              exitHackerPanelImage.setDisable(false);
+              return null;
+            }
+          };
+      new Thread(task).start();
   }
 
   @FXML

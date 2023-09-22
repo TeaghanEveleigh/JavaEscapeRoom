@@ -107,7 +107,7 @@ public class GptPromptEngineering {
         + " them that you have hacked into the museum's database and can use the information"
         + " from it to help them. Tell them that you can also help them solve the puzzles"
         + " that they will encounter in the museum. Tell them that you will give them hints"
-        + " if they get stuck.";
+        + " if they get stuck. Keep your message under 50 words.";
   }
 
   /**
