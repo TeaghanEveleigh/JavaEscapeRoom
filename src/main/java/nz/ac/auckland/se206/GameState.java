@@ -27,4 +27,13 @@ public class GameState {
     }
     return sb.toString();
   }
+
+  /** Indicates whether the lasers have been disabled */
+  public static boolean isLasersDisabled = false;
+
+  /** Indicates whether the cameras have been disabled */
+  public static boolean isCamerasDisabled = false;
+
+  /** Indicated whether the treasure has been stolen */
+  public static boolean isTreasureStolen = false;
 }

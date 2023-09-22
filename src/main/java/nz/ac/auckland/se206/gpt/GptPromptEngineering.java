@@ -79,7 +79,7 @@ public class GptPromptEngineering {
         + " information for someone to be able to figure out the correct matchings. You have"
         + " given this information to your partner and they are stuck with what to do. Give"
         + " them a hint about the order of the correct matching of the wires. Do not give"
-        + " them the answer directly. Keep your message under 100 words";
+        + " them the answer directly. Keep your message under 100 words.";
   }
 
   /**
@@ -118,9 +118,10 @@ public class GptPromptEngineering {
   public static String getMemoryGameSolved() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Your partner has just solved the"
-        + " memory game which has unlocked a safe. Inside the safe contains a keycode."
-        + " Congradulate your partner on their success and hint to them that the keycode"
-        + " could be important";
+        + " memory game which has unlocked a safe. Congradulate your partner on their"
+        + " success and tell them that solving the puzzle has opended the safe and that"
+        + " there could be something important for their escape within it. Keep your message"
+        + " under 50 words";
   }
 
   /**
@@ -133,8 +134,9 @@ public class GptPromptEngineering {
         + " to steal an object that is guarded by lasers. He is currently playing a memory"
         + " game during which he has to match the sequence of flashing lights by pressing"
         + " the buttons in the order they flash in. He is stuck and needs a hint. Give him a"
-        + " hint about the order of the sequence of flashing lights that you found in the"
-        + " museum database. Do not give him the answer directly";
+        + " hint about the fact that the user needs to repeat the sequence of flashing"
+        + " lights by pressing them in order. Do not give him the answer directly. Keep your"
+        + " message under 50 words.";
   }
 
   /**
@@ -149,7 +151,8 @@ public class GptPromptEngineering {
         + " the buttons in the order they flash in. Tell the user that you think its some"
         + " sort of memory game and that they have to match the sequence of flashing lights"
         + " by pressing the buttons in the order they flash in. Tell them that you will look"
-        + " through the museum database and give them hints if they get stuck.";
+        + " through the museum database and give them hints if they get stuck. Keep your"
+        + " message under 100 words.";
   }
 
   /**
@@ -260,8 +263,9 @@ public class GptPromptEngineering {
   public static String getNothingDisabledHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Tell your partner that they need"
-        + " to find a way to disable the laser to steal the treasure, and disable the"
-        + " camera by the exit to escape, before the time runs out";
+        + " to find a way to disable the laser to steal the treasure, and disable the camera"
+        + " by the exit to escape, before the time runs out. Keep your message under 50"
+        + " words.";
   }
 
   /**
@@ -273,7 +277,8 @@ public class GptPromptEngineering {
   public static String getLasersButNotCameraHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Tell your partner that they need"
-        + " to find a way to disable the cameras by the exit to escape before the time runs out";
+        + " to find a way to disable the cameras by the exit to escape before the time runs"
+        + " out. Keep your message under 50 words.";
   }
 
   /**
@@ -285,7 +290,8 @@ public class GptPromptEngineering {
   public static String getCameraButNotLasersHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Tell your partner that they need"
-        + " to find a way to disable the lasers to steal the treasure before the time runs out";
+        + " to find a way to disable the lasers to steal the treasure before the time runs"
+        + " out. Keep your message under 50 words.";
   }
 
   /**
@@ -298,7 +304,8 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Your partner has successfully"
         + " disabled the lasers to steal the objects and has disabled the camera to escape."
-        + " Tell the user that they can now escape the museum before the time runs out";
+        + " Tell the user that they can now escape the museum before the time runs out. Keep"
+        + " your message under 50 words.";
   }
 
   /**
@@ -311,7 +318,7 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Your partner has successfully"
         + " disabled the lasers to steal the objects. Tell the user that they can now steal"
-        + " the treasure";
+        + " the treasure. Keep your message under 50 words.";
   }
 
   /**

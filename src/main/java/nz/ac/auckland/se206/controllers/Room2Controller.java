@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ComputerListener;
 import nz.ac.auckland.se206.ExitRoomDoorListener;
 import nz.ac.auckland.se206.SafeListener;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Computer;
 import nz.ac.auckland.se206.game.ExitRoomDoor;
@@ -21,9 +22,9 @@ import nz.ac.auckland.se206.game.SolidBox;
 
 public class Room2Controller extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
-  @FXML private Text interractHint;
+
+@FXML private Text interractHint;
   @FXML private Text passwordText;
-  private Boolean computerOpen = false;
   @FXML private Button exitBtn;
   @FXML private Text password;
   @FXML private ImageView bigNote;
@@ -36,11 +37,14 @@ public class Room2Controller extends GameController
   @FXML private Line entranceLine2;
   @FXML private Line entranceLine3;
   @FXML private Text entranceLabel;
+
   @FXML private Rectangle boundingBoxOne;
   @FXML private Rectangle computerBounds;
   @FXML private Rectangle doorBounds;
   @FXML private Rectangle safeBounds;
   private boolean safeOpened = false;
+  private boolean computerOpened = false;
+  private boolean incorrectPassword = false;
 
   @FXML Label computerLabel;
   @FXML Button btnHelp;
@@ -48,6 +52,7 @@ public class Room2Controller extends GameController
   @FXML Rectangle monitorScreen;
   @FXML Rectangle rectangleText;
   @FXML Text titleComputer;
+
 
   @Override
   public void initialize() {
@@ -83,7 +88,7 @@ public class Room2Controller extends GameController
     monitorStand.toFront();
     exitBtn.toFront();
     passwordText.toFront();
-    computerOpen = true;
+    computerOpened = true;
   }
 
   @FXML
@@ -96,7 +101,8 @@ public class Room2Controller extends GameController
     monitorStand.toBack();
     exitBtn.toBack();
     passwordText.toBack();
-    computerOpen = false;
+    computerOpened = false;
+    paused = false;
   }
 
   @FXML
@@ -141,17 +147,23 @@ public class Room2Controller extends GameController
   }
 
   @FXML
-  private void safeOpen() {
+  public void safeOpen() {
     safeOpened = true;
     openedSafe.toFront();
     note.toFront();
     noteLabel.toFront();
+    hideSafeLabel();
   }
 
   @FXML
   private void showBigNote() {
     bigNote.toFront();
     password.toFront();
+  }
+
+  private void hideBigNote() {
+    bigNote.toBack();
+    password.toBack();
   }
 
   @FXML
@@ -161,30 +173,14 @@ public class Room2Controller extends GameController
   }
 
   @FXML
-  public void appendPassword(KeyEvent e) {
-    if (computerOpen) {
-      // Check if the key pressed is backspace
-      if (e.getCode() == KeyCode.BACK_SPACE && passwordText.getText().length() > 0) {
-        // Remove the last character from the password Text object
-        passwordText.setText(
-            passwordText.getText().substring(0, passwordText.getText().length() - 1));
-      } else if (passwordText.getText().length() < 10) {
-        // Get the character pressed
-        char keyChar = e.getCharacter().charAt(0);
-        // Append the character to the password Text object
-        passwordText.setText(passwordText.getText() + String.valueOf(keyChar));
-      }
-      // Consume the event to prevent default behavior
-      e.consume();
-    }
-  }
-
-  @FXML
   private void gotoEntrance() {}
 
   @Override
   public void computerInteracted() {
     hideComputerLabel();
+    paused = true;
+    computerOpened = true;
+    passwordText.setText("");
     openComputer();
   }
 
@@ -203,8 +199,13 @@ public class Room2Controller extends GameController
   public void safeInteracted() {
     if (safeOpened) {
       showBigNote();
+    } else {
+      paused = true;
+      MemoryGameController memoryController =
+          (MemoryGameController) SceneManager.getUiController(AppUi.MEMORY_GAME);
+      memoryController.start();
+      App.switchScenes(AppUi.MEMORY_GAME);
     }
-    // need to swap to memory game
   }
 
   @Override
@@ -220,6 +221,7 @@ public class Room2Controller extends GameController
   public void safeUntouched() {
     hideSafeLabel();
     hideNoteLabel();
+    hideBigNote();
   }
 
   @Override
@@ -236,5 +238,45 @@ public class Room2Controller extends GameController
   @Override
   public void exitDoorUntouched() {
     hideEntranceLabel();
+  }
+
+  @Override
+  @FXML
+  public void keyPressedHandler(KeyEvent keyEvent) {
+    if (!computerOpened) {
+      super.keyPressedHandler(keyEvent);
+    } else {
+      updatePasswordText(keyEvent);
+    }
+  }
+
+  private void updatePasswordText(KeyEvent keyEvent) {
+    String text = passwordText.getText();
+
+    if (incorrectPassword) {
+      passwordText.setText("");
+      incorrectPassword = false;
+    }
+
+    if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+      checkPassword();
+    } else if (keyEvent.getCode().equals(KeyCode.BACK_SPACE) && text.length() > 0) {
+      passwordText.setText(text.substring(0, text.length() - 1));
+    } else {
+      passwordText.setText(passwordText.getText() + keyEvent.getText());
+    }
+  }
+
+  private void checkPassword() {
+    if (passwordText.getText().equals("password")) {
+      System.out.println("correc");
+      passwordText.setText("CORRECT");
+      SecurityController securityController =
+          (SecurityController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+      securityController.disableCamera();
+    } else {
+      passwordText.setText("INCORRECT");
+      incorrectPassword = true;
+    }
   }
 }

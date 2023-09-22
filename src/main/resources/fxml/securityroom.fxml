@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -234,11 +236,34 @@
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="545.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
       <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="213.0" layoutX="614.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="95.0" />
       <Rectangle fx:id="dinosaurRoomBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" layoutX="3.0" layoutY="553.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="810.0" />
+
       <Label fx:id="carvingLabel" alignment="CENTER" layoutX="286.0" layoutY="119.0" onMouseClicked="#showStoneCarving" onMouseEntered="#showCarvingLabel" onMouseExited="#hideCarvingLabel" opacity="0.0" prefHeight="67.0" prefWidth="95.0" style="-fx-background-color: none; -fx-border-color: rgb(255,255,255); -fx-border-width: 2; -fx-border-radius: 10;" text="Carving" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="26.0" />
          </font>
       </Label>
+      <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="501.0" prefHeight="80.0" prefWidth="675.0" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="680.0" layoutY="501.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
+      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="715.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/HackerIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="4.0" layoutY="473.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="hintButton" layoutX="721.0" layoutY="16.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+
 
    </children>
 </AnchorPane>

@@ -137,7 +137,7 @@ public class SecurityController extends GameController
   }
 
   @FXML
-  private void disableCamera() {
+  public void disableCamera() {
     cameraLine1.toBack();
     cameraLine2.toBack();
     cameraBase.toBack();
