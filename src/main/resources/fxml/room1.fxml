@@ -15,9 +15,39 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
    <children>
+      <Rectangle fx:id="blur" arcHeight="5.0" arcWidth="5.0" fill="#7f8386" height="590.0" layoutX="-4.0" layoutY="-5.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" width="819.0" />
+      <Rectangle fx:id="plaque" arcHeight="5.0" arcWidth="5.0" height="127.0" layoutX="209.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="472.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.7125890736342043">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.7579650282859802" blue="0.11999999731779099" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Text fx:id="paroText" fill="#6b6b57" layoutX="252.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parasaurolophus Discovered xDATE " wrappingWidth="377.9719295501709">
+         <font>
+            <Font name="BM HANNA Air OTF" size="42.0" />
+         </font>
+      </Text>
+      <Text fx:id="trexText" fill="#6b6b57" layoutX="251.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T-Rex Discovered xDATE " wrappingWidth="377.9719295501709">
+         <font>
+            <Font name="BM HANNA Air OTF" size="42.0" />
+         </font>
+      </Text>
       <Label fx:id="itemLabel" alignment="CENTER" layoutX="361.0" layoutY="291.0" onMouseEntered="#itemLabelShow" onMouseExited="#itemLabelHide" opacity="0.0" prefHeight="208.0" prefWidth="120.0" style="-fx-border-color: White; -fx-border-width: 4; -fx-border-radius: 10;" text="ITEM" textFill="WHITE">
          <font>
             <Font size="35.0" />
@@ -217,7 +247,7 @@
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="68.0" layoutX="2.0" layoutY="119.0" stroke="TRANSPARENT" strokeType="INSIDE" width="825.0" />
 
       <Rectangle fx:id="doorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="232.0" layoutX="-2.0" layoutY="384.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
-      <Label fx:id="dinoLabel1" alignment="CENTER" layoutX="4.0" layoutY="9.0" onMouseEntered="#showDinoLabel1" onMouseExited="#hideDinoLabel1" opacity="0.0" prefHeight="302.0" prefWidth="242.0" style="-fx-border-color: WHITE; -fx-border-width: 3; -fx-border-radius: 15;" text="Dinosaur" textFill="WHITE">
+      <Label fx:id="dinoLabel1" alignment="CENTER" layoutX="4.0" layoutY="9.0" onMouseClicked="#showParoPlaque" onMouseEntered="#showDinoLabel1" onMouseExited="#hideDinoLabel1" opacity="0.0" prefHeight="302.0" prefWidth="242.0" style="-fx-border-color: WHITE; -fx-border-width: 3; -fx-border-radius: 15;" text="Dinosaur" textFill="WHITE">
 
          <font>
             <Font name="BM HANNA Air OTF" size="33.0" />

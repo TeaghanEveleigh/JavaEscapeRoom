@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.LeftDinosaurListener;
 import nz.ac.auckland.se206.ObjectListener;
@@ -37,6 +38,12 @@ public class LaserRoomController extends GameController
   @FXML private Rectangle leftDinosaurBounds;
   @FXML private Rectangle rightDinosaurBounds;
   @FXML private Rectangle objectBounds;
+  @FXML private Text trexText;
+  @FXML private Text paroText;
+  @FXML private Rectangle plaque;
+  @FXML private Rectangle blur;
+  
+
 
   private SolidBox laserBox;
 
@@ -162,5 +169,27 @@ public class LaserRoomController extends GameController
   @FXML
   private void hideDinoLabelTwo() {
     dinoLabel2.setOpacity(0);
+  }
+  @FXML private void showParoPlaque(){
+    blur.toFront();
+    plaque.toFront();
+    paroText.toFront();
+  }
+  @FXML private void hideParoPlaque(){
+    plaque.toBack();
+    blur.toBack();
+    paroText.toBack();
+  }
+  @FXML private void showTrexPlaque(){
+    blur.toFront();
+    plaque.toFront();
+    trexText.toFront();
+    
+  }
+  @FXML private void hideTrexPlaque(){
+    plaque.toBack();
+    blur.toBack();
+    trexText.toBack();
+
   }
 }
