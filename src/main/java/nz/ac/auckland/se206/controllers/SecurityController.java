@@ -67,6 +67,25 @@ public class SecurityController extends GameController
   @FXML private Text number7;
   @FXML private Text number8;
   @FXML private Text number9;
+ 
+  @FXML private Rectangle boundingBox2;
+  @FXML private Rectangle boundingBox3;
+  @FXML private Rectangle boundingBox4;
+  @FXML private Rectangle boundingBox5;
+  @FXML private Rectangle boundingBox6;
+  @FXML private Rectangle boundingBox7;
+  @FXML private Rectangle boundingBox8;
+  @FXML private Rectangle boundingBox9;
+  @FXML private Rectangle boundingBox10;;
+  @FXML private Rectangle boundingBox11;
+  @FXML private Rectangle boundingBox12;
+  @FXML private Rectangle boundingBox13;;
+  @FXML private Rectangle boundingBox14;
+  @FXML private Rectangle boundingBox15;;
+  @FXML private Rectangle boundingBox16;
+  
+
+
   @FXML private Line securityLine1;
   @FXML private Line securityLine2;
   @FXML private Line securityLine3;
@@ -80,6 +99,7 @@ public class SecurityController extends GameController
   @FXML private Rectangle dinosaurRoomBounds;
   @FXML private Rectangle stoneCarvingBounds;
   private SolidBox exitBlock;
+  @FXML private Rectangle boundingBox1;
 
   // @FXML private Text number0;
   @FXML
@@ -157,6 +177,22 @@ public class SecurityController extends GameController
     exitBlock = new SolidBox(boundingBoxThree);
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
+    boundsObjects.add(new SolidBox(boundingBox1));
+    boundsObjects.add(new SolidBox(boundingBox2));
+    boundsObjects.add(new SolidBox(boundingBox3));
+    boundsObjects.add(new SolidBox(boundingBox4));
+    boundsObjects.add(new SolidBox(boundingBox5));
+    boundsObjects.add(new SolidBox(boundingBox6));
+    boundsObjects.add(new SolidBox(boundingBox7));
+    boundsObjects.add(new SolidBox(boundingBox8));
+    boundsObjects.add(new SolidBox(boundingBox9));
+    boundsObjects.add(new SolidBox(boundingBox10));
+    boundsObjects.add(new SolidBox(boundingBox11));
+    boundsObjects.add(new SolidBox(boundingBox12));
+    boundsObjects.add(new SolidBox(boundingBox13));
+    boundsObjects.add(new SolidBox(boundingBox14));
+    boundsObjects.add(new SolidBox(boundingBox15));
+    boundsObjects.add(new SolidBox(boundingBox16));
     boundsObjects.add(exitBlock);
     boundsObjects.add(new Keypad(keypadBounds, this));
     boundsObjects.add(new Wires(wiresBounds, this));

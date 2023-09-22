@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -22,7 +23,7 @@ import nz.ac.auckland.se206.game.SolidBox;
 
 public class Room2Controller extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
-
+@FXML private Canvas gameCanvas;
   @FXML private Text interractHint;
   @FXML private Text passwordText;
   @FXML private Button exitBtn;
@@ -52,17 +53,24 @@ public class Room2Controller extends GameController
   @FXML Rectangle monitorScreen;
   @FXML Rectangle rectangleText;
   @FXML Text titleComputer;
+  @FXML Rectangle boundingBox1;
+  @FXML Rectangle boundingBox5;
+ 
+
 
   @Override
   public void initialize() {
     super.initialize();
     boundsObjects.add(new SolidBox(boundingBoxOne));
+    boundsObjects.add(new SolidBox(boundingBox1));
+    boundsObjects.add(new SolidBox(boundingBox5));
+
     boundsObjects.add(new Computer(computerBounds, this));
     boundsObjects.add(new Safe(safeBounds, this));
     boundsObjects.add(new ExitRoomDoor(doorBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
-    this.player.setPosY(300);
+    this.player.setPosY(450);
   }
 
   @FXML
@@ -152,6 +160,7 @@ public class Room2Controller extends GameController
     note.toFront();
     noteLabel.toFront();
     hideSafeLabel();
+    gameCanvas.toFront();
   }
 
   @FXML
