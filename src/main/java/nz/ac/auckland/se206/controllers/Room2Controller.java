@@ -285,7 +285,7 @@ public class Room2Controller extends GameController
   }
 
   private void checkPassword() {
-    if (passwordText.getText().equals("password")) {
+    if (passwordText.getText().equals("161720")) {
       System.out.println("correc");
       passwordText.setText("CORRECT");
       SecurityController securityController =

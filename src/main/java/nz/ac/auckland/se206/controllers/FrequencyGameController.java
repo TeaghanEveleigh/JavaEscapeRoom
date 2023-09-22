@@ -16,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.BaseController;
+import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.App;
 import javafx.animation.PauseTransition;
 
@@ -169,6 +170,10 @@ public class FrequencyGameController implements BaseController {
           failureText.toFront();
           // Handle other logic if needed.
           hasLost = true;
+          Timers mainTimer = Timers.getInstance();
+          mainTimer.subtractTime(10);
+          
+
         }
         break;
       case "game_won":

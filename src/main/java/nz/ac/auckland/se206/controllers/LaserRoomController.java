@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class LaserRoomController extends GameController
     implements LeftDinosaurListener, RightDinosaurListener, ObjectListener {
+      @FXML private Text interactHint;
   @FXML private Label dinoLabel1;
   @FXML private Label dinoLabel2;
   @FXML private ImageView object;
@@ -77,11 +78,13 @@ public class LaserRoomController extends GameController
   @FXML
   private void itemLabelShow() {
     itemLabel.setOpacity(1);
+    interactHint.toFront();
   }
 
   @FXML
   private void itemLabelHide() {
     itemLabel.setOpacity(0);
+    interactHint.toBack();
   }
 
   @FXML
@@ -106,11 +109,13 @@ public class LaserRoomController extends GameController
   @FXML
   private void showDinoLabel1() {
     dinoLabel1.setOpacity(1);
+    interactHint.toFront();
   }
 
   @FXML
   private void hideDinoLabel1() {
     dinoLabel1.setOpacity(0);
+    interactHint.toBack();
   }
 
   @Override
@@ -163,11 +168,13 @@ public class LaserRoomController extends GameController
   @FXML
   private void showDinoLabelTwo() {
     dinoLabel2.setOpacity(1);
+    interactHint.toFront();
   }
 
   @FXML
   private void hideDinoLabelTwo() {
     dinoLabel2.setOpacity(0);
+    interactHint.toBack();
   }
 
   @FXML

@@ -19,6 +19,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
    <children>
+      <Text fx:id="paroText" fill="#6b6b57" layoutX="252.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parasaurolophus Discovered 16th century " wrappingWidth="377.9719295501709">
+         <font>
+            <Font name="BM HANNA Air OTF" size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="interactHint" fill="WHITE" layoutX="197.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact" wrappingWidth="486.31640625">
+         <font>
+            <Font name="BM HANNA Air OTF" size="50.0" />
+         </font>
+      </Text>
       <Rectangle fx:id="blur" arcHeight="5.0" arcWidth="5.0" fill="#7f8386" height="590.0" layoutX="-4.0" layoutY="-5.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" width="819.0" />
       <Rectangle fx:id="plaque" arcHeight="5.0" arcWidth="5.0" height="127.0" layoutX="209.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="472.0">
          <fill>
@@ -38,14 +48,9 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Text fx:id="paroText" fill="#6b6b57" layoutX="252.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parasaurolophus Discovered xDATE " wrappingWidth="377.9719295501709">
+      <Text fx:id="trexText" fill="#6b6b57" layoutX="251.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T-Rex Discovered 20th century" wrappingWidth="377.9719295501709">
          <font>
-            <Font name="BM HANNA Air OTF" size="42.0" />
-         </font>
-      </Text>
-      <Text fx:id="trexText" fill="#6b6b57" layoutX="251.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T-Rex Discovered xDATE " wrappingWidth="377.9719295501709">
-         <font>
-            <Font name="BM HANNA Air OTF" size="42.0" />
+            <Font name="BM HANNA Air OTF" size="31.0" />
          </font>
       </Text>
       <Label fx:id="itemLabel" alignment="CENTER" layoutX="361.0" layoutY="291.0" onMouseEntered="#itemLabelShow" onMouseExited="#itemLabelHide" opacity="0.0" prefHeight="208.0" prefWidth="120.0" style="-fx-border-color: White; -fx-border-width: 4; -fx-border-radius: 10;" text="ITEM" textFill="WHITE">
