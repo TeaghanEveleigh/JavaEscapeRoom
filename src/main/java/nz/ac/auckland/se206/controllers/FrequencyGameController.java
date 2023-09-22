@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.App;
+import javafx.animation.PauseTransition;
 
 public class FrequencyGameController implements BaseController {
   String policeSound =
@@ -48,14 +49,18 @@ public class FrequencyGameController implements BaseController {
 
   @FXML
   public void initialize() {
-    amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
-    frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
-
-    // Set a random wave without updating immediately.
-    setRandomInitialWave(false);
-    drawTargetWave();
-    updateWave(); // Explicitly call to render the random wave.
-    initializeCountdown();
+      amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
+      frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
+  
+      // Set a random wave without updating immediately.
+      setRandomInitialWave(false);
+      drawTargetWave();
+      
+      PauseTransition delay = new PauseTransition(Duration.seconds(2)); // Delay for 2 seconds or adjust as needed
+      delay.setOnFinished(e -> updateWave()); // Start the game's matching mechanism after the delay
+      delay.play();
+  
+      initializeCountdown();
   }
 
   private void setRandomInitialWave(boolean updateImmediately) {

@@ -59,6 +59,7 @@ public class SecurityController extends GameController
   @FXML private Text numbers;
   @FXML private Rectangle keypadRectangle;
   private int numberOfnumbers = 0;
+
   @FXML private Text number1;
   @FXML private Text number2;
   @FXML private Text number3;
@@ -68,6 +69,8 @@ public class SecurityController extends GameController
   @FXML private Text number7;
   @FXML private Text number8;
   @FXML private Text number9;
+  @FXML private Text zeroKey;
+  @FXML private Rectangle number0;
  
   @FXML private Rectangle boundingBox2;
   @FXML private Rectangle boundingBox3;
@@ -295,7 +298,7 @@ public class SecurityController extends GameController
 
     numberRectangle.toFront();
     numbers.toFront();
-    // number0.toFront();
+ number0.toFront();
     number1.toFront();
     number2.toFront();
     number3.toFront();
@@ -316,7 +319,8 @@ public class SecurityController extends GameController
     nine.toFront();
     zero1.toFront();
     clear.toFront();
-    enter.toFront(); // This makes sure the numbers text is visible on the top
+    enter.toFront();
+    zeroKey.toFront(); // This makes sure the numbers text is visible on the top
   }
 
   @FXML
@@ -344,6 +348,7 @@ public class SecurityController extends GameController
     eight.toBack();
     nine.toBack();
     zero1.toBack();
+    number0.toBack();
     clear.toBack();
     enter.toBack();
     numbers.setOpacity(0);
@@ -351,6 +356,7 @@ public class SecurityController extends GameController
     incorrectColor.setOpacity(0);
     correctTxt.setOpacity(0);
     incorrectTxt.setOpacity(0);
+    zeroKey.toBack();
   }
 
   @Override
