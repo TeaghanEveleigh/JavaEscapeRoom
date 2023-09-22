@@ -1,16 +1,13 @@
 package nz.ac.auckland.se206;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-
 
 public class Timers {
 
@@ -53,14 +50,13 @@ public class Timers {
   }
 
   private void thirtySecondPassed() {
-   
+
     App.switchScenes(AppUi.SIN_MINIGAME);
     System.out.println("30 seconds have passed.");
   }
 
   private Timeline createCountdownTimeline() {
     return new Timeline(
-
         new KeyFrame(
             Duration.seconds(1),
             e -> {
@@ -86,11 +82,11 @@ public class Timers {
               if (timeInMilliseconds == 0) {
                 App.switchScenes(AppUi.GAME_LOST);
               }
-              if (!is30SecondTriggered && timeInMilliseconds <= (startingTimeInMilliseconds - 30000)) {
-          thirtySecondPassed();
-  is30SecondTriggered = true;
-} 
+              if (!is30SecondTriggered
+                  && timeInMilliseconds <= (startingTimeInMilliseconds - 30000)) {
+                thirtySecondPassed();
+                is30SecondTriggered = true;
+              }
             }));
-
   }
 }

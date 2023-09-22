@@ -50,27 +50,32 @@ public class GameSettingsController implements BaseController {
   private void onTwoPressed() throws IOException {
     fourMinutesCheckBox.setSelected(false);
     sixMinutesCheckBox.setSelected(false);
+    GameState.timeLimit = 2;
   }
 
   @FXML
   private void onFourPressed() throws IOException {
     twoMinutesCheckBox.setSelected(false);
     sixMinutesCheckBox.setSelected(false);
+    GameState.timeLimit = 4;
   }
 
   @FXML
   private void onSixPressed() throws IOException {
     fourMinutesCheckBox.setSelected(false);
     twoMinutesCheckBox.setSelected(false);
+    GameState.timeLimit = 6;
   }
 
   @FXML
   private void onEnablePressed() throws IOException {
     disableCheckBox.setSelected(false);
+    GameState.textToSpeech = true;
   }
 
   @FXML
   private void onDisablePressed() throws IOException {
     enableCheckBox.setSelected(false);
+    GameState.textToSpeech = false;
   }
 }

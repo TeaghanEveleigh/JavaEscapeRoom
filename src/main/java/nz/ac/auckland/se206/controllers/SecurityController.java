@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.PauseTransition;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.KeypadListener;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -26,6 +28,8 @@ import nz.ac.auckland.se206.game.SecurityRoomDoor;
 import nz.ac.auckland.se206.game.SolidBox;
 import nz.ac.auckland.se206.game.StoneCarving;
 import nz.ac.auckland.se206.game.Wires;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class SecurityController extends GameController
     implements KeypadListener, WiresListener, SecurityRoomDoorListener, StoneCarvingListener {
@@ -75,7 +79,6 @@ public class SecurityController extends GameController
 
   @FXML private Text zeroKey;
   @FXML private Rectangle number0;
- 
 
   @FXML private Rectangle boundingBox2;
   @FXML private Rectangle boundingBox3;
@@ -254,6 +257,7 @@ public class SecurityController extends GameController
     String pin = " 1 3 4 6 9 8";
     System.out.println(numbers.getText());
     if (pin.equals(numbers.getText())) {
+      GameState.isDoorOpen = true;
       correctColor.toFront();
       correctTxt.toFront();
       numbers.setOpacity(0);
@@ -304,7 +308,7 @@ public class SecurityController extends GameController
 
     numberRectangle.toFront();
     numbers.toFront();
- number0.toFront();
+    number0.toFront();
     number1.toFront();
     number2.toFront();
     number3.toFront();
@@ -367,7 +371,24 @@ public class SecurityController extends GameController
 
   @Override
   public void keypadInteracted() {
-    showKeyPad();
+    if (!GameState.isDoorOpen) {
+      showKeyPad();
+    } else if (!GameState.isTreasureStolen) {
+      Task<Void> task =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              disableHintAndExit();
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getMustStealItem()), hackerTextArea);
+              enableHintAndExit();
+              return null;
+            }
+          };
+      new Thread(task).start();
+    } else {
+      App.switchScenes(AppUi.GAME_WON);
+    }
   }
 
   @Override

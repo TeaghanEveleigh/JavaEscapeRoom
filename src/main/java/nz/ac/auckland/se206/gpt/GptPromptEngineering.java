@@ -268,6 +268,13 @@ public class GptPromptEngineering {
         + " words.";
   }
 
+  public static String getMustStealItem() {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Your partner is trying to exit but"
+        + " hasn't stoen the treasure yet. Tell them they need to steal the treasure before"
+        + " escaping. Keep your message under 25 words.";
+  }
+
   /**
    * Generate a GPT prompt engineering string for when the user has disabled the lasers but not the
    * cameras.

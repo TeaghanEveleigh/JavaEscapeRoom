@@ -39,9 +39,13 @@ public class GameState {
   public static boolean isTreasureStolen = false;
 
   // Difficulty booleans
-  public static boolean isEasy = false;
+  public static boolean isEasy = true;
   public static boolean isMedium = false;
   public static boolean isHard = false;
+
+  public static int timeLimit = 2;
+  public static boolean textToSpeech = false;
+  public static boolean isDoorOpen = false;
 
   public static int hintsLeft = 5;
 
