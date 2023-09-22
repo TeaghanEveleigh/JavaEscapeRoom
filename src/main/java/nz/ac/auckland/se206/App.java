@@ -55,6 +55,7 @@ public class App extends Application {
     SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
     SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
 
+
     FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
     SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
@@ -78,14 +79,42 @@ public class App extends Application {
   }
 
   public static void switchScenes(AppUi ui) {
+    // Load the scene only if it's not already loaded or if it's a special case
+    if (ui == AppUi.SIN_MINIGAME && !SceneManager.containsUi(AppUi.SIN_MINIGAME)) {
+        try {
+            FXMLLoader sinMinigLoader = App.getFxmlLoader("frequencyMinigame");
+            Parent sinMinigameRoot = sinMinigLoader.load();
+            SceneManager.addUi(AppUi.SIN_MINIGAME, sinMinigameRoot);
+            SceneManager.addController(AppUi.SIN_MINIGAME, sinMinigLoader.getController());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;  // If an error occurs, exit the method
+        }
+    }
+    
     Parent root = SceneManager.getUiRoot(ui);
     BaseController baseController = SceneManager.getUiController(ui);
     if (baseController instanceof GameController) {
-      GameController gameController = (GameController) baseController;
-      gameController.unpauseRoom();
+        GameController gameController = (GameController) baseController;
+        gameController.unpauseRoom();
     }
+
+    // Important: Add the current UI to history before switching the root
+    SceneManager.addToHistory(ui);
+
     scene.setRoot(root);
     root.requestFocus();
     KeyState.resetKeys();
+}
+
+public static void goToPreviousScene() {
+  AppUi previousScene = SceneManager.getLastScene();
+  if (previousScene != null) {
+    System.out.println("Switching to scene: " + previousScene);  // Debug output
+    switchScenes(previousScene);
+  } else {
+    System.out.println("Previous scene is null");  // Debug output
   }
+}
+
 }
