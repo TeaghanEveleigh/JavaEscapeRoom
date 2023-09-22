@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
-
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.BaseController;
+import nz.ac.auckland.se206.Timers;
 import java.time.LocalTime;
 import java.util.Random;
 import javafx.animation.KeyFrame;
@@ -16,9 +18,7 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.BaseController;
-import nz.ac.auckland.se206.Timers;
+
 
 public class FrequencyGameController implements BaseController {
   String policeSound =

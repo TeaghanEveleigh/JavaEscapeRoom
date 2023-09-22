@@ -16,18 +16,7 @@ public class GameState {
   /** Randomly generated order of endpoints for the wires game */
   public static String wiresSequence = generateWiresSequence();
 
-  /** Generates a random ordering of the numbers one through four inclusive */
-  public static String generateWiresSequence() {
-    String[] array = {"1", "2", "3", "4"};
-    List<String> list = Arrays.asList(array);
-    Collections.shuffle(list);
-    StringBuilder sb = new StringBuilder();
-    for (String s : list) {
-      sb.append(s);
-    }
-    System.out.println(sb.toString());
-    return sb.toString();
-  }
+  
 
   /** Indicates whether the lasers have been disabled */
   public static boolean isLasersDisabled = false;
@@ -55,7 +44,18 @@ public class GameState {
     isMedium = false;
     isHard = false;
   }
-
+/** Generates a random ordering of the numbers one through four inclusive */
+  public static String generateWiresSequence() {
+    String[] array = {"1", "2", "3", "4"};
+    List<String> list = Arrays.asList(array);
+    Collections.shuffle(list);
+    StringBuilder sb = new StringBuilder();
+    for (String s : list) {
+      sb.append(s);
+    }
+    System.out.println(sb.toString());
+    return sb.toString();
+  }
   // Sets the difficulty to medium
   public static void setMedium() {
     isEasy = false;
