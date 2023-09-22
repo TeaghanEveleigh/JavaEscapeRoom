@@ -194,7 +194,6 @@
       </Label>
 
       <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="10.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="382.0" />
-      <Rectangle fx:id="wiresBounds" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff72" height="115.0" layoutX="116.0" layoutY="165.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
       <Rectangle fx:id="keypadBounds" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff84" height="97.0" layoutX="394.0" layoutY="45.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
 
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#837f7c" height="162.0" layoutX="623.0" layoutY="124.0" onMouseEntered="#showSecurity" onMouseExited="#hideSecurity" stroke="BLACK" strokeType="INSIDE" width="200.0" />
@@ -263,6 +262,8 @@
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
+      <Rectangle fx:id="stoneCarvingBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="292.0" layoutY="128.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
+      <Rectangle fx:id="wiresBounds" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff72" height="75.0" layoutX="151.0" layoutY="183.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
 
 
    </children>

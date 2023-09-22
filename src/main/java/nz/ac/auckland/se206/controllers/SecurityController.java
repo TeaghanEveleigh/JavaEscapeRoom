@@ -15,17 +15,18 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.KeypadListener;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SecurityRoomDoorListener;
+import nz.ac.auckland.se206.StoneCarvingListener;
 import nz.ac.auckland.se206.WiresListener;
 import nz.ac.auckland.se206.game.Keypad;
 import nz.ac.auckland.se206.game.Portal;
 import nz.ac.auckland.se206.game.SecurityRoomDoor;
 import nz.ac.auckland.se206.game.SolidBox;
+import nz.ac.auckland.se206.game.StoneCarving;
 import nz.ac.auckland.se206.game.Wires;
 
 public class SecurityController extends GameController
-
-    implements KeypadListener, WiresListener, SecurityRoomDoorListener {
-        @FXML private Label carvingLabel;
+    implements KeypadListener, WiresListener, SecurityRoomDoorListener, StoneCarvingListener {
+  @FXML private Label carvingLabel;
   @FXML private ImageView stoneCarving;
   @FXML private Text stoneText;
   @FXML private Rectangle blurScreen;
@@ -77,6 +78,7 @@ public class SecurityController extends GameController
   @FXML private Rectangle boundingBoxThree;
   @FXML private Rectangle securityDoorBounds;
   @FXML private Rectangle dinosaurRoomBounds;
+  @FXML private Rectangle stoneCarvingBounds;
   private SolidBox exitBlock;
 
   // @FXML private Text number0;
@@ -160,6 +162,7 @@ public class SecurityController extends GameController
     boundsObjects.add(new Wires(wiresBounds, this));
     boundsObjects.add(new SecurityRoomDoor(securityDoorBounds, this));
     boundsObjects.add(new Portal(dinosaurRoomBounds, this, AppUi.DINOSAUR_ROOM));
+    boundsObjects.add(new StoneCarving(stoneCarvingBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(300);
@@ -359,20 +362,44 @@ public class SecurityController extends GameController
   public void securityDoorUntouched() {
     hideSecurity();
   }
-  @FXML private void showStoneCarving(){
+
+  @FXML
+  private void showStoneCarving() {
     blurScreen.toFront();
     stoneCarving.toFront();
     stoneText.toFront();
   }
-  @FXML private void hideStoneCarving(){
+
+  @FXML
+  private void hideStoneCarving() {
     blurScreen.toBack();
     stoneCarving.toBack();
     stoneText.toBack();
   }
-  @FXML private void showCarvingLabel(){
+
+  @FXML
+  private void showCarvingLabel() {
     carvingLabel.setOpacity(1);
   }
-  @FXML private void hideCarvingLabel(){
+
+  @FXML
+  private void hideCarvingLabel() {
     carvingLabel.setOpacity(0);
+  }
+
+  @Override
+  public void stoneCarvingInteracted() {
+    showStoneCarving();
+  }
+
+  @Override
+  public void stoneCarvingTouched() {
+    showCarvingLabel();
+  }
+
+  @Override
+  public void stoneCaringUntouched() {
+    hideCarvingLabel();
+    hideStoneCarving();
   }
 }
