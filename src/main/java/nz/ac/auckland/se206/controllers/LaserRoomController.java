@@ -8,6 +8,7 @@ import nz.ac.auckland.se206.LeftDinosaurListener;
 import nz.ac.auckland.se206.ObjectListener;
 import nz.ac.auckland.se206.RightDinosaurListener;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.game.Door;
 import nz.ac.auckland.se206.game.LeftDinosaur;
 import nz.ac.auckland.se206.game.Object;
 import nz.ac.auckland.se206.game.Portal;
@@ -35,6 +36,7 @@ public class LaserRoomController extends GameController
 
   private SolidBox laserBox;
 
+  
   @Override
   public void initialize() {
     super.initialize();

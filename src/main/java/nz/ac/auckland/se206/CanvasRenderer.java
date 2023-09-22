@@ -61,7 +61,5 @@ public class CanvasRenderer {
   public void clearBackground() {
     this.backgroundImage = null;
   }
-  @FXML private void showDinoLabel1(){
-    
-  }
+  
 }
