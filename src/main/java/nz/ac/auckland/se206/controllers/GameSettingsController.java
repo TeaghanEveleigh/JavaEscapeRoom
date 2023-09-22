@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class GameSettingsController implements BaseController {
@@ -28,18 +29,21 @@ public class GameSettingsController implements BaseController {
   private void onEasyPressed() throws IOException {
     mediumCheckBox.setSelected(false);
     hardCheckBox.setSelected(false);
+    GameState.setEasy();
   }
 
   @FXML
   private void onMediumPressed() throws IOException {
     easyCheckBox.setSelected(false);
     hardCheckBox.setSelected(false);
+    GameState.setMedium();
   }
 
   @FXML
   private void onHardPressed() throws IOException {
     mediumCheckBox.setSelected(false);
     easyCheckBox.setSelected(false);
+    GameState.setHard();
   }
 
   @FXML

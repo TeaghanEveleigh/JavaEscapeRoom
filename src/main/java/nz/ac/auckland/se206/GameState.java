@@ -36,4 +36,32 @@ public class GameState {
 
   /** Indicated whether the treasure has been stolen */
   public static boolean isTreasureStolen = false;
+
+  // Difficulty booleans
+  public static boolean isEasy = false;
+  public static boolean isMedium = false;
+  public static boolean isHard = false;
+
+  public static int hintsLeft = 5;
+
+  // Sets the difficulty to easy
+  public static void setEasy() {
+    isEasy = true;
+    isMedium = false;
+    isHard = false;
+  }
+
+  // Sets the difficulty to medium
+  public static void setMedium() {
+    isEasy = false;
+    isMedium = true;
+    isHard = false;
+  }
+
+  // Sets the difficulty to hard
+  public static void setHard() {
+    isEasy = false;
+    isMedium = false;
+    isHard = true;
+  }
 }

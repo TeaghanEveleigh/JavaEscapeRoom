@@ -17,7 +17,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
-
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -332,9 +331,18 @@ public class WiresController implements Initializable, BaseController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHackerPanel();
-            ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+            disableHintAndExit();
+            if (GameState.isHard || (GameState.hintsLeft <= 0)) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+            } else {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+            }
             enableHintAndExit();
+            if (GameState.isMedium) {
+              GameState.hintsLeft--;
+            }
             return null;
           }
         };
