@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -15,13 +16,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.BaseController;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
-public class MemoryGameController {
+public class MemoryGameController implements BaseController {
   private static double sequenceSeconds = 0.5;
   private static int maxSequenceLength = 6;
 
@@ -81,10 +84,6 @@ public class MemoryGameController {
     lights.add(lightEight);
     lights.add(lightNine);
     lights.add(lightTen);
-
-    resetAllLights();
-    chooseSequence(6);
-    showSequence(currentSequenceLength);
   }
 
   private void chooseSequence(int sequenceLength) {
@@ -164,6 +163,18 @@ public class MemoryGameController {
 
     Timeline timeline = flashLights(lightGlowGreenImage);
     if (currentSequenceLength++ >= maxSequenceLength) {
+
+      Room2Controller roomController =
+          (Room2Controller) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+      roomController.safeOpen();
+      PauseTransition pause = new PauseTransition(Duration.seconds(0.75));
+      pause.setOnFinished(
+          e -> {
+            roomController.unpauseRoom();
+            App.switchScenes(AppUi.SECURITY_ROOM);
+          });
+      
+
       playerWon = true;
       System.out.println("WON");
       enableHackerPanel();
@@ -208,6 +219,12 @@ public class MemoryGameController {
     return timeline;
   }
 
+  public void start() {
+    resetAllLights();
+    ChooseSequence(6);
+    showSequence(currentSequenceLength);
+  }
+
   @FXML
   private void onLightPressed(MouseEvent event) throws IOException {
     if (showingSequence) return;
@@ -215,8 +232,6 @@ public class MemoryGameController {
     ImageView pressed = (ImageView) event.getSource();
     setLight(pressed, lightPressedImage);
     lightsPressed.add(pressed);
-    System.out.println("size " + lightsPressed.size());
-    System.out.println("seq leng " + currentSequenceLength);
     if (lightsPressed.size() == currentSequenceLength) {
       checkSequence();
       lightsPressed.clear();
