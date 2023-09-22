@@ -9,6 +9,7 @@ import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,7 @@ import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -49,6 +51,8 @@ public class MemoryGameController implements BaseController {
   @FXML private Button hintButton;
   @FXML private Button backButton;
 
+  @FXML private Label mainTimerLabel;
+
   private Ai ai = new Ai();
   private ArrayList<ImageView> lights;
   private ArrayList<ImageView> sequence;
@@ -68,6 +72,8 @@ public class MemoryGameController implements BaseController {
 
   @FXML
   public void initialize() {
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
     this.lights = new ArrayList<ImageView>();
     this.sequence = new ArrayList<ImageView>();
     this.lightsPressed = new ArrayList<ImageView>();

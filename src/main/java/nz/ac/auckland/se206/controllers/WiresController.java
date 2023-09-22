@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -77,6 +78,8 @@ public class WiresController implements Initializable, BaseController {
   @FXML private Circle endpointfourCircle;
   private List<Circle> endpoints;
 
+  @FXML private Label mainTimerLabel;
+
   // Fields
   private double mouseX;
   private double mouseY;
@@ -107,6 +110,8 @@ public class WiresController implements Initializable, BaseController {
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
     winLabel.setVisible(false);
     endpoints =
         List.of(endpointoneCircle, endpointtwoCircle, endpointthreeCircle, endpointfourCircle);

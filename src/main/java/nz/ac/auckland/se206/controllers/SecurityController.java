@@ -26,6 +26,7 @@ import nz.ac.auckland.se206.game.Wires;
 
 public class SecurityController extends GameController
     implements KeypadListener, WiresListener, SecurityRoomDoorListener, StoneCarvingListener {
+
   @FXML private Label carvingLabel;
   @FXML private ImageView stoneCarving;
   @FXML private Text stoneText;

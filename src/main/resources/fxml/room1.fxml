@@ -281,8 +281,16 @@
       <Rectangle fx:id="leftDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="26.0" layoutY="137.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="179.0" AnchorPane.topAnchor="210.0" />
       <Rectangle fx:id="rightDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" layoutX="482.0" layoutY="176.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="306.0" />
       <Rectangle fx:id="objectBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="370.0" layoutY="328.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="98.0" />
+
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="719.0" layoutY="71.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+
       <Canvas fx:id="gameCanvas" height="585.0" layoutX="2.0" layoutY="6.0" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" width="816.0" />
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="68.0" layoutX="-4.0" layoutY="178.0" stroke="TRANSPARENT" strokeType="INSIDE" width="825.0" />
+
 
    </children>
 </AnchorPane>

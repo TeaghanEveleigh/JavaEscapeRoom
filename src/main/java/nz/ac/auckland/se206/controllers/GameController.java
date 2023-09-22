@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -15,6 +16,7 @@ import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.KeyState;
+import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
 import nz.ac.auckland.se206.gpt.Ai;
@@ -28,6 +30,7 @@ public class GameController implements BaseController {
   @FXML protected ImageView hackerIcon;
   @FXML protected Rectangle hackerRectangle;
   @FXML protected TextArea hackerTextArea;
+  @FXML protected Label mainTimerLabel;
 
   protected Ai ai = new Ai();
   protected GraphicsContext graphicsContext;
@@ -37,6 +40,8 @@ public class GameController implements BaseController {
   protected boolean paused = true;
 
   public void initialize() {
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
     gameCanvas.requestFocus();
     disableHackerPanel();
     hackerTextArea.setEditable(false);

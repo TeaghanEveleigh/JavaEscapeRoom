@@ -49,8 +49,9 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    // Load all the views
+    Timers.getInstance().initializeMainCountdown(2);
 
+    // Load all the views
     FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
     SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
     SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
