@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,7 +25,7 @@ import nz.ac.auckland.se206.game.SolidBox;
 
 public class Room2Controller extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
-@FXML private Canvas gameCanvas;
+  @FXML private Canvas gameCanvas;
   @FXML private Text interractHint;
   @FXML private Text passwordText;
   @FXML private Button exitBtn;
@@ -55,8 +57,6 @@ public class Room2Controller extends GameController
   @FXML Text titleComputer;
   @FXML Rectangle boundingBox1;
   @FXML Rectangle boundingBox5;
- 
-
 
   @Override
   public void initialize() {
@@ -209,6 +209,15 @@ public class Room2Controller extends GameController
       showBigNote();
     } else {
       pauseRoom();
+      if (!SceneManager.containsUi(AppUi.MEMORY_GAME)) {
+        FXMLLoader memoryGameLoader = App.getFxmlLoader("memorygame");
+        try {
+          SceneManager.addUi(AppUi.MEMORY_GAME, memoryGameLoader.load());
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        SceneManager.addController(AppUi.MEMORY_GAME, memoryGameLoader.getController());
+      }
       MemoryGameController memoryController =
           (MemoryGameController) SceneManager.getUiController(AppUi.MEMORY_GAME);
       memoryController.start();

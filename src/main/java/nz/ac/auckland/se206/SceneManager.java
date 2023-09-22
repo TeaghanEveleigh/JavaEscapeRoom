@@ -14,7 +14,6 @@ public class SceneManager {
     SECURITY_ROOM,
     DINOSAUR_ROOM,
     EXIT_ROOM
-
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
@@ -35,5 +34,10 @@ public class SceneManager {
 
   public static BaseController getUiController(AppUi appUi) {
     return controllerMap.get(appUi);
+  }
+
+  // Checks if the UI is in the scene map
+  public static boolean containsUi(AppUi appUi) {
+    return sceneMap.containsKey(appUi);
   }
 }

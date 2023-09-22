@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -13,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.KeypadListener;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SecurityRoomDoorListener;
 import nz.ac.auckland.se206.StoneCarvingListener;
@@ -68,7 +71,7 @@ public class SecurityController extends GameController
   @FXML private Text number7;
   @FXML private Text number8;
   @FXML private Text number9;
- 
+
   @FXML private Rectangle boundingBox2;
   @FXML private Rectangle boundingBox3;
   @FXML private Rectangle boundingBox4;
@@ -77,15 +80,16 @@ public class SecurityController extends GameController
   @FXML private Rectangle boundingBox7;
   @FXML private Rectangle boundingBox8;
   @FXML private Rectangle boundingBox9;
-  @FXML private Rectangle boundingBox10;;
+  @FXML private Rectangle boundingBox10;
+  ;
   @FXML private Rectangle boundingBox11;
   @FXML private Rectangle boundingBox12;
-  @FXML private Rectangle boundingBox13;;
+  @FXML private Rectangle boundingBox13;
+  ;
   @FXML private Rectangle boundingBox14;
-  @FXML private Rectangle boundingBox15;;
+  @FXML private Rectangle boundingBox15;
+  ;
   @FXML private Rectangle boundingBox16;
-  
-
 
   @FXML private Line securityLine1;
   @FXML private Line securityLine2;
@@ -371,7 +375,18 @@ public class SecurityController extends GameController
 
   @Override
   public void wiresInteracted() {
-    App.switchScenes(AppUi.WIRES_GAME);
+    if (SceneManager.containsUi(AppUi.WIRES_GAME)) {
+      App.switchScenes(AppUi.WIRES_GAME);
+    } else {
+      FXMLLoader wiresLoader = App.getFxmlLoader("wires");
+      try {
+        SceneManager.addUi(AppUi.WIRES_GAME, wiresLoader.load());
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      SceneManager.addController(AppUi.WIRES_GAME, wiresLoader.getController());
+      App.switchScenes(AppUi.WIRES_GAME);
+    }
   }
 
   @Override

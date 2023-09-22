@@ -37,7 +37,7 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
-  private static FXMLLoader getFxmlLoader(final String fxml) {
+  public static FXMLLoader getFxmlLoader(final String fxml) {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
   }
 
@@ -49,7 +49,6 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Timers.getInstance().initializeMainCountdown(2);
 
     // Load all the views
     FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
@@ -60,30 +59,10 @@ public class App extends Application {
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
     SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
 
-    FXMLLoader wiresLoader = getFxmlLoader("wires");
-    SceneManager.addUi(AppUi.WIRES_GAME, wiresLoader.load());
-    SceneManager.addController(AppUi.WIRES_GAME, wiresLoader.getController());
-
-    FXMLLoader dinosaurRoomLoader = getFxmlLoader("room1");
-    SceneManager.addUi(AppUi.DINOSAUR_ROOM, dinosaurRoomLoader.load());
-    SceneManager.addController(AppUi.DINOSAUR_ROOM, dinosaurRoomLoader.getController());
-
-    FXMLLoader exitRoomLoader = getFxmlLoader("securityroom");
-    SceneManager.addUi(AppUi.EXIT_ROOM, exitRoomLoader.load());
-    SceneManager.addController(AppUi.EXIT_ROOM, exitRoomLoader.getController());
-
-    FXMLLoader securityRoomLoader = getFxmlLoader("room2");
-    SceneManager.addUi(AppUi.SECURITY_ROOM, securityRoomLoader.load());
-    SceneManager.addController(AppUi.SECURITY_ROOM, securityRoomLoader.getController());
-
-    FXMLLoader memoryGameLoader = getFxmlLoader("memorygame");
-    SceneManager.addUi(AppUi.MEMORY_GAME, memoryGameLoader.load());
-    SceneManager.addController(AppUi.MEMORY_GAME, memoryGameLoader.getController());
-
-    scene = new Scene(SceneManager.getUiRoot(AppUi.EXIT_ROOM), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.EXIT_ROOM);
-    GameController controller = (GameController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-    controller.unpauseRoom();
+    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU);
+    // GameController controller = (GameController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    // controller.unpauseRoom();
 
     stage.setScene(scene);
     stage.show();
