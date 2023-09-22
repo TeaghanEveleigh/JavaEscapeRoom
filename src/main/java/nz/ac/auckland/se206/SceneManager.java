@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206;
 
 import java.util.HashMap;
+import java.util.Stack;
+
 import javafx.scene.Parent;
 
 /** Manages the different views of the application. */
@@ -16,6 +18,30 @@ public class SceneManager {
     EXIT_ROOM
 
   }
+  private static Stack<AppUi> history = new Stack<>();
+
+  private static AppUi currentRoom;
+
+  public static void addToHistory(AppUi appUi) {
+    if (appUi != AppUi.SIN_MINIGAME) { // Replace with your actual condition for rooms
+        currentRoom = appUi;
+    }
+    history.push(appUi);
+}
+
+
+public static AppUi getLastScene() {
+  if (history.size() >= 2) {
+      history.pop(); // Remove current scene
+      return history.peek(); // Return previous scene without removing it
+  } else if (currentRoom != null) {
+      return currentRoom;
+  }
+  return AppUi.EXIT_ROOM; // Return null if there is no previous scene
+}
+
+
+
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
   private static HashMap<AppUi, BaseController> controllerMap =
@@ -35,5 +61,12 @@ public class SceneManager {
 
   public static BaseController getUiController(AppUi appUi) {
     return controllerMap.get(appUi);
+  }
+  public static boolean containsUi(AppUi appUi) {
+    return sceneMap.containsKey(appUi);
+  }
+
+  public static void deleteUi(AppUi appUi) {
+    sceneMap.remove(appUi);
   }
 }

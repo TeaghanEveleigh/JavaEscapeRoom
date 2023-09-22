@@ -16,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.BaseController;
+import nz.ac.auckland.se206.App;
 
 public class FrequencyGameController implements BaseController {
   String policeSound =
@@ -130,6 +131,8 @@ public class FrequencyGameController implements BaseController {
   @FXML
   public void onBackPressed() {
     // Handle back button press here
+    System.out.println("alksdjfalsdjf");
+    App.goToPreviousScene();
   }
 
   private boolean wavesMatch() {
