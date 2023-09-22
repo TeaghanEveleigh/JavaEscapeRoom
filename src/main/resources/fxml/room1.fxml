@@ -275,14 +275,19 @@
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Button fx:id="hintButton" layoutX="721.0" layoutY="15.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
-         <font>
-            <Font name="Baskerville Old Face" size="25.0" />
-         </font>
-      </Button>
       <Rectangle fx:id="leftDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="26.0" layoutY="137.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="179.0" />
       <Rectangle fx:id="rightDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" layoutX="482.0" layoutY="176.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="306.0" />
       <Rectangle fx:id="objectBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="370.0" layoutY="328.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="98.0" />
+      <Button fx:id="hintButton" layoutX="721.0" layoutY="15.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
+         <font>
+            <Font name="BM HANNA Air OTF" size="25.0" />
+         </font>
+      </Button>
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="720.0" layoutY="62.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="30.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>

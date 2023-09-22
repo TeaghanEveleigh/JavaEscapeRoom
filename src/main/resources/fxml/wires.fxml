@@ -107,7 +107,7 @@
       </ImageView>
       <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="714.0" layoutY="73.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
          <font>
-            <Font size="30.0" />
+            <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
       </Label>
    </children>

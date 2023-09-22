@@ -84,7 +84,7 @@
       </ImageView>
       <Button fx:id="hintButton" layoutX="720.0" layoutY="14.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
          <font>
-            <Font name="Baskerville Old Face" size="25.0" />
+            <Font name="BM HANNA Air OTF" size="25.0" />
          </font>
       </Button>
       <Button fx:id="backButton" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="47.0" prefWidth="81.0" textFill="#825000">
@@ -101,7 +101,7 @@
       </Button>
       <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="717.0" layoutY="61.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
          <font>
-            <Font size="30.0" />
+            <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
       </Label>
    </children>

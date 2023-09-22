@@ -264,7 +264,7 @@
       </Button>
       <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="718.0" layoutY="77.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
          <font>
-            <Font size="30.0" />
+            <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
       </Label>
       <Rectangle fx:id="stoneCarvingBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="292.0" layoutY="128.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
