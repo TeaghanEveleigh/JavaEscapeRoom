@@ -10,8 +10,17 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class Timers {
-
+  
   private static Timers instance;
+
+ public static Timers getInstance() {
+    if (instance == null) {
+      instance = new Timers();
+    }
+    return instance;
+  }
+
+
 
   private int startingTimeInMilliseconds;
   private int timeInMilliseconds;
@@ -19,16 +28,12 @@ public class Timers {
   private List<Label> subscribedLabels = new ArrayList<>();
   private boolean is30SecondTriggered = false;
 
+
   private Timers() {
     // private constructor to enforce singleton
   }
 
-  public static Timers getInstance() {
-    if (instance == null) {
-      instance = new Timers();
-    }
-    return instance;
-  }
+  
 
   public void initializeMainCountdown(int minutes) {
     startingTimeInMilliseconds = minutes * 60 * 1000;

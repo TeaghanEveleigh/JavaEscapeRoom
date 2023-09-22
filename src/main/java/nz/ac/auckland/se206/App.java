@@ -35,33 +35,7 @@ public class App extends Application {
    * @param stage The primary stage of the application.
    * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
    */
-  @Override
-  public void start(final Stage stage) throws IOException {
-
-    // Load all the views
-    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
-    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
-    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
-
-
-    FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
-    SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
-    SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
-
-    FXMLLoader gameWonLoader = getFxmlLoader("gamewon");
-    SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
-    SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
-
-    FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
-    SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
-    SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
-
-    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU);
-    stage.setScene(scene);
-    stage.show();
-    root.requestFocus();
-  }
+  
 
   public static void switchScenes(AppUi ui) {
     // Load the scene only if it's not already loaded or if it's a special case
@@ -101,5 +75,31 @@ public static void goToPreviousScene() {
     System.out.println("Previous scene is null");  // Debug output
   }
 }
+@Override
+  public void start(final Stage stage) throws IOException {
 
+    // Load all the views
+    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
+    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
+    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
+
+
+    FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
+    SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
+    SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
+
+    FXMLLoader gameWonLoader = getFxmlLoader("gamewon");
+    SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
+    SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
+
+    FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
+    SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
+    SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
+
+    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
+    Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU);
+    stage.setScene(scene);
+    stage.show();
+    root.requestFocus();
+  }
 }

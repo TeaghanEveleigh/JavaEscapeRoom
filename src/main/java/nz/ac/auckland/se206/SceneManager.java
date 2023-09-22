@@ -20,8 +20,10 @@ public class SceneManager {
     GAME_LOST;
   }
   private static Stack<AppUi> history = new Stack<>();
-
   private static AppUi currentRoom;
+  private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
+  private static HashMap<AppUi, BaseController> controllerMap =
+      new HashMap<AppUi, BaseController>();
 
   public static void addToHistory(AppUi appUi) {
     if (appUi != AppUi.SIN_MINIGAME) { // Replace with your actual condition for rooms
@@ -44,9 +46,7 @@ public static AppUi getLastScene() {
 
 
 
-  private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
-  private static HashMap<AppUi, BaseController> controllerMap =
-      new HashMap<AppUi, BaseController>();
+
 
   public static void addUi(AppUi appUi, Parent uiRoot) {
     sceneMap.put(appUi, uiRoot);
