@@ -17,6 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
+      <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="258.0" layoutY="384.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
       <ImageView fx:id="stoneCarving" fitHeight="330.0" fitWidth="481.0" layoutX="181.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/AICutout_0nse_Fotor.png" />
@@ -27,8 +28,7 @@
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font></Text>
       <Rectangle fx:id="blurScreen" arcHeight="5.0" arcWidth="5.0" fill="#3f4143" height="606.0" layoutX="-6.0" layoutY="-13.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="830.0" />
-      <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="258.0" layoutY="384.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
-      <Text fill="WHITE" layoutX="261.0" layoutY="408.0" onMouseClicked="#handleMouseClicked" strokeType="OUTSIDE" strokeWidth="0.0" text=" 0" wrappingWidth="28.741643820546756" AnchorPane.leftAnchor="261.0">
+      <Text fx:id="zeroKey" fill="WHITE" layoutX="261.0" layoutY="408.0" onMouseClicked="#handleMouseClicked" strokeType="OUTSIDE" strokeWidth="0.0" text=" 0" wrappingWidth="28.741643820546756" AnchorPane.leftAnchor="261.0">
          <font>
             <Font size="25.0" />
          </font>
