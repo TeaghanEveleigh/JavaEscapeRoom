@@ -10,56 +10,53 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/MainMenu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
-   <top>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="823.0" BorderPane.alignment="CENTER" />
-   </top>
    <bottom>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="15.0" stroke="#825000" strokeType="INSIDE" width="814.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b9b7b5" height="15.0" stroke="#b9b7b5" strokeType="INSIDE" width="814.0" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="607.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b9b7b5" height="607.0" stroke="#b9b7b5" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="590.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b9b7b5" height="590.0" stroke="#b9b7b5" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="titleLabel" alignment="CENTER" layoutX="87.0" layoutY="7.0" prefHeight="69.0" prefWidth="618.0" text="MUSEUM HEIST ESCAPE" textFill="#070707">
+            <ImageView fitHeight="599.0" fitWidth="826.0" layoutX="-8.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/brick-wall-realistic/4683.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="titleLabel" alignment="CENTER" layoutX="80.0" layoutY="77.0" prefHeight="69.0" prefWidth="652.0" text="MUSEUM HEIST ">
                <font>
                   <Font name="BM HANNA Air OTF" size="39.0" />
                </font>
             </Label>
-            <Label fx:id="descriptionLabel" layoutX="88.0" layoutY="86.0" prefHeight="183.0" prefWidth="625.0" text="You're trapped in the renowned Hest Museum after trying to steal the precious Golden Statue of the Pharaohs. Luckily, you have a hacker friend on the outside trying to help. Escape before you get caught!" textAlignment="CENTER" textFill="#825000" textOverrun="WORD_ELLIPSIS" wrapText="true">
+            <Label fx:id="descriptionLabel" layoutX="87.0" layoutY="146.0" prefHeight="112.0" prefWidth="638.0" text="You're trapped in the renowned Hest Museum after trying to steal the precious Golden Statue of the Pharaohs. Luckily, you have a hacker friend on the outside trying to help. Escape before you get caught!" textAlignment="CENTER" textFill="#3f495b" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
-                  <Font name="BM HANNA Air OTF" size="30.0" />
+                  <Font name="BM HANNA Air OTF" size="24.0" />
                </font>
             </Label>
-            <Button id="btn" fx:id="startGameButton" layoutX="312.0" layoutY="389.0" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="85.0" prefWidth="183.0" styleClass="button" text="START" textFill="#825000">
+            <Button id="btn" fx:id="startGameButton" layoutX="329.0" layoutY="285.0" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="65.0" prefWidth="180.0" styleClass="button" text="START" textFill="WHITE">
                <font>
-                  <Font name="BM HANNA Air OTF" size="37.0" />
+                  <Font name="BM HANNA Air OTF" size="35.0" />
                </font>
             </Button>
-            <ImageView fx:id="leftVaseImage" fitHeight="101.0" fitWidth="94.0" layoutX="115.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Vase%20Icon.png" />
-               </image>
-            </ImageView>
-            <Button id="btn" fx:id="tutorialButton" layoutX="557.0" layoutY="405.0" mnemonicParsing="false" onAction="#onTutorialPressed" prefHeight="57.0" prefWidth="166.0" styleClass="button" text="Tutorial" textFill="#825000">
-               <font>
-                  <Font name="BM HANNA Air OTF" size="28.0" />
-               </font>
-            </Button>
-            <Button id="btn" fx:id="gameSettingsButton" layoutX="77.0" layoutY="409.0" mnemonicParsing="false" onAction="#onSettingsPressed" prefHeight="57.0" prefWidth="166.0" styleClass="button" text="Settings" textFill="#825000">
+            <Button id="btn" fx:id="gameSettingsButton" layoutX="336.0" layoutY="371.0" mnemonicParsing="false" onAction="#onSettingsPressed" prefHeight="57.0" prefWidth="166.0" styleClass="button" text="Settings" textFill="WHITE">
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </Button>
-            <ImageView fx:id="leftVaseImage1" fitHeight="101.0" fitWidth="94.0" layoutX="568.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="586.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Vase%20Icon.png" />
+                  <Image url="@../images/—Pngtree—keyboard%20keys%20vector_9102006.png" />
                </image>
             </ImageView>
+            <Button id="btn" fx:id="gameSettingsButton1" layoutX="345.0" layoutY="446.0" mnemonicParsing="false" onAction="#onSettingsPressed" prefHeight="51.0" prefWidth="147.0" styleClass="button" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="BM HANNA Air OTF" size="27.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </center>

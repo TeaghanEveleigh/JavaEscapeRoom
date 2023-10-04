@@ -225,13 +225,12 @@
             <Image url="@../images/triangle-512.png" />
          </image>
       </ImageView>
-      <Text fx:id="interractHint" fill="WHITE" layoutX="149.0" layoutY="67.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e interact">
+      <Text fx:id="interractHint" fill="WHITE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e interact" AnchorPane.leftAnchor="185.0">
          <font>
-            <Font name="BM HANNA Air OTF" size="40.0" />
+            <Font name="BM HANNA Air OTF" size="57.0" />
          </font>
       </Text>
       <Rectangle fx:id="boundingBoxThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="398.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
-      <Canvas fx:id="gameCanvas" height="585.0" width="816.0" />
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="545.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
       <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="213.0" layoutX="614.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="95.0" />
       <Rectangle fx:id="dinosaurRoomBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" layoutX="3.0" layoutY="553.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="810.0" />
@@ -295,6 +294,7 @@
       <Rectangle fx:id="boundingBox10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="658.0" layoutY="213.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
       <Rectangle fx:id="boundingBox9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="634.0" layoutY="180.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
       <Rectangle fx:id="boundingBox8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="654.0" layoutY="169.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
+      <Canvas fx:id="gameCanvas" height="585.0" width="816.0" />
 
 
 

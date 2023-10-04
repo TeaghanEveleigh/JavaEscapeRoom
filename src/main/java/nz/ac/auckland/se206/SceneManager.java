@@ -70,7 +70,8 @@ public static AppUi getLastScene() {
   }
 
 
-  public static void deleteUi(AppUi appUi) {
-    sceneMap.remove(appUi);
+  public static void clearAll() {
+    sceneMap.clear();
   }
+  
 }

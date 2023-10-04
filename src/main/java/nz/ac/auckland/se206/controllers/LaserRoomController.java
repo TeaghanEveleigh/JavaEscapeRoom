@@ -58,7 +58,7 @@ public class LaserRoomController extends GameController
     boundsObjects.add(new Door(doorRectangle, this, AppUi.MAIN_MENU));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
-    this.player.setPosY(472);
+    this.player.setPosY(350);
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
