@@ -246,9 +246,9 @@
          </font>
       </TextArea>
       <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="680.0" layoutY="501.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
-      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="715.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hackerIcon" fitHeight="115.0" fitWidth="148.0" layoutX="662.0" layoutY="476.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/HackerIcon.png" />
+            <Image url="@../images/matrix-hacker-background.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="4.0" layoutY="473.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">

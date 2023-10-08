@@ -6,10 +6,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameWonController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="815.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameWonController">
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,13 +25,29 @@
                <font>
                   <Font name="BM HANNA Air OTF" size="69.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="0.7166666388511658" blue="0.0555555559694767" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-18.0" layoutY="240.0" prefHeight="41.0" prefWidth="899.0" text="Freedom, and the Golden Statue, are yours!" textAlignment="CENTER" textFill="#434242" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="BM HANNA Air OTF" size="32.0" />
                </font>
             </Label>
-            <Button fx:id="exitGameButton" layoutX="278.0" layoutY="311.0" mnemonicParsing="false" onAction="#onExitGame" prefHeight="71.0" prefWidth="250.0" style="-fx-background-color: grey; -fx-border-color: white; -fx-border-radius: 10; -fx-background-radius: 10;" text="MAIN MENU" textFill="WHITE">
+            <Button fx:id="exitGameButton" layoutX="283.0" layoutY="310.0" mnemonicParsing="false" onAction="#onExitGame" prefHeight="71.0" prefWidth="250.0" text="MAIN MENU" textFill="WHITE">
                <font>
                   <Font name="BM HANNA Air OTF" size="31.0" />
                </font>

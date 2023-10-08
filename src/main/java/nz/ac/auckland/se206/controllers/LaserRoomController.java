@@ -91,7 +91,7 @@ public class LaserRoomController extends GameController
 
   @FXML
   private void itemLabelShow() {
-    itemLabel.setOpacity(1);
+    itemLabel.setOpacity(0.8);
     interactHint.toFront();
   }
 
@@ -122,7 +122,7 @@ public class LaserRoomController extends GameController
 
   @FXML
   private void showDinoLabel1() {
-    dinoLabel1.setOpacity(1);
+    dinoLabel1.setOpacity(0.8);
     interactHint.toFront();
   }
 
@@ -181,7 +181,7 @@ public class LaserRoomController extends GameController
 
   @FXML
   private void showDinoLabelTwo() {
-    dinoLabel2.setOpacity(1);
+    dinoLabel2.setOpacity(0.8);
     interactHint.toFront();
   }
 

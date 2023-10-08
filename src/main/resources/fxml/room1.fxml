@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
    <children>
       <Text fx:id="paroText" fill="#6b6b57" layoutX="252.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parasaurolophus Discovered 16th century " wrappingWidth="377.9719295501709">
          <font>
@@ -259,40 +259,40 @@
 
       <Rectangle fx:id="doorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="232.0" layoutX="-2.0" layoutY="384.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
 
-      <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="500.0" prefHeight="80.0" prefWidth="675.0" wrapText="true">
+      <TextArea fx:id="hackerTextArea" layoutX="36.0" layoutY="4.0" opacity="0.79" prefHeight="116.0" prefWidth="605.0" style="-fx-border-color: none;" styleClass="hacker-style" text="..." wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
       </TextArea>
-      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="680.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
-      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="715.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="664.0" layoutY="33.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
+      <ImageView fx:id="hackerIcon" fitHeight="116.0" fitWidth="179.0" layoutX="640.0" layoutY="4.0" opacity="0.86" pickOnBounds="true">
          <image>
-            <Image url="@../images/HackerIcon.png" />
+            <Image url="@../images/matrix-hacker-background.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="4.0" layoutY="472.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/cross.png" />
-         </image>
-      </ImageView>
-      <Rectangle fx:id="leftDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="26.0" layoutY="137.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="179.0" />
+      <Rectangle fx:id="leftDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="41.0" layoutY="203.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="179.0" />
       <Rectangle fx:id="rightDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" layoutX="482.0" layoutY="176.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="306.0" />
       <Rectangle fx:id="objectBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="370.0" layoutY="328.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="98.0" />
-      <Button fx:id="hintButton" layoutX="721.0" layoutY="15.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
+      <Button fx:id="hintButton" layoutX="729.0" layoutY="532.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="25.0" />
          </font>
       </Button>
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="720.0" layoutY="62.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="725.0" layoutY="488.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
       </Label>
-      <Text fx:id="interactHint" fill="WHITE" layoutX="208.0" layoutY="60.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact" wrappingWidth="486.31640625">
+      <Text fx:id="interactHint" layoutX="234.0" layoutY="554.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact" wrappingWidth="486.31640625">
          <font>
             <Font name="BM HANNA Air OTF" size="50.0" />
          </font>
       </Text>
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="30.0" fitWidth="42.0" layoutX="1.0" layoutY="8.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="3.0">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
 
    </children>
 </AnchorPane>
