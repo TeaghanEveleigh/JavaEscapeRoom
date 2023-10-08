@@ -1,11 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.LeftDinosaurListener;
 import nz.ac.auckland.se206.ObjectListener;
@@ -43,6 +45,8 @@ public class LaserRoomController extends GameController
   @FXML private Text paroText;
   @FXML private Rectangle plaque;
   @FXML private Rectangle blur;
+  @FXML private ImageView arrow;
+  @FXML private ImageView arrow1;
 
   private SolidBox laserBox;
 
@@ -59,6 +63,8 @@ public class LaserRoomController extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(350);
+    applyFloatingAnimation(arrow);
+    applyFloatingAnimation(arrow1);
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
@@ -124,13 +130,16 @@ public class LaserRoomController extends GameController
   private void showDinoLabel1() {
     dinoLabel1.setOpacity(0.8);
     interactHint.toFront();
+    arrow.toBack();
   }
 
   @FXML
   private void hideDinoLabel1() {
     dinoLabel1.setOpacity(0);
     interactHint.toBack();
+    arrow.toFront();
   }
+  
 
   @Override
   public void leftDinosaurInteracted() {
@@ -218,4 +227,11 @@ public class LaserRoomController extends GameController
     blur.toBack();
     trexText.toBack();
   }
+  private void applyFloatingAnimation(ImageView imageView) {
+    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    translateTransition.setByY(10);
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+    translateTransition.setAutoReverse(true);
+    translateTransition.play();
+}
 }

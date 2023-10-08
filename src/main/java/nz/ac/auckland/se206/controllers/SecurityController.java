@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,6 +114,11 @@ public class SecurityController extends GameController
   @FXML private Rectangle stoneCarvingBounds;
   private SolidBox exitBlock;
   @FXML private Rectangle boundingBox1;
+  @FXML private ImageView arrow1;
+  @FXML private ImageView arrow2;
+  @FXML private ImageView arrow3;
+  @FXML private ImageView arrow4;
+  @FXML private ImageView arrow5;
 
   // @FXML private Text number0;
   @FXML
@@ -214,6 +220,13 @@ public class SecurityController extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(300);
+    applyFloatingAnimation( arrow1);
+    applyFloatingAnimation( arrow2);
+    applyFloatingAnimation( arrow3);
+    applyFloatingAnimation( arrow4);
+    applyFloatingAnimation( arrow5);
+    
+  
   }
 
   @FXML
@@ -482,4 +495,11 @@ public class SecurityController extends GameController
     hideCarvingLabel();
     hideStoneCarving();
   }
+  private void applyFloatingAnimation(ImageView imageView) {
+    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    translateTransition.setByY(5);
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+    translateTransition.setAutoReverse(true);
+    translateTransition.play();
+}
 }
