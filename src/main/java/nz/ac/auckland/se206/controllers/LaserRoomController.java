@@ -112,6 +112,7 @@ public class LaserRoomController extends GameController
   @FXML
   private void stealItem() {
     GameState.isTreasureStolen = true;
+    GameController.updateAllChecklists();
     object.toBack();
     itemLabel.toBack();
     Task<Void> task =
@@ -141,7 +142,6 @@ public class LaserRoomController extends GameController
     interactHint.toBack();
     arrow.toFront();
   }
-  
 
   @Override
   public void leftDinosaurInteracted() {
@@ -231,18 +231,22 @@ public class LaserRoomController extends GameController
     blur.toBack();
     trexText.toBack();
   }
+
   private void applyFloatingAnimation(ImageView imageView) {
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(1), imageView);
     translateTransition.setByY(5);
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
-}
-private void applyFloatingAnimationx(ImageView imageView) {
-  TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
-  translateTransition.setByX(5);
-  translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
-  translateTransition.setAutoReverse(true);
-  translateTransition.play();
-}
+  }
+
+  private void applyFloatingAnimationx(ImageView imageView) {
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(1), imageView);
+    translateTransition.setByX(5);
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+    translateTransition.setAutoReverse(true);
+    translateTransition.play();
+  }
 }

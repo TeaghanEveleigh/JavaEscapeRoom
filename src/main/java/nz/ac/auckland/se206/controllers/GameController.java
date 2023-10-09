@@ -19,6 +19,8 @@ import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.KeyState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
@@ -191,6 +193,19 @@ public class GameController implements BaseController {
     exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);
     gameCanvas.requestFocus();
+  }
+
+  // Updates all checklists
+  public static void updateAllChecklists() {
+    SecurityController securityController =
+        (SecurityController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    securityController.updateChecklist();
+    LaserRoomController laserRoomController =
+        (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
+    laserRoomController.updateChecklist();
+    Room2Controller dinosaurRoomController =
+        (Room2Controller) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    dinosaurRoomController.updateChecklist();
   }
 
   // Updates the checklist based on what the player has completed

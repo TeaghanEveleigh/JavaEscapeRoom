@@ -20,7 +20,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.Room2Controller">
    <children>
-      <Canvas fx:id="gameCanvas" height="585.0" width="816.0" />
       <Text fx:id="helpHint" fill="#562cff" layoutX="7.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Musuem exhibits discovery centuries in ascending order">
          <font>
             <Font name="BM HANNA Air OTF" size="34.0" />
@@ -470,6 +469,7 @@
       <Circle fx:id="disabledCameraCircle" fill="WHITE" layoutX="626.0" layoutY="444.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="stolenTreasureCircle" fill="WHITE" layoutX="626.0" layoutY="417.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="disabledLasersCircle" fill="WHITE" layoutX="626.0" layoutY="391.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Canvas fx:id="gameCanvas" height="585.0" width="816.0" />
 
    </children>
 </AnchorPane>
