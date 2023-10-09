@@ -1,11 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.LeftDinosaurListener;
 import nz.ac.auckland.se206.ObjectListener;
@@ -43,6 +45,9 @@ public class LaserRoomController extends GameController
   @FXML private Text paroText;
   @FXML private Rectangle plaque;
   @FXML private Rectangle blur;
+  @FXML private ImageView arrow;
+  @FXML private ImageView arrow1;
+  @FXML private ImageView arrow3;
 
   private SolidBox laserBox;
 
@@ -58,7 +63,10 @@ public class LaserRoomController extends GameController
     boundsObjects.add(new Door(doorRectangle, this, AppUi.MAIN_MENU));
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
-    this.player.setPosY(472);
+    this.player.setPosY(350);
+    applyFloatingAnimation(arrow);
+    applyFloatingAnimation(arrow1);
+    applyFloatingAnimationx(arrow3);
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
@@ -91,7 +99,7 @@ public class LaserRoomController extends GameController
 
   @FXML
   private void itemLabelShow() {
-    itemLabel.setOpacity(1);
+    itemLabel.setOpacity(0.8);
     interactHint.toFront();
   }
 
@@ -122,15 +130,18 @@ public class LaserRoomController extends GameController
 
   @FXML
   private void showDinoLabel1() {
-    dinoLabel1.setOpacity(1);
+    dinoLabel1.setOpacity(0.8);
     interactHint.toFront();
+    arrow.toBack();
   }
 
   @FXML
   private void hideDinoLabel1() {
     dinoLabel1.setOpacity(0);
     interactHint.toBack();
+    arrow.toFront();
   }
+  
 
   @Override
   public void leftDinosaurInteracted() {
@@ -181,14 +192,16 @@ public class LaserRoomController extends GameController
 
   @FXML
   private void showDinoLabelTwo() {
-    dinoLabel2.setOpacity(1);
+    dinoLabel2.setOpacity(0.8);
     interactHint.toFront();
+    arrow1.toBack();
   }
 
   @FXML
   private void hideDinoLabelTwo() {
     dinoLabel2.setOpacity(0);
     interactHint.toBack();
+    arrow1.toFront();
   }
 
   @FXML
@@ -218,4 +231,18 @@ public class LaserRoomController extends GameController
     blur.toBack();
     trexText.toBack();
   }
+  private void applyFloatingAnimation(ImageView imageView) {
+    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    translateTransition.setByY(5);
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+    translateTransition.setAutoReverse(true);
+    translateTransition.play();
+}
+private void applyFloatingAnimationx(ImageView imageView) {
+  TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+  translateTransition.setByX(5);
+  translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+  translateTransition.setAutoReverse(true);
+  translateTransition.play();
+}
 }

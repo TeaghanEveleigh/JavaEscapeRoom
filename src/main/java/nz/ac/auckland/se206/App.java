@@ -100,4 +100,29 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
   }
+  public static void restartGame() throws IOException {
+    // Clear previously loaded scenes and controllers
+    SceneManager.clearAll();
+
+    // Reload all the views
+    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
+    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
+    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
+
+    FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
+    SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
+    SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
+
+    FXMLLoader gameWonLoader = getFxmlLoader("gamewon");
+    SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
+    SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
+
+    FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
+    SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
+    SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
+
+    // Set the scene to the main menu
+    scene.setRoot(SceneManager.getUiRoot(AppUi.MAIN_MENU));
+}
+
 }

@@ -1,6 +1,6 @@
 Button.button {
-    -fx-background-color: rgb(253, 253, 253);
-    -fx-border-color: rgb(169, 95, 31);
+    -fx-background-color: rgb(77, 77, 77);
+    -fx-border-color: rgb(250, 250, 250);
     -fx-border-radius: 15;
     -fx-background-radius:15;
   
@@ -8,9 +8,9 @@ Button.button {
 }
 
 Button.button:hover {
-    -fx-background-color: rgb(191, 125, 74);
-   -fx-border-color: rgb(255, 255, 255);
-   -fx-text-fill:rgb(255, 255, 255);
+    -fx-background-color: rgb(255, 255, 255);
+   -fx-border-color: rgb(0, 0, 0);
+   -fx-text-fill:rgb(0, 0, 0);
    -fx-scale-y: 1.05;
     -fx-scale-x: 1.05;
     /* This defines the duration for the hover transition */

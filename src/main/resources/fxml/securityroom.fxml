@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
       <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="258.0" layoutY="384.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
       <ImageView fx:id="stoneCarving" fitHeight="330.0" fitWidth="481.0" layoutX="181.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
@@ -168,7 +168,7 @@
          </effect>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7b7e80" height="24.0" layoutX="485.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="287.0" layoutX="631.0" layoutY="391.0" rotate="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="199.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="287.0" layoutX="626.0" layoutY="402.0" rotate="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="199.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="692.0" layoutY="192.0" rotate="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="210.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9f98a8" height="44.0" layoutX="601.0" layoutY="259.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="330.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="200.0" layoutX="650.0" layoutY="158.0" rotate="37.6" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="210.0" />
@@ -225,15 +225,14 @@
             <Image url="@../images/triangle-512.png" />
          </image>
       </ImageView>
-      <Text fx:id="interractHint" fill="WHITE" layoutX="149.0" layoutY="67.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e interact">
+      <Text fx:id="interractHint" fill="WHITE" layoutX="149.0" layoutY="67.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e interact" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="500.0">
          <font>
-            <Font name="BM HANNA Air OTF" size="40.0" />
+            <Font name="BM HANNA Air OTF" size="57.0" />
          </font>
       </Text>
       <Rectangle fx:id="boundingBoxThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="398.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
-      <Canvas fx:id="gameCanvas" height="585.0" width="816.0" />
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="545.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
-      <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="213.0" layoutX="614.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="95.0" />
+      <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="244.0" layoutX="580.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="129.0" />
       <Rectangle fx:id="dinosaurRoomBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" layoutX="3.0" layoutY="553.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="810.0" />
 
       <Label fx:id="carvingLabel" alignment="CENTER" layoutX="286.0" layoutY="119.0" onMouseClicked="#showStoneCarving" onMouseEntered="#showCarvingLabel" onMouseExited="#hideCarvingLabel" opacity="0.0" prefHeight="67.0" prefWidth="95.0" style="-fx-background-color: none; -fx-border-color: rgb(255,255,255); -fx-border-width: 2; -fx-border-radius: 10;" text="Carving" textFill="WHITE">
@@ -241,28 +240,18 @@
             <Font name="BM HANNA Air OTF" size="26.0" />
          </font>
       </Label>
-      <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="501.0" prefHeight="80.0" prefWidth="675.0" wrapText="true">
-         <font>
-            <Font name="BM HANNA Air OTF" size="15.0" />
-         </font>
-      </TextArea>
-      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="680.0" layoutY="501.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
-      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="715.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/HackerIcon.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="4.0" layoutY="473.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="638.0" layoutY="596.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="12.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Button fx:id="hintButton" layoutX="721.0" layoutY="16.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
+      <Button fx:id="hintButton" layoutX="727.0" layoutY="528.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="25.0" />
          </font>
       </Button>
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="718.0" layoutY="77.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="722.0" layoutY="478.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
@@ -295,6 +284,42 @@
       <Rectangle fx:id="boundingBox10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="658.0" layoutY="213.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
       <Rectangle fx:id="boundingBox9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="634.0" layoutY="180.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
       <Rectangle fx:id="boundingBox8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="654.0" layoutY="169.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
+      <ImageView fx:id="arrow1" fitHeight="150.0" fitWidth="122.0" layoutX="333.0" layoutY="463.0" opacity="0.46" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="arrow2" fitHeight="47.0" fitWidth="42.0" layoutX="160.0" layoutY="155.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="arrow3" fitHeight="47.0" fitWidth="42.0" layoutX="636.0" layoutY="106.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="arrow4" fitHeight="47.0" fitWidth="42.0" layoutX="305.0" layoutY="49.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="arrow5" fitHeight="47.0" fitWidth="42.0" layoutX="415.0" layoutY="48.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="hackerTextArea" layoutX="33.0" layoutY="13.0" opacity="0.8" prefHeight="112.0" prefWidth="618.0" wrapText="true">
+         <font>
+            <Font name="BM HANNA Air OTF" size="15.0" />
+         </font>
+      </TextArea>
+      <ImageView fx:id="hackerIcon" fitHeight="115.0" fitWidth="148.0" layoutX="652.0" layoutY="12.0" opacity="0.8" pickOnBounds="true">
+         <image>
+            <Image url="@../images/matrix-hacker-background.jpg" />
+         </image>
+      </ImageView>
+      <Canvas fx:id="gameCanvas" height="585.0" layoutX="-7.0" layoutY="32.0" width="816.0" />
 
 
 

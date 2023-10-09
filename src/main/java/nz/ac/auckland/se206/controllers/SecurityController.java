@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,6 +114,11 @@ public class SecurityController extends GameController
   @FXML private Rectangle stoneCarvingBounds;
   private SolidBox exitBlock;
   @FXML private Rectangle boundingBox1;
+  @FXML private ImageView arrow1;
+  @FXML private ImageView arrow2;
+  @FXML private ImageView arrow3;
+  @FXML private ImageView arrow4;
+  @FXML private ImageView arrow5;
 
   // @FXML private Text number0;
   @FXML
@@ -130,12 +136,14 @@ public class SecurityController extends GameController
   private void showDoorLabel() {
     doorLabel.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow5.toBack();
   }
 
   @FXML
   void hideDoorLabel() {
     doorLabel.setOpacity(0);
     interractHint.setOpacity(0);
+    arrow5.toFront();
   }
 
   @FXML
@@ -150,6 +158,7 @@ public class SecurityController extends GameController
     // Change the opacity of the security text to 1 (fully visible)
     securityText.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow3.toBack();
   }
 
   @FXML
@@ -169,6 +178,7 @@ public class SecurityController extends GameController
     // Change the opacity of the security text to 0 (completely hidden)
     securityText.setOpacity(0);
     interractHint.setOpacity(0);
+    arrow3.toFront();
   }
 
   @FXML
@@ -214,6 +224,13 @@ public class SecurityController extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(300);
+    applyFloatingAnimation( arrow1);
+    applyFloatingAnimation( arrow2);
+    applyFloatingAnimation( arrow3);
+    applyFloatingAnimation( arrow4);
+    applyFloatingAnimation( arrow5);
+    
+  
   }
 
   @FXML
@@ -283,12 +300,14 @@ public class SecurityController extends GameController
   private void showWireLabel() {
     wireLabel.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow2.toBack();
   }
 
   @FXML
   private void hideWireLabel() {
     wireLabel.setOpacity(0);
     interractHint.setOpacity(0);
+    arrow2.toFront();
   }
 
   private void resetNumbers() {
@@ -460,11 +479,13 @@ public class SecurityController extends GameController
   @FXML
   private void showCarvingLabel() {
     carvingLabel.setOpacity(1);
+    arrow4.toBack();
   }
 
   @FXML
   private void hideCarvingLabel() {
     carvingLabel.setOpacity(0);
+    arrow4.toFront();
   }
 
   @Override
@@ -482,4 +503,11 @@ public class SecurityController extends GameController
     hideCarvingLabel();
     hideStoneCarving();
   }
+  private void applyFloatingAnimation(ImageView imageView) {
+    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    translateTransition.setByY(5);
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+    translateTransition.setAutoReverse(true);
+    translateTransition.play();
+}
 }

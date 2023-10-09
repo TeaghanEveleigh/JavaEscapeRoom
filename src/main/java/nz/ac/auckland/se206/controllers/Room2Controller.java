@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
@@ -12,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ComputerListener;
 import nz.ac.auckland.se206.ExitRoomDoorListener;
@@ -49,7 +52,9 @@ public class Room2Controller extends GameController
   private boolean safeOpened = false;
   private boolean computerOpened = false;
   private boolean incorrectPassword = false;
-
+  @FXML private ImageView arrow1;
+  @FXML private ImageView arrow2;
+  @FXML private ImageView arrow3;
   @FXML private Label computerLabel;
   @FXML private Button btnHelp;
   @FXML private Button btnLogin;
@@ -72,18 +77,23 @@ public class Room2Controller extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(450);
+    applyFloatingAnimation( arrow1);
+    applyFloatingAnimation( arrow2);
+    applyFloatingAnimation( arrow3);
   }
 
   @FXML
   private void showComputerLabel() {
     computerLabel.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow1.toBack();
   }
 
   @FXML
   void hideComputerLabel() {
     computerLabel.setOpacity(0);
     interractHint.setOpacity(0);
+    arrow2.toFront();
   }
 
   @FXML
@@ -121,6 +131,7 @@ public class Room2Controller extends GameController
     entranceLine3.setOpacity(1);
     entranceLabel.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow3.toBack();
   }
 
   @FXML
@@ -130,18 +141,21 @@ public class Room2Controller extends GameController
     entranceLine2.setOpacity(0);
     entranceLine3.setOpacity(0);
     entranceLabel.setOpacity(0);
+    arrow3.toFront();
   }
 
   @FXML
   private void hideSafeLabel() {
     safeLabel.setOpacity(0);
     interractHint.setOpacity(0);
+    arrow2.toBack();
   }
 
   @FXML
   private void showSafeLabel() {
     safeLabel.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow2.toBack();
   }
 
   @FXML
@@ -302,4 +316,11 @@ public class Room2Controller extends GameController
   @FXML private void showHelpHint(){
     helpHint.toFront();
   }
+  private void applyFloatingAnimation(ImageView imageView) {
+    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    translateTransition.setByY(5);
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+    translateTransition.setAutoReverse(true);
+    translateTransition.play();
+}
 }
