@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -246,16 +247,6 @@
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Button fx:id="hintButton" layoutX="727.0" layoutY="528.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
-         <font>
-            <Font name="BM HANNA Air OTF" size="25.0" />
-         </font>
-      </Button>
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="722.0" layoutY="478.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
-         <font>
-            <Font name="BM HANNA Air OTF" size="30.0" />
-         </font>
-      </Label>
       <Rectangle fx:id="stoneCarvingBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="292.0" layoutY="128.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
       <Rectangle fx:id="wiresBounds" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff72" height="75.0" layoutX="151.0" layoutY="183.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
       <Rectangle fx:id="boundingBox14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="773.0" layoutY="280.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
@@ -320,6 +311,59 @@
          </image>
       </ImageView>
       <Canvas fx:id="gameCanvas" height="585.0" layoutX="-7.0" layoutY="32.0" width="816.0" />
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="614.0" layoutY="529.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="hintButton" layoutX="719.0" layoutY="527.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="611.0" layoutY="330.0" opacity="0.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </Rectangle>
+      <Label fx:id="objectivesLabel" layoutX="615.0" layoutY="339.0" prefHeight="28.0" prefWidth="176.0" text="Objectives">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="disabledLasersLabel" layoutX="641.0" layoutY="378.0" prefHeight="26.0" prefWidth="150.0" text="Disabled lasers">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="stolenTreasureLabel" layoutX="640.0" layoutY="404.0" prefHeight="26.0" prefWidth="150.0" text="Stolen Treasure">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="disabledCameraLabel" layoutX="640.0" layoutY="431.0" prefHeight="26.0" prefWidth="150.0" text="Disabled Cameras">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="keycodeFoundLabel" layoutX="640.0" layoutY="457.0" prefHeight="26.0" prefWidth="150.0" text="Exit keycode found">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="exitUnlockedLabel" layoutX="640.0" layoutY="483.0" prefHeight="26.0" prefWidth="150.0" text="Exit unlocked">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Circle fx:id="exitUnlockedCircle" fill="WHITE" layoutX="626.0" layoutY="498.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="keycodeFoundCircle" fill="WHITE" layoutX="626.0" layoutY="471.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="disabledCameraCircle" fill="WHITE" layoutX="626.0" layoutY="445.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="stolenTreasureCircle" fill="WHITE" layoutX="626.0" layoutY="418.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="disabledLasersCircle" fill="WHITE" layoutX="626.0" layoutY="392.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
 
 
 

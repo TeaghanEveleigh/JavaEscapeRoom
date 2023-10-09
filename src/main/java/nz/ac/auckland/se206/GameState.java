@@ -7,16 +7,8 @@ import java.util.List;
 /** Represents the state of the game. */
 public class GameState {
 
-  /** Indicates whether the riddle has been resolved. */
-  public static boolean isRiddleResolved = false;
-
-  /** Indicates whether the key has been found. */
-  public static boolean isKeyFound = false;
-
   /** Randomly generated order of endpoints for the wires game */
   public static String wiresSequence = generateWiresSequence();
-
-  
 
   /** Indicates whether the lasers have been disabled */
   public static boolean isLasersDisabled = false;
@@ -26,6 +18,12 @@ public class GameState {
 
   /** Indicated whether the treasure has been stolen */
   public static boolean isTreasureStolen = false;
+
+  /** Indicates whether the keycode has been found */
+  public static boolean isKeycodeFound = false;
+
+  /** Indicates whether the exit door has been unlocked */
+  public static boolean isExitDoorUnlocked = false;
 
   // Difficulty booleans
   public static boolean isEasy = true;
@@ -44,7 +42,8 @@ public class GameState {
     isMedium = false;
     isHard = false;
   }
-/** Generates a random ordering of the numbers one through four inclusive */
+
+  /** Generates a random ordering of the numbers one through four inclusive */
   public static String generateWiresSequence() {
     String[] array = {"1", "2", "3", "4"};
     List<String> list = Arrays.asList(array);
@@ -56,6 +55,7 @@ public class GameState {
     System.out.println(sb.toString());
     return sb.toString();
   }
+
   // Sets the difficulty to medium
   public static void setMedium() {
     isEasy = false;

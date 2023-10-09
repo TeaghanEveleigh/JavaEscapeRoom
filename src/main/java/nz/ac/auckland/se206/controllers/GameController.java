@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -11,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
@@ -31,6 +34,20 @@ public class GameController implements BaseController {
   @FXML protected Rectangle hackerRectangle;
   @FXML protected TextArea hackerTextArea;
   @FXML protected Label mainTimerLabel;
+
+  // Checklist
+  @FXML protected Rectangle checklistRectangle;
+  @FXML protected Label objectivesLabel;
+  @FXML protected Label disabledLasersLabel;
+  @FXML protected Label stolenTreasureLabel;
+  @FXML protected Label disabledCameraLabel;
+  @FXML protected Label keycodeFoundLabel;
+  @FXML protected Label exitUnlockedLabel;
+  @FXML protected Circle disabledLasersCircle;
+  @FXML protected Circle stolenTreasureCircle;
+  @FXML protected Circle disabledCameraCircle;
+  @FXML protected Circle keycodeFoundCircle;
+  @FXML protected Circle exitUnlockedCircle;
 
   protected Ai ai = new Ai();
   protected GraphicsContext graphicsContext;
@@ -174,5 +191,39 @@ public class GameController implements BaseController {
     exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);
     gameCanvas.requestFocus();
+  }
+
+  // Updates the checklist based on what the player has completed
+  public void updateChecklist() {
+    if (GameState.isLasersDisabled) { // lasers disabled
+      Platform.runLater(
+          () -> {
+            disabledLasersCircle.setFill(Color.BLACK);
+          });
+    }
+    if (GameState.isCamerasDisabled) { // cameras disabled
+      Platform.runLater(
+          () -> {
+            disabledCameraCircle.setFill(Color.BLACK);
+          });
+    }
+    if (GameState.isTreasureStolen) { // treasure stolen
+      Platform.runLater(
+          () -> {
+            stolenTreasureCircle.setFill(Color.BLACK);
+          });
+    }
+    if (GameState.isKeycodeFound) { // keycode found
+      Platform.runLater(
+          () -> {
+            keycodeFoundCircle.setFill(Color.BLACK);
+          });
+    }
+    if (GameState.isExitDoorUnlocked) { // exit door unlocked
+      Platform.runLater(
+          () -> {
+            exitUnlockedCircle.setFill(Color.BLACK);
+          });
+    }
   }
 }
