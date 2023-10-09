@@ -47,6 +47,7 @@ public class LaserRoomController extends GameController
   @FXML private Rectangle blur;
   @FXML private ImageView arrow;
   @FXML private ImageView arrow1;
+  @FXML private ImageView arrow3;
 
   private SolidBox laserBox;
 
@@ -65,6 +66,7 @@ public class LaserRoomController extends GameController
     this.player.setPosY(350);
     applyFloatingAnimation(arrow);
     applyFloatingAnimation(arrow1);
+    applyFloatingAnimationx(arrow3);
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
@@ -192,12 +194,14 @@ public class LaserRoomController extends GameController
   private void showDinoLabelTwo() {
     dinoLabel2.setOpacity(0.8);
     interactHint.toFront();
+    arrow1.toBack();
   }
 
   @FXML
   private void hideDinoLabelTwo() {
     dinoLabel2.setOpacity(0);
     interactHint.toBack();
+    arrow1.toFront();
   }
 
   @FXML
@@ -229,9 +233,16 @@ public class LaserRoomController extends GameController
   }
   private void applyFloatingAnimation(ImageView imageView) {
     TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
-    translateTransition.setByY(10);
+    translateTransition.setByY(5);
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
+}
+private void applyFloatingAnimationx(ImageView imageView) {
+  TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+  translateTransition.setByX(5);
+  translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+  translateTransition.setAutoReverse(true);
+  translateTransition.play();
 }
 }

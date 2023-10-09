@@ -136,12 +136,14 @@ public class SecurityController extends GameController
   private void showDoorLabel() {
     doorLabel.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow5.toBack();
   }
 
   @FXML
   void hideDoorLabel() {
     doorLabel.setOpacity(0);
     interractHint.setOpacity(0);
+    arrow5.toFront();
   }
 
   @FXML
@@ -156,6 +158,7 @@ public class SecurityController extends GameController
     // Change the opacity of the security text to 1 (fully visible)
     securityText.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow3.toBack();
   }
 
   @FXML
@@ -175,6 +178,7 @@ public class SecurityController extends GameController
     // Change the opacity of the security text to 0 (completely hidden)
     securityText.setOpacity(0);
     interractHint.setOpacity(0);
+    arrow3.toFront();
   }
 
   @FXML
@@ -296,12 +300,14 @@ public class SecurityController extends GameController
   private void showWireLabel() {
     wireLabel.setOpacity(1);
     interractHint.setOpacity(1);
+    arrow2.toBack();
   }
 
   @FXML
   private void hideWireLabel() {
     wireLabel.setOpacity(0);
     interractHint.setOpacity(0);
+    arrow2.toFront();
   }
 
   private void resetNumbers() {
@@ -473,11 +479,13 @@ public class SecurityController extends GameController
   @FXML
   private void showCarvingLabel() {
     carvingLabel.setOpacity(1);
+    arrow4.toBack();
   }
 
   @FXML
   private void hideCarvingLabel() {
     carvingLabel.setOpacity(0);
+    arrow4.toFront();
   }
 
   @Override
