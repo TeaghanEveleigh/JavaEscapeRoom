@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.controllers.Room2Controller;
+import nz.ac.auckland.se206.controllers.ExitRoomController;
 import nz.ac.auckland.se206.controllers.SecurityController;
 
 /** Represents the state of the game. */
@@ -81,8 +81,8 @@ public class GameState {
   }
 
   public static void openSafe() {
-    Room2Controller safeRoomController =
-        (Room2Controller) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    ExitRoomController safeRoomController =
+        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
     safeRoomController.safeOpen();
   }
 }

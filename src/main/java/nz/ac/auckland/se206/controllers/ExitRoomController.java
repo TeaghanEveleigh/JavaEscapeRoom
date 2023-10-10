@@ -26,7 +26,7 @@ import nz.ac.auckland.se206.listeners.ComputerListener;
 import nz.ac.auckland.se206.listeners.ExitRoomDoorListener;
 import nz.ac.auckland.se206.listeners.SafeListener;
 
-public class Room2Controller extends GameController
+public class ExitRoomController extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
   @FXML private Text helpHint;
   @FXML private Canvas gameCanvas;
