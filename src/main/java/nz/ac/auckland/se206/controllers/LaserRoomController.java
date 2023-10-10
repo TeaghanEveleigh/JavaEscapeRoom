@@ -9,9 +9,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.LeftDinosaurListener;
-import nz.ac.auckland.se206.ObjectListener;
-import nz.ac.auckland.se206.RightDinosaurListener;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Door;
 import nz.ac.auckland.se206.game.LeftDinosaur;
@@ -21,6 +18,9 @@ import nz.ac.auckland.se206.game.RightDinosaur;
 import nz.ac.auckland.se206.game.SolidBox;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.listeners.LeftDinosaurListener;
+import nz.ac.auckland.se206.listeners.ObjectListener;
+import nz.ac.auckland.se206.listeners.RightDinosaurListener;
 
 public class LaserRoomController extends GameController
     implements LeftDinosaurListener, RightDinosaurListener, ObjectListener {
@@ -141,7 +141,6 @@ public class LaserRoomController extends GameController
     interactHint.toBack();
     arrow.toFront();
   }
-  
 
   @Override
   public void leftDinosaurInteracted() {
@@ -231,18 +230,22 @@ public class LaserRoomController extends GameController
     blur.toBack();
     trexText.toBack();
   }
+
   private void applyFloatingAnimation(ImageView imageView) {
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(1), imageView);
     translateTransition.setByY(5);
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
-}
-private void applyFloatingAnimationx(ImageView imageView) {
-  TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
-  translateTransition.setByX(5);
-  translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
-  translateTransition.setAutoReverse(true);
-  translateTransition.play();
-}
+  }
+
+  private void applyFloatingAnimationx(ImageView imageView) {
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(1), imageView);
+    translateTransition.setByX(5);
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+    translateTransition.setAutoReverse(true);
+    translateTransition.play();
+  }
 }

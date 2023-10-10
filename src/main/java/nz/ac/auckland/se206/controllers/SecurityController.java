@@ -17,12 +17,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.KeypadListener;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.SecurityRoomDoorListener;
-import nz.ac.auckland.se206.StoneCarvingListener;
-import nz.ac.auckland.se206.WiresListener;
 import nz.ac.auckland.se206.game.Keypad;
 import nz.ac.auckland.se206.game.Portal;
 import nz.ac.auckland.se206.game.SecurityRoomDoor;
@@ -31,6 +27,10 @@ import nz.ac.auckland.se206.game.StoneCarving;
 import nz.ac.auckland.se206.game.Wires;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.listeners.KeypadListener;
+import nz.ac.auckland.se206.listeners.SecurityRoomDoorListener;
+import nz.ac.auckland.se206.listeners.StoneCarvingListener;
+import nz.ac.auckland.se206.listeners.WiresListener;
 
 public class SecurityController extends GameController
     implements KeypadListener, WiresListener, SecurityRoomDoorListener, StoneCarvingListener {
@@ -192,7 +192,6 @@ public class SecurityController extends GameController
     // camera area
   }
 
-
   @Override
   public void initialize() {
     super.initialize();
@@ -224,13 +223,11 @@ public class SecurityController extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(300);
-    applyFloatingAnimation( arrow1);
-    applyFloatingAnimation( arrow2);
-    applyFloatingAnimation( arrow3);
-    applyFloatingAnimation( arrow4);
-    applyFloatingAnimation( arrow5);
-    
-  
+    applyFloatingAnimation(arrow1);
+    applyFloatingAnimation(arrow2);
+    applyFloatingAnimation(arrow3);
+    applyFloatingAnimation(arrow4);
+    applyFloatingAnimation(arrow5);
   }
 
   @FXML
@@ -503,11 +500,13 @@ public class SecurityController extends GameController
     hideCarvingLabel();
     hideStoneCarving();
   }
+
   private void applyFloatingAnimation(ImageView imageView) {
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(1), imageView);
     translateTransition.setByY(5);
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
-}
+  }
 }
