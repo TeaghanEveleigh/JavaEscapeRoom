@@ -19,7 +19,6 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.gpt.Ai;
@@ -169,14 +168,10 @@ public class MemoryGameController implements BaseController {
 
     Timeline timeline = flashLights(lightGlowGreenImage);
     if (currentSequenceLength++ >= maxSequenceLength) {
-
-      Room2Controller roomController =
-          (Room2Controller) SceneManager.getUiController(AppUi.SECURITY_ROOM);
-      roomController.safeOpen();
+      GameState.openSafe();
       PauseTransition pause = new PauseTransition(Duration.seconds(0.75));
       pause.setOnFinished(
           e -> {
-            roomController.unpauseRoom();
             App.switchScenes(AppUi.SECURITY_ROOM);
           });
 
