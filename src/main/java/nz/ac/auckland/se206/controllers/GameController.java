@@ -50,6 +50,8 @@ public class GameController implements BaseController {
   @FXML protected Circle disabledCameraCircle;
   @FXML protected Circle keycodeFoundCircle;
   @FXML protected Circle exitUnlockedCircle;
+  @FXML protected ImageView exitObjectiveImage;
+  @FXML protected Button objectivesButton;
 
   protected Ai ai = new Ai();
   protected GraphicsContext graphicsContext;
@@ -59,6 +61,7 @@ public class GameController implements BaseController {
   protected boolean paused = true;
 
   public void initialize() {
+    disbleObjectives();
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel);
     gameCanvas.requestFocus();
@@ -105,8 +108,18 @@ public class GameController implements BaseController {
   }
 
   @FXML
-  public void onExitClicked() {
+  public void onHackerExitClicked() {
     disableHackerPanel();
+  }
+
+  @FXML
+  public void onObjectiveExitClicked() {
+    disbleObjectives();
+  }
+
+  @FXML
+  public void onObjectivePressed() {
+    enableObjectives();
   }
 
   @FXML
@@ -167,6 +180,7 @@ public class GameController implements BaseController {
     new Thread(task).start();
   }
 
+  // Disables the hacker panel
   public void disableHackerPanel() {
     hackerIcon.toBack();
     hackerRectangle.toBack();
@@ -176,22 +190,65 @@ public class GameController implements BaseController {
     gameCanvas.requestFocus();
   }
 
+  // Disables the hint and exit buttons
   public void disableHintAndExit() {
     hintButton.setDisable(true);
     exitHackerPanelImage.setDisable(true);
   }
 
+  // Enables the hint and exit buttons
   public void enableHintAndExit() {
     hintButton.setDisable(false);
     exitHackerPanelImage.setDisable(false);
   }
 
+  // Enables the hacker panel
   public void enableHackerPanel() {
     hackerRectangle.toFront();
     hackerIcon.toFront();
     hackerTextArea.toFront();
     exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);
+    gameCanvas.requestFocus();
+  }
+
+  // Disables the objectives panel
+  public void disbleObjectives() {
+    checklistRectangle.toBack();
+    objectivesLabel.toBack();
+    disabledLasersLabel.toBack();
+    stolenTreasureLabel.toBack();
+    disabledCameraLabel.toBack();
+    keycodeFoundLabel.toBack();
+    exitUnlockedLabel.toBack();
+    disabledLasersCircle.toBack();
+    stolenTreasureCircle.toBack();
+    disabledCameraCircle.toBack();
+    keycodeFoundCircle.toBack();
+    exitUnlockedCircle.toBack();
+    exitObjectiveImage.toBack();
+    objectivesButton.setVisible(true);
+    objectivesButton.setDisable(false);
+    gameCanvas.requestFocus();
+  }
+
+  // Enbles the objectives panel
+  public void enableObjectives() {
+    checklistRectangle.toFront();
+    objectivesLabel.toFront();
+    disabledLasersLabel.toFront();
+    stolenTreasureLabel.toFront();
+    disabledCameraLabel.toFront();
+    keycodeFoundLabel.toFront();
+    exitUnlockedLabel.toFront();
+    disabledLasersCircle.toFront();
+    stolenTreasureCircle.toFront();
+    disabledCameraCircle.toFront();
+    keycodeFoundCircle.toFront();
+    exitUnlockedCircle.toFront();
+    exitObjectiveImage.toFront();
+    objectivesButton.setVisible(false);
+    objectivesButton.setDisable(true);
     gameCanvas.requestFocus();
   }
 

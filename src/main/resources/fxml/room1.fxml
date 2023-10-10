@@ -20,6 +20,54 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
    <children>
+      <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="611.0" layoutY="328.0" opacity="0.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </Rectangle>
+      <Label fx:id="objectivesLabel" layoutX="615.0" layoutY="337.0" prefHeight="28.0" prefWidth="176.0" text="Objectives">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="disabledLasersLabel" layoutX="641.0" layoutY="376.0" prefHeight="26.0" prefWidth="150.0" text="Disabled lasers">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="stolenTreasureLabel" layoutX="640.0" layoutY="402.0" prefHeight="26.0" prefWidth="150.0" text="Stolen treasure">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="disabledCameraLabel" layoutX="640.0" layoutY="429.0" prefHeight="26.0" prefWidth="150.0" text="Disabled cameras">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="keycodeFoundLabel" layoutX="640.0" layoutY="455.0" prefHeight="26.0" prefWidth="150.0" text="Exit keycode found">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="exitUnlockedLabel" layoutX="640.0" layoutY="481.0" prefHeight="26.0" prefWidth="150.0" text="Exit unlocked">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Circle fx:id="exitUnlockedCircle" fill="WHITE" layoutX="626.0" layoutY="496.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="keycodeFoundCircle" fill="WHITE" layoutX="626.0" layoutY="469.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="disabledCameraCircle" fill="WHITE" layoutX="626.0" layoutY="443.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="stolenTreasureCircle" fill="WHITE" layoutX="626.0" layoutY="416.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="disabledLasersCircle" fill="WHITE" layoutX="626.0" layoutY="390.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="exitObjectiveImage" fitHeight="29.0" fitWidth="28.0" layoutX="778.0" layoutY="328.0" onMouseClicked="#onObjectiveExitClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
       <Text fx:id="paroText" fill="#6b6b57" layoutX="252.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parasaurolophus Discovered 16th century " wrappingWidth="377.9719295501709">
          <font>
             <Font name="BM HANNA Air OTF" size="31.0" />
@@ -183,7 +231,6 @@
             <Image url="@../images/—Pngtree—abstract%20red%20laser%20beam%20with_6570064.png" />
          </image>
       </ImageView>
-      <Canvas fx:id="gameCanvas" height="585.0" layoutX="2.0" layoutY="6.0" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" width="816.0" />
       <Rectangle fx:id="boundingBoxOne" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="137.0" layoutX="355.0" layoutY="352.0" stroke="TRANSPARENT" strokeType="INSIDE" width="128.0" />
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="68.0" layoutX="-4.0" layoutY="178.0" stroke="TRANSPARENT" strokeType="INSIDE" width="825.0" />
 
@@ -279,7 +326,7 @@
             <Font name="BM HANNA Air OTF" size="50.0" />
          </font>
       </Text>
-      <ImageView fx:id="exitHackerPanelImage" fitHeight="30.0" fitWidth="42.0" layoutX="1.0" layoutY="8.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="3.0">
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="30.0" fitWidth="42.0" layoutX="1.0" layoutY="8.0" onMouseClicked="#onHackerExitClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="3.0">
          <image>
             <Image url="@../images/cross.png" />
          </image>
@@ -299,7 +346,7 @@
             <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
          </image>
       </ImageView>
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="614.0" layoutY="527.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="10.0" layoutY="527.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
@@ -309,49 +356,11 @@
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
-      <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="611.0" layoutY="328.0" opacity="0.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
-         <effect>
-            <ColorAdjust />
-         </effect>
-      </Rectangle>
-      <Label fx:id="objectivesLabel" layoutX="615.0" layoutY="337.0" prefHeight="28.0" prefWidth="176.0" text="Objectives">
+      <Button fx:id="objectivesButton" layoutX="640.0" layoutY="465.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="47.0" prefWidth="160.0" text="Objectives" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Baskerville Old Face" size="25.0" />
          </font>
-         <effect>
-            <ColorAdjust brightness="-1.0" />
-         </effect>
-      </Label>
-      <Label fx:id="disabledLasersLabel" layoutX="641.0" layoutY="376.0" prefHeight="26.0" prefWidth="150.0" text="Disabled lasers">
-         <effect>
-            <ColorAdjust brightness="-1.0" />
-         </effect>
-      </Label>
-      <Label fx:id="stolenTreasureLabel" layoutX="640.0" layoutY="402.0" prefHeight="26.0" prefWidth="150.0" text="Stolen Treasure">
-         <effect>
-            <ColorAdjust brightness="-1.0" />
-         </effect>
-      </Label>
-      <Label fx:id="disabledCameraLabel" layoutX="640.0" layoutY="429.0" prefHeight="26.0" prefWidth="150.0" text="Disabled Cameras">
-         <effect>
-            <ColorAdjust brightness="-1.0" />
-         </effect>
-      </Label>
-      <Label fx:id="keycodeFoundLabel" layoutX="640.0" layoutY="455.0" prefHeight="26.0" prefWidth="150.0" text="Exit keycode found">
-         <effect>
-            <ColorAdjust brightness="-1.0" />
-         </effect>
-      </Label>
-      <Label fx:id="exitUnlockedLabel" layoutX="640.0" layoutY="481.0" prefHeight="26.0" prefWidth="150.0" text="Exit unlocked">
-         <effect>
-            <ColorAdjust brightness="-1.0" />
-         </effect>
-      </Label>
-      <Circle fx:id="exitUnlockedCircle" fill="WHITE" layoutX="626.0" layoutY="496.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="keycodeFoundCircle" fill="WHITE" layoutX="626.0" layoutY="469.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="disabledCameraCircle" fill="WHITE" layoutX="626.0" layoutY="443.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="stolenTreasureCircle" fill="WHITE" layoutX="626.0" layoutY="416.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="disabledLasersCircle" fill="WHITE" layoutX="626.0" layoutY="390.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      </Button>
 
    </children>
 </AnchorPane>
