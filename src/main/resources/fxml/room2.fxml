@@ -20,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.Room2Controller">
    <children>
-      <Text fx:id="helpHint" fill="RED" layoutX="49.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recovery: Musuem discoveries in ascending order">
+      <Text fx:id="helpHint" fill="RED" layoutX="49.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recovery: Musuem discoveries in ascending order" />
       <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="611.0" layoutY="329.0" opacity="0.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
          <effect>
             <ColorAdjust />
@@ -62,7 +62,7 @@
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      </Text>
+  
       <Rectangle fx:id="monitorScreen" arcHeight="5.0" arcWidth="5.0" height="508.0" layoutX="-34.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="886.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
@@ -472,7 +472,7 @@
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="objectivesButton" layoutX="640.0" layoutY="465.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="47.0" prefWidth="160.0" text="Objectives" textFill="WHITE">
+      <Button fx:id="objectivesButton" layoutX="555.0" layoutY="526.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="47.0" prefWidth="160.0" text="Objectives" textFill="WHITE">
          <font>
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
