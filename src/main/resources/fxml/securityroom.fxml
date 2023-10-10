@@ -281,7 +281,7 @@
       </Text>
       <Rectangle fx:id="boundingBoxThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="398.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="545.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
-      <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="244.0" layoutX="580.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="129.0" />
+      <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="244.0" layoutX="499.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="210.0" />
       <Rectangle fx:id="dinosaurRoomBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" layoutX="3.0" layoutY="553.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="810.0" />
       <Canvas fx:id="gameCanvas" height="585.0" layoutX="-7.0" layoutY="32.0" width="816.0" />
 

@@ -14,7 +14,7 @@
 
 }
 Button.button:hover {
-    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-color: rgb(201, 198, 198);
    -fx-border-color: rgb(0, 0, 0);
    -fx-text-fill:rgb(0, 0, 0);
    -fx-scale-y: 1.05;

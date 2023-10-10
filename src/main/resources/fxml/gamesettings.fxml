@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -14,20 +15,18 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/GameSetting.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameSettingsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameSettingsController">
    <top>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="19.0" stroke="#825000" strokeType="INSIDE" width="828.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#838383" height="19.0" stroke="#825000" strokeType="INSIDE" width="828.0" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="18.0" stroke="#825000" strokeType="INSIDE" width="787.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#797979" height="18.0" stroke="#825000" strokeType="INSIDE" strokeWidth="0.0" width="822.0" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="560.0" stroke="#825000" strokeType="INSIDE" width="18.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#797979" height="560.0" stroke="#825000" strokeType="INSIDE" strokeWidth="0.0" width="18.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#825000" height="591.0" stroke="#825000" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#797979" height="591.0" stroke="#825000" strokeType="INSIDE" strokeWidth="0.0" width="15.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <Pane prefHeight="548.0" prefWidth="764.0" BorderPane.alignment="CENTER">
@@ -45,56 +44,56 @@
                   <Font name="BM HANNA Air OTF" size="35.0" />
                </font>
             </Label>
-            <CheckBox fx:id="easyCheckBox" layoutX="74.0" layoutY="187.0" mnemonicParsing="false" onAction="#onEasyPressed" prefHeight="30.0" prefWidth="151.0" text="Easy" textFill="#825000">
+            <CheckBox fx:id="easyCheckBox" layoutX="74.0" layoutY="187.0" mnemonicParsing="false" onAction="#onEasyPressed" prefHeight="30.0" prefWidth="151.0" text="Easy">
 
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
 
             </CheckBox>
-            <CheckBox fx:id="hardCheckBox" layoutX="74.0" layoutY="353.0" mnemonicParsing="false" onAction="#onHardPressed" prefHeight="30.0" prefWidth="151.0" text="Hard" textFill="#825000">
+            <CheckBox fx:id="hardCheckBox" layoutX="74.0" layoutY="353.0" mnemonicParsing="false" onAction="#onHardPressed" prefHeight="30.0" prefWidth="151.0" text="Hard">
 
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
 
             </CheckBox>
-            <CheckBox fx:id="mediumCheckBox" layoutX="73.0" layoutY="269.0" mnemonicParsing="false" onAction="#onMediumPressed" prefHeight="30.0" prefWidth="151.0" text="Medium" textFill="#825000">
+            <CheckBox fx:id="mediumCheckBox" layoutX="73.0" layoutY="269.0" mnemonicParsing="false" onAction="#onMediumPressed" prefHeight="30.0" prefWidth="151.0" text="Medium">
 
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
 
-            <CheckBox fx:id="twoMinutesCheckBox" layoutX="311.0" layoutY="188.0" mnemonicParsing="false" onAction="#onTwoPressed" prefHeight="41.0" prefWidth="193.0" text="2 minutes" textFill="#825000">
+            <CheckBox fx:id="twoMinutesCheckBox" layoutX="311.0" layoutY="188.0" mnemonicParsing="false" onAction="#onTwoPressed" prefHeight="41.0" prefWidth="193.0" text="2 minutes">
 
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
 
-            <CheckBox fx:id="sixMinutesCheckBox" layoutX="310.0" layoutY="352.0" mnemonicParsing="false" onAction="#onSixPressed" prefHeight="34.0" prefWidth="184.0" text="6 minutes" textFill="#825000">
+            <CheckBox fx:id="sixMinutesCheckBox" layoutX="310.0" layoutY="352.0" mnemonicParsing="false" onAction="#onSixPressed" prefHeight="34.0" prefWidth="184.0" text="6 minutes">
 
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
 
-            <CheckBox fx:id="fourMinutesCheckBox" layoutX="311.0" layoutY="268.0" mnemonicParsing="false" onAction="#onFourPressed" prefHeight="40.0" prefWidth="185.0" text="4 minutes" textFill="#825000">
+            <CheckBox fx:id="fourMinutesCheckBox" layoutX="311.0" layoutY="268.0" mnemonicParsing="false" onAction="#onFourPressed" prefHeight="40.0" prefWidth="185.0" text="4 minutes">
 
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
 
-            <CheckBox fx:id="enableCheckBox" layoutX="546.0" layoutY="186.0" mnemonicParsing="false" onAction="#onEnablePressed" prefHeight="30.0" prefWidth="151.0" text="Enable" textFill="#825000">
+            <CheckBox fx:id="enableCheckBox" layoutX="546.0" layoutY="186.0" mnemonicParsing="false" onAction="#onEnablePressed" prefHeight="30.0" prefWidth="151.0" text="Enable">
 
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
                </font>
             </CheckBox>
 
-            <CheckBox fx:id="disableCheckBox" layoutX="545.0" layoutY="269.0" mnemonicParsing="false" onAction="#onDisablePressed" prefHeight="30.0" prefWidth="151.0" text="Disable" textFill="#825000">
+            <CheckBox fx:id="disableCheckBox" layoutX="545.0" layoutY="269.0" mnemonicParsing="false" onAction="#onDisablePressed" prefHeight="30.0" prefWidth="151.0" text="Disable">
 
                <font>
                   <Font name="BM HANNA Air OTF" size="30.0" />
@@ -117,7 +116,7 @@
                         </Stop>
                         <Stop offset="0.006711409395973154">
                            <color>
-                              <Color red="0.5098039507865906" green="0.3137255012989044" />
+                              <Color />
                            </color>
                         </Stop>
                         <Stop offset="1.0">
@@ -161,7 +160,7 @@
                         </Stop>
                         <Stop offset="0.006711409395973154">
                            <color>
-                              <Color red="0.5098039507865906" green="0.3137255012989044" />
+                              <Color red="0.6052631735801697" green="0.5974171757698059" blue="0.5856481194496155" />
                            </color>
                         </Stop>
                         <Stop offset="1.0">
@@ -179,4 +178,8 @@
          </children>
       </Pane>
    </center>
+   <stylesheets>
+      <URL value="@../css/GameSetting.css" />
+      <URL value="@../css/room1.css" />
+   </stylesheets>
 </BorderPane>

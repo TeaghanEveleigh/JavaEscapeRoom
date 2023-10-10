@@ -17,6 +17,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ComputerListener;
 import nz.ac.auckland.se206.ExitRoomDoorListener;
+import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SafeListener;
 import nz.ac.auckland.se206.SceneManager;
@@ -63,9 +64,11 @@ public class Room2Controller extends GameController
   @FXML private Text titleComputer;
   @FXML private Rectangle boundingBox1;
   @FXML private Rectangle boundingBox5;
+  Passcode passcode = Passcode.getInstance();
 
   @Override
   public void initialize() {
+    password.setText(passcode.getKeyCode());
     super.initialize();
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBox1));
@@ -302,7 +305,7 @@ public class Room2Controller extends GameController
   }
 
   private void checkPassword() {
-    if (passwordText.getText().equals("161720")) {
+    if (passwordText.getText().equals(passcode.getFullNum())) {
       GameState.isCamerasDisabled = true;
       GameController.updateAllChecklists();
       System.out.println("correc");

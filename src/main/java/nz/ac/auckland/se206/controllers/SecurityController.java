@@ -18,6 +18,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.KeypadListener;
+import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SecurityRoomDoorListener;
@@ -115,6 +116,7 @@ public class SecurityController extends GameController
   @FXML private ImageView arrow3;
   @FXML private ImageView arrow4;
   @FXML private ImageView arrow5;
+  Passcode passcode = Passcode.getInstance();
 
   // @FXML private Text number0;
   @FXML
@@ -190,6 +192,7 @@ public class SecurityController extends GameController
 
   @Override
   public void initialize() {
+    stoneText.setText("Discovered "+passcode.getThirdNum()+" century");
     super.initialize();
     exitBlock = new SolidBox(boundingBoxThree);
     boundsObjects.add(new SolidBox(boundingBoxOne));
@@ -263,34 +266,38 @@ public class SecurityController extends GameController
   }
 
   private void checkPin() {
-    String pin = " 1 3 4 6 9 8";
+    // Get the keycode from the Passcode singleton and format it
+    String pin = Passcode.getInstance().getKeyCode();
+    pin = " " + pin.charAt(0) + " " + pin.charAt(1) + " " + pin.charAt(2) + " " + pin.charAt(3) + " " + pin.charAt(4);
+    
     System.out.println(numbers.getText());
+
     if (pin.equals(numbers.getText())) {
       GameState.isDoorOpen = true;
       GameState.isExitDoorUnlocked = true;
-
       GameController.updateAllChecklists();
       correctColor.toFront();
       correctTxt.toFront();
       numbers.setOpacity(0);
 
-      // Wait for 0.5 seconds then hide the keypad
-      PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
-      pause.setOnFinished(event -> hideKeyPad());
-      pause.play();
+        // Wait for 0.5 seconds then hide the keypad
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+        pause.setOnFinished(event -> hideKeyPad());
+        pause.play();
 
     } else {
-      incorrectColor.toFront();
-      incorrectTxt.toFront();
-      numbers.setOpacity(0);
-      numbers.setText("");
+        incorrectColor.toFront();
+        incorrectTxt.toFront();
+        numbers.setOpacity(0);
+        numbers.setText("");
 
-      // Wait for 0.5 seconds then reset the numbers
-      PauseTransition pause = new PauseTransition(Duration.seconds(1));
-      pause.setOnFinished(event -> resetNumbers());
-      pause.play();
+        // Wait for 0.5 seconds then reset the numbers
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        pause.setOnFinished(event -> resetNumbers());
+        pause.play();
     }
-  }
+}
+
 
   @FXML
   private void showWireLabel() {
