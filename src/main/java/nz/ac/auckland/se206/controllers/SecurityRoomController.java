@@ -32,7 +32,7 @@ import nz.ac.auckland.se206.listeners.SecurityRoomDoorListener;
 import nz.ac.auckland.se206.listeners.StoneCarvingListener;
 import nz.ac.auckland.se206.listeners.WiresListener;
 
-public class SecurityController extends GameController
+public class SecurityRoomController extends GameController
     implements KeypadListener, WiresListener, SecurityRoomDoorListener, StoneCarvingListener {
 
   @FXML private Label carvingLabel;

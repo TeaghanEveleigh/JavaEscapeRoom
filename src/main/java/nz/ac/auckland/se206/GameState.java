@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.ExitRoomController;
-import nz.ac.auckland.se206.controllers.SecurityController;
+import nz.ac.auckland.se206.controllers.SecurityRoomController;
 
 /** Represents the state of the game. */
 public class GameState {
@@ -74,8 +74,8 @@ public class GameState {
   }
 
   public static void disableCamera() {
-    SecurityController cameraRoomController =
-        (SecurityController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    SecurityRoomController cameraRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
     cameraRoomController.disableCamera();
     isCamerasDisabled = true;
   }
