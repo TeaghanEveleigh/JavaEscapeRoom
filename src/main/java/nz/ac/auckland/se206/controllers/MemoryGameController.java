@@ -181,6 +181,8 @@ public class MemoryGameController implements BaseController {
           });
 
       System.out.println("WON");
+      GameState.isKeycodeFound = true;
+      GameController.updateAllChecklists();
       enableHackerPanel();
       Task<Void> task =
           new Task<Void>() {

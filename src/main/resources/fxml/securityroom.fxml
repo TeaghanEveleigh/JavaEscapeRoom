@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,6 +18,54 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
+      <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="611.0" layoutY="330.0" opacity="0.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </Rectangle>
+      <Label fx:id="objectivesLabel" layoutX="615.0" layoutY="339.0" prefHeight="28.0" prefWidth="176.0" text="Objectives">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="disabledLasersLabel" layoutX="641.0" layoutY="378.0" prefHeight="26.0" prefWidth="150.0" text="Disabled lasers">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="stolenTreasureLabel" layoutX="640.0" layoutY="404.0" prefHeight="26.0" prefWidth="150.0" text="Stolen treasure">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="disabledCameraLabel" layoutX="640.0" layoutY="431.0" prefHeight="26.0" prefWidth="150.0" text="Disabled cameras">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="keycodeFoundLabel" layoutX="640.0" layoutY="457.0" prefHeight="26.0" prefWidth="150.0" text="Exit keycode found">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="exitUnlockedLabel" layoutX="640.0" layoutY="483.0" prefHeight="26.0" prefWidth="150.0" text="Exit unlocked">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Circle fx:id="exitUnlockedCircle" fill="WHITE" layoutX="626.0" layoutY="498.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="keycodeFoundCircle" fill="WHITE" layoutX="626.0" layoutY="471.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="disabledCameraCircle" fill="WHITE" layoutX="626.0" layoutY="445.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="stolenTreasureCircle" fill="WHITE" layoutX="626.0" layoutY="418.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="disabledLasersCircle" fill="WHITE" layoutX="626.0" layoutY="392.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="exitObjectiveImage" fitHeight="29.0" fitWidth="28.0" layoutX="777.0" layoutY="330.0" onMouseClicked="#onObjectiveExitClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
       <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="258.0" layoutY="384.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
       <ImageView fx:id="stoneCarving" fitHeight="330.0" fitWidth="481.0" layoutX="181.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -234,6 +283,7 @@
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="545.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
       <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="244.0" layoutX="580.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="129.0" />
       <Rectangle fx:id="dinosaurRoomBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" layoutX="3.0" layoutY="553.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="810.0" />
+      <Canvas fx:id="gameCanvas" height="585.0" layoutX="-7.0" layoutY="32.0" width="816.0" />
 
       <Label fx:id="carvingLabel" alignment="CENTER" layoutX="286.0" layoutY="119.0" onMouseClicked="#showStoneCarving" onMouseEntered="#showCarvingLabel" onMouseExited="#hideCarvingLabel" opacity="0.0" prefHeight="67.0" prefWidth="95.0" style="-fx-background-color: none; -fx-border-color: rgb(255,255,255); -fx-border-width: 2; -fx-border-radius: 10;" text="Carving" textFill="WHITE">
          <font>
@@ -241,21 +291,11 @@
          </font>
       </Label>
       <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="638.0" layoutY="596.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
-      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="12.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="12.0" onMouseClicked="#onHackerExitClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Button fx:id="hintButton" layoutX="727.0" layoutY="528.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
-         <font>
-            <Font name="BM HANNA Air OTF" size="25.0" />
-         </font>
-      </Button>
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="722.0" layoutY="478.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
-         <font>
-            <Font name="BM HANNA Air OTF" size="30.0" />
-         </font>
-      </Label>
       <Rectangle fx:id="stoneCarvingBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="292.0" layoutY="128.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
       <Rectangle fx:id="wiresBounds" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff72" height="75.0" layoutX="151.0" layoutY="183.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
       <Rectangle fx:id="boundingBox14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="773.0" layoutY="280.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
@@ -319,7 +359,21 @@
             <Image url="@../images/matrix-hacker-background.jpg" />
          </image>
       </ImageView>
-      <Canvas fx:id="gameCanvas" height="585.0" layoutX="-7.0" layoutY="32.0" width="816.0" />
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="10.0" layoutY="527.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="hintButton" layoutX="719.0" layoutY="527.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="objectivesButton" layoutX="640.0" layoutY="465.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="47.0" prefWidth="160.0" text="Objectives" textFill="WHITE">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
 
 
 

@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -11,11 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.KeyState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
@@ -32,6 +37,22 @@ public class GameController implements BaseController {
   @FXML protected TextArea hackerTextArea;
   @FXML protected Label mainTimerLabel;
 
+  // Checklist
+  @FXML protected Rectangle checklistRectangle;
+  @FXML protected Label objectivesLabel;
+  @FXML protected Label disabledLasersLabel;
+  @FXML protected Label stolenTreasureLabel;
+  @FXML protected Label disabledCameraLabel;
+  @FXML protected Label keycodeFoundLabel;
+  @FXML protected Label exitUnlockedLabel;
+  @FXML protected Circle disabledLasersCircle;
+  @FXML protected Circle stolenTreasureCircle;
+  @FXML protected Circle disabledCameraCircle;
+  @FXML protected Circle keycodeFoundCircle;
+  @FXML protected Circle exitUnlockedCircle;
+  @FXML protected ImageView exitObjectiveImage;
+  @FXML protected Button objectivesButton;
+
   protected Ai ai = new Ai();
   protected GraphicsContext graphicsContext;
   protected CanvasRenderer renderer;
@@ -40,6 +61,7 @@ public class GameController implements BaseController {
   protected boolean paused = true;
 
   public void initialize() {
+    disbleObjectives();
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel);
     gameCanvas.requestFocus();
@@ -86,8 +108,18 @@ public class GameController implements BaseController {
   }
 
   @FXML
-  public void onExitClicked() {
+  public void onHackerExitClicked() {
     disableHackerPanel();
+  }
+
+  @FXML
+  public void onObjectiveExitClicked() {
+    disbleObjectives();
+  }
+
+  @FXML
+  public void onObjectivePressed() {
+    enableObjectives();
   }
 
   @FXML
@@ -148,6 +180,7 @@ public class GameController implements BaseController {
     new Thread(task).start();
   }
 
+  // Disables the hacker panel
   public void disableHackerPanel() {
     hackerIcon.toBack();
     hackerRectangle.toBack();
@@ -157,16 +190,19 @@ public class GameController implements BaseController {
     gameCanvas.requestFocus();
   }
 
+  // Disables the hint and exit buttons
   public void disableHintAndExit() {
     hintButton.setDisable(true);
     exitHackerPanelImage.setDisable(true);
   }
 
+  // Enables the hint and exit buttons
   public void enableHintAndExit() {
     hintButton.setDisable(false);
     exitHackerPanelImage.setDisable(false);
   }
 
+  // Enables the hacker panel
   public void enableHackerPanel() {
     hackerRectangle.toFront();
     hackerIcon.toFront();
@@ -174,5 +210,92 @@ public class GameController implements BaseController {
     exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);
     gameCanvas.requestFocus();
+  }
+
+  // Disables the objectives panel
+  public void disbleObjectives() {
+    checklistRectangle.toBack();
+    objectivesLabel.toBack();
+    disabledLasersLabel.toBack();
+    stolenTreasureLabel.toBack();
+    disabledCameraLabel.toBack();
+    keycodeFoundLabel.toBack();
+    exitUnlockedLabel.toBack();
+    disabledLasersCircle.toBack();
+    stolenTreasureCircle.toBack();
+    disabledCameraCircle.toBack();
+    keycodeFoundCircle.toBack();
+    exitUnlockedCircle.toBack();
+    exitObjectiveImage.toBack();
+    objectivesButton.setVisible(true);
+    objectivesButton.setDisable(false);
+    gameCanvas.requestFocus();
+  }
+
+  // Enbles the objectives panel
+  public void enableObjectives() {
+    checklistRectangle.toFront();
+    objectivesLabel.toFront();
+    disabledLasersLabel.toFront();
+    stolenTreasureLabel.toFront();
+    disabledCameraLabel.toFront();
+    keycodeFoundLabel.toFront();
+    exitUnlockedLabel.toFront();
+    disabledLasersCircle.toFront();
+    stolenTreasureCircle.toFront();
+    disabledCameraCircle.toFront();
+    keycodeFoundCircle.toFront();
+    exitUnlockedCircle.toFront();
+    exitObjectiveImage.toFront();
+    objectivesButton.setVisible(false);
+    objectivesButton.setDisable(true);
+    gameCanvas.requestFocus();
+  }
+
+  // Updates all checklists
+  public static void updateAllChecklists() {
+    SecurityController securityController =
+        (SecurityController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    securityController.updateChecklist();
+    LaserRoomController laserRoomController =
+        (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
+    laserRoomController.updateChecklist();
+    Room2Controller dinosaurRoomController =
+        (Room2Controller) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    dinosaurRoomController.updateChecklist();
+  }
+
+  // Updates the checklist based on what the player has completed
+  public void updateChecklist() {
+    if (GameState.isLasersDisabled) { // lasers disabled
+      Platform.runLater(
+          () -> {
+            disabledLasersCircle.setFill(Color.BLACK);
+          });
+    }
+    if (GameState.isCamerasDisabled) { // cameras disabled
+      Platform.runLater(
+          () -> {
+            disabledCameraCircle.setFill(Color.BLACK);
+          });
+    }
+    if (GameState.isTreasureStolen) { // treasure stolen
+      Platform.runLater(
+          () -> {
+            stolenTreasureCircle.setFill(Color.BLACK);
+          });
+    }
+    if (GameState.isKeycodeFound) { // keycode found
+      Platform.runLater(
+          () -> {
+            keycodeFoundCircle.setFill(Color.BLACK);
+          });
+    }
+    if (GameState.isExitDoorUnlocked) { // exit door unlocked
+      Platform.runLater(
+          () -> {
+            exitUnlockedCircle.setFill(Color.BLACK);
+          });
+    }
   }
 }

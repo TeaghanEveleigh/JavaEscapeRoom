@@ -90,16 +90,12 @@ public class SecurityController extends GameController
   @FXML private Rectangle boundingBox8;
   @FXML private Rectangle boundingBox9;
   @FXML private Rectangle boundingBox10;
-  ;
   @FXML private Rectangle boundingBox11;
   @FXML private Rectangle boundingBox12;
   @FXML private Rectangle boundingBox13;
-  ;
   @FXML private Rectangle boundingBox14;
   @FXML private Rectangle boundingBox15;
-  ;
   @FXML private Rectangle boundingBox16;
-
   @FXML private Line securityLine1;
   @FXML private Line securityLine2;
   @FXML private Line securityLine3;
@@ -192,7 +188,6 @@ public class SecurityController extends GameController
     // camera area
   }
 
-
   @Override
   public void initialize() {
     super.initialize();
@@ -224,13 +219,11 @@ public class SecurityController extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(300);
-    applyFloatingAnimation( arrow1);
-    applyFloatingAnimation( arrow2);
-    applyFloatingAnimation( arrow3);
-    applyFloatingAnimation( arrow4);
-    applyFloatingAnimation( arrow5);
-    
-  
+    applyFloatingAnimation(arrow1);
+    applyFloatingAnimation(arrow2);
+    applyFloatingAnimation(arrow3);
+    applyFloatingAnimation(arrow4);
+    applyFloatingAnimation(arrow5);
   }
 
   @FXML
@@ -274,6 +267,9 @@ public class SecurityController extends GameController
     System.out.println(numbers.getText());
     if (pin.equals(numbers.getText())) {
       GameState.isDoorOpen = true;
+      GameState.isExitDoorUnlocked = true;
+
+      GameController.updateAllChecklists();
       correctColor.toFront();
       correctTxt.toFront();
       numbers.setOpacity(0);
@@ -503,11 +499,13 @@ public class SecurityController extends GameController
     hideCarvingLabel();
     hideStoneCarving();
   }
+
   private void applyFloatingAnimation(ImageView imageView) {
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(1), imageView);
     translateTransition.setByY(5);
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
-}
+  }
 }
