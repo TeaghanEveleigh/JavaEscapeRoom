@@ -181,6 +181,8 @@ public class MemoryGameController implements BaseController {
           });
 
       System.out.println("WON");
+      GameState.isKeycodeFound = true;
+      GameController.updateAllChecklists();
       enableHackerPanel();
       Task<Void> task =
           new Task<Void>() {
@@ -225,7 +227,9 @@ public class MemoryGameController implements BaseController {
 
   public void start() {
     resetAllLights();
+    sequence.clear();
     chooseSequence(6);
+    currentSequenceLength = 1;
     showSequence(currentSequenceLength);
   }
 
@@ -280,6 +284,8 @@ public class MemoryGameController implements BaseController {
    */
   @FXML
   private void onBackPressed() throws IOException {
+    this.sequence.clear();
+    this.lightsPressed.clear();
     App.switchScenes(AppUi.SECURITY_ROOM);
   }
 
