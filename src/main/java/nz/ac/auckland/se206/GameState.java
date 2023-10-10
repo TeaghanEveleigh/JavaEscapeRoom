@@ -3,6 +3,8 @@ package nz.ac.auckland.se206;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.SecurityController;
 
 /** Represents the state of the game. */
 public class GameState {
@@ -15,8 +17,6 @@ public class GameState {
 
   /** Randomly generated order of endpoints for the wires game */
   public static String wiresSequence = generateWiresSequence();
-
-  
 
   /** Indicates whether the lasers have been disabled */
   public static boolean isLasersDisabled = false;
@@ -44,7 +44,8 @@ public class GameState {
     isMedium = false;
     isHard = false;
   }
-/** Generates a random ordering of the numbers one through four inclusive */
+
+  /** Generates a random ordering of the numbers one through four inclusive */
   public static String generateWiresSequence() {
     String[] array = {"1", "2", "3", "4"};
     List<String> list = Arrays.asList(array);
@@ -56,6 +57,7 @@ public class GameState {
     System.out.println(sb.toString());
     return sb.toString();
   }
+
   // Sets the difficulty to medium
   public static void setMedium() {
     isEasy = false;
@@ -68,5 +70,12 @@ public class GameState {
     isEasy = false;
     isMedium = false;
     isHard = true;
+  }
+
+  public static void disableCamera() {
+    SecurityController cameraRoomController =
+        (SecurityController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    cameraRoomController.disableCamera();
+    isCamerasDisabled = true;
   }
 }

@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,19 +15,20 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ComputerListener;
-import nz.ac.auckland.se206.ExitRoomDoorListener;
-import nz.ac.auckland.se206.SafeListener;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Computer;
 import nz.ac.auckland.se206.game.ExitRoomDoor;
 import nz.ac.auckland.se206.game.Safe;
 import nz.ac.auckland.se206.game.SolidBox;
+import nz.ac.auckland.se206.listeners.ComputerListener;
+import nz.ac.auckland.se206.listeners.ExitRoomDoorListener;
+import nz.ac.auckland.se206.listeners.SafeListener;
 
 public class Room2Controller extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
-        @FXML private Text helpHint;
+  @FXML private Text helpHint;
   @FXML private Canvas gameCanvas;
   @FXML private Text interractHint;
   @FXML private Text passwordText;
@@ -77,9 +77,9 @@ public class Room2Controller extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(450);
-    applyFloatingAnimation( arrow1);
-    applyFloatingAnimation( arrow2);
-    applyFloatingAnimation( arrow3);
+    applyFloatingAnimation(arrow1);
+    applyFloatingAnimation(arrow2);
+    applyFloatingAnimation(arrow3);
   }
 
   @FXML
@@ -305,22 +305,24 @@ public class Room2Controller extends GameController
     if (passwordText.getText().equals("161720")) {
       System.out.println("correc");
       passwordText.setText("CORRECT");
-      SecurityController securityController =
-          (SecurityController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-      securityController.disableCamera();
+      GameState.disableCamera();
     } else {
       passwordText.setText("INCORRECT");
       incorrectPassword = true;
     }
   }
-  @FXML private void showHelpHint(){
+
+  @FXML
+  private void showHelpHint() {
     helpHint.toFront();
   }
+
   private void applyFloatingAnimation(ImageView imageView) {
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), imageView);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(1), imageView);
     translateTransition.setByY(5);
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
-}
+  }
 }
