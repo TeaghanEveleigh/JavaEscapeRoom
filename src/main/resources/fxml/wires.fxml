@@ -11,9 +11,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WiresController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WiresController">
    <children>
-      <Label fx:id="winLabel" alignment="CENTER" layoutX="8.0" layoutY="255.0" prefHeight="62.0" prefWidth="800.0" text="Wires connected! The lasers have been disabled!">
+      <Label fx:id="winLabel" alignment="CENTER" layoutX="8.0" layoutY="255.0" prefHeight="62.0" prefWidth="800.0" text="Wires connected! The lasers have been disabled!" textFill="WHITE">
          <font>
             <Font name="Baskerville Old Face" size="30.0" />
          </font>
@@ -32,9 +32,9 @@
             <ColorAdjust brightness="-0.41" />
          </effect>
       </ImageView>
-      <Label alignment="CENTER" layoutX="-4.0" layoutY="26.0" prefHeight="50.0" prefWidth="815.0" text="Drag the wires to the correct numbers!">
+      <Label alignment="CENTER" layoutX="-4.0" layoutY="26.0" prefHeight="50.0" prefWidth="815.0" text="Drag the wires to the correct numbers!" textFill="WHITE">
          <font>
-            <Font name="Baskerville Old Face" size="30.0" />
+            <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
          <effect>
             <ColorAdjust brightness="-1.0" />
@@ -45,9 +45,9 @@
             <Font name="Baskerville Old Face" size="16.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="52.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
-                  <Image url="@../images/Arrow.png" />
+                  <Image url="@../images/r46n1vrg788h4v7e4rf10cq5l1-261964a7d9302ef0e1e78e2d2d62e055.png" />
                </image>
             </ImageView>
          </graphic>
@@ -85,22 +85,21 @@
       <Circle fx:id="redCircle" fill="#7c2727" layoutX="139.0" layoutY="254.0" radius="30.0" stroke="#7c2727" strokeType="INSIDE" />
       <Circle fx:id="yellowCircle" fill="#b6b915" layoutX="139.0" layoutY="356.0" radius="30.0" stroke="#b6b915" strokeType="INSIDE" />
       <Circle fx:id="blueCircle" fill="#125a9e" layoutX="139.0" layoutY="456.0" radius="30.0" stroke="#125a9e" strokeType="INSIDE" />
-      <Button fx:id="hintButton" layoutX="717.0" layoutY="22.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
+      <Button fx:id="hintButton" layoutX="717.0" layoutY="22.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
          <font>
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
-      <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="500.0" prefHeight="80.0" prefWidth="675.0" wrapText="true">
+      <TextArea fx:id="hackerTextArea" layoutX="32.0" layoutY="496.0" prefHeight="88.0" prefWidth="648.0" wrapText="true">
          <font>
             <Font size="15.0" />
          </font></TextArea>
-      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="680.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
-      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="714.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hackerIcon" fitHeight="88.0" fitWidth="138.0" layoutX="680.0" layoutY="496.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/HackerIcon.png" />
+            <Image url="@../images/matrix-hacker-background.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="471.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="496.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/cross.png" />
          </image>

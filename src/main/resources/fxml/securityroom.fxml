@@ -232,7 +232,7 @@
       </Text>
       <Rectangle fx:id="boundingBoxThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="398.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
       <Rectangle fx:id="boundingBoxTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="146.0" layoutX="545.0" layoutY="10.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
-      <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="244.0" layoutX="580.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="129.0" />
+      <Rectangle fx:id="securityDoorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="244.0" layoutX="499.0" layoutY="124.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="210.0" />
       <Rectangle fx:id="dinosaurRoomBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" layoutX="3.0" layoutY="553.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="810.0" />
 
       <Label fx:id="carvingLabel" alignment="CENTER" layoutX="286.0" layoutY="119.0" onMouseClicked="#showStoneCarving" onMouseEntered="#showCarvingLabel" onMouseExited="#hideCarvingLabel" opacity="0.0" prefHeight="67.0" prefWidth="95.0" style="-fx-background-color: none; -fx-border-color: rgb(255,255,255); -fx-border-width: 2; -fx-border-radius: 10;" text="Carving" textFill="WHITE">
@@ -246,11 +246,6 @@
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Button fx:id="hintButton" layoutX="727.0" layoutY="528.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
-         <font>
-            <Font name="BM HANNA Air OTF" size="25.0" />
-         </font>
-      </Button>
       <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="722.0" layoutY="478.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
@@ -320,6 +315,11 @@
          </image>
       </ImageView>
       <Canvas fx:id="gameCanvas" height="585.0" layoutX="-7.0" layoutY="32.0" width="816.0" />
+      <Button fx:id="hintButton" layoutX="727.0" layoutY="528.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="25.0" />
+         </font>
+      </Button>
 
 
 

@@ -11,6 +11,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.LeftDinosaurListener;
 import nz.ac.auckland.se206.ObjectListener;
+import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.RightDinosaurListener;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Door;
@@ -53,6 +54,10 @@ public class LaserRoomController extends GameController
 
   @Override
   public void initialize() {
+    Passcode passcode = Passcode.getInstance();
+    trexText.setText("T-Rex Discovered "+passcode.getFirstNum()+" century");
+    paroText.setText("Parasaurolophus Discovered "+passcode.getSecondNum()+" century");
+   
     super.initialize();
     laserBox = new SolidBox(boundingBoxOne);
     boundsObjects.add(laserBox);
