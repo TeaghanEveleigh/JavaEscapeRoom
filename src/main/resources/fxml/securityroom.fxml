@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
@@ -22,10 +23,76 @@
       <Rectangle fx:id="incorrectColor" arcHeight="5.0" arcWidth="5.0" fill="#ff0000af" height="33.0" layoutX="349.0" layoutY="208.0" opacity="0.58" stroke="BLACK" strokeType="INSIDE" width="140.0" />
       <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="399.0" layoutY="375.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
       <Text fx:id="zeroKey" fill="WHITE" layoutX="402.0" layoutY="399.0" onMouseClicked="#handleMouseClicked" strokeType="OUTSIDE" strokeWidth="0.0" text=" 0" wrappingWidth="28.741643820546756" AnchorPane.leftAnchor="402.0">
+      <Rectangle fx:id="chatPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="70.0" layoutX="185.0" layoutY="510.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="480.0" />
+      <TextField fx:id="chatTextField" layoutX="191.0" layoutY="520.0" opacity="0.8" prefHeight="52.0" prefWidth="341.0" promptText="What would you like to say to me?" />
+      <Button fx:id="submitButton" layoutX="539.0" layoutY="521.0" mnemonicParsing="false" onAction="#onSubmitPressed" prefHeight="50.0" prefWidth="109.0" text="Submit" textFill="WHITE">
          <font>
-            <Font size="25.0" />
+            <Font name="Baskerville Old Face" size="25.0" />
          </font>
-      </Text>
+      </Button>
+      <ImageView fx:id="exitChatImage" fitHeight="18.0" fitWidth="18.0" layoutX="646.0" layoutY="511.0" onMouseClicked="#onChatExitClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="13.0" layoutY="316.0" opacity="0.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </Rectangle>
+      <Label fx:id="objectivesLabel" layoutX="17.0" layoutY="325.0" prefHeight="28.0" prefWidth="176.0" text="Objectives">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="disabledLasersLabel" layoutX="43.0" layoutY="364.0" prefHeight="26.0" prefWidth="150.0" text="Disabled lasers">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="stolenTreasureLabel" layoutX="42.0" layoutY="390.0" prefHeight="26.0" prefWidth="150.0" text="Stolen treasure">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="disabledCameraLabel" layoutX="42.0" layoutY="417.0" prefHeight="26.0" prefWidth="150.0" text="Disabled cameras">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="keycodeFoundLabel" layoutX="42.0" layoutY="443.0" prefHeight="26.0" prefWidth="150.0" text="Exit keycode found">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="exitUnlockedLabel" layoutX="42.0" layoutY="469.0" prefHeight="26.0" prefWidth="150.0" text="Exit unlocked">
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+      </Label>
+      <Circle fx:id="exitUnlockedCircle" fill="WHITE" layoutX="28.0" layoutY="484.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="keycodeFoundCircle" fill="WHITE" layoutX="28.0" layoutY="457.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="disabledCameraCircle" fill="WHITE" layoutX="28.0" layoutY="431.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="stolenTreasureCircle" fill="WHITE" layoutX="28.0" layoutY="404.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="disabledLasersCircle" fill="WHITE" layoutX="28.0" layoutY="378.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="exitObjectiveImage" fitHeight="29.0" fitWidth="28.0" layoutX="179.0" layoutY="316.0" onMouseClicked="#onObjectiveExitClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="stoneCarving" fitHeight="330.0" fitWidth="481.0" layoutX="181.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AICutout_0nse_Fotor.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="stoneText" fill="#783680" layoutX="330.0" layoutY="371.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="17th century" wrappingWidth="199.0">
+         <font>
+            <Font name="BM HANNA Air OTF" size="30.0" />
+         </font></Text>
+      <Rectangle fx:id="blurScreen" arcHeight="5.0" arcWidth="5.0" fill="#3f4143" height="606.0" layoutX="-6.0" layoutY="-13.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="830.0" />
       <Rectangle fx:id="zero1" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="397.0" layoutY="376.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="35.0" />
       <Rectangle fx:id="enter" arcHeight="5.0" arcWidth="5.0" fill="#0c9e11" height="34.0" layoutX="443.0" layoutY="376.0" onMouseClicked="#handleClearEnter" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" AnchorPane.bottomAnchor="175.0" AnchorPane.topAnchor="376.0" />
       <Rectangle fx:id="clear" arcHeight="5.0" arcWidth="5.0" fill="#9c120c" height="34.0" layoutX="356.0" layoutY="376.0" onMouseClicked="#handleClearEnter" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
@@ -251,7 +318,6 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="217.0" layoutX="653.0" layoutY="-9.0" rotate="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="253.0" AnchorPane.topAnchor="-9.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="219.0" layoutX="685.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="253.0" />
       <Line fx:id="securityLine2" endX="-18.15106201171875" endY="21.54718017578125" layoutX="704.0" layoutY="309.0" startX="-18.15106201171875" startY="-138.29287719726562" stroke="TRANSPARENT" strokeWidth="3.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="247.5" layoutX="737.0" layoutY="191.0" rotate="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="255.0" />
       <Line endX="35.3494873046875" endY="110.18359375" layoutX="796.0" layoutY="333.0" startX="-109.50457763671875" startY="-0.402191162109375" stroke="#252424" strokeWidth="2.9" />
       <Text fx:id="securityText" fill="WHITE" layoutX="559.0" layoutY="119.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security room" wrappingWidth="253.0">
          <font>
@@ -291,11 +357,6 @@
          </font>
       </Label>
       <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="638.0" layoutY="596.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
-      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="12.0" onMouseClicked="#onHackerExitClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/cross.png" />
-         </image>
-      </ImageView>
       <Rectangle fx:id="stoneCarvingBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="292.0" layoutY="128.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
       <Rectangle fx:id="wiresBounds" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff72" height="75.0" layoutX="151.0" layoutY="183.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
       <Rectangle fx:id="boundingBox14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="773.0" layoutY="280.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
@@ -349,27 +410,48 @@
             <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="hackerTextArea" layoutX="33.0" layoutY="13.0" opacity="0.8" prefHeight="112.0" prefWidth="618.0" wrapText="true">
-         <font>
-            <Font name="BM HANNA Air OTF" size="15.0" />
-         </font>
-      </TextArea>
-      <ImageView fx:id="hackerIcon" fitHeight="115.0" fitWidth="148.0" layoutX="652.0" layoutY="12.0" opacity="0.8" pickOnBounds="true">
-         <image>
-            <Image url="@../images/matrix-hacker-background.jpg" />
-         </image>
-      </ImageView>
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="10.0" layoutY="527.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
-         <font>
-            <Font name="BM HANNA Air OTF" size="30.0" />
-         </font>
-      </Label>
-      <Button fx:id="hintButton" layoutX="719.0" layoutY="527.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
+      <Button fx:id="talkToHackerButton" layoutX="668.0" layoutY="526.0" mnemonicParsing="false" onAction="#onTalkToHackerPressed" prefHeight="50.0" prefWidth="132.0" text="Talk to Hacker" textFill="WHITE">
          <font>
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="objectivesButton" layoutX="640.0" layoutY="465.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="47.0" prefWidth="160.0" text="Objectives" textFill="WHITE">
+      <Rectangle fx:id="hackerPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="181.0" layoutX="4.0" layoutY="2.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="810.0" />
+      <TextArea fx:id="hackerTextArea" layoutX="42.0" layoutY="9.0" opacity="0.8" prefHeight="109.0" prefWidth="607.0" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <ImageView fx:id="hackerIcon" fitHeight="109.0" fitWidth="163.0" layoutX="645.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/matrix-hacker-background.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="11.0" layoutY="8.0" onMouseClicked="#onHackerExitClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="hintButton" layoutX="640.0" layoutY="126.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="30.0" prefWidth="81.0" text="Hint" textFill="WHITE">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="chatButton" layoutX="728.0" layoutY="126.0" mnemonicParsing="false" onAction="#onChatPressed" prefHeight="30.0" prefWidth="81.0" text="Chat" textFill="WHITE">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Label fx:id="hintsLeftLabel" alignment="CENTER" layoutX="46.0" layoutY="128.0" prefHeight="45.0" prefWidth="190.0" text="Hints Left: " textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="47.0" layoutY="529.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="objectivesButton" layoutX="13.0" layoutY="453.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="47.0" prefWidth="160.0" text="Objectives" textFill="WHITE">
          <font>
             <Font name="Baskerville Old Face" size="25.0" />
          </font>

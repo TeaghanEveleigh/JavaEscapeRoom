@@ -193,7 +193,7 @@ public class SecurityController extends GameController
 
   @Override
   public void initialize() {
-    stoneText.setText("Discovered "+passcode.getThirdNum()+" century");
+    stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     super.initialize();
     exitBlock = new SolidBox(boundingBoxThree);
     boundsObjects.add(new SolidBox(boundingBoxOne));
@@ -269,8 +269,18 @@ public class SecurityController extends GameController
   private void checkPin() {
     // Get the keycode from the Passcode singleton and format it
     String pin = Passcode.getInstance().getKeyCode();
-    pin = " " + pin.charAt(0) + " " + pin.charAt(1) + " " + pin.charAt(2) + " " + pin.charAt(3) + " " + pin.charAt(4);
-    
+    pin =
+        " "
+            + pin.charAt(0)
+            + " "
+            + pin.charAt(1)
+            + " "
+            + pin.charAt(2)
+            + " "
+            + pin.charAt(3)
+            + " "
+            + pin.charAt(4);
+
     System.out.println(numbers.getText());
 
     if (pin.equals(numbers.getText())) {
@@ -281,24 +291,23 @@ public class SecurityController extends GameController
       correctTxt.toFront();
       numbers.setOpacity(0);
 
-        // Wait for 0.5 seconds then hide the keypad
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
-        pause.setOnFinished(event -> hideKeyPad());
-        pause.play();
+      // Wait for 0.5 seconds then hide the keypad
+      PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+      pause.setOnFinished(event -> hideKeyPad());
+      pause.play();
 
     } else {
-        incorrectColor.toFront();
-        incorrectTxt.toFront();
-        numbers.setOpacity(0);
-        numbers.setText("");
+      incorrectColor.toFront();
+      incorrectTxt.toFront();
+      numbers.setOpacity(0);
+      numbers.setText("");
 
-        // Wait for 0.5 seconds then reset the numbers
-        PauseTransition pause = new PauseTransition(Duration.seconds(1));
-        pause.setOnFinished(event -> resetNumbers());
-        pause.play();
+      // Wait for 0.5 seconds then reset the numbers
+      PauseTransition pause = new PauseTransition(Duration.seconds(1));
+      pause.setOnFinished(event -> resetNumbers());
+      pause.play();
     }
-}
-
+  }
 
   @FXML
   private void showWireLabel() {
@@ -402,10 +411,10 @@ public class SecurityController extends GameController
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-              disableHintAndExit();
+              disableHintChatAndExit();
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getMustStealItem()), hackerTextArea);
-              enableHintAndExit();
+              enableHintChatAndExit();
               return null;
             }
           };

@@ -30,6 +30,7 @@ public class Ai {
    */
   public ChatMessage runGpt(ChatMessage msg, TextArea textArea) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
+    textArea.clear();
     String hackingSound =
         getClass().getResource("/sounds/computer-processing-sound-effect.mp3").toString();
     Media media = new Media(hackingSound);
