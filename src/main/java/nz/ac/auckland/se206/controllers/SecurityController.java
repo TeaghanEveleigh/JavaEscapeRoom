@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -228,6 +229,7 @@ public class SecurityController extends GameController
     applyFloatingAnimation(arrow3);
     applyFloatingAnimation(arrow4);
     applyFloatingAnimation(arrow5);
+    
   }
 
   @FXML

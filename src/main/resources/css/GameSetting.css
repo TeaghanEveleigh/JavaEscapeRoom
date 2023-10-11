@@ -1,4 +1,12 @@
 
+@font-face {
+    font-family: 'BM-HANNA';
+    src: url('../fonts/BM-HANNA.ttf');
+}
+.root {
+    -fx-font-family: 'BM-HANNA';
+}
+
 Button.backButton{
     -fx-border-color: rgb(191, 125, 74);
     -fx-background-color: rgb(255, 255, 255);

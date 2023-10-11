@@ -73,6 +73,7 @@ public class MemoryGameController implements BaseController {
   public void initialize() {
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel);
+    
     this.lights = new ArrayList<ImageView>();
     this.sequence = new ArrayList<ImageView>();
     this.lightsPressed = new ArrayList<ImageView>();
