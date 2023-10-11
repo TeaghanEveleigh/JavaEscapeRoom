@@ -55,9 +55,9 @@ public class LaserRoomController extends GameController
   @Override
   public void initialize() {
     Passcode passcode = Passcode.getInstance();
-    trexText.setText("T-Rex Discovered "+passcode.getFirstNum()+" century");
-    paroText.setText("Parasaurolophus Discovered "+passcode.getSecondNum()+" century");
-   
+    trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
+    paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
+
     super.initialize();
     laserBox = new SolidBox(boundingBoxOne);
     boundsObjects.add(laserBox);
@@ -77,10 +77,10 @@ public class LaserRoomController extends GameController
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintAndExit();
+            disableHintChatAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
-            enableHintAndExit();
+            enableHintChatAndExit();
             exitHackerPanelImage.setDisable(false);
             return null;
           }
@@ -124,10 +124,10 @@ public class LaserRoomController extends GameController
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintAndExit();
+            disableHintChatAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getObjectStolen()), hackerTextArea);
-            enableHintAndExit();
+            enableHintChatAndExit();
             return null;
           }
         };
