@@ -333,4 +333,14 @@ public class GptPromptEngineering {
         + " to steal an object that is guarded by lasers. You have been locked out of the"
         + " museum database and can't give your partner any hints. Tell them this";
   }
+
+  public static String getChatResponse(String message) {
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. Your partner has just said: "
+        + message
+        + "Respond to them with either an answer to their uestion or a response to their statement."
+        + " However, if your partner is asking for any kind of hint about how to escape or what"
+        + " they need to do, tell them that they need to ask for a hint directly for security"
+        + " reasons. Keep your message under 50 words.";
+  }
 }
