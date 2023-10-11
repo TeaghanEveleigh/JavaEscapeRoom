@@ -37,7 +37,7 @@ public class WiresController implements Initializable, BaseController {
   @FXML private Button hintButton;
 
   // Hacker panel
-  @FXML private Rectangle hackerRectangle;
+
   @FXML private TextArea hackerTextArea;
   @FXML private ImageView hackerIcon;
   @FXML private ImageView exitHackerPanelImage;
@@ -377,7 +377,7 @@ public class WiresController implements Initializable, BaseController {
 
   public void disableHackerPanel() {
     hackerIcon.toBack();
-    hackerRectangle.toBack();
+  
     hackerTextArea.toBack();
     exitHackerPanelImage.toBack();
     exitHackerPanelImage.setDisable(true);
@@ -396,7 +396,7 @@ public class WiresController implements Initializable, BaseController {
   }
 
   public void enableHackerPanel() {
-    hackerRectangle.toFront();
+
     hackerIcon.toFront();
     hackerTextArea.toFront();
     exitHackerPanelImage.toFront();

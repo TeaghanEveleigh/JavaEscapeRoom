@@ -3,9 +3,10 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
+import javafx.fxml.FXMLLoader;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -332,6 +333,7 @@ public class SecurityController extends GameController
 
   @FXML
   private void showKeyPad() {
+    blurScreen.toFront();
     keypadRectangle.toFront();
 
     keypad.toFront();
@@ -365,6 +367,7 @@ public class SecurityController extends GameController
 
   @FXML
   private void hideKeyPad() {
+    blurScreen.toBack();
     keypadRectangle.toBack();
     numberRectangle.toBack();
     number1.toBack();
@@ -417,6 +420,15 @@ public class SecurityController extends GameController
           };
       new Thread(task).start();
     } else {
+      //hjgjhgkjgjgjgjgjhgjgjgkjgjkgjgjg
+      FXMLLoader gameWonLoader = App.getFxmlLoader("gamewon");
+    try {
+      SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
       App.switchScenes(AppUi.GAME_WON);
     }
   }

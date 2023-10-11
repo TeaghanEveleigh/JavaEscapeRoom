@@ -86,6 +86,7 @@ public class LaserRoomController extends GameController
           }
         };
     new Thread(task).start();
+    
   }
 
   @FXML
