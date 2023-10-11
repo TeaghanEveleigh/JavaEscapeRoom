@@ -411,11 +411,11 @@ public class WiresController implements Initializable, BaseController {
     winLabel.setVisible(true);
     backButton.toFront();
     enableHackerPanel();
-    GameState.isLasersDisabled = true;
-    GameController.updateAllChecklists();
     LaserRoomController laserRoomController =
         (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
     laserRoomController.disableLasers();
+    GameState.isLasersDisabled = true;
+    GameController.updateAllChecklists();
 
     Task<Void> task =
         new Task<Void>() {

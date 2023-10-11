@@ -28,6 +28,7 @@ import nz.ac.auckland.se206.game.Player;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class GameController implements BaseController {
   @FXML protected Canvas gameCanvas;
@@ -42,6 +43,8 @@ public class GameController implements BaseController {
   @FXML protected Label mainTimerLabel;
   @FXML protected TextField chatTextField;
   @FXML protected ImageView exitChatImage;
+  @FXML protected Button submitButton;
+  @FXML protected Rectangle chatPanelBackground;
   @FXML protected Button objectivesButton;
 
   // Checklist
@@ -120,26 +123,34 @@ public class GameController implements BaseController {
 
   @FXML
   public void onChatPressed() {
-    chatTextField.toFront();
-    exitChatImage.toFront();
-    exitChatImage.setDisable(false);
-    gameCanvas.requestFocus();
+    enableChat();
   }
 
   @FXML
   public void onChatExitClicked() {
-    chatTextField.toBack();
-    exitChatImage.toBack();
-    exitChatImage.setDisable(true);
-    gameCanvas.requestFocus();
+    disableChat();
+  }
+
+  @FXML
+  public void onSubmitPressed() {
+    String message = chatTextField.getText();
+    chatTextField.clear();
+    if (message.length() > 0) {
+      disableHintChatAndExit();
+      try {
+        ai.runGpt(
+            new ChatMessage("user", GptPromptEngineering.getChatResponse(message)), hackerTextArea);
+      } catch (ApiProxyException e) {
+        e.printStackTrace();
+      }
+      enableHintChatAndExit();
+    }
   }
 
   @FXML
   public void onHackerExitClicked() {
     disableHackerPanel();
-    exitChatImage.toBack();
-    exitChatImage.setDisable(true);
-    chatTextField.toBack();
+    disableChat();
   }
 
   @FXML
@@ -288,6 +299,28 @@ public class GameController implements BaseController {
     exitObjectiveImage.toFront();
     objectivesButton.setVisible(false);
     objectivesButton.setDisable(true);
+    gameCanvas.requestFocus();
+  }
+
+  // Enables the chat panel
+  public void enableChat() {
+    chatPanelBackground.toFront();
+    submitButton.toFront();
+    submitButton.setDisable(false);
+    chatTextField.toFront();
+    exitChatImage.toFront();
+    exitChatImage.setDisable(false);
+    gameCanvas.requestFocus();
+  }
+
+  // Disables the chat panel
+  public void disableChat() {
+    chatPanelBackground.toBack();
+    submitButton.toBack();
+    submitButton.setDisable(true);
+    chatTextField.toBack();
+    exitChatImage.toBack();
+    exitChatImage.setDisable(true);
     gameCanvas.requestFocus();
   }
 
