@@ -13,7 +13,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class Ai {
-
+  
   private static TextToSpeech textToSpeech = new TextToSpeech();
 
   private static ChatCompletionRequest chatCompletionRequest =
@@ -70,7 +70,7 @@ public class Ai {
                       });
                 }
                 try {
-                  Thread.sleep(50);
+                  Thread.sleep(20);
                 } catch (InterruptedException e) {
                   // handle interruption if needed
                 }

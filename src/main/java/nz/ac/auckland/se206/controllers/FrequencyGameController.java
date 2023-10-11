@@ -150,7 +150,7 @@ public class FrequencyGameController implements BaseController {
   @FXML
   private void onBackPressed() {
     // Handle back button press here
-    System.out.println("alksdjfalsdjf");
+  
     App.goToPreviousScene();
   }
 

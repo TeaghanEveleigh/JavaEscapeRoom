@@ -86,9 +86,7 @@ public class App extends Application {
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
     SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
 
-    FXMLLoader gameWonLoader = getFxmlLoader("gamewon");
-    SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
-    SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
+
 
     FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
     SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
@@ -112,10 +110,6 @@ public class App extends Application {
     FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
     SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
-
-    FXMLLoader gameWonLoader = getFxmlLoader("gamewon");
-    SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
-    SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
 
     FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
     SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());

@@ -183,7 +183,6 @@ public class GameController implements BaseController {
   // Disables the hacker panel
   public void disableHackerPanel() {
     hackerIcon.toBack();
-    hackerRectangle.toBack();
     hackerTextArea.toBack();
     exitHackerPanelImage.toBack();
     exitHackerPanelImage.setDisable(true);
@@ -204,7 +203,6 @@ public class GameController implements BaseController {
 
   // Enables the hacker panel
   public void enableHackerPanel() {
-    hackerRectangle.toFront();
     hackerIcon.toFront();
     hackerTextArea.toFront();
     exitHackerPanelImage.toFront();

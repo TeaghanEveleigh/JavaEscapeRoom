@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
@@ -20,6 +21,8 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Timers;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class MainMenuController implements BaseController {
   @FXML private Button startGameButton;
@@ -28,23 +31,46 @@ public class MainMenuController implements BaseController {
   @FXML private Text loadingText;
   @FXML private ProgressBar loadingBar;
   @FXML private ImageView loadingScreen;
-  @FXML
-    public void initialize() {
-        // Add a listener to the sceneProperty of the loading bar
-        loadingBar.sceneProperty().addListener(new ChangeListener<Scene>() {
-            @Override
-            public void changed(ObservableValue<? extends Scene> observableValue, Scene oldScene, Scene newScene) {
-                // Check if the loading bar is added to a scene
-                if (newScene != null) {
-                    // Reset the progress and send elements to back
-                    loadingBar.setProgress(0);
-                    loadingScreen.toBack();
-                    loadingBar.toBack();
-                    loadingText.toBack();
-                }
+  String policeSound =
+      getClass().getResource("/sounds/intense.mp3").toString();
+  Media media = new Media(policeSound);
+
+  MediaPlayer startSound = new MediaPlayer(media);
+  public void initialize() {
+    startSound.play();
+
+    loadingBar.sceneProperty().addListener(new ChangeListener<Scene>() {
+        @Override
+        public void changed(ObservableValue<? extends Scene> observable, Scene oldScene, Scene newScene) {
+            if (newScene != null) {
+                newScene.windowProperty().addListener(new ChangeListener<Window>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Window> observable, Window oldWindow, Window newWindow) {
+                        if (newWindow != null) {
+                            newWindow.showingProperty().addListener(new ChangeListener<Boolean>() {
+                                @Override
+                                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                                    if (newValue) {
+                                        startSound.stop();
+                                        startSound.seek(Duration.ZERO);
+                                        startSound.play();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+                loadingBar.setProgress(0);
+                loadingScreen.toBack();
+                loadingBar.toBack();
+                loadingText.toBack();
             }
-        });
-    }
+        }
+    });
+}
+
+
   @FXML
   private void onSettingsPressed(ActionEvent event) throws IOException {
     App.setRoot(AppUi.GAME_SETTINGS);
@@ -120,8 +146,16 @@ private void loadRoom3() throws IOException {
   pause.setOnFinished(e -> App.switchScenes(AppUi.DINOSAUR_ROOM));
   pause.play();
   Timers.getInstance().initializeMainCountdown(GameState.timeLimit);
+  startSound.pause();
   
   
+}
+public void replayMenuMusic() {
+  if (startSound != null) {
+      startSound.stop();
+      startSound.seek(Duration.ZERO);
+      startSound.play();
+  }
 }
 
 }
