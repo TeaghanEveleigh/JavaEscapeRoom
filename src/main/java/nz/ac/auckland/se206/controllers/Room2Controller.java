@@ -17,8 +17,8 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ComputerListener;
 import nz.ac.auckland.se206.ExitRoomDoorListener;
-import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.SafeListener;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -180,6 +180,9 @@ public class Room2Controller extends GameController
     noteLabel.toFront();
     hideSafeLabel();
     gameCanvas.toFront();
+    objectivesButton.toFront();
+    talkToHackerButton.toFront();
+    mainTimerLabel.toFront();
   }
 
   @FXML
