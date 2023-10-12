@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206;
+package nz.ac.auckland.se206.listeners;
 
 public interface KeypadListener {
   public void keypadInteracted();

@@ -6,14 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.LeftDinosaurListener;
-import nz.ac.auckland.se206.ObjectListener;
 import nz.ac.auckland.se206.Passcode;
-import nz.ac.auckland.se206.RightDinosaurListener;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Door;
 import nz.ac.auckland.se206.game.LeftDinosaur;
@@ -23,6 +19,9 @@ import nz.ac.auckland.se206.game.RightDinosaur;
 import nz.ac.auckland.se206.game.SolidBox;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.listeners.LeftDinosaurListener;
+import nz.ac.auckland.se206.listeners.ObjectListener;
+import nz.ac.auckland.se206.listeners.RightDinosaurListener;
 
 public class LaserRoomController extends GameController
     implements LeftDinosaurListener, RightDinosaurListener, ObjectListener {
@@ -87,9 +86,6 @@ public class LaserRoomController extends GameController
           }
         };
     new Thread(task).start();
-    
-    
-
   }
 
   @FXML

@@ -1,7 +1,7 @@
 package nz.ac.auckland.se206.game;
 
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.se206.KeypadListener;
+import nz.ac.auckland.se206.listeners.KeypadListener;
 
 public class Keypad extends Interactable {
 

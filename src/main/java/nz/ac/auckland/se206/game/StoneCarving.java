@@ -1,7 +1,7 @@
 package nz.ac.auckland.se206.game;
 
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.se206.StoneCarvingListener;
+import nz.ac.auckland.se206.listeners.StoneCarvingListener;
 
 public class StoneCarving extends Interactable {
 
