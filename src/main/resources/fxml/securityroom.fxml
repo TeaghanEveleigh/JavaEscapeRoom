@@ -91,7 +91,8 @@
       <Text fx:id="stoneText" fill="#783680" layoutX="330.0" layoutY="371.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="17th century" wrappingWidth="199.0">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
-         </font></Text>
+         </font>
+      </Text>
       <Rectangle fx:id="blurScreen" arcHeight="5.0" arcWidth="5.0" fill="#3f4143" height="606.0" layoutX="-6.0" layoutY="-13.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="830.0" />
       <Rectangle fx:id="zero1" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="397.0" layoutY="376.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="35.0" />
       <Rectangle fx:id="enter" arcHeight="5.0" arcWidth="5.0" fill="#0c9e11" height="34.0" layoutX="443.0" layoutY="376.0" onMouseClicked="#handleClearEnter" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" AnchorPane.bottomAnchor="175.0" AnchorPane.topAnchor="376.0" />
@@ -210,7 +211,7 @@
       <Circle fx:id="stolenTreasureCircle" fill="WHITE" layoutX="626.0" layoutY="418.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="disabledLasersCircle" fill="WHITE" layoutX="626.0" layoutY="392.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Rectangle fx:id="blurScreen" arcHeight="5.0" arcWidth="5.0" fill="#3f4143" height="606.0" layoutX="-6.0" layoutY="-13.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="830.0" />
-      <Text fx:id="stoneText" fill="#783680" layoutX="330.0" layoutY="371.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="17th century" wrappingWidth="199.0">
+      <Text fx:id="stoneText" fill="#783680" layoutX="330.0" layoutY="371.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="17th century" wrappingWidth="199.0"></Text>
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font></Text>
