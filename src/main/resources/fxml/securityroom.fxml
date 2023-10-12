@@ -111,7 +111,8 @@
       <Text fx:id="numbers" layoutX="362.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="147.73785400390625">
          <font>
             <Font size="21.0" />
-         </font></Text>
+         </font>
+      </Text>
       <Text fx:id="number3" fill="WHITE" layoutX="452.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" AnchorPane.leftAnchor="452.0">
          <font>
             <Font size="22.0" />
@@ -213,7 +214,8 @@
       <Text fx:id="stoneText" fill="#783680" layoutX="330.0" layoutY="371.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="17th century" wrappingWidth="199.0">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
-         </font></Text>
+         </font>
+      </Text>
       <ImageView fx:id="stoneCarving" fitHeight="330.0" fitWidth="481.0" layoutX="181.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/AICutout_0nse_Fotor.png" />
