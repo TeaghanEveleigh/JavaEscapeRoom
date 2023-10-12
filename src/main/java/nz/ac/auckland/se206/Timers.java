@@ -2,10 +2,13 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -40,6 +43,9 @@ public class Timers {
 
   public void subscribeLabel(Label label) {
     subscribedLabels.add(label);
+    Font font = Font.loadFont(getClass().getResource("/fonts/DS-DIGIB.TTF").toExternalForm(), 40);
+    label.setFont(font);
+ 
   }
 
   public void subtractTime(int seconds) {

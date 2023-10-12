@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MemoryGameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="815.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MemoryGameController">
    <children>
       <ImageView fitHeight="585.0" fitWidth="815.0" pickOnBounds="true">
          <image>
@@ -66,23 +66,23 @@
             <Image url="@../images/push-button.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="hackerTextArea" layoutX="5.0" layoutY="500.0" prefHeight="80.0" prefWidth="675.0" wrapText="true">
+      <TextArea fx:id="hackerTextArea" layoutX="29.0" layoutY="500.0" prefHeight="80.0" prefWidth="651.0" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
       </TextArea>
-      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="680.0" layoutY="501.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
-      <ImageView fx:id="hackerIcon" fitHeight="71.0" fitWidth="62.0" layoutX="714.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="hackerRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" layoutX="671.0" layoutY="593.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="130.0" />
+      <ImageView fx:id="hackerIcon" fitHeight="80.0" fitWidth="130.0" layoutX="680.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/HackerIcon.png" />
+            <Image url="@../images/matrix-hacker-background.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="3.0" layoutY="472.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitHackerPanelImage" fitHeight="29.0" fitWidth="28.0" layoutX="1.0" layoutY="500.0" onMouseClicked="#onExitClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Button fx:id="hintButton" layoutX="720.0" layoutY="14.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="#825000">
+      <Button fx:id="hintButton" layoutX="720.0" layoutY="14.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="47.0" prefWidth="81.0" text="Hint" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="25.0" />
          </font>
@@ -92,9 +92,9 @@
             <Font name="Baskerville Old Face" size="16.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
-                  <Image url="@../images/Arrow.png" />
+                  <Image url="@../images/r46n1vrg788h4v7e4rf10cq5l1-261964a7d9302ef0e1e78e2d2d62e055.png" />
                </image>
             </ImageView>
          </graphic>

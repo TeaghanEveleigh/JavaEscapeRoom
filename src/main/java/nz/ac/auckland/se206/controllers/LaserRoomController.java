@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Door;
 import nz.ac.auckland.se206.game.LeftDinosaur;
@@ -53,6 +54,10 @@ public class LaserRoomController extends GameController
 
   @Override
   public void initialize() {
+    Passcode passcode = Passcode.getInstance();
+    trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
+    paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
+
     super.initialize();
     laserBox = new SolidBox(boundingBoxOne);
     boundsObjects.add(laserBox);
@@ -72,10 +77,10 @@ public class LaserRoomController extends GameController
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintAndExit();
+            disableHintChatAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
-            enableHintAndExit();
+            enableHintChatAndExit();
             exitHackerPanelImage.setDisable(false);
             return null;
           }
@@ -112,16 +117,17 @@ public class LaserRoomController extends GameController
   @FXML
   private void stealItem() {
     GameState.isTreasureStolen = true;
+    GameController.updateAllChecklists();
     object.toBack();
     itemLabel.toBack();
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintAndExit();
+            disableHintChatAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getObjectStolen()), hackerTextArea);
-            enableHintAndExit();
+            enableHintChatAndExit();
             return null;
           }
         };

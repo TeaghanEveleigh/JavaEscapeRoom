@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'BM-HANNA';
+    src: url('../fonts/BM-HANNA.ttf');
+}
+.root {
+    -fx-font-family: 'BM-HANNA';
+}
+
 .slider{
     -fx-background-color:rgb(35, 34, 34);
 }

@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Keypad;
@@ -90,16 +91,12 @@ public class SecurityRoomController extends GameController
   @FXML private Rectangle boundingBox8;
   @FXML private Rectangle boundingBox9;
   @FXML private Rectangle boundingBox10;
-  ;
   @FXML private Rectangle boundingBox11;
   @FXML private Rectangle boundingBox12;
   @FXML private Rectangle boundingBox13;
-  ;
   @FXML private Rectangle boundingBox14;
   @FXML private Rectangle boundingBox15;
-  ;
   @FXML private Rectangle boundingBox16;
-
   @FXML private Line securityLine1;
   @FXML private Line securityLine2;
   @FXML private Line securityLine3;
@@ -119,6 +116,7 @@ public class SecurityRoomController extends GameController
   @FXML private ImageView arrow3;
   @FXML private ImageView arrow4;
   @FXML private ImageView arrow5;
+  Passcode passcode = Passcode.getInstance();
 
   // @FXML private Text number0;
   @FXML
@@ -194,6 +192,7 @@ public class SecurityRoomController extends GameController
 
   @Override
   public void initialize() {
+    stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     super.initialize();
     exitBlock = new SolidBox(boundingBoxThree);
     boundsObjects.add(new SolidBox(boundingBoxOne));
@@ -267,10 +266,26 @@ public class SecurityRoomController extends GameController
   }
 
   private void checkPin() {
-    String pin = " 1 3 4 6 9 8";
+    // Get the keycode from the Passcode singleton and format it
+    String pin = Passcode.getInstance().getKeyCode();
+    pin =
+        " "
+            + pin.charAt(0)
+            + " "
+            + pin.charAt(1)
+            + " "
+            + pin.charAt(2)
+            + " "
+            + pin.charAt(3)
+            + " "
+            + pin.charAt(4);
+
     System.out.println(numbers.getText());
+
     if (pin.equals(numbers.getText())) {
       GameState.isDoorOpen = true;
+      GameState.isExitDoorUnlocked = true;
+      GameController.updateAllChecklists();
       correctColor.toFront();
       correctTxt.toFront();
       numbers.setOpacity(0);
@@ -317,6 +332,7 @@ public class SecurityRoomController extends GameController
 
   @FXML
   private void showKeyPad() {
+    blurScreen.toFront();
     keypadRectangle.toFront();
 
     keypad.toFront();
@@ -350,6 +366,7 @@ public class SecurityRoomController extends GameController
 
   @FXML
   private void hideKeyPad() {
+    blurScreen.toBack();
     keypadRectangle.toBack();
     numberRectangle.toBack();
     number1.toBack();
@@ -393,15 +410,24 @@ public class SecurityRoomController extends GameController
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-              disableHintAndExit();
+              disableHintChatAndExit();
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getMustStealItem()), hackerTextArea);
-              enableHintAndExit();
+              enableHintChatAndExit();
               return null;
             }
           };
       new Thread(task).start();
     } else {
+      // hjgjhgkjgjgjgjgjhgjgjgkjgjkgjgjg
+      FXMLLoader gameWonLoader = App.getFxmlLoader("gamewon");
+      try {
+        SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
       App.switchScenes(AppUi.GAME_WON);
     }
   }

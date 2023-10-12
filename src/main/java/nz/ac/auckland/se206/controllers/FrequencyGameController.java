@@ -14,6 +14,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -52,7 +53,8 @@ public class FrequencyGameController implements BaseController {
   public void initialize() {
     amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
     frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
-
+    Font font = Font.loadFont(getClass().getResource("/fonts/DS-DIGIB.TTF").toExternalForm(), 40);
+    timer.setFont(font);
     // Set a random wave without updating immediately.
     setRandomInitialWave(false);
     drawTargetWave();
@@ -72,19 +74,31 @@ public class FrequencyGameController implements BaseController {
     amplitudeSlider.valueProperty().removeListener((obs, oldVal, newVal) -> updateWave());
     frequencySlider.valueProperty().removeListener((obs, oldVal, newVal) -> updateWave());
 
-    amplitudeSlider.setValue(random.nextDouble() * amplitudeSlider.getMax());
-    frequencySlider.setValue(
-        frequencySlider.getMin()
-            + random.nextDouble() * (frequencySlider.getMax() - frequencySlider.getMin()));
+    // Ensure amplitude is not 50 to avoid a match
+    double amplitude;
+    do {
+        amplitude = random.nextDouble() * amplitudeSlider.getMax();
+    } while (Math.abs(amplitude - 50) < 5); // Ensure a minimum difference
+
+    // Ensure frequency is not matching the target frequency to avoid a match
+    double frequency;
+    do {
+        frequency = frequencySlider.getMin() 
+                   + random.nextDouble() * (frequencySlider.getMax() - frequencySlider.getMin());
+    } while (Math.abs(frequency - 0.01) < 0.005); // Ensure a minimum difference
+
+    amplitudeSlider.setValue(amplitude);
+    frequencySlider.setValue(frequency);
 
     // Restore listeners
     amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
     frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
 
     if (updateImmediately) {
-      updateWave();
+        updateWave();
     }
-  }
+}
+
 
   private void initializeCountdown() {
     startSound.play();
@@ -138,7 +152,7 @@ public class FrequencyGameController implements BaseController {
   @FXML
   private void onBackPressed() {
     // Handle back button press here
-    System.out.println("alksdjfalsdjf");
+  
     App.goToPreviousScene();
   }
 

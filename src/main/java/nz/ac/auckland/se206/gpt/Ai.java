@@ -13,7 +13,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class Ai {
-
+  
   private static TextToSpeech textToSpeech = new TextToSpeech();
 
   private static ChatCompletionRequest chatCompletionRequest =
@@ -30,6 +30,7 @@ public class Ai {
    */
   public ChatMessage runGpt(ChatMessage msg, TextArea textArea) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
+    textArea.clear();
     String hackingSound =
         getClass().getResource("/sounds/computer-processing-sound-effect.mp3").toString();
     Media media = new Media(hackingSound);
@@ -70,7 +71,7 @@ public class Ai {
                       });
                 }
                 try {
-                  Thread.sleep(50);
+                  Thread.sleep(20);
                 } catch (InterruptedException e) {
                   // handle interruption if needed
                 }

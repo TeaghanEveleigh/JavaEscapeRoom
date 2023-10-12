@@ -10,12 +10,6 @@ import nz.ac.auckland.se206.controllers.SecurityRoomController;
 /** Represents the state of the game. */
 public class GameState {
 
-  /** Indicates whether the riddle has been resolved. */
-  public static boolean isRiddleResolved = false;
-
-  /** Indicates whether the key has been found. */
-  public static boolean isKeyFound = false;
-
   /** Randomly generated order of endpoints for the wires game */
   public static String wiresSequence = generateWiresSequence();
 
@@ -27,6 +21,12 @@ public class GameState {
 
   /** Indicated whether the treasure has been stolen */
   public static boolean isTreasureStolen = false;
+
+  /** Indicates whether the keycode has been found */
+  public static boolean isKeycodeFound = false;
+
+  /** Indicates whether the exit door has been unlocked */
+  public static boolean isExitDoorUnlocked = false;
 
   // Difficulty booleans
   public static boolean isEasy = true;

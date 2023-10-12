@@ -2,6 +2,9 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.SceneManager;
@@ -9,13 +12,46 @@ import nz.ac.auckland.se206.SceneManager;
 /** Controller class for the game won view. */
 public class GameWonController implements BaseController {
 
-  /**
-   * Ends the game and exits the program
-   *
-   * @param event the action event triggered by the go back button
-   */
-  @FXML
-  private void onExitGame(ActionEvent event) {
-    App.switchScenes(SceneManager.AppUi.MAIN_MENU);
-  }
+    private MediaPlayer mediaPlayer;
+
+    @FXML
+    public void initialize() {
+        String soundPath = getClass().getResource("/sounds/victory-96688.mp3").toString();
+        if (soundPath == null) {
+            System.err.println("Failed to load sound file.");
+            return;
+        }
+
+        Media media = new Media(soundPath);
+        mediaPlayer = new MediaPlayer(media);
+        playVictorySound();
+    }
+
+    /**
+     * Play the victory sound.
+     */
+    public void playVictorySound() {
+        if (mediaPlayer != null) {
+            mediaPlayer.seek(Duration.ZERO);
+            mediaPlayer.play();
+        }
+    }
+
+    /**
+     * Ends the game and exits the program
+     *
+     * @param event the action event triggered by the go back button
+     */
+    @FXML
+    private void onExitGame(ActionEvent event) {
+        App.switchScenes(SceneManager.AppUi.MAIN_MENU);
+    
+        // Get the MainMenuController and replay the menu music
+        MainMenuController mainMenuController = 
+            (MainMenuController) SceneManager.getUiController(SceneManager.AppUi.MAIN_MENU);
+        if (mainMenuController != null) {
+            mainMenuController.replayMenuMusic();
+        }
+    }
+
 }

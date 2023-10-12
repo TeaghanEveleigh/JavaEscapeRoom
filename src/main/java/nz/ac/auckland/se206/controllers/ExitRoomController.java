@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Computer;
@@ -63,9 +64,11 @@ public class ExitRoomController extends GameController
   @FXML private Text titleComputer;
   @FXML private Rectangle boundingBox1;
   @FXML private Rectangle boundingBox5;
+  Passcode passcode = Passcode.getInstance();
 
   @Override
   public void initialize() {
+    password.setText(passcode.getKeyCode());
     super.initialize();
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBox1));
@@ -177,6 +180,9 @@ public class ExitRoomController extends GameController
     noteLabel.toFront();
     hideSafeLabel();
     gameCanvas.toFront();
+    objectivesButton.toFront();
+    talkToHackerButton.toFront();
+    mainTimerLabel.toFront();
   }
 
   @FXML
@@ -302,7 +308,9 @@ public class ExitRoomController extends GameController
   }
 
   private void checkPassword() {
-    if (passwordText.getText().equals("161720")) {
+    if (passwordText.getText().equals(passcode.getFullNum())) {
+      GameState.isCamerasDisabled = true;
+      GameController.updateAllChecklists();
       System.out.println("correc");
       passwordText.setText("CORRECT");
       GameState.disableCamera();

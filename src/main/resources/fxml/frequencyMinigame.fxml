@@ -30,14 +30,14 @@
          </font>
       </Text>
       <Rectangle fx:id="blurryscreen" arcHeight="5.0" arcWidth="5.0" fill="#8a8282" height="586.0" layoutX="-1.0" layoutY="-2.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="816.0" />
-        <Button fx:id="backButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#onBackPressed" opacity="0.0" prefHeight="52.0" prefWidth="43.0" styleClass="backButton" textFill="#825000">
+        <Button fx:id="backButton" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#onBackPressed" opacity="0.0" prefHeight="52.0" prefWidth="43.0" styleClass="backButton" textFill="WHITE">
             <font>
                 <Font name="Baskerville Old Face" size="16.0" />
             </font>
             <graphic>
-                <ImageView fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                     <image>
-                        <Image url="@../images/Arrow.png" />
+                        <Image url="@../images/r46n1vrg788h4v7e4rf10cq5l1-261964a7d9302ef0e1e78e2d2d62e055.png" />
                     </image>
                 </ImageView>
             </graphic>
