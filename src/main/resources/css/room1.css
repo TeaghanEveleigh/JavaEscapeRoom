@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'BM-HANNA';
+    src: url('../fonts/BM-HANNA.ttf');
+}
+.root {
+    -fx-font-family: 'BM-HANNA';
+}
+
+
 .hacker-style .content {
     -fx-background-color: rgb(223, 220, 220);
 }
@@ -5,25 +14,25 @@
 .hacker-style .text {
     -fx-fill: rgb(255, 255, 255);
 }
+
 .button {
-    -fx-background-color: rgb(77, 77, 77);
-    -fx-border-color: rgb(250, 250, 250);
+    -fx-background-color: rgb(38, 43, 39);
+    -fx-border-color: rgb(14, 115, 53);
     -fx-border-radius: 15;
-    -fx-background-radius:15;
-  
-
+    -fx-background-radius: 15;
+    -fx-text-fill: rgb(6, 102, 25);
 }
-Button.button:hover {
-    -fx-background-color: rgb(201, 198, 198);
-   -fx-border-color: rgb(0, 0, 0);
-   -fx-text-fill:rgb(0, 0, 0);
-   -fx-scale-y: 1.05;
+
+.button:hover {
+    -fx-background-color: rgb(71, 68, 68);
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-text-fill: rgb(101, 170, 114);
+    -fx-scale-y: 1.05;
     -fx-scale-x: 1.05;
-    /* This defines the duration for the hover transition */
     -fx-transition: scale-x 0.8s, scale-y 0.8s;
+}
 
-
-   
-
-   
+.Label {
+    -fx-text-fill: rgb(4, 81, 20);
+    -fx-font-family: 'DS-DIGIB';  /* Add this line to apply the DS-DIGIB font */
 }

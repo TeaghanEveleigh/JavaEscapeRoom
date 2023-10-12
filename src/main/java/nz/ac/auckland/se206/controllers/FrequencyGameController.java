@@ -14,6 +14,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -52,7 +53,8 @@ public class FrequencyGameController implements BaseController {
   public void initialize() {
     amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
     frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
-
+    Font font = Font.loadFont(getClass().getResource("/fonts/DS-DIGIB.TTF").toExternalForm(), 40);
+    timer.setFont(font);
     // Set a random wave without updating immediately.
     setRandomInitialWave(false);
     drawTargetWave();

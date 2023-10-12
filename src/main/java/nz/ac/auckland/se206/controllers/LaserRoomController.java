@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
@@ -87,6 +88,8 @@ public class LaserRoomController extends GameController
         };
     new Thread(task).start();
     
+    
+
   }
 
   @FXML
