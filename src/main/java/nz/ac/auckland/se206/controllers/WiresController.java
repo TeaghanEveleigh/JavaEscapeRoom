@@ -332,28 +332,27 @@ public class WiresController implements Initializable, BaseController {
    */
   @FXML
   private void onHintPressed() throws ApiProxyException {
-    enableHackerPanel();
-    Task<Void> task =
-        new Task<Void>() {
+      enableHackerPanel();
+      Task<Void> task = new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintAndExit();
-            if (GameState.isHard || (GameState.hintsLeft <= 0)) {
-              ai.runGpt(
-                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
-            } else {
-              ai.runGpt(
-                  new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
-            }
-            enableHintAndExit();
-            if (GameState.isMedium) {
-              GameState.hintsLeft--;
-            }
-            return null;
+              disableHintAndExit();
+              GameState gameState = GameState.getInstance();
+              if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+                  ai.runGpt(new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+              } else {
+                  ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+              }
+              enableHintAndExit();
+              if (GameState.isMedium) {
+                  gameState.subtractHint();
+              }
+              return null;
           }
-        };
-    new Thread(task).start();
+      };
+      new Thread(task).start();
   }
+  
 
   public void getRiddle() {
     Task<Void> task =

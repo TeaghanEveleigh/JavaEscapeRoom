@@ -1,72 +1,110 @@
 package nz.ac.auckland.se206;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/** Represents the state of the game. */
+import javafx.application.Platform;
+import javafx.scene.control.Label;
+
 public class GameState {
 
-  /** Randomly generated order of endpoints for the wires game */
-  public static String wiresSequence = generateWiresSequence();
+    private List<Label> subscribers = new ArrayList<>();
+    private static final GameState instance = new GameState();
 
-  /** Indicates whether the lasers have been disabled */
-  public static boolean isLasersDisabled = false;
+    public static boolean isLasersDisabled = false;
+    public static boolean isCamerasDisabled = false;
+    public static boolean isTreasureStolen = false;
+    public static boolean isKeycodeFound = false;
+    public static boolean isExitDoorUnlocked = false;
+    public static boolean isEasy = true;
+    public static boolean isMedium = false;
+    public static boolean isHard = false;
+    public static int timeLimit = 2;
+    public static boolean textToSpeech = false;
+    public static boolean isDoorOpen = false;
 
-  /** Indicates whether the cameras have been disabled */
-  public static boolean isCamerasDisabled = false;
+    private static String hintsLeft;
+    public static String wiresSequence = generateWiresSequence();
 
-  /** Indicated whether the treasure has been stolen */
-  public static boolean isTreasureStolen = false;
-
-  /** Indicates whether the keycode has been found */
-  public static boolean isKeycodeFound = false;
-
-  /** Indicates whether the exit door has been unlocked */
-  public static boolean isExitDoorUnlocked = false;
-
-  // Difficulty booleans
-  public static boolean isEasy = true;
-  public static boolean isMedium = false;
-  public static boolean isHard = false;
-
-  public static int timeLimit = 2;
-  public static boolean textToSpeech = false;
-  public static boolean isDoorOpen = false;
-
-  public static int hintsLeft = 5;
-
-  // Sets the difficulty to easy
-  public static void setEasy() {
-    isEasy = true;
-    isMedium = false;
-    isHard = false;
-  }
-
-  /** Generates a random ordering of the numbers one through four inclusive */
-  public static String generateWiresSequence() {
-    String[] array = {"1", "2", "3", "4"};
-    List<String> list = Arrays.asList(array);
-    Collections.shuffle(list);
-    StringBuilder sb = new StringBuilder();
-    for (String s : list) {
-      sb.append(s);
+    // Private constructor to ensure singleton property
+    private GameState() {
+        setMedium(); // Just for initialization, you can remove or change this line as needed
     }
-    System.out.println(sb.toString());
-    return sb.toString();
-  }
 
-  // Sets the difficulty to medium
-  public static void setMedium() {
-    isEasy = false;
-    isMedium = true;
-    isHard = false;
-  }
+    // Public static method to get the single instance of GameState
+    public static GameState getInstance() {
+        return instance;
+    }
 
-  // Sets the difficulty to hard
-  public static void setHard() {
-    isEasy = false;
-    isMedium = false;
-    isHard = true;
-  }
+    public static String getHintsLeft() {
+        return hintsLeft;
+    }
+
+    public void subscribe(Label label) {
+        subscribers.add(label);
+        updateLabels();
+    }
+
+    public void subtractHint() {
+        if (isMedium) {
+            System.out.println("Before subtracting hint: " + hintsLeft);  // Debugging print
+            int numberOfHints = Integer.parseInt(hintsLeft);
+            numberOfHints--;
+            hintsLeft = String.valueOf(numberOfHints);
+            System.out.println("After subtracting hint: " + hintsLeft);  // Debugging print
+            updateLabels();
+        }
+    }
+    
+    private void updateLabels() {
+        Platform.runLater(() -> {
+            for (Label label : subscribers) {
+                if (isHard) {
+                    label.setText("Database Down");
+                } else if (isEasy) {
+                    label.setText("No hint limit"); // This is the infinity symbol
+                } else {
+                    label.setText("Hints left: " + hintsLeft);
+                }
+                System.out.println("Label updated: " + label.getText());  // Debugging print
+            }
+        });
+    }
+    
+
+    public static String generateWiresSequence() {
+        String[] array = {"1", "2", "3", "4"};
+        List<String> list = Arrays.asList(array);
+        Collections.shuffle(list);
+        StringBuilder sb = new StringBuilder();
+        for (String s : list) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }
+
+    public void setEasy() {
+        isEasy = true;
+        isMedium = false;
+        isHard = false;
+        updateLabels(); // If you want to update labels when difficulty is changed
+    }
+
+    public void setMedium() {
+        isEasy = false;
+        isMedium = true;
+        isHard = false;
+        hintsLeft = "5";
+        updateLabels();
+    }
+
+    public void setHard() {
+        isEasy = false;
+        isMedium = false;
+        isHard = true;
+        hintsLeft = "∞";
+        updateLabels();
+    }
 }

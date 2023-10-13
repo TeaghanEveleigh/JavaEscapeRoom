@@ -35,12 +35,13 @@ public class GameController implements BaseController {
   @FXML protected Button hintButton;
   @FXML protected Button chatButton;
   @FXML protected Button talkToHackerButton;
-  @FXML protected Label hintsLeftLabel;
+
   @FXML protected Rectangle hackerPanelBackground;
   @FXML protected ImageView exitHackerPanelImage;
   @FXML protected ImageView hackerIcon;
   @FXML protected TextArea hackerTextArea;
   @FXML protected Label mainTimerLabel;
+  @FXML private Label hintsLabel;
   @FXML protected TextField chatTextField;
   @FXML protected ImageView exitChatImage;
   @FXML protected Button submitButton;
@@ -164,61 +165,47 @@ public class GameController implements BaseController {
   }
 
   @FXML
-  public void onHintPressed() {
+public void onHintPressed() {
     Task<Void> task =
         new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            disableHintChatAndExit();
-            if (GameState.isHard || (GameState.hintsLeft <= 0)) {
-              ai.runGpt(
-                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
-              enableHintChatAndExit();
-              return null;
+            @Override
+            protected Void call() throws Exception {
+                disableHintChatAndExit();
+                GameState gameState = GameState.getInstance();
+                if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+                    ai.runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+                    enableHintChatAndExit();
+                    return null;
+                }
+                if (!GameState.isLasersDisabled && !GameState.isCamerasDisabled) {
+                    ai.runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getNothingDisabledHint()), hackerTextArea);
+                } else if (GameState.isLasersDisabled) {
+                    if (!GameState.isTreasureStolen) {
+                        ai.runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getLasersDisabledButNotStolenHint()), hackerTextArea);
+                    } else if (GameState.isCamerasDisabled) {
+                        ai.runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getBothDisabledHint()), hackerTextArea);
+                    } else if (!GameState.isCamerasDisabled) {
+                        ai.runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getLasersButNotCameraHint()), hackerTextArea);
+                    }
+                } else if (GameState.isCamerasDisabled && !GameState.isLasersDisabled) {
+                    ai.runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getCameraButNotLasersHint()), hackerTextArea);
+                }
+                enableHintChatAndExit();
+                if (GameState.isMedium) {
+                    gameState.subtractHint();
+                }
+                return null;
             }
-            if (!GameState.isLasersDisabled
-                && !GameState.isCamerasDisabled) { // neither lasers or cameras are disabled
-
-              ai.runGpt(
-                  new ChatMessage("user", GptPromptEngineering.getNothingDisabledHint()),
-                  hackerTextArea);
-            } else if (GameState.isLasersDisabled) { // lasers disabled
-              if (!GameState.isTreasureStolen) { // lasers disabled but treasure not stolen
-
-                ai.runGpt(
-                    new ChatMessage(
-                        "user", GptPromptEngineering.getLasersDisabledButNotStolenHint()),
-                    hackerTextArea);
-              } else if (GameState
-                  .isCamerasDisabled) { // lasers disabled, treasure stolen, and cameras disabled
-
-                ai.runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getBothDisabledHint()),
-                    hackerTextArea);
-              } else if (!GameState
-                  .isCamerasDisabled) { // lasers disabled, treasure stolen, but cameras not
-                // disabled
-
-                ai.runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getLasersButNotCameraHint()),
-                    hackerTextArea);
-              }
-            } else if (GameState.isCamerasDisabled
-                && !GameState.isLasersDisabled) { // both lasers and camera disabled
-
-              ai.runGpt(
-                  new ChatMessage("user", GptPromptEngineering.getCameraButNotLasersHint()),
-                  hackerTextArea);
-            }
-            enableHintChatAndExit();
-            if (GameState.isMedium) {
-              GameState.hintsLeft--;
-            }
-            return null;
-          }
         };
     new Thread(task).start();
-  }
+}
+
 
   // Disables the hacker panel
   public void disableHackerPanel() {
@@ -226,7 +213,7 @@ public class GameController implements BaseController {
     hintButton.toBack();
     chatButton.toBack();
     hackerIcon.toBack();
-    hintsLeftLabel.toBack();
+    hintsLabel.toBack();
     hackerTextArea.toBack();
     exitHackerPanelImage.toBack();
     exitHackerPanelImage.setDisable(true);
@@ -254,7 +241,7 @@ public class GameController implements BaseController {
     hintButton.toFront();
     chatButton.toFront();
     hackerIcon.toFront();
-    hintsLeftLabel.toFront();
+    hintsLabel.toFront();
     hackerTextArea.toFront();
     exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);

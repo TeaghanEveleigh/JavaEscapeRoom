@@ -446,11 +446,6 @@
       <Rectangle fx:id="computerBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="279.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="130.0" AnchorPane.topAnchor="310.0" />
       <Rectangle fx:id="safeBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="645.0" layoutY="419.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="144.0" AnchorPane.rightAnchor="51.0" />
       <Rectangle fx:id="doorBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="241.0" layoutX="-16.0" layoutY="217.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="47.0" layoutY="529.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
-         <font>
-            <Font name="BM HANNA Air OTF" size="30.0" />
-         </font>
-      </Label>
 
       <Rectangle fx:id="boundingBox1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="138.0" layoutX="-32.0" layoutY="240.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
       <Rectangle fx:id="boundingBox5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="168.0" layoutX="642.0" layoutY="262.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="201.0" />
@@ -471,10 +466,10 @@
       </ImageView>
       <Button fx:id="talkToHackerButton" layoutX="668.0" layoutY="526.0" mnemonicParsing="false" onAction="#onTalkToHackerPressed" prefHeight="50.0" prefWidth="132.0" text="Talk to Hacker" textFill="WHITE">
          <font>
-            <Font name="Baskerville Old Face" size="25.0" />
+            <Font name="BM HANNA Air OTF" size="16.0" />
          </font>
       </Button>
-      <Rectangle fx:id="hackerPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="181.0" layoutX="4.0" layoutY="2.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="810.0" />
+      <Rectangle fx:id="hackerPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="168.0" layoutX="4.0" layoutY="2.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="810.0" />
 
       <TextArea fx:id="hackerTextArea" layoutX="42.0" layoutY="9.0" opacity="0.8" prefHeight="109.0" prefWidth="607.0" wrapText="true">
          <font>
@@ -492,26 +487,32 @@
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Button fx:id="hintButton" layoutX="640.0" layoutY="126.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="30.0" prefWidth="81.0" text="Hint" textFill="WHITE">
+      <Button fx:id="hintButton" layoutX="640.0" layoutY="124.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="30.0" prefWidth="81.0" text="Hint" textFill="WHITE">
          <font>
-            <Font name="Baskerville Old Face" size="25.0" />
+            <Font name="BM HANNA Air OTF" size="21.0" />
          </font>
       </Button>
-      <Button fx:id="chatButton" layoutX="728.0" layoutY="126.0" mnemonicParsing="false" onAction="#onChatPressed" prefHeight="30.0" prefWidth="81.0" text="Chat" textFill="WHITE">
+      <Button fx:id="chatButton" layoutX="728.0" layoutY="124.0" mnemonicParsing="false" onAction="#onChatPressed" prefHeight="30.0" prefWidth="81.0" text="Chat" textFill="WHITE">
          <font>
-            <Font name="Baskerville Old Face" size="25.0" />
+            <Font name="BM HANNA Air OTF" size="21.0" />
          </font>
       </Button>
-      <Label fx:id="hintsLeftLabel" alignment="CENTER" layoutX="46.0" layoutY="128.0" prefHeight="45.0" prefWidth="190.0" text="Hints Left: " textFill="WHITE">
+      <Label fx:id="hintsLabel" alignment="CENTER" layoutX="46.0" layoutY="124.0" prefHeight="45.0" prefWidth="190.0" text="Hints Left: ">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="objectivesButton" layoutX="13.0" layoutY="453.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="47.0" prefWidth="160.0" text="Objectives" textFill="WHITE">
+      <Button fx:id="objectivesButton" layoutX="13.0" layoutY="463.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="37.0" prefWidth="140.0" text="Objectives" textFill="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font name="BM HANNA Air OTF" size="20.0" />
          </font>
       </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3d4043" height="62.0" layoutX="14.0" layoutY="515.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="40.0" layoutY="523.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="#12ff39">
+         <font>
+            <Font name="BM HANNA Air OTF" size="30.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>

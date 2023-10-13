@@ -50,12 +50,15 @@ public class LaserRoomController extends GameController
   @FXML private ImageView arrow;
   @FXML private ImageView arrow1;
   @FXML private ImageView arrow3;
+  @FXML private Label hintsLabel;
 
   private SolidBox laserBox;
 
   @Override
   public void initialize() {
     Passcode passcode = Passcode.getInstance();
+    GameState value = GameState.getInstance();
+   value.subscribe(hintsLabel);
     trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
     paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
 

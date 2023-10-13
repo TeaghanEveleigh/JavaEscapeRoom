@@ -100,27 +100,32 @@ public class FrequencyGameController implements BaseController {
 }
 
 
-  private void initializeCountdown() {
-    startSound.play();
-    countdownTimeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.millis(1),
-                e -> {
-                  timeInSeconds--;
+private void initializeCountdown() {
+  startSound.play();
+  countdownTimeline =
+      new Timeline(
+          new KeyFrame(
+              Duration.millis(1),
+              e -> {
+                timeInSeconds--;
 
-                  int seconds = timeInSeconds / 1000;
-                  timer.setText(String.format("%2d", seconds));
+                int seconds = timeInSeconds / 1000;
+                timer.setText(String.format("%2d", seconds));
 
-                  if (timeInSeconds <= 0 && matched != true) {
-                    countdownTimeline.stop();
-                    gameOver("timer_done");
-                  }
-                }));
+                if (seconds <= 3) {
+                    timer.setStyle("-fx-text-fill: red;"); // Changing text color to red
+                }
 
-    countdownTimeline.setCycleCount(10000);
-    countdownTimeline.play();
-  }
+                if (timeInSeconds <= 0 && matched != true) {
+                  countdownTimeline.stop();
+                  gameOver("timer_done");
+                }
+              }));
+
+  countdownTimeline.setCycleCount(10000);
+  countdownTimeline.play();
+}
+
 
   private void drawTargetWave() {
     targetSineWave.getElements().add(new MoveTo(0, 150));

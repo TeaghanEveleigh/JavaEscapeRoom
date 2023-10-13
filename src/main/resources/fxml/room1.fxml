@@ -374,7 +374,7 @@
             <Font name="Baskerville Old Face" size="25.0" />
          </font>
       </Button>
-      <Label fx:id="hintsLeftLabel" alignment="CENTER" layoutX="46.0" layoutY="128.0" prefHeight="45.0" prefWidth="190.0" text="Hints Left: " textFill="WHITE">
+      <Label fx:id="hintsLabel" alignment="CENTER" layoutX="46.0" layoutY="128.0" prefHeight="45.0" prefWidth="190.0" text="Hints Left: " textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font>

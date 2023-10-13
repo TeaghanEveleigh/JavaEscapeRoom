@@ -80,7 +80,7 @@
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></Slider>
-      <Text fx:id="timer" fill="WHITE" layoutX="523.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="90.0">
+      <Text fx:id="timer" fill="#00ff11" layoutX="523.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="90.0">
          <font>
             <Font size="30.0" />
          </font>
