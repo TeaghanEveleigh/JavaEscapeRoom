@@ -1,7 +1,7 @@
 package nz.ac.auckland.se206.game;
 
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.se206.SecurityRoomDoorListener;
+import nz.ac.auckland.se206.listeners.SecurityRoomDoorListener;
 
 public class SecurityRoomDoor extends Interactable {
 

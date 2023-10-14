@@ -3,10 +3,9 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
-import javafx.fxml.FXMLLoader;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,18 +13,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.KeypadListener;
 import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.SecurityRoomDoorListener;
-import nz.ac.auckland.se206.StoneCarvingListener;
-import nz.ac.auckland.se206.WiresListener;
 import nz.ac.auckland.se206.game.Keypad;
 import nz.ac.auckland.se206.game.Portal;
 import nz.ac.auckland.se206.game.SecurityRoomDoor;
@@ -34,8 +28,12 @@ import nz.ac.auckland.se206.game.StoneCarving;
 import nz.ac.auckland.se206.game.Wires;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.listeners.KeypadListener;
+import nz.ac.auckland.se206.listeners.SecurityRoomDoorListener;
+import nz.ac.auckland.se206.listeners.StoneCarvingListener;
+import nz.ac.auckland.se206.listeners.WiresListener;
 
-public class SecurityController extends GameController
+public class SecurityRoomController extends GameController
     implements KeypadListener, WiresListener, SecurityRoomDoorListener, StoneCarvingListener {
 
   @FXML private Label carvingLabel;
@@ -232,7 +230,6 @@ public class SecurityController extends GameController
     applyFloatingAnimation(arrow3);
     applyFloatingAnimation(arrow4);
     applyFloatingAnimation(arrow5);
-    
   }
 
   @FXML
@@ -425,15 +422,15 @@ public class SecurityController extends GameController
           };
       new Thread(task).start();
     } else {
-      //hjgjhgkjgjgjgjgjhgjgjgkjgjkgjgjg
+      // hjgjhgkjgjgjgjgjhgjgjgkjgjkgjgjg
       FXMLLoader gameWonLoader = App.getFxmlLoader("gamewon");
-    try {
-      SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
+      try {
+        SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
       App.switchScenes(AppUi.GAME_WON);
     }
   }

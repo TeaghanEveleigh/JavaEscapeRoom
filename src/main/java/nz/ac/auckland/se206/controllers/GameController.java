@@ -313,15 +313,15 @@ public void onHintPressed() {
 
   // Updates all checklists
   public static void updateAllChecklists() {
-    SecurityController securityController =
-        (SecurityController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-    securityController.updateChecklist();
+    SecurityRoomController securityRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    securityRoomController.updateChecklist();
     LaserRoomController laserRoomController =
         (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
     laserRoomController.updateChecklist();
-    Room2Controller dinosaurRoomController =
-        (Room2Controller) SceneManager.getUiController(AppUi.SECURITY_ROOM);
-    dinosaurRoomController.updateChecklist();
+    ExitRoomController exitRoomController =
+        (ExitRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    exitRoomController.updateChecklist();
   }
 
   // Updates the checklist based on what the player has completed

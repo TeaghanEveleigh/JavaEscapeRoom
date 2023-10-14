@@ -15,19 +15,19 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ComputerListener;
-import nz.ac.auckland.se206.ExitRoomDoorListener;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Passcode;
-import nz.ac.auckland.se206.SafeListener;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.game.Computer;
 import nz.ac.auckland.se206.game.ExitRoomDoor;
 import nz.ac.auckland.se206.game.Safe;
 import nz.ac.auckland.se206.game.SolidBox;
+import nz.ac.auckland.se206.listeners.ComputerListener;
+import nz.ac.auckland.se206.listeners.ExitRoomDoorListener;
+import nz.ac.auckland.se206.listeners.SafeListener;
 
-public class Room2Controller extends GameController
+public class ExitRoomController extends GameController
     implements ComputerListener, SafeListener, ExitRoomDoorListener {
   @FXML private Text helpHint;
   @FXML private Canvas gameCanvas;
@@ -316,9 +316,7 @@ public class Room2Controller extends GameController
       GameController.updateAllChecklists();
       System.out.println("correc");
       passwordText.setText("CORRECT");
-      SecurityController securityController =
-          (SecurityController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-      securityController.disableCamera();
+      GameState.disableCamera();
     } else {
       passwordText.setText("INCORRECT");
       incorrectPassword = true;
