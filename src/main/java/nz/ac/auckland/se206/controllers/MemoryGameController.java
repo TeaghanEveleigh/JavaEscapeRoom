@@ -248,30 +248,30 @@ public class MemoryGameController implements BaseController {
    * @throws ApiProxyException
    */
   @FXML
-  private void onHintPressed() throws ApiProxyException {
-    enableHackerPanel();
-    Task<Void> task =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            disableHintAndExit();
-            if (GameState.isHard || (GameState.hintsLeft <= 0)) {
-              ai.runGpt(
-                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
-            } else {
-              ai.runGpt(
-                  new ChatMessage("user", GptPromptEngineering.getMemoryGameHint()),
-                  hackerTextArea);
-            }
-            enableHintAndExit();
-            if (GameState.isMedium) {
-              GameState.hintsLeft--;
-            }
-            return null;
-          }
-        };
-    new Thread(task).start();
-  }
+    private void onHintPressed() throws ApiProxyException {
+        enableHackerPanel();
+        Task<Void> task =
+            new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    disableHintAndExit();
+                    if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+                        ai.runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+                    } else {
+                        ai.runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getMemoryGameHint()),
+                            hackerTextArea);
+                        if (GameState.isMedium) {
+                            GameState.getInstance().subtractHint();  // Changed this line to use getInstance()
+                        }
+                    }
+                    enableHintAndExit();
+                    return null;
+                }
+            };
+        new Thread(task).start();
+    }
 
   /**
    * This method returns the user to the main menu.

@@ -1,52 +1,81 @@
 package nz.ac.auckland.se206;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import javafx.application.Platform;
+import javafx.scene.control.Label;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.ExitRoomController;
 import nz.ac.auckland.se206.controllers.SecurityRoomController;
 
-/** Represents the state of the game. */
 public class GameState {
 
-  /** Randomly generated order of endpoints for the wires game */
-  public static String wiresSequence = generateWiresSequence();
+  private List<Label> subscribers = new ArrayList<>();
+  private static final GameState instance = new GameState();
 
-  /** Indicates whether the lasers have been disabled */
   public static boolean isLasersDisabled = false;
-
-  /** Indicates whether the cameras have been disabled */
   public static boolean isCamerasDisabled = false;
-
-  /** Indicated whether the treasure has been stolen */
   public static boolean isTreasureStolen = false;
-
-  /** Indicates whether the keycode has been found */
   public static boolean isKeycodeFound = false;
-
-  /** Indicates whether the exit door has been unlocked */
   public static boolean isExitDoorUnlocked = false;
-
-  // Difficulty booleans
   public static boolean isEasy = true;
   public static boolean isMedium = false;
   public static boolean isHard = false;
-
   public static int timeLimit = 2;
   public static boolean textToSpeech = false;
   public static boolean isDoorOpen = false;
 
-  public static int hintsLeft = 5;
+  private static String hintsLeft;
+  public static String wiresSequence = generateWiresSequence();
 
-  // Sets the difficulty to easy
-  public static void setEasy() {
-    isEasy = true;
-    isMedium = false;
-    isHard = false;
+  // Private constructor to ensure singleton property
+  private GameState() {
+    setMedium(); // Just for initialization, you can remove or change this line as needed
   }
 
-  /** Generates a random ordering of the numbers one through four inclusive */
+  // Public static method to get the single instance of GameState
+  public static GameState getInstance() {
+    return instance;
+  }
+
+  public static String getHintsLeft() {
+    return hintsLeft;
+  }
+
+  public void subscribe(Label label) {
+    subscribers.add(label);
+    updateLabels();
+  }
+
+  public void subtractHint() {
+    if (isMedium) {
+      System.out.println("Before subtracting hint: " + hintsLeft); // Debugging print
+      int numberOfHints = Integer.parseInt(hintsLeft);
+      numberOfHints--;
+      hintsLeft = String.valueOf(numberOfHints);
+      System.out.println("After subtracting hint: " + hintsLeft); // Debugging print
+      updateLabels();
+    }
+  }
+
+  private void updateLabels() {
+    Platform.runLater(
+        () -> {
+          for (Label label : subscribers) {
+            if (isHard) {
+              label.setText("Database Down");
+            } else if (isEasy) {
+              label.setText("No hint limit"); // This is the infinity symbol
+            } else {
+              label.setText("Hints left: " + hintsLeft);
+            }
+            System.out.println("Label updated: " + label.getText()); // Debugging print
+          }
+        });
+  }
+
   public static String generateWiresSequence() {
     String[] array = {"1", "2", "3", "4"};
     List<String> list = Arrays.asList(array);
@@ -55,22 +84,30 @@ public class GameState {
     for (String s : list) {
       sb.append(s);
     }
-    System.out.println(sb.toString());
     return sb.toString();
   }
 
-  // Sets the difficulty to medium
-  public static void setMedium() {
+  public void setEasy() {
+    isEasy = true;
+    isMedium = false;
+    isHard = false;
+    updateLabels(); // If you want to update labels when difficulty is changed
+  }
+
+  public void setMedium() {
     isEasy = false;
     isMedium = true;
     isHard = false;
+    hintsLeft = "5";
+    updateLabels();
   }
 
-  // Sets the difficulty to hard
-  public static void setHard() {
+  public void setHard() {
     isEasy = false;
     isMedium = false;
     isHard = true;
+    hintsLeft = "∞";
+    updateLabels();
   }
 
   public static void disableCamera() {

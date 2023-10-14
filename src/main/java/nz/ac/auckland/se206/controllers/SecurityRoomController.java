@@ -47,6 +47,7 @@ public class SecurityRoomController extends GameController
   @FXML private Text interractHint;
   @FXML private Label wireLabel;
   @FXML private Label doorLabel;
+  @FXML private Label hintsLabel;
   @FXML private Rectangle correctColor;
   @FXML private Rectangle incorrectColor;
   @FXML private Text incorrectTxt;
@@ -192,6 +193,8 @@ public class SecurityRoomController extends GameController
 
   @Override
   public void initialize() {
+   GameState value = GameState.getInstance();
+   value.subscribe(hintsLabel);
     stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     super.initialize();
     exitBlock = new SolidBox(boundingBoxThree);

@@ -84,7 +84,21 @@ public class Timers {
                   Platform.runLater(() -> label.setText(time));
                 }
               }
-
+              if (timeInMilliseconds <= 15000 && timeInMilliseconds > 0) {
+                Timeline flashTimeline = new Timeline(
+                    new KeyFrame(Duration.seconds(0.5), ev -> {
+                        for (Label label : subscribedLabels) {
+                            if ("RED".equals(label.getTextFill().toString())) {
+                                Platform.runLater(() -> label.setStyle("-fx-text-fill: black;"));
+                            } else {
+                                Platform.runLater(() -> label.setStyle("-fx-text-fill: red;"));
+                            }
+                        }
+                    })
+                );
+                flashTimeline.setCycleCount(30); // Flash for 15 seconds
+                flashTimeline.play();
+              }
               if (timeInMilliseconds == 0) {
                 App.switchScenes(AppUi.GAME_LOST);
               }
