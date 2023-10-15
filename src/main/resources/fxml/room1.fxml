@@ -391,6 +391,7 @@
          </font>
       </Button>
       <ProgressBar fx:id="suspicionProgressBar" layoutX="290.0" layoutY="17.0" prefHeight="38.0" prefWidth="270.0" progress="0.0" />
+      <Rectangle fx:id="suspicionRectangle" arcHeight="5.0" arcWidth="5.0" fill="#ff341f" height="691.0" layoutX="-56.0" layoutY="-60.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="918.0" />
 
    </children>
 </AnchorPane>

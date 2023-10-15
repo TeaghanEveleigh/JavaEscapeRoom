@@ -54,6 +54,7 @@ public class LaserRoomController extends GameController
   @FXML private ImageView arrow3;
   @FXML private Label hintsLabel;
   @FXML private ProgressBar suspicionProgressBar;
+  @FXML private Rectangle suspicionRectangle;
 
   private SolidBox laserBox;
 
@@ -66,7 +67,8 @@ public class LaserRoomController extends GameController
     paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
 
     super.initialize();
-    boundsObjects.add(new Suspicion(boundingBoxOne, this, suspicionProgressBar));
+    boundsObjects.add(
+        new Suspicion(boundingBoxOne, this, suspicionProgressBar, suspicionRectangle));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
     boundsObjects.add(new Portal(doorRectangle, this, AppUi.EXIT_ROOM));
     boundsObjects.add(new LeftDinosaur(leftDinosaurBounds, this));

@@ -15,11 +15,21 @@ public class Suspicion extends Interactable {
   private double suspicionLevel = 0.0;
   private double maximumSuspicionLevel = 5.0;
   private ProgressBar progressBar;
+  private Rectangle suspicionLight;
+  private double minimumOpactiy = 0.1;
+  private double maximumOpacity = 0.5;
+  private boolean maximumOpacityReached = false;
 
-  public Suspicion(Rectangle rectangle, SuspicionListener listener, ProgressBar progressBar) {
+  public Suspicion(
+      Rectangle rectangle,
+      SuspicionListener listener,
+      ProgressBar progressBar,
+      Rectangle suspicionLight) {
     super(rectangle);
     this.listener = listener;
     this.progressBar = progressBar;
+    this.suspicionLight = suspicionLight;
+    suspicionLight.setOpacity(0.0);
     timer = new Timer();
     decrementTask = getDecrementTask();
     timer.scheduleAtFixedRate(decrementTask, 0, 100);
@@ -29,6 +39,7 @@ public class Suspicion extends Interactable {
     return new TimerTask() {
       @Override
       public void run() {
+        flashLight();
         suspicionLevel += 0.1;
         if (suspicionLevel >= maximumSuspicionLevel) {
           suspicionLevel = maximumSuspicionLevel;
@@ -37,6 +48,24 @@ public class Suspicion extends Interactable {
         progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
       }
     };
+  }
+
+  protected void flashLight() {
+    checkOpacity();
+    if (maximumOpacityReached) {
+      suspicionLight.setOpacity(suspicionLight.getOpacity() - 0.1);
+    } else {
+      suspicionLight.setOpacity(suspicionLight.getOpacity() + 0.1);
+    }
+  }
+
+  private void checkOpacity() {
+    double opacity = suspicionLight.getOpacity();
+    if (opacity >= maximumOpacity) {
+      maximumOpacityReached = true;
+    } else if (opacity <= minimumOpactiy) {
+      maximumOpacityReached = false;
+    }
   }
 
   private TimerTask getDecrementTask() {
@@ -49,7 +78,6 @@ public class Suspicion extends Interactable {
           decrementTask.cancel();
         }
         progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
-        System.out.println("decrementing " + suspicionLevel);
       }
     };
   }
@@ -71,6 +99,7 @@ public class Suspicion extends Interactable {
   @Override
   public void notTouched() {
     if (!touched) return;
+    suspicionLight.setOpacity(0.0);
     incrementTask.cancel();
     decrementTask = getDecrementTask();
     timer.scheduleAtFixedRate(decrementTask, 0, 100);
