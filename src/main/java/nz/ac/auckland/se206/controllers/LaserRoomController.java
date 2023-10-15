@@ -57,7 +57,7 @@ public class LaserRoomController extends GameController
   public void initialize() {
     Passcode passcode = Passcode.getInstance();
     GameState value = GameState.getInstance();
-   value.subscribe(hintsLabel);
+    value.subscribe(hintsLabel);
     trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
     paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
 

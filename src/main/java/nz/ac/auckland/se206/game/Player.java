@@ -164,7 +164,9 @@ public class Player extends Sprite {
         } else if (boundsObject instanceof Interactable) {
           Interactable interactable = (Interactable) boundsObject;
           interactable.touched();
-          if (KeyState.getKeysPressed().contains(KeyCode.E)) interactable.interact();
+          if (KeyState.getKeysPressed().contains(KeyCode.E)) {
+            interactable.interact();
+          }
         }
       } else if (boundsObject instanceof Interactable) {
         Interactable interactable = (Interactable) boundsObject;

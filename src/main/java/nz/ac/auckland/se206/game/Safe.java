@@ -19,14 +19,18 @@ public class Safe extends Interactable {
 
   @Override
   public void touched() {
-    if (touched) return;
+    if (touched) {
+      return;
+    }
     listener.safeTouched();
     touched = true;
   }
 
   @Override
   public void notTouched() {
-    if (!touched) return;
+    if (!touched) {
+      return;
+    }
     listener.safeNotTouched();
     touched = false;
   }

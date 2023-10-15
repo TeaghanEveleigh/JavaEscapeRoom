@@ -193,8 +193,8 @@ public class SecurityRoomController extends GameController
 
   @Override
   public void initialize() {
-   GameState value = GameState.getInstance();
-   value.subscribe(hintsLabel);
+    GameState value = GameState.getInstance();
+    value.subscribe(hintsLabel);
     stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     super.initialize();
     exitBlock = new SolidBox(boundingBoxThree);
@@ -473,18 +473,18 @@ public class SecurityRoomController extends GameController
   }
 
   @Override
-  public void securityDoorInteracted() {
+  public void onSecurityDoorInteracted() {
     pauseRoom();
     App.switchScenes(AppUi.SECURITY_ROOM);
   }
 
   @Override
-  public void securityDoorTouched() {
+  public void onSecurityDoorTouched() {
     showSecurity();
   }
 
   @Override
-  public void securityDoorUntouched() {
+  public void onSecurityDoorNotTouched() {
     hideSecurity();
   }
 

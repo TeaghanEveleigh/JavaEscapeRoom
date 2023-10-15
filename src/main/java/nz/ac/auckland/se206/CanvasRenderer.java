@@ -2,7 +2,6 @@ package nz.ac.auckland.se206;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -60,5 +59,4 @@ public class CanvasRenderer {
   public void clearBackground() {
     this.backgroundImage = null;
   }
-  
 }

@@ -70,7 +70,7 @@ public class ExitRoomController extends GameController
   @Override
   public void initialize() {
     GameState value = GameState.getInstance();
-   value.subscribe(hintsLabel);
+    value.subscribe(hintsLabel);
     password.setText(passcode.getKeyCode());
     super.initialize();
     boundsObjects.add(new SolidBox(boundingBoxOne));

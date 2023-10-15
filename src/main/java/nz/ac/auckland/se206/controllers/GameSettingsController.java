@@ -26,26 +26,25 @@ public class GameSettingsController implements BaseController {
   }
 
   @FXML
-private void onEasyPressed() throws IOException {
+  private void onEasyPressed() throws IOException {
     mediumCheckBox.setSelected(false);
     hardCheckBox.setSelected(false);
     GameState.getInstance().setEasy();
-}
+  }
 
-@FXML
-private void onMediumPressed() throws IOException {
+  @FXML
+  private void onMediumPressed() throws IOException {
     easyCheckBox.setSelected(false);
     hardCheckBox.setSelected(false);
     GameState.getInstance().setMedium();
-}
+  }
 
-@FXML
-private void onHardPressed() throws IOException {
+  @FXML
+  private void onHardPressed() throws IOException {
     mediumCheckBox.setSelected(false);
     easyCheckBox.setSelected(false);
     GameState.getInstance().setHard();
-}
-
+  }
 
   @FXML
   private void onTwoPressed() throws IOException {

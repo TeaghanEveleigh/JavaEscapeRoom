@@ -14,20 +14,24 @@ public class SecurityRoomDoor extends Interactable {
 
   @Override
   public void interact() {
-    listener.securityDoorInteracted();
+    listener.onSecurityDoorInteracted();
   }
 
   @Override
   public void touched() {
-    if (touched) return;
-    listener.securityDoorTouched();
+    if (touched) {
+      return;
+    }
+    listener.onSecurityDoorTouched();
     touched = true;
   }
 
   @Override
   public void notTouched() {
-    if (!touched) return;
-    listener.securityDoorUntouched();
+    if (!touched) {
+      return;
+    }
+    listener.onSecurityDoorNotTouched();
     touched = false;
   }
 }

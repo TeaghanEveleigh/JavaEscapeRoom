@@ -19,14 +19,18 @@ public class ExitRoomDoor extends Interactable {
 
   @Override
   public void touched() {
-    if (touched) return;
+    if (touched) {
+      return;
+    }
     listener.exitDoorTouched();
     touched = true;
   }
 
   @Override
   public void notTouched() {
-    if (!touched) return;
+    if (!touched) {
+      return;
+    }
     listener.exitDoorUntouched();
     touched = false;
   }

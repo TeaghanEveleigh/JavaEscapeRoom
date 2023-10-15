@@ -29,17 +29,21 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getWiresRiddle() {
-    return "You are a hacker aiding your partner in a museum heist to steal a laser-guarded object. You have access to the database, and your partner encounters a panel with four wires: green, red, yellow, and blue, connecting to four endpoints labeled 1-4. The wires followed by the connection point is , G," 
-    + GameState.wiresSequence.charAt(0)+ "R,"+
-   
-    + GameState.wiresSequence.charAt(1) + "Y,"+
-
-    + GameState.wiresSequence.charAt(2)    + "B,"+
-     
-    + GameState.wiresSequence.charAt(3)+ "It is really important that you dont get the wire connections wrong so please carefully analysis which ones belong to which number"
-    + ". Give the user the answer but in a way that makes them think dont directly tell them what the corresponding connections are they should need to think about it in some way";
-    
-    
+    return "You are a hacker aiding your partner in a museum heist to steal a laser-guarded object."
+        + " You have access to the database, and your partner encounters a panel with four"
+        + " wires: green, red, yellow, and blue, connecting to four endpoints labeled 1-4."
+        + " The wires followed by the connection point is , G,"
+        + GameState.wiresSequence.charAt(0)
+        + "R,"
+        + +GameState.wiresSequence.charAt(1)
+        + "Y,"
+        + +GameState.wiresSequence.charAt(2)
+        + "B,"
+        + +GameState.wiresSequence.charAt(3)
+        + "It is really important that you dont get the wire connections wrong so please carefully"
+        + " analysis which ones belong to which number. Give the user the answer but in a way that"
+        + " makes them think dont directly tell them what the corresponding connections are they"
+        + " should need to think about it in some way";
   }
 
   /**

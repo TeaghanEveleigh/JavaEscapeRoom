@@ -12,46 +12,43 @@ import nz.ac.auckland.se206.SceneManager;
 /** Controller class for the game won view. */
 public class GameWonController implements BaseController {
 
-    private MediaPlayer mediaPlayer;
+  private MediaPlayer mediaPlayer;
 
-    @FXML
-    public void initialize() {
-        String soundPath = getClass().getResource("/sounds/victory-96688.mp3").toString();
-        if (soundPath == null) {
-            System.err.println("Failed to load sound file.");
-            return;
-        }
-
-        Media media = new Media(soundPath);
-        mediaPlayer = new MediaPlayer(media);
-        playVictorySound();
+  @FXML
+  public void initialize() {
+    String soundPath = getClass().getResource("/sounds/victory-96688.mp3").toString();
+    if (soundPath == null) {
+      System.err.println("Failed to load sound file.");
+      return;
     }
 
-    /**
-     * Play the victory sound.
-     */
-    public void playVictorySound() {
-        if (mediaPlayer != null) {
-            mediaPlayer.seek(Duration.ZERO);
-            mediaPlayer.play();
-        }
-    }
+    Media media = new Media(soundPath);
+    mediaPlayer = new MediaPlayer(media);
+    playVictorySound();
+  }
 
-    /**
-     * Ends the game and exits the program
-     *
-     * @param event the action event triggered by the go back button
-     */
-    @FXML
-    private void onExitGame(ActionEvent event) {
-        App.switchScenes(SceneManager.AppUi.MAIN_MENU);
-    
-        // Get the MainMenuController and replay the menu music
-        MainMenuController mainMenuController = 
-            (MainMenuController) SceneManager.getUiController(SceneManager.AppUi.MAIN_MENU);
-        if (mainMenuController != null) {
-            mainMenuController.replayMenuMusic();
-        }
+  /** Play the victory sound. */
+  public void playVictorySound() {
+    if (mediaPlayer != null) {
+      mediaPlayer.seek(Duration.ZERO);
+      mediaPlayer.play();
     }
+  }
 
+  /**
+   * Ends the game and exits the program
+   *
+   * @param event the action event triggered by the go back button
+   */
+  @FXML
+  private void onExitGame(ActionEvent event) {
+    App.switchScenes(SceneManager.AppUi.MAIN_MENU);
+
+    // Get the MainMenuController and replay the menu music
+    MainMenuController mainMenuController =
+        (MainMenuController) SceneManager.getUiController(SceneManager.AppUi.MAIN_MENU);
+    if (mainMenuController != null) {
+      mainMenuController.replayMenuMusic();
+    }
+  }
 }

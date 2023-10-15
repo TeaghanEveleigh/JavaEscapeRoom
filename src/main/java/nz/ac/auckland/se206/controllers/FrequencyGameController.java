@@ -77,14 +77,15 @@ public class FrequencyGameController implements BaseController {
     // Ensure amplitude is not 50 to avoid a match
     double amplitude;
     do {
-        amplitude = random.nextDouble() * amplitudeSlider.getMax();
+      amplitude = random.nextDouble() * amplitudeSlider.getMax();
     } while (Math.abs(amplitude - 50) < 5); // Ensure a minimum difference
 
     // Ensure frequency is not matching the target frequency to avoid a match
     double frequency;
     do {
-        frequency = frequencySlider.getMin() 
-                   + random.nextDouble() * (frequencySlider.getMax() - frequencySlider.getMin());
+      frequency =
+          frequencySlider.getMin()
+              + random.nextDouble() * (frequencySlider.getMax() - frequencySlider.getMin());
     } while (Math.abs(frequency - 0.01) < 0.005); // Ensure a minimum difference
 
     amplitudeSlider.setValue(amplitude);
@@ -95,37 +96,35 @@ public class FrequencyGameController implements BaseController {
     frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
 
     if (updateImmediately) {
-        updateWave();
+      updateWave();
     }
-}
+  }
 
+  private void initializeCountdown() {
+    startSound.play();
+    countdownTimeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(1),
+                e -> {
+                  timeInSeconds--;
 
-private void initializeCountdown() {
-  startSound.play();
-  countdownTimeline =
-      new Timeline(
-          new KeyFrame(
-              Duration.millis(1),
-              e -> {
-                timeInSeconds--;
+                  int seconds = timeInSeconds / 1000;
+                  timer.setText(String.format("%2d", seconds));
 
-                int seconds = timeInSeconds / 1000;
-                timer.setText(String.format("%2d", seconds));
-
-                if (seconds <= 3) {
+                  if (seconds <= 3) {
                     timer.setStyle("-fx-text-fill: red;"); // Changing text color to red
-                }
+                  }
 
-                if (timeInSeconds <= 0 && matched != true) {
-                  countdownTimeline.stop();
-                  gameOver("timer_done");
-                }
-              }));
+                  if (timeInSeconds <= 0 && matched != true) {
+                    countdownTimeline.stop();
+                    gameOver("timer_done");
+                  }
+                }));
 
-  countdownTimeline.setCycleCount(10000);
-  countdownTimeline.play();
-}
-
+    countdownTimeline.setCycleCount(10000);
+    countdownTimeline.play();
+  }
 
   private void drawTargetWave() {
     targetSineWave.getElements().add(new MoveTo(0, 150));
@@ -157,7 +156,7 @@ private void initializeCountdown() {
   @FXML
   private void onBackPressed() {
     // Handle back button press here
-  
+
     App.goToPreviousScene();
   }
 

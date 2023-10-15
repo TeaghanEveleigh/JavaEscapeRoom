@@ -242,7 +242,9 @@ public class MemoryGameController implements BaseController {
 
   @FXML
   private void onLightPressed(MouseEvent event) throws IOException {
-    if (showingSequence) return;
+    if (showingSequence) {
+      return;
+    }
 
     ImageView pressed = (ImageView) event.getSource();
     setLight(pressed, lightPressedImage);
@@ -265,7 +267,9 @@ public class MemoryGameController implements BaseController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+
             disableHintChatAndExit();
+
             if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
@@ -278,6 +282,7 @@ public class MemoryGameController implements BaseController {
               }
             }
             enableHintChatAndExit();
+
             return null;
           }
         };

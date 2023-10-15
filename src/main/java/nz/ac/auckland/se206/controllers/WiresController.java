@@ -29,7 +29,8 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /*
- * This is the controller class for the wires game window. The wires are made draggable and are checked if they're connected to the right endpoints.
+ * This is the controller class for the wires game window.
+ * The wires are made draggable and are checked if they're connected to the right endpoints.
  */
 public class WiresController implements Initializable, BaseController {
 
@@ -220,16 +221,17 @@ public class WiresController implements Initializable, BaseController {
               isEndpointConnected[i] = true;
               endpoints.get(i).setFill(rectangle.getFill());
               numberLabels.get(i).setTextFill(rectangle.getFill());
-              double xDistance = endpoints.get(i).getLayoutX() - rectangle.getLayoutX();
-              double yDistance =
+              double horizontalDistance = endpoints.get(i).getLayoutX() - rectangle.getLayoutX();
+              double verticalDistance =
                   endpoints.get(i).getLayoutY() - rectangle.getLayoutY() - originalHeight / 2;
 
               // Set the rectangle's width to reach the centre of the endpoint
-              double newWidth = Math.sqrt(Math.pow(xDistance, 2.0) + Math.pow(yDistance, 2.0));
+              double newWidth =
+                  Math.sqrt(Math.pow(horizontalDistance, 2.0) + Math.pow(verticalDistance, 2.0));
               rectangle.setWidth(newWidth);
 
               // Calculate the angle between the rectangle and the endpoint
-              double deltaAngle = calculateAngle(yDistance, xDistance);
+              double deltaAngle = calculateAngle(verticalDistance, horizontalDistance);
               rectangle.getTransforms().clear();
 
               // Rotate the rectangle to the correct angle
@@ -348,7 +350,9 @@ public class WiresController implements Initializable, BaseController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+
             disableHintChatAndExit();
+
             GameState gameState = GameState.getInstance();
             if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
               ai.runGpt(
@@ -357,7 +361,9 @@ public class WiresController implements Initializable, BaseController {
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
             }
+
             enableHintChatAndExit();
+
             if (GameState.isMedium) {
               gameState.subtractHint();
             }
@@ -387,8 +393,17 @@ public class WiresController implements Initializable, BaseController {
     disableHackerPanel();
   }
 
+
   // Disables the hint and exit buttons
   public void disableHintChatAndExit() {
+    hackerIcon.toBack();
+
+    hackerTextArea.toBack();
+    exitHackerPanelImage.toBack();
+    exitHackerPanelImage.setDisable(true);
+  }
+
+  public void disableHintAndExit() {
     hintButton.setDisable(true);
     chatButton.setDisable(true);
     exitHackerPanelImage.setDisable(true);
