@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -34,13 +35,22 @@ public class WiresController implements Initializable, BaseController {
 
   // Buttons
   @FXML private Button backButton;
-  @FXML private Button hintButton;
 
   // Hacker panel
-
+  @FXML private Label hintsLabel;
   @FXML private TextArea hackerTextArea;
   @FXML private ImageView hackerIcon;
   @FXML private ImageView exitHackerPanelImage;
+  @FXML private Button hintButton;
+  @FXML private Button chatButton;
+  @FXML private Button talkToHackerButton;
+  @FXML private Rectangle hackerPanelBackground;
+
+  // Chat panel
+  @FXML private TextField chatTextField;
+  @FXML private Rectangle chatPanelBackground;
+  @FXML private Button submitButton;
+  @FXML private ImageView exitChatImage;
 
   // Opacity rectangle
   @FXML private Rectangle opacityRectangle;
@@ -122,6 +132,7 @@ public class WiresController implements Initializable, BaseController {
     makeDraggable(yellowWire);
     getRiddle();
     hackerTextArea.setEditable(false);
+    disableChat();
   }
 
   /**
@@ -332,37 +343,39 @@ public class WiresController implements Initializable, BaseController {
    */
   @FXML
   private void onHintPressed() throws ApiProxyException {
-      enableHackerPanel();
-      Task<Void> task = new Task<Void>() {
+    enableHackerPanel();
+    Task<Void> task =
+        new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-              disableHintAndExit();
-              GameState gameState = GameState.getInstance();
-              if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
-                  ai.runGpt(new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
-              } else {
-                  ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
-              }
-              enableHintAndExit();
-              if (GameState.isMedium) {
-                  gameState.subtractHint();
-              }
-              return null;
+            disableHintChatAndExit();
+            GameState gameState = GameState.getInstance();
+            if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+            } else {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+            }
+            enableHintChatAndExit();
+            if (GameState.isMedium) {
+              gameState.subtractHint();
+            }
+            return null;
           }
-      };
-      new Thread(task).start();
+        };
+    new Thread(task).start();
   }
-  
 
   public void getRiddle() {
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintAndExit();
+            disableHintChatAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getWiresRiddle()), hackerTextArea);
-            enableHintAndExit();
+            enableHintChatAndExit();
             return null;
           }
         };
@@ -374,32 +387,64 @@ public class WiresController implements Initializable, BaseController {
     disableHackerPanel();
   }
 
-  public void disableHackerPanel() {
-    hackerIcon.toBack();
-  
-    hackerTextArea.toBack();
-    exitHackerPanelImage.toBack();
-    exitHackerPanelImage.setDisable(true);
-  }
-
-  public void disableHintAndExit() {
+  // Disables the hint and exit buttons
+  public void disableHintChatAndExit() {
     hintButton.setDisable(true);
+    chatButton.setDisable(true);
     exitHackerPanelImage.setDisable(true);
-    backButton.setDisable(true);
   }
 
-  public void enableHintAndExit() {
+  // Enables the hint and exit buttons
+  public void enableHintChatAndExit() {
     hintButton.setDisable(false);
+    chatButton.setDisable(false);
     exitHackerPanelImage.setDisable(false);
-    backButton.setDisable(false);
   }
 
+  // Enables the hacker panel
   public void enableHackerPanel() {
-
+    hackerPanelBackground.toFront();
+    hintButton.toFront();
+    chatButton.toFront();
     hackerIcon.toFront();
+    hintsLabel.toFront();
     hackerTextArea.toFront();
     exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);
+    talkToHackerButton.setDisable(true);
+  }
+
+  // Disables the hacker panel
+  public void disableHackerPanel() {
+    hackerPanelBackground.toBack();
+    hintButton.toBack();
+    chatButton.toBack();
+    hackerIcon.toBack();
+    hintsLabel.toBack();
+    hackerTextArea.toBack();
+    exitHackerPanelImage.toBack();
+    exitHackerPanelImage.setDisable(true);
+    talkToHackerButton.setDisable(false);
+  }
+
+  // Enables the chat panel
+  public void enableChat() {
+    chatPanelBackground.toFront();
+    submitButton.toFront();
+    submitButton.setDisable(false);
+    chatTextField.toFront();
+    exitChatImage.toFront();
+    exitChatImage.setDisable(false);
+  }
+
+  // Disables the chat panel
+  public void disableChat() {
+    chatPanelBackground.toBack();
+    submitButton.toBack();
+    submitButton.setDisable(true);
+    chatTextField.toBack();
+    exitChatImage.toBack();
+    exitChatImage.setDisable(true);
   }
 
   public void onWiresGameWon() {
@@ -420,14 +465,51 @@ public class WiresController implements Initializable, BaseController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintAndExit();
+            disableHintChatAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getWiresRiddleSolvedPrompt()),
                 hackerTextArea);
-            enableHintAndExit();
+            enableHintChatAndExit();
             return null;
           }
         };
     new Thread(task).start();
+  }
+
+  @FXML
+  public void onTalkToHackerPressed() {
+    enableHackerPanel();
+  }
+
+  @FXML
+  public void onChatPressed() {
+    enableChat();
+  }
+
+  @FXML
+  public void onChatExitClicked() {
+    disableChat();
+  }
+
+  @FXML
+  public void onSubmitPressed() {
+    String message = chatTextField.getText();
+    chatTextField.clear();
+    if (message.length() > 0) {
+      disableHintChatAndExit();
+      try {
+        ai.runGpt(
+            new ChatMessage("user", GptPromptEngineering.getChatResponse(message)), hackerTextArea);
+      } catch (ApiProxyException e) {
+        e.printStackTrace();
+      }
+      enableHintChatAndExit();
+    }
+  }
+
+  @FXML
+  public void onHackerExitClicked() {
+    disableHackerPanel();
+    disableChat();
   }
 }
