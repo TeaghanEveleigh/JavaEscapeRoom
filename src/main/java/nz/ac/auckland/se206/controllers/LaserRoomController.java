@@ -265,11 +265,13 @@ public class LaserRoomController extends GameController
 
   @Override
   public void suspicionTouched() {
-    return;
+    suspicionProgressBar.toFront();
+    suspicionRectangle.toFront();
   }
 
   @Override
   public void suspicionUntouched() {
-    return;
+    suspicionRectangle.toBack();
+    // progress bar witll be sent to back on end of progress
   }
 }

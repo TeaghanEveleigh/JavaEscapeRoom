@@ -19,6 +19,8 @@ public class Suspicion extends Interactable {
   private double minimumOpactiy = 0.1;
   private double maximumOpacity = 0.5;
   private boolean maximumOpacityReached = false;
+  private boolean decrementCanceled = false;
+  private boolean incrementCanceled = false;
 
   public Suspicion(
       Rectangle rectangle,
@@ -76,6 +78,7 @@ public class Suspicion extends Interactable {
         if (suspicionLevel <= 0.0) {
           suspicionLevel = 0.0;
           decrementTask.cancel();
+          progressBar.toBack();
         }
         progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
       }
@@ -90,9 +93,10 @@ public class Suspicion extends Interactable {
   @Override
   public void touched() {
     if (touched) return;
-    decrementTask.cancel();
+    cancelDecrement();
     incrementTask = getIncrementTask();
     timer.scheduleAtFixedRate(incrementTask, 0, 100);
+    incrementCanceled = false;
     touched = true;
   }
 
@@ -100,9 +104,22 @@ public class Suspicion extends Interactable {
   public void notTouched() {
     if (!touched) return;
     suspicionLight.setOpacity(0.0);
-    incrementTask.cancel();
+    cancelIncrement();
     decrementTask = getDecrementTask();
     timer.scheduleAtFixedRate(decrementTask, 0, 100);
+    decrementCanceled = false;
     touched = false;
+  }
+
+  private void cancelDecrement() {
+    if (decrementCanceled) return;
+    decrementTask.cancel();
+    decrementCanceled = true;
+  }
+
+  private void cancelIncrement() {
+    if (incrementCanceled) return;
+    incrementTask.cancel();
+    incrementCanceled = true;
   }
 }
