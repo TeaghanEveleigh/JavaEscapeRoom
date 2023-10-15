@@ -28,7 +28,8 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /*
- * This is the controller class for the wires game window. The wires are made draggable and are checked if they're connected to the right endpoints.
+ * This is the controller class for the wires game window.
+ * The wires are made draggable and are checked if they're connected to the right endpoints.
  */
 public class WiresController implements Initializable, BaseController {
 

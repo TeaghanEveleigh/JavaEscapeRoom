@@ -5,5 +5,5 @@ public interface SecurityRoomDoorListener {
 
   public void onSecurityDoorTouched();
 
-  public void onSecurityDoorUntouched();
+  public void onSecurityDoorNotTouched();
 }

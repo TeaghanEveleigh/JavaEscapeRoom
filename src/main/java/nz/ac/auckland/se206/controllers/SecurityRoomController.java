@@ -484,7 +484,7 @@ public class SecurityRoomController extends GameController
   }
 
   @Override
-  public void onSecurityDoorUntouched() {
+  public void onSecurityDoorNotTouched() {
     hideSecurity();
   }
 

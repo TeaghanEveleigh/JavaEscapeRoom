@@ -31,7 +31,7 @@ public class SecurityRoomDoor extends Interactable {
     if (!touched) {
       return;
     }
-    listener.onSecurityDoorUntouched();
+    listener.onSecurityDoorNotTouched();
     touched = false;
   }
 }
