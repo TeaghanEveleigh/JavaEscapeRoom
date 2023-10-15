@@ -14,10 +14,12 @@ public class Suspicion extends Interactable {
   private TimerTask decrementTask;
   private double suspicionLevel = 0.0;
   private double maximumSuspicionLevel = 5.0;
+  private ProgressBar progressBar;
 
   public Suspicion(Rectangle rectangle, SuspicionListener listener, ProgressBar progressBar) {
     super(rectangle);
     this.listener = listener;
+    this.progressBar = progressBar;
     timer = new Timer();
     decrementTask = getDecrementTask();
     timer.scheduleAtFixedRate(decrementTask, 0, 100);
@@ -28,7 +30,11 @@ public class Suspicion extends Interactable {
       @Override
       public void run() {
         suspicionLevel += 0.1;
-        System.out.println("incrementing " + suspicionLevel);
+        if (suspicionLevel >= maximumSuspicionLevel) {
+          suspicionLevel = maximumSuspicionLevel;
+          incrementTask.cancel();
+        }
+        progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
       }
     };
   }
@@ -42,6 +48,7 @@ public class Suspicion extends Interactable {
           suspicionLevel = 0.0;
           decrementTask.cancel();
         }
+        progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
         System.out.println("decrementing " + suspicionLevel);
       }
     };
