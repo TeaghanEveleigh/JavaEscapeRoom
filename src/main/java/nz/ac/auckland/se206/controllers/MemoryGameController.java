@@ -10,16 +10,14 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.HackerUiToggler;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.gpt.Ai;
@@ -27,7 +25,7 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
-public class MemoryGameController implements BaseController {
+public class MemoryGameController extends HackerUiToggler implements BaseController {
   private static double sequenceSeconds = 0.5;
   private static int maxSequenceLength = 6;
 
@@ -41,22 +39,6 @@ public class MemoryGameController implements BaseController {
   @FXML private ImageView lightSeven;
   @FXML private ImageView lightNine;
   @FXML private ImageView lightTen;
-
-  // Hacker panel
-  @FXML private Label hintsLabel;
-  @FXML private TextArea hackerTextArea;
-  @FXML private ImageView hackerIcon;
-  @FXML private ImageView exitHackerPanelImage;
-  @FXML private Button hintButton;
-  @FXML private Button chatButton;
-  @FXML private Button talkToHackerButton;
-  @FXML private Rectangle hackerPanelBackground;
-
-  // Chat panel
-  @FXML private TextField chatTextField;
-  @FXML private Rectangle chatPanelBackground;
-  @FXML private Button submitButton;
-  @FXML private ImageView exitChatImage;
 
   @FXML private Button backButton;
 
@@ -260,8 +242,8 @@ public class MemoryGameController implements BaseController {
    *
    * @throws ApiProxyException
    */
-  @FXML
-  private void onHintPressed() throws ApiProxyException {
+  @Override
+  public void onHintPressed() {
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
@@ -301,11 +283,6 @@ public class MemoryGameController implements BaseController {
     App.switchScenes(AppUi.SECURITY_ROOM);
   }
 
-  @FXML
-  public void onExitClicked() {
-    disableHackerPanel();
-  }
-
   public void getIntroduction() {
     Task<Void> task =
         new Task<Void>() {
@@ -320,102 +297,5 @@ public class MemoryGameController implements BaseController {
           }
         };
     new Thread(task).start();
-  }
-
-  @FXML
-  public void onTalkToHackerPressed() {
-    enableHackerPanel();
-  }
-
-  @FXML
-  public void onChatPressed() {
-    enableChat();
-  }
-
-  @FXML
-  public void onChatExitClicked() {
-    disableChat();
-  }
-
-  @FXML
-  public void onSubmitPressed() {
-    String message = chatTextField.getText();
-    chatTextField.clear();
-    if (message.length() > 0) {
-      disableHintChatAndExit();
-      try {
-        ai.runGpt(
-            new ChatMessage("user", GptPromptEngineering.getChatResponse(message)), hackerTextArea);
-      } catch (ApiProxyException e) {
-        e.printStackTrace();
-      }
-      enableHintChatAndExit();
-    }
-  }
-
-  @FXML
-  public void onHackerExitClicked() {
-    disableHackerPanel();
-    disableChat();
-  }
-
-  // Disables the hacker panel
-  public void disableHackerPanel() {
-    hackerPanelBackground.toBack();
-    hintButton.toBack();
-    chatButton.toBack();
-    hackerIcon.toBack();
-    hintsLabel.toBack();
-    hackerTextArea.toBack();
-    exitHackerPanelImage.toBack();
-    exitHackerPanelImage.setDisable(true);
-    talkToHackerButton.setDisable(false);
-  }
-
-  // Disables the hint and exit buttons
-  public void disableHintChatAndExit() {
-    hintButton.setDisable(true);
-    chatButton.setDisable(true);
-    exitHackerPanelImage.setDisable(true);
-  }
-
-  // Enables the hint and exit buttons
-  public void enableHintChatAndExit() {
-    hintButton.setDisable(false);
-    chatButton.setDisable(false);
-    exitHackerPanelImage.setDisable(false);
-  }
-
-  // Enables the hacker panel
-  public void enableHackerPanel() {
-    hackerPanelBackground.toFront();
-    hintButton.toFront();
-    chatButton.toFront();
-    hackerIcon.toFront();
-    hintsLabel.toFront();
-    hackerTextArea.toFront();
-    exitHackerPanelImage.toFront();
-    exitHackerPanelImage.setDisable(false);
-    talkToHackerButton.setDisable(true);
-  }
-
-  // Enables the chat panel
-  public void enableChat() {
-    chatPanelBackground.toFront();
-    submitButton.toFront();
-    submitButton.setDisable(false);
-    chatTextField.toFront();
-    exitChatImage.toFront();
-    exitChatImage.setDisable(false);
-  }
-
-  // Disables the chat panel
-  public void disableChat() {
-    chatPanelBackground.toBack();
-    submitButton.toBack();
-    submitButton.setDisable(true);
-    chatTextField.toBack();
-    exitChatImage.toBack();
-    exitChatImage.setDisable(true);
   }
 }

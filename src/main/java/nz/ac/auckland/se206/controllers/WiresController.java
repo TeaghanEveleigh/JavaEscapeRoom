@@ -9,9 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -20,38 +17,22 @@ import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.HackerUiToggler;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /*
  * This is the controller class for the wires game window.
  * The wires are made draggable and are checked if they're connected to the right endpoints.
  */
-public class WiresController implements Initializable, BaseController {
+public class WiresController extends HackerUiToggler implements Initializable, BaseController {
 
   // Buttons
   @FXML private Button backButton;
-
-  // Hacker panel
-  @FXML private Label hintsLabel;
-  @FXML private TextArea hackerTextArea;
-  @FXML private ImageView hackerIcon;
-  @FXML private ImageView exitHackerPanelImage;
-  @FXML private Button hintButton;
-  @FXML private Button chatButton;
-  @FXML private Button talkToHackerButton;
-  @FXML private Rectangle hackerPanelBackground;
-
-  // Chat panel
-  @FXML private TextField chatTextField;
-  @FXML private Rectangle chatPanelBackground;
-  @FXML private Button submitButton;
-  @FXML private ImageView exitChatImage;
 
   // Opacity rectangle
   @FXML private Rectangle opacityRectangle;
@@ -338,13 +319,9 @@ public class WiresController implements Initializable, BaseController {
     return Math.toDegrees(angle);
   }
 
-  /**
-   * This method gives a hint to the user through the AI
-   *
-   * @throws ApiProxyException
-   */
-  @FXML
-  private void onHintPressed() throws ApiProxyException {
+  /** This method gives a hint to the user through the AI */
+  @Override
+  public void onHintPressed() {
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
@@ -388,80 +365,6 @@ public class WiresController implements Initializable, BaseController {
     new Thread(task).start();
   }
 
-  @FXML
-  public void onExitClicked() {
-    disableHackerPanel();
-  }
-
-
-  // Disables the hint and exit buttons
-  public void disableHintChatAndExit() {
-    hackerIcon.toBack();
-
-    hackerTextArea.toBack();
-    exitHackerPanelImage.toBack();
-    exitHackerPanelImage.setDisable(true);
-  }
-
-  public void disableHintAndExit() {
-    hintButton.setDisable(true);
-    chatButton.setDisable(true);
-    exitHackerPanelImage.setDisable(true);
-  }
-
-  // Enables the hint and exit buttons
-  public void enableHintChatAndExit() {
-    hintButton.setDisable(false);
-    chatButton.setDisable(false);
-    exitHackerPanelImage.setDisable(false);
-  }
-
-  // Enables the hacker panel
-  public void enableHackerPanel() {
-    hackerPanelBackground.toFront();
-    hintButton.toFront();
-    chatButton.toFront();
-    hackerIcon.toFront();
-    hintsLabel.toFront();
-    hackerTextArea.toFront();
-    exitHackerPanelImage.toFront();
-    exitHackerPanelImage.setDisable(false);
-    talkToHackerButton.setDisable(true);
-  }
-
-  // Disables the hacker panel
-  public void disableHackerPanel() {
-    hackerPanelBackground.toBack();
-    hintButton.toBack();
-    chatButton.toBack();
-    hackerIcon.toBack();
-    hintsLabel.toBack();
-    hackerTextArea.toBack();
-    exitHackerPanelImage.toBack();
-    exitHackerPanelImage.setDisable(true);
-    talkToHackerButton.setDisable(false);
-  }
-
-  // Enables the chat panel
-  public void enableChat() {
-    chatPanelBackground.toFront();
-    submitButton.toFront();
-    submitButton.setDisable(false);
-    chatTextField.toFront();
-    exitChatImage.toFront();
-    exitChatImage.setDisable(false);
-  }
-
-  // Disables the chat panel
-  public void disableChat() {
-    chatPanelBackground.toBack();
-    submitButton.toBack();
-    submitButton.setDisable(true);
-    chatTextField.toBack();
-    exitChatImage.toBack();
-    exitChatImage.setDisable(true);
-  }
-
   public void onWiresGameWon() {
     // Displays the win message and blurs the screen
     opacityRectangle.toFront();
@@ -489,42 +392,5 @@ public class WiresController implements Initializable, BaseController {
           }
         };
     new Thread(task).start();
-  }
-
-  @FXML
-  public void onTalkToHackerPressed() {
-    enableHackerPanel();
-  }
-
-  @FXML
-  public void onChatPressed() {
-    enableChat();
-  }
-
-  @FXML
-  public void onChatExitClicked() {
-    disableChat();
-  }
-
-  @FXML
-  public void onSubmitPressed() {
-    String message = chatTextField.getText();
-    chatTextField.clear();
-    if (message.length() > 0) {
-      disableHintChatAndExit();
-      try {
-        ai.runGpt(
-            new ChatMessage("user", GptPromptEngineering.getChatResponse(message)), hackerTextArea);
-      } catch (ApiProxyException e) {
-        e.printStackTrace();
-      }
-      enableHintChatAndExit();
-    }
-  }
-
-  @FXML
-  public void onHackerExitClicked() {
-    disableHackerPanel();
-    disableChat();
   }
 }
