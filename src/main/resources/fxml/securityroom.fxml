@@ -3,6 +3,7 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -460,6 +461,8 @@
             <Font name="BM HANNA Air OTF" size="17.0" />
          </font>
       </Button>
+      <Rectangle fx:id="suspicionRectangle" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="677.0" layoutX="-86.0" layoutY="-59.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="961.0" />
+      <ProgressBar fx:id="suspicionProgressBar" layoutX="306.0" layoutY="21.0" prefHeight="49.0" prefWidth="273.0" progress="0.0" />
 
 
 
