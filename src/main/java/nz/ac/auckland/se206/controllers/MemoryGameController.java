@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -41,13 +42,22 @@ public class MemoryGameController implements BaseController {
   @FXML private ImageView lightNine;
   @FXML private ImageView lightTen;
 
-  // Hacker Panel
-  @FXML private ImageView exitHackerPanelImage;
-  @FXML private ImageView hackerIcon;
-  @FXML private Rectangle hackerRectangle;
+  // Hacker panel
+  @FXML private Label hintsLabel;
   @FXML private TextArea hackerTextArea;
-
+  @FXML private ImageView hackerIcon;
+  @FXML private ImageView exitHackerPanelImage;
   @FXML private Button hintButton;
+  @FXML private Button chatButton;
+  @FXML private Button talkToHackerButton;
+  @FXML private Rectangle hackerPanelBackground;
+
+  // Chat panel
+  @FXML private TextField chatTextField;
+  @FXML private Rectangle chatPanelBackground;
+  @FXML private Button submitButton;
+  @FXML private ImageView exitChatImage;
+
   @FXML private Button backButton;
 
   @FXML private Label mainTimerLabel;
@@ -72,11 +82,12 @@ public class MemoryGameController implements BaseController {
   public void initialize() {
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel);
-    
+
     this.lights = new ArrayList<ImageView>();
     this.sequence = new ArrayList<ImageView>();
     this.lightsPressed = new ArrayList<ImageView>();
     enableHackerPanel();
+    disableChat();
     getIntroduction();
     hackerTextArea.setEditable(false);
 
@@ -184,11 +195,11 @@ public class MemoryGameController implements BaseController {
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-              disableHintAndExit();
+              disableHintChatAndExit();
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getMemoryGameSolved()),
                   hackerTextArea);
-              enableHintAndExit();
+              enableHintChatAndExit();
               exitHackerPanelImage.setDisable(false);
               return null;
             }
@@ -248,30 +259,30 @@ public class MemoryGameController implements BaseController {
    * @throws ApiProxyException
    */
   @FXML
-    private void onHintPressed() throws ApiProxyException {
-        enableHackerPanel();
-        Task<Void> task =
-            new Task<Void>() {
-                @Override
-                protected Void call() throws Exception {
-                    disableHintAndExit();
-                    if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
-                        ai.runGpt(
-                            new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
-                    } else {
-                        ai.runGpt(
-                            new ChatMessage("user", GptPromptEngineering.getMemoryGameHint()),
-                            hackerTextArea);
-                        if (GameState.isMedium) {
-                            GameState.getInstance().subtractHint();  // Changed this line to use getInstance()
-                        }
-                    }
-                    enableHintAndExit();
-                    return null;
-                }
-            };
-        new Thread(task).start();
-    }
+  private void onHintPressed() throws ApiProxyException {
+    enableHackerPanel();
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            disableHintChatAndExit();
+            if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+            } else {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getMemoryGameHint()),
+                  hackerTextArea);
+              if (GameState.isMedium) {
+                GameState.getInstance().subtractHint(); // Changed this line to use getInstance()
+              }
+            }
+            enableHintChatAndExit();
+            return null;
+          }
+        };
+    new Thread(task).start();
+  }
 
   /**
    * This method returns the user to the main menu.
@@ -295,42 +306,111 @@ public class MemoryGameController implements BaseController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintAndExit();
+            disableHintChatAndExit();
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getMemoryGameIntroduction()),
                 hackerTextArea);
-            enableHintAndExit();
+            enableHintChatAndExit();
             return null;
           }
         };
     new Thread(task).start();
   }
 
+  @FXML
+  public void onTalkToHackerPressed() {
+    enableHackerPanel();
+  }
+
+  @FXML
+  public void onChatPressed() {
+    enableChat();
+  }
+
+  @FXML
+  public void onChatExitClicked() {
+    disableChat();
+  }
+
+  @FXML
+  public void onSubmitPressed() {
+    String message = chatTextField.getText();
+    chatTextField.clear();
+    if (message.length() > 0) {
+      disableHintChatAndExit();
+      try {
+        ai.runGpt(
+            new ChatMessage("user", GptPromptEngineering.getChatResponse(message)), hackerTextArea);
+      } catch (ApiProxyException e) {
+        e.printStackTrace();
+      }
+      enableHintChatAndExit();
+    }
+  }
+
+  @FXML
+  public void onHackerExitClicked() {
+    disableHackerPanel();
+    disableChat();
+  }
+
+  // Disables the hacker panel
   public void disableHackerPanel() {
+    hackerPanelBackground.toBack();
+    hintButton.toBack();
+    chatButton.toBack();
     hackerIcon.toBack();
-    hackerRectangle.toBack();
+    hintsLabel.toBack();
     hackerTextArea.toBack();
     exitHackerPanelImage.toBack();
     exitHackerPanelImage.setDisable(true);
+    talkToHackerButton.setDisable(false);
   }
 
-  public void disableHintAndExit() {
+  // Disables the hint and exit buttons
+  public void disableHintChatAndExit() {
     hintButton.setDisable(true);
+    chatButton.setDisable(true);
     exitHackerPanelImage.setDisable(true);
-    backButton.setDisable(true);
   }
 
-  public void enableHintAndExit() {
+  // Enables the hint and exit buttons
+  public void enableHintChatAndExit() {
     hintButton.setDisable(false);
+    chatButton.setDisable(false);
     exitHackerPanelImage.setDisable(false);
-    backButton.setDisable(false);
   }
 
+  // Enables the hacker panel
   public void enableHackerPanel() {
-    hackerRectangle.toFront();
+    hackerPanelBackground.toFront();
+    hintButton.toFront();
+    chatButton.toFront();
     hackerIcon.toFront();
+    hintsLabel.toFront();
     hackerTextArea.toFront();
     exitHackerPanelImage.toFront();
     exitHackerPanelImage.setDisable(false);
+    talkToHackerButton.setDisable(true);
+  }
+
+  // Enables the chat panel
+  public void enableChat() {
+    chatPanelBackground.toFront();
+    submitButton.toFront();
+    submitButton.setDisable(false);
+    chatTextField.toFront();
+    exitChatImage.toFront();
+    exitChatImage.setDisable(false);
+  }
+
+  // Disables the chat panel
+  public void disableChat() {
+    chatPanelBackground.toBack();
+    submitButton.toBack();
+    submitButton.setDisable(true);
+    chatTextField.toBack();
+    exitChatImage.toBack();
+    exitChatImage.setDisable(true);
   }
 }
