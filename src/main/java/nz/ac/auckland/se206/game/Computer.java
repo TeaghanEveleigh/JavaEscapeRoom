@@ -19,14 +19,18 @@ public class Computer extends Interactable {
 
   @Override
   public void touched() {
-    if (touched) return;
+    if (touched) {
+      return;
+    }
     listener.computerTouched();
     touched = true;
   }
 
   @Override
   public void notTouched() {
-    if (!touched) return;
+    if (!touched) {
+      return;
+    }
     listener.computerNotTouched();
     touched = false;
   }

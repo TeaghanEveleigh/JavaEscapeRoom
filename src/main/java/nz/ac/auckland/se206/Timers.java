@@ -2,8 +2,6 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -45,7 +43,6 @@ public class Timers {
     subscribedLabels.add(label);
     Font font = Font.loadFont(getClass().getResource("/fonts/DS-DIGIB.TTF").toExternalForm(), 40);
     label.setFont(font);
- 
   }
 
   public void subtractTime(int seconds) {
@@ -85,17 +82,19 @@ public class Timers {
                 }
               }
               if (timeInMilliseconds <= 15000 && timeInMilliseconds > 0) {
-                Timeline flashTimeline = new Timeline(
-                    new KeyFrame(Duration.seconds(0.5), ev -> {
-                        for (Label label : subscribedLabels) {
-                            if ("RED".equals(label.getTextFill().toString())) {
-                                Platform.runLater(() -> label.setStyle("-fx-text-fill: black;"));
-                            } else {
-                                Platform.runLater(() -> label.setStyle("-fx-text-fill: red;"));
-                            }
-                        }
-                    })
-                );
+                Timeline flashTimeline =
+                    new Timeline(
+                        new KeyFrame(
+                            Duration.seconds(0.5),
+                            ev -> {
+                              for (Label label : subscribedLabels) {
+                                if ("RED".equals(label.getTextFill().toString())) {
+                                  Platform.runLater(() -> label.setStyle("-fx-text-fill: black;"));
+                                } else {
+                                  Platform.runLater(() -> label.setStyle("-fx-text-fill: red;"));
+                                }
+                              }
+                            }));
                 flashTimeline.setCycleCount(30); // Flash for 15 seconds
                 flashTimeline.play();
               }

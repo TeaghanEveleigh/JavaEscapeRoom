@@ -209,16 +209,17 @@ public class WiresController implements Initializable, BaseController {
               isEndpointConnected[i] = true;
               endpoints.get(i).setFill(rectangle.getFill());
               numberLabels.get(i).setTextFill(rectangle.getFill());
-              double xDistance = endpoints.get(i).getLayoutX() - rectangle.getLayoutX();
-              double yDistance =
+              double horizontalDistance = endpoints.get(i).getLayoutX() - rectangle.getLayoutX();
+              double verticalDistance =
                   endpoints.get(i).getLayoutY() - rectangle.getLayoutY() - originalHeight / 2;
 
               // Set the rectangle's width to reach the centre of the endpoint
-              double newWidth = Math.sqrt(Math.pow(xDistance, 2.0) + Math.pow(yDistance, 2.0));
+              double newWidth =
+                  Math.sqrt(Math.pow(horizontalDistance, 2.0) + Math.pow(verticalDistance, 2.0));
               rectangle.setWidth(newWidth);
 
               // Calculate the angle between the rectangle and the endpoint
-              double deltaAngle = calculateAngle(yDistance, xDistance);
+              double deltaAngle = calculateAngle(verticalDistance, horizontalDistance);
               rectangle.getTransforms().clear();
 
               // Rotate the rectangle to the correct angle
@@ -332,27 +333,29 @@ public class WiresController implements Initializable, BaseController {
    */
   @FXML
   private void onHintPressed() throws ApiProxyException {
-      enableHackerPanel();
-      Task<Void> task = new Task<Void>() {
+    enableHackerPanel();
+    Task<Void> task =
+        new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-              disableHintAndExit();
-              GameState gameState = GameState.getInstance();
-              if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
-                  ai.runGpt(new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
-              } else {
-                  ai.runGpt(new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
-              }
-              enableHintAndExit();
-              if (GameState.isMedium) {
-                  gameState.subtractHint();
-              }
-              return null;
+            disableHintAndExit();
+            GameState gameState = GameState.getInstance();
+            if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+            } else {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
+            }
+            enableHintAndExit();
+            if (GameState.isMedium) {
+              gameState.subtractHint();
+            }
+            return null;
           }
-      };
-      new Thread(task).start();
+        };
+    new Thread(task).start();
   }
-  
 
   public void getRiddle() {
     Task<Void> task =
@@ -376,7 +379,7 @@ public class WiresController implements Initializable, BaseController {
 
   public void disableHackerPanel() {
     hackerIcon.toBack();
-  
+
     hackerTextArea.toBack();
     exitHackerPanelImage.toBack();
     exitHackerPanelImage.setDisable(true);

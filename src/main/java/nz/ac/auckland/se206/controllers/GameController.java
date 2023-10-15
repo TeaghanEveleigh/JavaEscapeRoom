@@ -89,7 +89,9 @@ public class GameController implements BaseController {
 
           @Override
           public void handle(long now) {
-            if (paused) return;
+            if (paused) {
+              return;
+            }
             player.updateMovement();
             renderer.renderEntities();
           }
@@ -165,47 +167,52 @@ public class GameController implements BaseController {
   }
 
   @FXML
-public void onHintPressed() {
+  public void onHintPressed() {
     Task<Void> task =
         new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                disableHintChatAndExit();
-                GameState gameState = GameState.getInstance();
-                if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
-                    ai.runGpt(
-                        new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
-                    enableHintChatAndExit();
-                    return null;
-                }
-                if (!GameState.isLasersDisabled && !GameState.isCamerasDisabled) {
-                    ai.runGpt(
-                        new ChatMessage("user", GptPromptEngineering.getNothingDisabledHint()), hackerTextArea);
-                } else if (GameState.isLasersDisabled) {
-                    if (!GameState.isTreasureStolen) {
-                        ai.runGpt(
-                            new ChatMessage("user", GptPromptEngineering.getLasersDisabledButNotStolenHint()), hackerTextArea);
-                    } else if (GameState.isCamerasDisabled) {
-                        ai.runGpt(
-                            new ChatMessage("user", GptPromptEngineering.getBothDisabledHint()), hackerTextArea);
-                    } else if (!GameState.isCamerasDisabled) {
-                        ai.runGpt(
-                            new ChatMessage("user", GptPromptEngineering.getLasersButNotCameraHint()), hackerTextArea);
-                    }
-                } else if (GameState.isCamerasDisabled && !GameState.isLasersDisabled) {
-                    ai.runGpt(
-                        new ChatMessage("user", GptPromptEngineering.getCameraButNotLasersHint()), hackerTextArea);
-                }
-                enableHintChatAndExit();
-                if (GameState.isMedium) {
-                    gameState.subtractHint();
-                }
-                return null;
+          @Override
+          protected Void call() throws Exception {
+            disableHintChatAndExit();
+            GameState gameState = GameState.getInstance();
+            if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
+              enableHintChatAndExit();
+              return null;
             }
+            if (!GameState.isLasersDisabled && !GameState.isCamerasDisabled) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getNothingDisabledHint()),
+                  hackerTextArea);
+            } else if (GameState.isLasersDisabled) {
+              if (!GameState.isTreasureStolen) {
+                ai.runGpt(
+                    new ChatMessage(
+                        "user", GptPromptEngineering.getLasersDisabledButNotStolenHint()),
+                    hackerTextArea);
+              } else if (GameState.isCamerasDisabled) {
+                ai.runGpt(
+                    new ChatMessage("user", GptPromptEngineering.getBothDisabledHint()),
+                    hackerTextArea);
+              } else if (!GameState.isCamerasDisabled) {
+                ai.runGpt(
+                    new ChatMessage("user", GptPromptEngineering.getLasersButNotCameraHint()),
+                    hackerTextArea);
+              }
+            } else if (GameState.isCamerasDisabled && !GameState.isLasersDisabled) {
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getCameraButNotLasersHint()),
+                  hackerTextArea);
+            }
+            enableHintChatAndExit();
+            if (GameState.isMedium) {
+              gameState.subtractHint();
+            }
+            return null;
+          }
         };
     new Thread(task).start();
-}
-
+  }
 
   // Disables the hacker panel
   public void disableHackerPanel() {

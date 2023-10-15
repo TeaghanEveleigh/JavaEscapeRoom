@@ -17,13 +17,13 @@ public class Portal extends Interactable {
   }
 
   @Override
-  public void interact() {
-    
-  }
+  public void interact() {}
 
   @Override
   public void touched() {
-    if (touched) return;
+    if (touched) {
+      return;
+    }
     originalController.pauseRoom();
     App.switchScenes(nextRoom);
     touched = true;
@@ -31,7 +31,9 @@ public class Portal extends Interactable {
 
   @Override
   public void notTouched() {
-    if (!touched) return;
+    if (!touched) {
+      return;
+    }
     touched = false;
   }
 }

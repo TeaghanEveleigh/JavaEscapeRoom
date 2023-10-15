@@ -19,14 +19,18 @@ public class StoneCarving extends Interactable {
 
   @Override
   public void touched() {
-    if (touched) return;
+    if (touched) {
+      return;
+    }
     this.listener.stoneCarvingTouched();
     touched = true;
   }
 
   @Override
   public void notTouched() {
-    if (!touched) return;
+    if (!touched) {
+      return;
+    }
     this.listener.stoneCaringUntouched();
     touched = false;
   }

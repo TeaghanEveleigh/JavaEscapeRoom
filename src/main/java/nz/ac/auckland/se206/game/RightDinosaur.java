@@ -19,14 +19,18 @@ public class RightDinosaur extends Interactable {
 
   @Override
   public void touched() {
-    if (touched) return;
+    if (touched) {
+      return;
+    }
     listener.rightDinosaurTouched();
     touched = true;
   }
 
   @Override
   public void notTouched() {
-    if (!touched) return;
+    if (!touched) {
+      return;
+    }
     listener.rightDinosaurUntouched();
     touched = false;
   }

@@ -86,8 +86,6 @@ public class App extends Application {
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
     SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
 
-
-
     FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
     SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
     SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
@@ -98,6 +96,7 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
   }
+
   public static void restartGame() throws IOException {
     // Clear previously loaded scenes and controllers
     SceneManager.clearAll();
@@ -117,6 +116,5 @@ public class App extends Application {
 
     // Set the scene to the main menu
     scene.setRoot(SceneManager.getUiRoot(AppUi.MAIN_MENU));
-}
-
+  }
 }

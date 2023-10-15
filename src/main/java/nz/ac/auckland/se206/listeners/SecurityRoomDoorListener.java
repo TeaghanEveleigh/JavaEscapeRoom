@@ -1,9 +1,9 @@
 package nz.ac.auckland.se206.listeners;
 
 public interface SecurityRoomDoorListener {
-  public void securityDoorInteracted();
+  public void onSecurityDoorInteracted();
 
-  public void securityDoorTouched();
+  public void onSecurityDoorTouched();
 
-  public void securityDoorUntouched();
+  public void onSecurityDoorUntouched();
 }
