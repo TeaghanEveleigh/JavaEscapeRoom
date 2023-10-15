@@ -2,6 +2,7 @@
     font-family: 'BM-HANNA';
     src: url('../fonts/BM-HANNA.ttf');
 }
+
 .root {
     -fx-font-family: 'BM-HANNA';
 }
@@ -34,5 +35,6 @@
 
 .Label {
     -fx-text-fill: rgb(4, 81, 20);
-    -fx-font-family: 'DS-DIGIB';  /* Add this line to apply the DS-DIGIB font */
+    -fx-font-family: 'DS-DIGIB';
+    /* Add this line to apply the DS-DIGIB font */
 }
