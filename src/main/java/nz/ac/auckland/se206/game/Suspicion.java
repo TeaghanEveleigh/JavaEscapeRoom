@@ -18,8 +18,6 @@ public class Suspicion extends Interactable {
   private double minimumOpactiy = 0.1;
   private double maximumOpacity = 0.5;
   private boolean maximumOpacityReached = false;
-  private boolean decrementCanceled = false;
-  private boolean incrementCanceled = false;
 
   public Suspicion(
       Rectangle rectangle,
@@ -89,7 +87,9 @@ public class Suspicion extends Interactable {
 
   @Override
   public void touched() {
-    if (touched) return;
+    if (touched) {
+      return;
+    }
     timeline.play();
     listener.suspicionTouched();
     touched = true;
@@ -97,9 +97,11 @@ public class Suspicion extends Interactable {
 
   @Override
   public void notTouched() {
-    if (!touched) return;
+    if (!touched) {
+      return;
+    }
     suspicionLight.setOpacity(0.0);
-    listener.suspicionUntouched();
+    listener.suspicionNotTouched();
 
     touched = false;
   }

@@ -4,7 +4,12 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Passcode {
+
   private static final Passcode instance = new Passcode();
+
+  public static Passcode getInstance() {
+    return instance;
+  }
 
   private final int firstNum;
   private final int secondNum;
@@ -27,10 +32,6 @@ public class Passcode {
     firstNum = nums[0];
     secondNum = nums[1];
     thirdNum = nums[2];
-  }
-
-  public static Passcode getInstance() {
-    return instance;
   }
 
   public String getFirstNum() {

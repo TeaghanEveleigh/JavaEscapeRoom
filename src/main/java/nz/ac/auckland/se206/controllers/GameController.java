@@ -31,11 +31,26 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class GameController implements BaseController {
+
+  // Updates all checklists
+  public static void updateAllChecklists() {
+    SecurityRoomController securityRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    securityRoomController.updateChecklist();
+    LaserRoomController laserRoomController =
+        (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
+    laserRoomController.updateChecklist();
+    ExitRoomController exitRoomController =
+        (ExitRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    exitRoomController.updateChecklist();
+  }
+
   @FXML protected Canvas gameCanvas;
   @FXML protected Button hintButton;
   @FXML protected Button chatButton;
   @FXML protected Button talkToHackerButton;
 
+  // Hacker panel
   @FXML protected Rectangle hackerPanelBackground;
   @FXML protected ImageView exitHackerPanelImage;
   @FXML protected ImageView hackerIcon;
@@ -316,19 +331,6 @@ public class GameController implements BaseController {
     exitChatImage.toBack();
     exitChatImage.setDisable(true);
     gameCanvas.requestFocus();
-  }
-
-  // Updates all checklists
-  public static void updateAllChecklists() {
-    SecurityRoomController securityRoomController =
-        (SecurityRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
-    securityRoomController.updateChecklist();
-    LaserRoomController laserRoomController =
-        (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
-    laserRoomController.updateChecklist();
-    ExitRoomController exitRoomController =
-        (ExitRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-    exitRoomController.updateChecklist();
   }
 
   // Updates the checklist based on what the player has completed

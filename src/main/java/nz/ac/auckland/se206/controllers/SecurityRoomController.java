@@ -556,7 +556,7 @@ public class SecurityRoomController extends GameController
   }
 
   @Override
-  public void suspicionUntouched() {
+  public void suspicionNotTouched() {
     suspicionRectangle.toBack();
   }
 

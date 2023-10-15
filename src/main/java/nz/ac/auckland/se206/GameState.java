@@ -12,9 +12,6 @@ import nz.ac.auckland.se206.controllers.SecurityRoomController;
 
 public class GameState {
 
-  private List<Label> subscribers = new ArrayList<>();
-  private static final GameState instance = new GameState();
-
   public static boolean isLasersDisabled = false;
   public static boolean isCamerasDisabled = false;
   public static boolean isTreasureStolen = false;
@@ -26,13 +23,23 @@ public class GameState {
   public static int timeLimit = 2;
   public static boolean textToSpeech = false;
   public static boolean isDoorOpen = false;
-
-  private static String hintsLeft;
   public static String wiresSequence = generateWiresSequence();
 
-  // Private constructor to ensure singleton property
-  private GameState() {
-    setMedium(); // Just for initialization, you can remove or change this line as needed
+  private static String hintsLeft;
+  private List<Label> subscribers = new ArrayList<>();
+  private static final GameState instance = new GameState();
+
+  public static void disableCamera() {
+    SecurityRoomController cameraRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    cameraRoomController.disableCamera();
+    isCamerasDisabled = true;
+  }
+
+  public static void openSafe() {
+    ExitRoomController safeRoomController =
+        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    safeRoomController.safeOpen();
   }
 
   // Public static method to get the single instance of GameState
@@ -42,6 +49,22 @@ public class GameState {
 
   public static String getHintsLeft() {
     return hintsLeft;
+  }
+
+  public static String generateWiresSequence() {
+    String[] array = {"1", "2", "3", "4"};
+    List<String> list = Arrays.asList(array);
+    Collections.shuffle(list);
+    StringBuilder sb = new StringBuilder();
+    for (String s : list) {
+      sb.append(s);
+    }
+    return sb.toString();
+  }
+
+  // Private constructor to ensure singleton property
+  private GameState() {
+    setMedium(); // Just for initialization, you can remove or change this line as needed
   }
 
   public void subscribe(Label label) {
@@ -76,17 +99,6 @@ public class GameState {
         });
   }
 
-  public static String generateWiresSequence() {
-    String[] array = {"1", "2", "3", "4"};
-    List<String> list = Arrays.asList(array);
-    Collections.shuffle(list);
-    StringBuilder sb = new StringBuilder();
-    for (String s : list) {
-      sb.append(s);
-    }
-    return sb.toString();
-  }
-
   public void setEasy() {
     isEasy = true;
     isMedium = false;
@@ -108,18 +120,5 @@ public class GameState {
     isHard = true;
     hintsLeft = "∞";
     updateLabels();
-  }
-
-  public static void disableCamera() {
-    SecurityRoomController cameraRoomController =
-        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-    cameraRoomController.disableCamera();
-    isCamerasDisabled = true;
-  }
-
-  public static void openSafe() {
-    ExitRoomController safeRoomController =
-        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
-    safeRoomController.safeOpen();
   }
 }

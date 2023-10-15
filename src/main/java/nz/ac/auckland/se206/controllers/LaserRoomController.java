@@ -271,7 +271,7 @@ public class LaserRoomController extends GameController
   }
 
   @Override
-  public void suspicionUntouched() {
+  public void suspicionNotTouched() {
     suspicionRectangle.toBack();
     // progress bar will be sent to back on end of progress
   }
