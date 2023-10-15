@@ -1,17 +1,16 @@
 package nz.ac.auckland.se206.game;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.listeners.SuspicionListener;
 
 public class Suspicion extends Interactable {
 
   private SuspicionListener listener;
-  private Timer timer;
-  private TimerTask incrementTask;
-  private TimerTask decrementTask;
+  private Timeline timeline;
   private double suspicionLevel = 0.0;
   private double maximumSuspicionLevel = 5.0;
   private ProgressBar progressBar;
@@ -32,25 +31,37 @@ public class Suspicion extends Interactable {
     this.progressBar = progressBar;
     this.suspicionLight = suspicionLight;
     suspicionLight.setOpacity(0.0);
-    timer = new Timer();
-    decrementTask = getDecrementTask();
-    timer.scheduleAtFixedRate(decrementTask, 0, 100);
+    timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> updateSuspicion()));
+    timeline.setCycleCount(Timeline.INDEFINITE);
   }
 
-  private TimerTask getIncrementTask() {
-    return new TimerTask() {
-      @Override
-      public void run() {
-        flashLight();
-        suspicionLevel += 0.1;
-        if (suspicionLevel >= maximumSuspicionLevel) {
-          suspicionLevel = maximumSuspicionLevel;
-          suspicionLevel = 0.0;
-          listener.suspicionReached();
-        }
-        progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
-      }
-    };
+  private void updateSuspicion() {
+    if (touched) {
+      incrementTask();
+    } else {
+      decrementTask();
+    }
+  }
+
+  private void decrementTask() {
+    suspicionLevel -= 0.1;
+    if (suspicionLevel <= 0.0) {
+      suspicionLevel = 0.0;
+      timeline.pause();
+      progressBar.toBack();
+    }
+    progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
+  }
+
+  private void incrementTask() {
+    flashLight();
+    suspicionLevel += 0.1;
+    if (suspicionLevel >= maximumSuspicionLevel) {
+      suspicionLevel = maximumSuspicionLevel;
+      suspicionLevel = 0.0;
+      listener.suspicionReached();
+    }
+    progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
   }
 
   protected void flashLight() {
@@ -71,21 +82,6 @@ public class Suspicion extends Interactable {
     }
   }
 
-  private TimerTask getDecrementTask() {
-    return new TimerTask() {
-      @Override
-      public void run() {
-        suspicionLevel -= 0.1;
-        if (suspicionLevel <= 0.0) {
-          suspicionLevel = 0.0;
-          decrementTask.cancel();
-          progressBar.toBack();
-        }
-        progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
-      }
-    };
-  }
-
   @Override
   public void interact() {
     return;
@@ -94,11 +90,8 @@ public class Suspicion extends Interactable {
   @Override
   public void touched() {
     if (touched) return;
-    cancelDecrement();
-    incrementTask = getIncrementTask();
-    timer.scheduleAtFixedRate(incrementTask, 0, 100);
+    timeline.play();
     listener.suspicionTouched();
-    incrementCanceled = false;
     touched = true;
   }
 
@@ -106,23 +99,8 @@ public class Suspicion extends Interactable {
   public void notTouched() {
     if (!touched) return;
     suspicionLight.setOpacity(0.0);
-    cancelIncrement();
-    decrementTask = getDecrementTask();
-    timer.scheduleAtFixedRate(decrementTask, 0, 100);
     listener.suspicionUntouched();
-    decrementCanceled = false;
+
     touched = false;
-  }
-
-  private void cancelDecrement() {
-    if (decrementCanceled) return;
-    decrementTask.cancel();
-    decrementCanceled = true;
-  }
-
-  private void cancelIncrement() {
-    if (incrementCanceled) return;
-    incrementTask.cancel();
-    incrementCanceled = true;
   }
 }

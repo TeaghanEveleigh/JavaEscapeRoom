@@ -7,6 +7,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -20,21 +21,28 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.Keypad;
 import nz.ac.auckland.se206.game.Portal;
 import nz.ac.auckland.se206.game.SecurityRoomDoor;
 import nz.ac.auckland.se206.game.SolidBox;
 import nz.ac.auckland.se206.game.StoneCarving;
+import nz.ac.auckland.se206.game.Suspicion;
 import nz.ac.auckland.se206.game.Wires;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.listeners.KeypadListener;
 import nz.ac.auckland.se206.listeners.SecurityRoomDoorListener;
 import nz.ac.auckland.se206.listeners.StoneCarvingListener;
+import nz.ac.auckland.se206.listeners.SuspicionListener;
 import nz.ac.auckland.se206.listeners.WiresListener;
 
 public class SecurityRoomController extends GameController
-    implements KeypadListener, WiresListener, SecurityRoomDoorListener, StoneCarvingListener {
+    implements KeypadListener,
+        WiresListener,
+        SecurityRoomDoorListener,
+        StoneCarvingListener,
+        SuspicionListener {
 
   @FXML private Label carvingLabel;
   @FXML private ImageView stoneCarving;
@@ -117,6 +125,8 @@ public class SecurityRoomController extends GameController
   @FXML private ImageView arrow3;
   @FXML private ImageView arrow4;
   @FXML private ImageView arrow5;
+  @FXML private ProgressBar suspicionProgressBar;
+  @FXML private Rectangle suspicionRectangle;
   Passcode passcode = Passcode.getInstance();
 
   // @FXML private Text number0;
@@ -193,11 +203,12 @@ public class SecurityRoomController extends GameController
 
   @Override
   public void initialize() {
-   GameState value = GameState.getInstance();
-   value.subscribe(hintsLabel);
+    GameState value = GameState.getInstance();
+    value.subscribe(hintsLabel);
     stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     super.initialize();
-    exitBlock = new SolidBox(boundingBoxThree);
+    boundsObjects.add(
+        new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle));
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
     boundsObjects.add(new SolidBox(boundingBox1));
@@ -216,7 +227,6 @@ public class SecurityRoomController extends GameController
     boundsObjects.add(new SolidBox(boundingBox14));
     boundsObjects.add(new SolidBox(boundingBox15));
     boundsObjects.add(new SolidBox(boundingBox16));
-    boundsObjects.add(exitBlock);
     boundsObjects.add(new Keypad(keypadBounds, this));
     boundsObjects.add(new Wires(wiresBounds, this));
     boundsObjects.add(new SecurityRoomDoor(securityDoorBounds, this));
@@ -537,5 +547,22 @@ public class SecurityRoomController extends GameController
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
+  }
+
+  @Override
+  public void suspicionTouched() {
+    suspicionProgressBar.toFront();
+    suspicionRectangle.toFront();
+  }
+
+  @Override
+  public void suspicionUntouched() {
+    suspicionRectangle.toBack();
+  }
+
+  @Override
+  public void suspicionReached() {
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subtractTime(10);
   }
 }

@@ -278,6 +278,7 @@ public class LaserRoomController extends GameController
 
   @Override
   public void suspicionReached() {
+    System.out.println("Too long in lasers - subtracting time");
     Timers mainTimer = Timers.getInstance();
     mainTimer.subtractTime(10);
   }
