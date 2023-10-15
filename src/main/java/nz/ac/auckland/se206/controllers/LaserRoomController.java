@@ -4,6 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -17,14 +18,16 @@ import nz.ac.auckland.se206.game.Object;
 import nz.ac.auckland.se206.game.Portal;
 import nz.ac.auckland.se206.game.RightDinosaur;
 import nz.ac.auckland.se206.game.SolidBox;
+import nz.ac.auckland.se206.game.Suspicion;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.listeners.LeftDinosaurListener;
 import nz.ac.auckland.se206.listeners.ObjectListener;
 import nz.ac.auckland.se206.listeners.RightDinosaurListener;
+import nz.ac.auckland.se206.listeners.SuspicionListener;
 
 public class LaserRoomController extends GameController
-    implements LeftDinosaurListener, RightDinosaurListener, ObjectListener {
+    implements LeftDinosaurListener, RightDinosaurListener, ObjectListener, SuspicionListener {
   @FXML private Text interactHint;
   @FXML private Label dinoLabel1;
   @FXML private Label dinoLabel2;
@@ -50,6 +53,7 @@ public class LaserRoomController extends GameController
   @FXML private ImageView arrow1;
   @FXML private ImageView arrow3;
   @FXML private Label hintsLabel;
+  @FXML private ProgressBar suspicionProgressBar;
 
   private SolidBox laserBox;
 
@@ -57,13 +61,12 @@ public class LaserRoomController extends GameController
   public void initialize() {
     Passcode passcode = Passcode.getInstance();
     GameState value = GameState.getInstance();
-   value.subscribe(hintsLabel);
+    value.subscribe(hintsLabel);
     trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
     paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
 
     super.initialize();
-    laserBox = new SolidBox(boundingBoxOne);
-    boundsObjects.add(laserBox);
+    boundsObjects.add(new Suspicion(boundingBoxOne, this, suspicionProgressBar));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
     boundsObjects.add(new Portal(doorRectangle, this, AppUi.EXIT_ROOM));
     boundsObjects.add(new LeftDinosaur(leftDinosaurBounds, this));
@@ -256,5 +259,15 @@ public class LaserRoomController extends GameController
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
+  }
+
+  @Override
+  public void suspicionTouched() {
+    return;
+  }
+
+  @Override
+  public void suspicionUntouched() {
+    return;
   }
 }

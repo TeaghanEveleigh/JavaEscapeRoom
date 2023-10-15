@@ -12,36 +12,39 @@ public class Suspicion extends Interactable {
   private Timer timer;
   private TimerTask incrementTask;
   private TimerTask decrementTask;
-  private TimerTask currentTask;
   private double suspicionLevel = 0.0;
   private double maximumSuspicionLevel = 5.0;
 
   public Suspicion(Rectangle rectangle, SuspicionListener listener, ProgressBar progressBar) {
     super(rectangle);
-    initialiseIncrementTask();
-    initialiseDecrementTask();
     this.listener = listener;
     timer = new Timer();
+    decrementTask = getDecrementTask();
+    timer.scheduleAtFixedRate(decrementTask, 0, 100);
   }
 
-  private void initialiseIncrementTask() {
-    incrementTask =
-        new TimerTask() {
-          @Override
-          public void run() {
-            suspicionLevel += 0.1;
-          }
-        };
+  private TimerTask getIncrementTask() {
+    return new TimerTask() {
+      @Override
+      public void run() {
+        suspicionLevel += 0.1;
+        System.out.println("incrementing " + suspicionLevel);
+      }
+    };
   }
 
-  private void initialiseDecrementTask() {
-    decrementTask =
-        new TimerTask() {
-          @Override
-          public void run() {
-            suspicionLevel -= 0.1;
-          }
-        };
+  private TimerTask getDecrementTask() {
+    return new TimerTask() {
+      @Override
+      public void run() {
+        suspicionLevel -= 0.1;
+        if (suspicionLevel <= 0.0) {
+          suspicionLevel = 0.0;
+          decrementTask.cancel();
+        }
+        System.out.println("decrementing " + suspicionLevel);
+      }
+    };
   }
 
   @Override
@@ -51,19 +54,19 @@ public class Suspicion extends Interactable {
 
   @Override
   public void touched() {
-    if (currentTask == decrementTask) {
-      currentTask.cancel();
-      currentTask = incrementTask;
-      timer.scheduleAtFixedRate(currentTask, 0, 100);
-    }
+    if (touched) return;
+    decrementTask.cancel();
+    incrementTask = getIncrementTask();
+    timer.scheduleAtFixedRate(incrementTask, 0, 100);
+    touched = true;
   }
 
   @Override
   public void notTouched() {
-    if (currentTask == incrementTask) {
-      currentTask.cancel();
-      currentTask = decrementTask;
-      timer.scheduleAtFixedRate(currentTask, 0, 100);
-    }
+    if (!touched) return;
+    incrementTask.cancel();
+    decrementTask = getDecrementTask();
+    timer.scheduleAtFixedRate(decrementTask, 0, 100);
+    touched = false;
   }
 }
