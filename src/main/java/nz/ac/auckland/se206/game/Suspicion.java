@@ -96,6 +96,7 @@ public class Suspicion extends Interactable {
     cancelDecrement();
     incrementTask = getIncrementTask();
     timer.scheduleAtFixedRate(incrementTask, 0, 100);
+    listener.suspicionTouched();
     incrementCanceled = false;
     touched = true;
   }
@@ -107,6 +108,7 @@ public class Suspicion extends Interactable {
     cancelIncrement();
     decrementTask = getDecrementTask();
     timer.scheduleAtFixedRate(decrementTask, 0, 100);
+    listener.suspicionUntouched();
     decrementCanceled = false;
     touched = false;
   }
