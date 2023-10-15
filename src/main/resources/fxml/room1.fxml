@@ -330,17 +330,17 @@
       </Text>
       <ImageView fx:id="arrow" fitHeight="60.0" fitWidth="60.0" layoutX="86.0" layoutY="298.0" opacity="0.47" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
-            <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
+            <Image url="@../images/vector%20right%20arrow%20icon_4231911.png" />
          </image>
       </ImageView>
       <ImageView fx:id="arrow1" fitHeight="60.0" fitWidth="60.0" layoutX="610.0" layoutY="283.0" opacity="0.35" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
-            <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
+            <Image url="@../images/vector%20right%20arrow%20icon_4231911.png" />
          </image>
       </ImageView>
       <ImageView fx:id="arrow3" fitHeight="90.0" fitWidth="88.0" layoutX="-5.0" layoutY="375.0" opacity="0.47" pickOnBounds="true" preserveRatio="true" rotate="180.0">
          <image>
-            <Image url="@../images/—Pngtree—vector%20right%20arrow%20icon_4231911.png" />
+            <Image url="@../images/vector%20right%20arrow%20icon_4231911.png" />
          </image>
       </ImageView>
       <Button fx:id="talkToHackerButton" layoutX="668.0" layoutY="526.0" mnemonicParsing="false" onAction="#onTalkToHackerPressed" prefHeight="50.0" prefWidth="132.0" text="Talk to Hacker" textFill="WHITE">

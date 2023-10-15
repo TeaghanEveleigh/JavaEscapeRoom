@@ -71,7 +71,7 @@
             </Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="575.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/—Pngtree—keyboard%20keys%20vector_9102006.png" />
+                  <Image url="@../images/keyboard%20keys%20vector_9102006.png" />
                </image>
             </ImageView>
             <Button id="btn" fx:id="gameSettingsButton1" layoutX="343.0" layoutY="353.0" mnemonicParsing="false" onAction="#onSettingsPressed" prefHeight="51.0" prefWidth="147.0" styleClass="button" text="EXIT" textFill="WHITE">
