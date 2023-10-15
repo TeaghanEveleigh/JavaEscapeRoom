@@ -81,9 +81,7 @@ public class Suspicion extends Interactable {
   }
 
   @Override
-  public void interact() {
-    return;
-  }
+  public void interact() {}
 
   @Override
   public void touched() {
