@@ -4,4 +4,6 @@ public interface SuspicionListener {
   public void suspicionTouched();
 
   public void suspicionUntouched();
+
+  public void suspicionReached();
 }

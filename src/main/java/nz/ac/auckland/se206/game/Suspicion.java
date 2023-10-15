@@ -45,7 +45,8 @@ public class Suspicion extends Interactable {
         suspicionLevel += 0.1;
         if (suspicionLevel >= maximumSuspicionLevel) {
           suspicionLevel = maximumSuspicionLevel;
-          incrementTask.cancel();
+          suspicionLevel = 0.0;
+          listener.suspicionReached();
         }
         progressBar.setProgress((1.0 / maximumSuspicionLevel) * suspicionLevel);
       }

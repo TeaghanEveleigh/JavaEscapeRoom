@@ -12,6 +12,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Passcode;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.Door;
 import nz.ac.auckland.se206.game.LeftDinosaur;
 import nz.ac.auckland.se206.game.Object;
@@ -272,6 +273,12 @@ public class LaserRoomController extends GameController
   @Override
   public void suspicionUntouched() {
     suspicionRectangle.toBack();
-    // progress bar witll be sent to back on end of progress
+    // progress bar will be sent to back on end of progress
+  }
+
+  @Override
+  public void suspicionReached() {
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subtractTime(10);
   }
 }
