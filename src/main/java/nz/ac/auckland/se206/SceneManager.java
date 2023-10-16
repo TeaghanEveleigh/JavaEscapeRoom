@@ -25,6 +25,11 @@ public class SceneManager {
   private static HashMap<AppUi, BaseController> controllerMap =
       new HashMap<AppUi, BaseController>();
 
+  /**
+   * This method adds the given scene to the history of all scenes.
+   *
+   * @param appUi The scene to add to the history.
+   */
   public static void addToHistory(AppUi appUi) {
     if (appUi != AppUi.SIN_MINIGAME) { // Replace with your actual condition for rooms
       currentRoom = appUi;
@@ -32,6 +37,11 @@ public class SceneManager {
     history.push(appUi);
   }
 
+  /**
+   * This method returns the second last scene that was added to the history.
+   *
+   * @return The previous scene.
+   */
   public static AppUi getLastScene() {
     if (history.size() >= 2) {
       history.pop(); // Remove current scene
@@ -42,27 +52,57 @@ public class SceneManager {
     return AppUi.EXIT_ROOM; // Return null if there is no previous scene
   }
 
+  /**
+   * This method adds a UI to the collection of UIs.
+   *
+   * @param appUi The UI to add.
+   * @param uiRoot The root of the UI.
+   */
   public static void addUi(AppUi appUi, Parent uiRoot) {
     sceneMap.put(appUi, uiRoot);
   }
 
+  /**
+   * This method adds a controller to the collection of controllers.
+   *
+   * @param appUi The UI to add the controller to.
+   * @param controller The controller to add.
+   */
   public static void addController(AppUi appUi, BaseController controller) {
     controllerMap.put(appUi, controller);
   }
 
+  /**
+   * This method returns the root of the UI.
+   *
+   * @param appUi The UI to get the root of.
+   * @return The root of the UI.
+   */
   public static Parent getUiRoot(AppUi appUi) {
     return sceneMap.get(appUi);
   }
 
+  /**
+   * This method returns the controller of the UI.
+   *
+   * @param appUi The UI to get the controller of.
+   * @return The controller of the UI.
+   */
   public static BaseController getUiController(AppUi appUi) {
     return controllerMap.get(appUi);
   }
 
-  // Checks if the UI is in the scene map
+  /**
+   * This method returns whether the given UI is in the collection of UIs.
+   *
+   * @param appUi The UI to check.
+   * @return Whether the given UI is in the collection of UIs.
+   */
   public static boolean containsUi(AppUi appUi) {
     return sceneMap.containsKey(appUi);
   }
 
+  /** This method clears all UIs from the collection of UIs. */
   public static void clearAll() {
     sceneMap.clear();
   }

@@ -13,6 +13,10 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/**
+ * This class is used to toggle the hacker UI. The main rooms, as well as the wires game and memory
+ * game, extend this class since they use the same hacker UI.
+ */
 public abstract class HackerUiToggler {
 
   @FXML protected Button hintButton;
@@ -33,34 +37,40 @@ public abstract class HackerUiToggler {
   @FXML protected Rectangle chatPanelBackground;
   @FXML protected Button objectivesButton;
 
+  /** This method runs when the user wants to exit the hacker panel. */
   @FXML
   private void onHackerExitClicked() {
     disableHackerPanel();
     disableChat();
   }
 
+  /** This method runs when the user wants to ask for a hint or chat to the hacker. */
   @FXML
   public void onTalkToHackerPressed() {
     enableHackerPanel();
   }
 
+  /** This method runs when the user wants to chat to the hacker. */
   @FXML
   public void onChatPressed() {
     enableChat();
   }
 
+  /** This method runs when the user wants to exit the chat panel. */
   @FXML
   private void onChatExitClicked() {
     disableChat();
   }
 
+  /** This method runs when the user wants to submit a message to the hacker. */
   @FXML
   private void onSubmitPressed() {
     String message = chatTextField.getText();
-    chatTextField.clear();
+    chatTextField.clear(); // Clear the text field
     if (message.length() > 0) {
       disableHintChatAndExit();
       try {
+        // Gives the response to the user's message
         ai.runGpt(
             new ChatMessage("user", GptPromptEngineering.getChatResponse(message)), hackerTextArea);
       } catch (ApiProxyException e) {
@@ -70,47 +80,51 @@ public abstract class HackerUiToggler {
     }
   }
 
+  /** This method runs when the user wants to ask for a hint. */
   @FXML
   protected void onHintPressed() {
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintChatAndExit();
+            disableHintChatAndExit(); // Disable the hint and exit buttons
             GameState gameState = GameState.getInstance();
             if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+              // Tell the user they can't get a hint
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
-              enableHintChatAndExit();
+              enableHintChatAndExit(); // Enable the hint and exit buttons
               return null;
             }
-            if (!GameState.isLasersDisabled && !GameState.isCamerasDisabled) {
+            if (!GameState.isLasersDisabled
+                && !GameState.isCamerasDisabled) { // If nothing is disabled
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getNothingDisabledHint()),
                   hackerTextArea);
-            } else if (GameState.isLasersDisabled) {
-              if (!GameState.isTreasureStolen) {
+            } else if (GameState.isLasersDisabled) { // If the lasers are disabled
+              if (!GameState.isTreasureStolen) { // If the treasure hasn't been stolen
                 ai.runGpt(
                     new ChatMessage(
                         "user", GptPromptEngineering.getLasersDisabledButNotStolenHint()),
                     hackerTextArea);
-              } else if (GameState.isCamerasDisabled) {
+              } else if (GameState.isCamerasDisabled) { // If the cameras are disabled
                 ai.runGpt(
                     new ChatMessage("user", GptPromptEngineering.getBothDisabledHint()),
                     hackerTextArea);
-              } else if (!GameState.isCamerasDisabled) {
+              } else if (!GameState.isCamerasDisabled) { // If the cameras aren't disabled
                 ai.runGpt(
                     new ChatMessage("user", GptPromptEngineering.getLasersButNotCameraHint()),
                     hackerTextArea);
               }
-            } else if (GameState.isCamerasDisabled && !GameState.isLasersDisabled) {
+            } else if (GameState.isCamerasDisabled
+                && !GameState.isLasersDisabled) { // If the cameras are disabled but not the lasers
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getCameraButNotLasersHint()),
                   hackerTextArea);
             }
-            enableHintChatAndExit();
+            enableHintChatAndExit(); // Enable the hint and exit buttons
             if (GameState.isMedium) {
-              gameState.subtractHint();
+              gameState.subtractHint(); // Subtract a hint
             }
             return null;
           }
@@ -118,8 +132,9 @@ public abstract class HackerUiToggler {
     new Thread(task).start();
   }
 
-  // Disables the hacker panel
+  /** This method runs when the user wants to exit from the hacker panel. */
   public void disableHackerPanel() {
+    // Sends all hacker panel items to the back
     hackerPanelBackground.toBack();
     hintButton.toBack();
     chatButton.toBack();
@@ -131,22 +146,28 @@ public abstract class HackerUiToggler {
     talkToHackerButton.setDisable(false);
   }
 
-  // Disables the hint and exit buttons
+  /**
+   * This method disables the hint, chat and exit buttons when the user is chatting to the hacker.
+   */
   public void disableHintChatAndExit() {
     hintButton.setDisable(true);
     chatButton.setDisable(true);
     exitHackerPanelImage.setDisable(true);
   }
 
-  // Enables the hint and exit buttons
+  /**
+   * This method enables the hint, chat and exit buttons when the user is done chatting to the
+   * hacker.
+   */
   public void enableHintChatAndExit() {
     hintButton.setDisable(false);
     chatButton.setDisable(false);
     exitHackerPanelImage.setDisable(false);
   }
 
-  // Enables the hacker panel
+  /** This method enables the hacker panel when the user wants to interact with the hacker. */
   public void enableHackerPanel() {
+    // Sends all hacker panel items to the front
     hackerPanelBackground.toFront();
     hintButton.toFront();
     chatButton.toFront();
@@ -158,8 +179,9 @@ public abstract class HackerUiToggler {
     talkToHackerButton.setDisable(true);
   }
 
-  // Enables the chat panel
+  /** This method enables the chat panel when the user wants to chat to the hacker. */
   public void enableChat() {
+    // Brings the chat panel to the front
     chatPanelBackground.toFront();
     submitButton.toFront();
     submitButton.setDisable(false);
@@ -168,8 +190,9 @@ public abstract class HackerUiToggler {
     exitChatImage.setDisable(false);
   }
 
-  // Disables the chat panel
+  /** This method disables the chat panel when the user wants to exit the chat panel. */
   public void disableChat() {
+    // Sends all chat panel items to the back
     chatPanelBackground.toBack();
     submitButton.toBack();
     submitButton.setDisable(true);

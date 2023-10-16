@@ -21,19 +21,30 @@ public class App extends Application {
     launch();
   }
 
+  /**
+   * This method sets the root of the scene to the given AppUi.
+   *
+   * @param appUi The AppUi to set the root to.
+   * @throws IOException If the FXML file for the given AppUi is not found.
+   */
   public static void setRoot(AppUi appUi) throws IOException {
     scene.setRoot(SceneManager.getUiRoot(appUi));
   }
 
+  /**
+   * This method returns a FXMLLoader for the given FXML file.
+   *
+   * @param fxml The name of the FXML file to load.
+   * @return The FXMLLoader for the given FXML file.
+   */
   public static FXMLLoader getFxmlLoader(final String fxml) {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
+   * This method switches the scene to the given AppUi.
    *
-   * @param stage The primary stage of the application.
-   * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
+   * @param ui The AppUi to switch to.
    */
   public static void switchScenes(AppUi ui) {
     // Load the scene only if it's not already loaded or if it's a special case
@@ -51,7 +62,7 @@ public class App extends Application {
 
     Parent root = SceneManager.getUiRoot(ui);
     BaseController baseController = SceneManager.getUiController(ui);
-    if (baseController instanceof GameController) {
+    if (baseController instanceof GameController) { // If the controller is a GameController
       GameController gameController = (GameController) baseController;
       gameController.unpauseRoom();
     }
@@ -64,6 +75,7 @@ public class App extends Application {
     KeyState.resetKeys();
   }
 
+  /** This method switches the scene to the previous scene. */
   public static void goToPreviousScene() {
     AppUi previousScene = SceneManager.getLastScene();
     if (previousScene != null) {
@@ -74,27 +86,40 @@ public class App extends Application {
     }
   }
 
+  /**
+   * This method is called when the JavaFX application is started.
+   *
+   * @param stage The stage to set the scene to.
+   * @throws IOException If the FXML file for the main menu is not found.
+   */
   @Override
   public void start(final Stage stage) throws IOException {
 
     // Load all the views
     loadMainMenu();
 
+    // Load the game settings screen
     FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
     SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
 
+    // Load the game lost screen
     FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
     SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
     SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
 
     scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU);
-    stage.setScene(scene);
+    Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU); //
+    stage.setScene(scene); // Sets the scene to the main menu
     stage.show();
     root.requestFocus();
   }
 
+  /**
+   * This method is run when the game is restarted after it is either won or lost.
+   *
+   * @throws IOException If the FXML file for the main menu is not found.
+   */
   public static void restartGame() throws IOException {
     // Clear previously loaded scenes and controllers
     SceneManager.clearAll();
@@ -102,10 +127,12 @@ public class App extends Application {
     // Reload all the views
     loadMainMenu();
 
+    // Load the game settings screen
     FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
     SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
 
+    // Load the game lost screen
     FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
     SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
     SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
@@ -114,6 +141,11 @@ public class App extends Application {
     scene.setRoot(SceneManager.getUiRoot(AppUi.MAIN_MENU));
   }
 
+  /**
+   * This method loads the main menu of the game when it is stared or restarted.
+   *
+   * @throws IOException If the FXML file for the main menu is not found.
+   */
   public static void loadMainMenu() throws IOException {
     FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
     SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
