@@ -73,7 +73,6 @@ public class LaserRoomController extends GameController
     applyFloatingAnimation(arrow);
     applyFloatingAnimation(arrow1);
     applyFloatingAnimationx(arrow3);
-    System.out.println("dsadsadasj");
   }
 
   @FXML
@@ -288,13 +287,10 @@ public class LaserRoomController extends GameController
     super.reset();
     Passcode passcode = Passcode.getInstance();
     GameState value = GameState.getInstance();
-    System.out.println("1");
     value.subscribe(hintsLabel);
     trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
     paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
-    System.out.println("2");
     this.player.setPosX(54);
     this.player.setPosY(350);
-    System.out.println("3");
   }
 }

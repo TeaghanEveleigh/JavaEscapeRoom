@@ -581,5 +581,7 @@ public class SecurityRoomController extends GameController
     cameraTriangle.toFront();
     boundsObjects.add(suspicion);
     System.out.println("dsadsadsa");
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
   }
 }

@@ -43,6 +43,7 @@ public class Timers {
     subscribedLabels.add(label);
     Font font = Font.loadFont(getClass().getResource("/fonts/DS-DIGIB.TTF").toExternalForm(), 40);
     label.setFont(font);
+    System.out.println("Subscribed label: " + label);
   }
 
   public void subtractTime(int seconds) {
