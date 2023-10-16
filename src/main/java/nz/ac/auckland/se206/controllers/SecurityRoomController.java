@@ -208,10 +208,6 @@ public class SecurityRoomController extends GameController
   public void initialize() {
     suspicion = new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle);
     super.initialize();
-    boundsObjects.add(new SolidBox(boundingBoxOne));
-    boundsObjects.add(new SolidBox(boundingBoxTwo));
-    boundsObjects.add(new SolidBox(boundingBox1));
-    boundsObjects.add(new SolidBox(boundingBox2));
     boundsObjects.add(new SolidBox(boundingBox3));
     boundsObjects.add(new SolidBox(boundingBox4));
     boundsObjects.add(new SolidBox(boundingBox5));
@@ -576,6 +572,7 @@ public class SecurityRoomController extends GameController
     stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     this.player.setPosX(54);
     this.player.setPosY(300);
+
     numbers.setText("");
     numberOfnumbers = 0;
     cameraLine1.toFront();
@@ -583,5 +580,6 @@ public class SecurityRoomController extends GameController
     cameraBase.toFront();
     cameraTriangle.toFront();
     boundsObjects.add(suspicion);
+    System.out.println("dsadsadsa");
   }
 }

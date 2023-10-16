@@ -66,15 +66,16 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   public void initialize() {
     player = new Player(50, 100, 50, 50);
+    boundsObjects = new ArrayList<BoundsObject>();
 
     reset();
+
     disbleObjectives();
     gameCanvas.requestFocus();
     disableHackerPanel();
     hackerTextArea.setEditable(false);
     graphicsContext = gameCanvas.getGraphicsContext2D();
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
-    boundsObjects = new ArrayList<BoundsObject>();
 
     renderer.addEntity(player);
 
@@ -90,6 +91,7 @@ public class GameController extends HackerUiToggler implements BaseController {
             renderer.renderEntities();
           }
         };
+    System.out.println("dsadsadsa");
 
     timer.start();
     pauseRoom();
