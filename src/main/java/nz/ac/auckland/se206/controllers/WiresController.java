@@ -319,9 +319,8 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     return Math.toDegrees(angle);
   }
 
-  /** This method gives a hint to the user through the AI */
   @Override
-  public void onHintPressed() {
+  protected void onHintPressed() {
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {

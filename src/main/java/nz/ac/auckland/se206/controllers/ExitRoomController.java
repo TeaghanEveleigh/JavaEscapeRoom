@@ -116,7 +116,7 @@ public class ExitRoomController extends GameController
   }
 
   @FXML
-  private void hideComputer() {
+  private void onHideComputer() {
     monitorScreen.toBack();
     btnHelp.toBack();
     btnLogin.toBack();
@@ -225,7 +225,7 @@ public class ExitRoomController extends GameController
   @Override
   public void computerNotTouched() {
     hideComputerLabel();
-    hideComputer();
+    onHideComputer();
     helpHint.toBack();
   }
 
@@ -324,7 +324,7 @@ public class ExitRoomController extends GameController
   }
 
   @FXML
-  private void showHelpHint() {
+  private void onShowHelpHint() {
     helpHint.toFront();
   }
 

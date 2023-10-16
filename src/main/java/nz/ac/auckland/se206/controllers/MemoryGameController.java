@@ -23,7 +23,6 @@ import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class MemoryGameController extends HackerUiToggler implements BaseController {
   private static double sequenceSeconds = 0.5;
@@ -237,13 +236,8 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     }
   }
 
-  /**
-   * This method gives a hint to the user through the AI
-   *
-   * @throws ApiProxyException
-   */
   @Override
-  public void onHintPressed() {
+  protected void onHintPressed() {
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {

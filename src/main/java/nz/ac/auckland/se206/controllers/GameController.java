@@ -111,16 +111,6 @@ public class GameController extends HackerUiToggler implements BaseController {
   }
 
   @FXML
-  public void onTalkToHackerPressed() {
-    enableHackerPanel();
-  }
-
-  @FXML
-  public void onChatPressed() {
-    enableChat();
-  }
-
-  @FXML
   public void onObjectiveExitClicked() {
     disbleObjectives();
   }

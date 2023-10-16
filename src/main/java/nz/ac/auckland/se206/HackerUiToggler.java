@@ -34,18 +34,28 @@ public abstract class HackerUiToggler {
   @FXML protected Button objectivesButton;
 
   @FXML
-  public void onHackerExitClicked() {
+  private void onHackerExitClicked() {
     disableHackerPanel();
     disableChat();
   }
 
   @FXML
-  public void onChatExitClicked() {
+  public void onTalkToHackerPressed() {
+    enableHackerPanel();
+  }
+
+  @FXML
+  public void onChatPressed() {
+    enableChat();
+  }
+
+  @FXML
+  private void onChatExitClicked() {
     disableChat();
   }
 
   @FXML
-  public void onSubmitPressed() {
+  private void onSubmitPressed() {
     String message = chatTextField.getText();
     chatTextField.clear();
     if (message.length() > 0) {
@@ -61,7 +71,7 @@ public abstract class HackerUiToggler {
   }
 
   @FXML
-  public void onHintPressed() {
+  protected void onHintPressed() {
     Task<Void> task =
         new Task<Void>() {
           @Override
