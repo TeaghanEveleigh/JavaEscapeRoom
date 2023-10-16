@@ -61,12 +61,12 @@ public class GameState {
     return sb.toString();
   }
 
+  private List<Label> subscribers = new ArrayList<>();
+
   // Private constructor to ensure singleton property
   private GameState() {
     setMedium(); // Just for initialization, you can remove or change this line as needed
   }
-
-  private List<Label> subscribers = new ArrayList<>();
 
   public void subscribe(Label label) {
     subscribers.add(label);

@@ -65,7 +65,7 @@ public class ExitRoomController extends GameController
   @FXML private Rectangle boundingBox1;
   @FXML private Rectangle boundingBox5;
   @FXML private Label hintsLabel;
-  Passcode passcode = Passcode.getInstance();
+  private Passcode passcode = Passcode.getInstance();
 
   @Override
   public void initialize() {

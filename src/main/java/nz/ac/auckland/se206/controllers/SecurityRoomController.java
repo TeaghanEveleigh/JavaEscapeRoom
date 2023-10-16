@@ -127,7 +127,7 @@ public class SecurityRoomController extends GameController
   @FXML private ImageView arrow5;
   @FXML private ProgressBar suspicionProgressBar;
   @FXML private Rectangle suspicionRectangle;
-  Passcode passcode = Passcode.getInstance();
+  private Passcode passcode = Passcode.getInstance();
 
   // @FXML private Text number0;
   @FXML

@@ -22,11 +22,11 @@ import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.Timers;
 
 public class FrequencyGameController implements BaseController {
-  String policeSound =
-      getClass().getResource("/sounds/618971__mrrap4food__radio-police-inside-car.mp3").toString();
-  Media media = new Media(policeSound);
 
-  MediaPlayer startSound = new MediaPlayer(media);
+  private String policeSound =
+      getClass().getResource("/sounds/618971__mrrap4food__radio-police-inside-car.mp3").toString();
+  private Media media = new Media(policeSound);
+  private MediaPlayer startSound = new MediaPlayer(media);
 
   private boolean matched = false;
   @FXML private Button backButton;

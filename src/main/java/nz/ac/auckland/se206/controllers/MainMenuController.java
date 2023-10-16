@@ -30,10 +30,10 @@ public class MainMenuController implements BaseController {
   @FXML private Text loadingText;
   @FXML private ProgressBar loadingBar;
   @FXML private ImageView loadingScreen;
-  String policeSound = getClass().getResource("/sounds/intense.mp3").toString();
-  Media media = new Media(policeSound);
 
-  MediaPlayer startSound = new MediaPlayer(media);
+  private String policeSound = getClass().getResource("/sounds/intense.mp3").toString();
+  private Media media = new Media(policeSound);
+  private MediaPlayer startSound = new MediaPlayer(media);
 
   public void initialize() {
     startSound.play();
