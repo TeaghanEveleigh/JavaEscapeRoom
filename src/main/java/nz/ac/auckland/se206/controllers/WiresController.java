@@ -25,9 +25,9 @@ import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
-/*
- * This is the controller class for the wires game window.
- * The wires are made draggable and are checked if they're connected to the right endpoints.
+/**
+ * This class is the controller for the wires game. The wires game allows the user to drag wires
+ * around a control panel and try and match them to the correct endpoints.
  */
 public class WiresController extends HackerUiToggler implements Initializable, BaseController {
 
@@ -122,9 +122,9 @@ public class WiresController extends HackerUiToggler implements Initializable, B
   }
 
   /**
-   * This method returns the user to the main menu.
+   * This method returns the user to the exit room when the back button is pressed.
    *
-   * @throws IOException
+   * @throws IOException If the input is not recognised.
    */
   @FXML
   private void onBackPressed() throws IOException {

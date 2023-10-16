@@ -128,14 +128,14 @@ public class LaserRoomController extends GameController
     player.setBoundingBoxes(boundsObjects);
   }
 
-  /** Shows the item label. */
+  /** This method shows the tresure item label when the user gets close to it. */
   @FXML
   private void itemLabelShow() {
     itemLabel.setOpacity(0.8);
     interactHint.toFront();
   }
 
-  /** Hides the item label. */
+  /** This method hides the treasure item label when the user moves away from it. */
   @FXML
   private void itemLabelHide() {
     itemLabel.setOpacity(0);

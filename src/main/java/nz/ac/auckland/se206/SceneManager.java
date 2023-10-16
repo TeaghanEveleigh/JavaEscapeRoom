@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Stack;
 import javafx.scene.Parent;
 
-/** Manages the different views of the application. */
+/**
+ * Manages the different views of the application. Adds a set of controllers and fxml files that can
+ * be accessed throughout the game.
+ */
 public class SceneManager {
   public enum AppUi {
     MAIN_MENU,
@@ -38,7 +41,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns the second last scene that was added to the history.
+   * This method gets the second last scene that was added to the history nd returns it.
    *
    * @return The previous scene.
    */
@@ -83,7 +86,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns the controller of the UI.
+   * This method returns the controller of the UI that is related to a given app UI.
    *
    * @param appUi The UI to get the controller of.
    * @return The controller of the UI.
@@ -93,7 +96,8 @@ public class SceneManager {
   }
 
   /**
-   * This method returns whether the given UI is in the collection of UIs.
+   * This method returns boolean value depending on whether the given UI is in the collection of
+   * UIs.
    *
    * @param appUi The UI to check.
    * @return Whether the given UI is in the collection of UIs.

@@ -35,7 +35,7 @@ public class GameWonController implements BaseController {
     playVictorySound();
   }
 
-  /** Play the victory sound. */
+  /** Play the victory sound when the user wins the game. */
   public void playVictorySound() {
     if (mediaPlayer != null) {
       mediaPlayer.seek(Duration.ZERO);

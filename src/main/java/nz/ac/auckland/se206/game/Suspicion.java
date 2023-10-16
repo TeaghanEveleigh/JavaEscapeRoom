@@ -81,7 +81,7 @@ public class Suspicion extends Interactable {
   }
 
   /**
-   * This method flashes the red light across the screen when the player is raising their suspicion
+   * This method flashes the red light across the screen when the player is raising their suspicion.
    */
   protected void flashLight() {
     checkOpacity();
@@ -92,7 +92,7 @@ public class Suspicion extends Interactable {
     }
   }
 
-  /** This method checks if the opacity of the red light is at the maximum or minimum */
+  /** This method checks if the opacity of the red light is at the maximum or minimum. */
   private void checkOpacity() {
     double opacity = suspicionLight.getOpacity();
     if (opacity >= maximumOpacity) { // If the opacity is at the maximum

@@ -12,18 +12,22 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
+/**
+ * This class represents the AI in the game. It is responsible for generating responses from the API
+ * and appending them to the text area.
+ */
 public class Ai {
 
   private final TextToSpeech textToSpeech = new TextToSpeech();
 
   /**
    * Generates a response from API based on the prompt given to it and appends this message to the
-   * text area
+   * text area.
    *
-   * @param msg the prompt to be sent to the API
-   * @param textArea the text area to append the response to
-   * @return the response from the API
-   * @throws ApiProxyException
+   * @param msg the prompt to be sent to the API.
+   * @param textArea the text area to append the response to.
+   * @return the response from the API.
+   * @throws ApiProxyException if there is an error with the API.
    */
   public ChatMessage runGpt(ChatMessage msg, TextArea textArea) throws ApiProxyException {
     ChatCompletionRequest chatCompletionRequest =
