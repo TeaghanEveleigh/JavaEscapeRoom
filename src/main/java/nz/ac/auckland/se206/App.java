@@ -38,19 +38,6 @@ public class App extends Application {
    * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
    */
   public static void switchScenes(AppUi ui) {
-    // Load the scene only if it's not already loaded or if it's a special case
-    if (ui == AppUi.SIN_MINIGAME && !SceneManager.containsUi(AppUi.SIN_MINIGAME)) {
-      try {
-        FXMLLoader sinMinigLoader = App.getFxmlLoader("frequencyMinigame");
-        Parent sinMinigameRoot = sinMinigLoader.load();
-        SceneManager.addUi(AppUi.SIN_MINIGAME, sinMinigameRoot);
-        SceneManager.addController(AppUi.SIN_MINIGAME, sinMinigLoader.getController());
-      } catch (IOException e) {
-        e.printStackTrace();
-        return; // If an error occurs, exit the method
-      }
-    }
-
     Parent root = SceneManager.getUiRoot(ui);
     BaseController baseController = SceneManager.getUiController(ui);
     if (baseController instanceof GameController) {
@@ -96,8 +83,8 @@ public class App extends Application {
     fxmlMap.put(AppUi.GAME_WON, "gamewon");
     fxmlMap.put(AppUi.GAME_LOST, "gamelost");
     fxmlMap.put(AppUi.DINOSAUR_ROOM, "room1");
-    fxmlMap.put(AppUi.SECURITY_ROOM, "securityroom");
-    fxmlMap.put(AppUi.EXIT_ROOM, "room2");
+    fxmlMap.put(AppUi.SECURITY_ROOM, "room2");
+    fxmlMap.put(AppUi.EXIT_ROOM, "securityroom");
     fxmlMap.put(AppUi.SIN_MINIGAME, "frequencyMinigame");
     fxmlMap.put(AppUi.WIRES_GAME, "wires");
     fxmlMap.put(AppUi.MEMORY_GAME, "memorygame");

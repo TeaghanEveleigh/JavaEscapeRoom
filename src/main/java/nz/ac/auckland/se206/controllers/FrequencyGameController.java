@@ -58,13 +58,6 @@ public class FrequencyGameController implements BaseController {
     // Set a random wave without updating immediately.
     setRandomInitialWave(false);
     drawTargetWave();
-
-    PauseTransition delay =
-        new PauseTransition(Duration.seconds(2)); // Delay for 2 seconds or adjust as needed
-    delay.setOnFinished(e -> updateWave()); // Start the game's matching mechanism after the delay
-    delay.play();
-
-    initializeCountdown();
   }
 
   private void setRandomInitialWave(boolean updateImmediately) {
@@ -212,5 +205,14 @@ public class FrequencyGameController implements BaseController {
     }
     backButton.toFront();
     backButton.setOpacity(1);
+  }
+
+  public void startGame() {
+    PauseTransition delay =
+        new PauseTransition(Duration.seconds(2)); // Delay for 2 seconds or adjust as needed
+    delay.setOnFinished(e -> updateWave()); // Start the game's matching mechanism after the delay
+    delay.play();
+
+    initializeCountdown();
   }
 }

@@ -98,6 +98,11 @@ public class SceneManager {
           }
         };
 
+    loadingTask.setOnSucceeded(
+        e -> {
+          App.switchScenes(AppUi.MAIN_MENU);
+        });
+
     Thread loadingThread = new Thread(loadingTask);
     loadingThread.start();
   }

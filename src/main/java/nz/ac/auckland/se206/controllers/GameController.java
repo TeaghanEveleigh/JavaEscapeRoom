@@ -89,6 +89,7 @@ public class GameController extends HackerUiToggler implements BaseController {
         };
 
     timer.start();
+    pauseRoom();
   }
 
   public void pauseRoom() {
