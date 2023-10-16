@@ -36,7 +36,7 @@ public class MainMenuController implements BaseController {
   private MediaPlayer startSound = new MediaPlayer(media);
 
   public void initialize() {
-    startSound.play();
+    // startSound.play();
 
     loadingBar
         .sceneProperty()

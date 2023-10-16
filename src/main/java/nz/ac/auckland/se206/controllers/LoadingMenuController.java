@@ -10,4 +10,12 @@ public class LoadingMenuController {
   private void initialize() {
     return;
   }
+
+  public void updateLoadingBar(double progress) {
+    loadingBar.setProgress(progress);
+  }
+
+  public void resetLoadingBar() {
+    loadingBar.setProgress(0);
+  }
 }

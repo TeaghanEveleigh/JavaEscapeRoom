@@ -79,14 +79,14 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
 
-    initializeFxmlMap();
-    SceneManager.reloadScenes(fxmlMap);
-
-    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU);
+    Parent loadingRoot = SceneManager.initializeLoadingScreen("loading");
+    scene = new Scene(loadingRoot, 816, 585);
     stage.setScene(scene);
     stage.show();
-    root.requestFocus();
+    loadingRoot.requestFocus();
+
+    initializeFxmlMap();
+    SceneManager.reloadScenes(fxmlMap);
   }
 
   private static void initializeFxmlMap() {

@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Stack;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import nz.ac.auckland.se206.controllers.LoadingMenuController;
@@ -73,22 +74,47 @@ public class SceneManager {
     controllerMap.clear();
   }
 
-  public static void reloadScenes(HashMap<AppUi, String> fxmlMap) throws IOException {
+  public static void reloadScenes(HashMap<AppUi, String> fxmlMap) {
     clearAll();
 
-    for (HashMap.Entry<AppUi, String> entry : fxmlMap.entrySet()) {
-      AppUi appUi = entry.getKey();
-      String fxml = entry.getValue();
-      System.out.println("loading " + fxml);
-      FXMLLoader loader = App.getFxmlLoader(fxml);
-      addUi(appUi, loader.load());
-      addController(appUi, loader.getController());
-    }
+    loadingController.resetLoadingBar();
+
+    Task<Void> loadingTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            double progress = 0.0;
+            double increment = 1.0 / fxmlMap.size();
+
+            for (HashMap.Entry<AppUi, String> entry : fxmlMap.entrySet()) {
+              loadEntry(entry);
+              progress += increment;
+              loadingController.updateLoadingBar(progress);
+            }
+
+            return null;
+          }
+        };
+
+    Thread loadingThread = new Thread(loadingTask);
+    loadingThread.start();
   }
 
-  public static void initializeLoadingScreen(String fxml) throws IOException {
+  private static void loadEntry(HashMap.Entry<AppUi, String> entry) throws IOException {
+    AppUi appUi = entry.getKey();
+    String fxml = entry.getValue();
+    System.out.println("loading " + fxml);
+    FXMLLoader loader = App.getFxmlLoader(fxml);
+    addUi(appUi, loader.load());
+    addController(appUi, loader.getController());
+  }
+
+  public static Parent initializeLoadingScreen(String fxml) throws IOException {
     FXMLLoader loader = App.getFxmlLoader(fxml);
     loadingRoot = loader.load();
     loadingController = (LoadingMenuController) loader.getController();
+    return loadingRoot;
   }
 }
