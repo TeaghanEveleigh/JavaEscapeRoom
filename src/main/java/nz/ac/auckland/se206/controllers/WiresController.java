@@ -97,17 +97,21 @@ public class WiresController extends HackerUiToggler implements Initializable, B
    * This method initialises the wires game window. The wires game allows the user to drag wires
    * around a control panel and try and match them to the correct endpoints
    *
-   * @param location
-   * @param resources
+   * @param location The location used to resolve relative paths for the root object, or null if the
+   *     location is not known.
+   * @param resources The resources used to localize the root object, or null if the root object was
+   *     not localized.
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     Timers mainTimer = Timers.getInstance();
-    mainTimer.subscribeLabel(mainTimerLabel);
+    mainTimer.subscribeLabel(mainTimerLabel); // Subscribes the main timer to the main timer label
     winLabel.setVisible(false);
     endpoints =
         List.of(endpointoneCircle, endpointtwoCircle, endpointthreeCircle, endpointfourCircle);
     numberLabels = List.of(oneLabel, twoLabel, threeLabel, fourLabel);
+
+    // Makes the wires draggable
     makeDraggable(blueWire);
     makeDraggable(greenWire);
     makeDraggable(redWire);
@@ -152,16 +156,22 @@ public class WiresController extends HackerUiToggler implements Initializable, B
           for (Circle endpoint : endpoints) {
             if (endpoint.getFill().equals(rectangle.getFill())) {
               endpoint.setFill(endpointColour);
-              if (endpoint.getId().equals("endpointtwoCircle")) {
+              if (endpoint.getId().equals("endpointtwoCircle")) { // If the endpoint is endpoint 2
                 twoLabel.setTextFill(endpointColour);
                 isEndpointConnected[1] = false;
-              } else if (endpoint.getId().equals("endpointoneCircle")) {
+              } else if (endpoint
+                  .getId()
+                  .equals("endpointoneCircle")) { // If the endpoint is endpoint 1
                 oneLabel.setTextFill(endpointColour);
                 isEndpointConnected[0] = false;
-              } else if (endpoint.getId().equals("endpointfourCircle")) {
+              } else if (endpoint
+                  .getId()
+                  .equals("endpointfourCircle")) { // If the endpoint is endpoint 4
                 fourLabel.setTextFill(endpointColour);
                 isEndpointConnected[3] = false;
-              } else if (endpoint.getId().equals("endpointthreeCircle")) {
+              } else if (endpoint
+                  .getId()
+                  .equals("endpointthreeCircle")) { // If the endpoint is endpoint 3
                 threeLabel.setTextFill(endpointColour);
                 isEndpointConnected[2] = false;
               }
@@ -319,7 +329,9 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     return Math.toDegrees(angle);
   }
 
+  /** Runs when the user wants a hint to the wires game. */
   @Override
+  @FXML
   protected void onHintPressed() {
     enableHackerPanel();
     Task<Void> task =
@@ -331,9 +343,11 @@ public class WiresController extends HackerUiToggler implements Initializable, B
 
             GameState gameState = GameState.getInstance();
             if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+              // Tell the user they can't have any hints
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
             } else {
+              // Give the user a hint
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getWiresHint()), hackerTextArea);
             }
@@ -341,7 +355,7 @@ public class WiresController extends HackerUiToggler implements Initializable, B
             enableHintChatAndExit();
 
             if (GameState.isMedium) {
-              gameState.subtractHint();
+              gameState.subtractHint(); // Reduce the number of hints left
             }
             return null;
           }
@@ -349,12 +363,14 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     new Thread(task).start();
   }
 
+  /** Gives the user the riddle they need to solve for the wires game. */
   public void getRiddle() {
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
             disableHintChatAndExit();
+            // Give the user the riddle
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getWiresRiddle()), hackerTextArea);
             enableHintChatAndExit();
@@ -364,6 +380,7 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     new Thread(task).start();
   }
 
+  /** Runs when the user solves the wires game. */
   public void onWiresGameWon() {
     // Displays the win message and blurs the screen
     opacityRectangle.toFront();
@@ -374,15 +391,17 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     enableHackerPanel();
     LaserRoomController laserRoomController =
         (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
-    laserRoomController.disableLasers();
+    laserRoomController.disableLasers(); // Disables the lasers in the dinosaur room
     GameState.isLasersDisabled = true;
-    GameController.updateAllChecklists();
+    GameController
+        .updateAllChecklists(); // Updates the checklist to show the lasers have bee disabled
 
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
             disableHintChatAndExit();
+            // Tells the user they have solved the wires riddle and completed the game
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getWiresRiddleSolvedPrompt()),
                 hackerTextArea);

@@ -27,6 +27,10 @@ import nz.ac.auckland.se206.listeners.ObjectListener;
 import nz.ac.auckland.se206.listeners.RightDinosaurListener;
 import nz.ac.auckland.se206.listeners.SuspicionListener;
 
+/**
+ * Controller class for the laser room. This is where the player can interact with the dinosaurs and
+ * steal the treasure. They need to disables the lasers in this room to steal the treasure.
+ */
 public class LaserRoomController extends GameController
     implements LeftDinosaurListener, RightDinosaurListener, ObjectListener, SuspicionListener {
   @FXML private Text interactHint;
@@ -59,15 +63,21 @@ public class LaserRoomController extends GameController
 
   private SolidBox laserBox;
 
+  /**
+   * Initialises the controller class. This method is automatically called after the fxml file has
+   * been loaded.
+   */
   @Override
   public void initialize() {
     Passcode passcode = Passcode.getInstance();
     GameState value = GameState.getInstance();
-    value.subscribe(hintsLabel);
+    value.subscribe(hintsLabel); // subscribe to hints
     trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
     paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
 
-    super.initialize();
+    super.initialize(); // call super initialize
+
+    // Sets the bounding boxes for the room
     boundsObjects.add(
         new Suspicion(boundingBoxOne, this, suspicionProgressBar, suspicionRectangle));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
@@ -78,6 +88,8 @@ public class LaserRoomController extends GameController
     this.player.setBoundingBoxes(boundsObjects);
     this.player.setPosX(54);
     this.player.setPosY(350);
+
+    // Applies the bouncing animations for the arrows
     applyFloatingAnimation(arrow);
     applyFloatingAnimation(arrow1);
     applyFloatingAnimationx(arrow3);
@@ -86,10 +98,11 @@ public class LaserRoomController extends GameController
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintChatAndExit();
+            disableHintChatAndExit(); // Disables the hint chat and exit buttons
+            // Introduces the game to the user
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
-            enableHintChatAndExit();
+            enableHintChatAndExit(); // Enables the hint chat and exit buttons
             exitHackerPanelImage.setDisable(false);
             return null;
           }
@@ -97,6 +110,7 @@ public class LaserRoomController extends GameController
     new Thread(task).start();
   }
 
+  /** Disables the lasers in the room. */
   @FXML
   public void disableLasers() {
     laser1.toBack();
@@ -111,38 +125,44 @@ public class LaserRoomController extends GameController
     player.setBoundingBoxes(boundsObjects);
   }
 
+  /** Shows the item label. */
   @FXML
   private void itemLabelShow() {
     itemLabel.setOpacity(0.8);
     interactHint.toFront();
   }
 
+  /** Hides the item label. */
   @FXML
   private void itemLabelHide() {
     itemLabel.setOpacity(0);
     interactHint.toBack();
   }
 
+  /** Runs when the user steals the treasure. */
   @FXML
   private void stealItem() {
     GameState.isTreasureStolen = true;
-    GameController.updateAllChecklists();
+    GameController
+        .updateAllChecklists(); // Updates the checklist to show that the treasure has been stolen
     object.toBack();
     itemLabel.toBack();
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            disableHintChatAndExit();
+            disableHintChatAndExit(); // Disables the hint chat and exit buttons
             ai.runGpt(
-                new ChatMessage("user", GptPromptEngineering.getObjectStolen()), hackerTextArea);
-            enableHintChatAndExit();
+                new ChatMessage("user", GptPromptEngineering.getObjectStolen()),
+                hackerTextArea); // Tells the user that they have stolen the treasure
+            enableHintChatAndExit(); // Enables the hint chat and exit buttons
             return null;
           }
         };
     new Thread(task).start();
   }
 
+  /** Shows the label of the forst dinosaur when the user goes near it. */
   @FXML
   private void showDinoLabel1() {
     dinoLabel1.setOpacity(0.8);
@@ -150,6 +170,7 @@ public class LaserRoomController extends GameController
     arrow.toBack();
   }
 
+  /** Hides the label of the first dinosaur when the user goes away from it. */
   @FXML
   private void hideDinoLabel1() {
     dinoLabel1.setOpacity(0);
@@ -157,53 +178,69 @@ public class LaserRoomController extends GameController
     arrow.toFront();
   }
 
+  /**
+   * Runs when the user interacts with the left dinosaur. Shows the plaque for the left dinosaur.
+   */
   @Override
   public void leftDinosaurInteracted() {
     showParoPlaque();
   }
 
+  /** Runs when the user touches the left dinosaur. Shows the label for the left dinosaur. */
   @Override
   public void leftDinosaurTouched() {
     showDinoLabel1();
   }
 
+  /** Runs when the user goes away from the left dinosaur. Hides the label for the left dinosaur. */
   @Override
   public void leftDinosaurUntouched() {
     hideDinoLabel1();
     hideParoPlaque();
   }
 
+  /**
+   * Runs when the user interacts with the right dinosaur. Shows the plaque for the right dinosaur.
+   */
   @Override
   public void rightDinosaurInteracted() {
     showTrexPlaque();
   }
 
+  /** Runs when the user touches the right dinosaur. Shows the label for the right dinosaur. */
   @Override
   public void rightDinosaurTouched() {
     showDinoLabelTwo();
   }
 
+  /**
+   * Runs when the user goes away from the right dinosaur. Hides the label for the right dinosaur.
+   */
   @Override
   public void rightDinosaurUntouched() {
     hideDinoLabelTwo();
     hideTrexPlaque();
   }
 
+  /** Runs when the user interacts with the item. Steals the item. */
   @Override
   public void objectInteracted() {
     stealItem();
   }
 
+  /** Runs when the user touches the item. Shows the label for the item. */
   @Override
   public void objectTouched() {
     itemLabelShow();
   }
 
+  /** Runs when the user goes away from the item. Hides the label for the item. */
   @Override
   public void objectUntouched() {
     itemLabelHide();
   }
 
+  /** Shows the label for the second dinosaur. */
   @FXML
   private void showDinoLabelTwo() {
     dinoLabel2.setOpacity(0.8);
@@ -211,6 +248,7 @@ public class LaserRoomController extends GameController
     arrow1.toBack();
   }
 
+  /** Hides the label for the second dinosaur. */
   @FXML
   private void hideDinoLabelTwo() {
     dinoLabel2.setOpacity(0);
@@ -218,6 +256,7 @@ public class LaserRoomController extends GameController
     arrow1.toFront();
   }
 
+  /** Shows the plaque for the left dinosaur. */
   @FXML
   private void showParoPlaque() {
     blur.toFront();
@@ -225,6 +264,7 @@ public class LaserRoomController extends GameController
     paroText.toFront();
   }
 
+  /** Hides the plaque for the left dinosaur. */
   @FXML
   private void hideParoPlaque() {
     plaque.toBack();
@@ -232,6 +272,7 @@ public class LaserRoomController extends GameController
     paroText.toBack();
   }
 
+  /** Shows the plaque for the right dinosaur. */
   @FXML
   private void showTrexPlaque() {
     blur.toFront();
@@ -239,6 +280,7 @@ public class LaserRoomController extends GameController
     trexText.toFront();
   }
 
+  /** Hides the plaque for the right dinosaur. */
   @FXML
   private void hideTrexPlaque() {
     plaque.toBack();
@@ -246,40 +288,55 @@ public class LaserRoomController extends GameController
     trexText.toBack();
   }
 
+  /**
+   * Applies the floating animation in the x direction to the image view arrows for the interactable
+   * objects.
+   *
+   * @param imageView the image view to apply the animation to.
+   */
   private void applyFloatingAnimation(ImageView imageView) {
     TranslateTransition translateTransition =
         new TranslateTransition(Duration.seconds(1), imageView);
-    translateTransition.setByY(5);
+    translateTransition.setByY(5); // set the distance to move
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
   }
 
+  /**
+   * Applies the floating animation in the y direction to the image view arrows for the interactable
+   * objects.
+   *
+   * @param imageView the image view to apply the animation to.
+   */
   private void applyFloatingAnimationx(ImageView imageView) {
     TranslateTransition translateTransition =
         new TranslateTransition(Duration.seconds(1), imageView);
-    translateTransition.setByX(5);
+    translateTransition.setByX(5); // set the distance to move
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
   }
 
+  /** Runs when the suspicion bar is touched. */
   @Override
   public void suspicionTouched() {
     suspicionProgressBar.toFront();
     suspicionRectangle.toFront();
   }
 
+  /** Runs when the suspicion is rising. */
   @Override
   public void suspicionNotTouched() {
     suspicionRectangle.toBack();
     // progress bar will be sent to back on end of progress
   }
 
+  /** Runs when the suspicion is not rising anymore. */
   @Override
   public void suspicionReached() {
     System.out.println("Too long in lasers - subtracting time");
     Timers mainTimer = Timers.getInstance();
-    mainTimer.subtractTime(10);
+    mainTimer.subtractTime(10); // Subtracts 10 seconds from the main timer
   }
 }

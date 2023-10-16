@@ -6,7 +6,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.SceneManager;
 
-/** Controller class for the game lost view. */
+/** Controller class for the game lost view. This runs when the user runs out of time. */
 public class GameLostController implements BaseController {
 
   /**
