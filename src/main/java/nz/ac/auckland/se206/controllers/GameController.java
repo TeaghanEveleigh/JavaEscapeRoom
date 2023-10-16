@@ -60,11 +60,14 @@ public class GameController extends HackerUiToggler implements BaseController {
   protected Player player;
   protected ArrayList<BoundsObject> boundsObjects;
   protected boolean paused = true;
+  protected boolean started = false;
+  private AnimationTimer timer;
 
   public void initialize() {
+    player = new Player(50, 100, 50, 50);
+
+    reset();
     disbleObjectives();
-    Timers mainTimer = Timers.getInstance();
-    mainTimer.subscribeLabel(mainTimerLabel);
     gameCanvas.requestFocus();
     disableHackerPanel();
     hackerTextArea.setEditable(false);
@@ -72,10 +75,9 @@ public class GameController extends HackerUiToggler implements BaseController {
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
     boundsObjects = new ArrayList<BoundsObject>();
 
-    player = new Player(50, 100, 50, 50);
     renderer.addEntity(player);
 
-    AnimationTimer timer =
+    timer =
         new AnimationTimer() {
 
           @Override
@@ -203,5 +205,15 @@ public class GameController extends HackerUiToggler implements BaseController {
             exitUnlockedCircle.setFill(Color.BLACK);
           });
     }
+  }
+
+  @Override
+  public void start() {
+    return;
+  }
+
+  public void reset() {
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
   }
 }

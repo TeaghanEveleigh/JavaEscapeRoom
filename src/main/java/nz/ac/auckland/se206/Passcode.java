@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Passcode {
 
-  private static final Passcode instance = new Passcode();
+  private static Passcode instance = new Passcode();
 
   public static Passcode getInstance() {
     return instance;
@@ -68,5 +68,9 @@ public class Passcode {
       default:
         return number + "th";
     }
+  }
+
+  public static void resetPasscode() {
+    instance = new Passcode();
   }
 }

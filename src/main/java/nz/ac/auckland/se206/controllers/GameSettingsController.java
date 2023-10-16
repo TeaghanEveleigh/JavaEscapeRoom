@@ -78,4 +78,9 @@ public class GameSettingsController implements BaseController {
     enableCheckBox.setSelected(false);
     GameState.textToSpeech = false;
   }
+
+  @Override
+  public void start() {
+    return;
+  }
 }

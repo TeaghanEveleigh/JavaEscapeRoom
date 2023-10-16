@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.controllers.FrequencyGameController;
 
 public class Timers {
 
@@ -24,9 +23,9 @@ public class Timers {
 
   private int startingTimeInMilliseconds;
   private int timeInMilliseconds;
-  private Timeline countdownTimeline;
-  private List<Label> subscribedLabels = new ArrayList<>();
-  private boolean is30SecondTriggered = false;
+  private static Timeline countdownTimeline;
+  private static List<Label> subscribedLabels = new ArrayList<>();
+  private static boolean is30SecondTriggered = false;
 
   private Timers() {
     // private constructor to enforce singleton
@@ -54,9 +53,6 @@ public class Timers {
   }
 
   private void thirtySecondPassed() {
-    FrequencyGameController frequencyGameController =
-        (FrequencyGameController) SceneManager.getUiController(AppUi.SIN_MINIGAME);
-    frequencyGameController.startGame();
     App.switchScenes(AppUi.SIN_MINIGAME);
     System.out.println("30 seconds have passed.");
   }
@@ -110,5 +106,12 @@ public class Timers {
                 is30SecondTriggered = true;
               }
             }));
+  }
+
+  public static void reset() {
+    subscribedLabels.clear();
+    countdownTimeline.stop();
+    countdownTimeline = null;
+    is30SecondTriggered = false;
   }
 }

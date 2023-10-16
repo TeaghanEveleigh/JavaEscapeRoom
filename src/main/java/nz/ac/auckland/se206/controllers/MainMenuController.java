@@ -56,4 +56,9 @@ public class MainMenuController implements BaseController {
       startSound.play();
     }
   }
+
+  @Override
+  public void start() {
+    startSound.play();
+  }
 }

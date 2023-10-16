@@ -207,7 +207,8 @@ public class FrequencyGameController implements BaseController {
     backButton.setOpacity(1);
   }
 
-  public void startGame() {
+  @Override
+  public void start() {
     PauseTransition delay =
         new PauseTransition(Duration.seconds(2)); // Delay for 2 seconds or adjust as needed
     delay.setOnFinished(e -> updateWave()); // Start the game's matching mechanism after the delay

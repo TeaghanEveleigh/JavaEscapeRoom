@@ -1,3 +1,5 @@
 package nz.ac.auckland.se206;
 
-public interface BaseController {}
+public interface BaseController {
+  public void start();
+}

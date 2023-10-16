@@ -203,9 +203,7 @@ public class SecurityRoomController extends GameController
 
   @Override
   public void initialize() {
-    GameState value = GameState.getInstance();
-    value.subscribe(hintsLabel);
-    stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
+
     super.initialize();
     boundsObjects.add(
         new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle));
@@ -233,8 +231,7 @@ public class SecurityRoomController extends GameController
     boundsObjects.add(new Portal(dinosaurRoomBounds, this, AppUi.DINOSAUR_ROOM));
     boundsObjects.add(new StoneCarving(stoneCarvingBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
-    this.player.setPosX(54);
-    this.player.setPosY(300);
+
     applyFloatingAnimation(arrow1);
     applyFloatingAnimation(arrow2);
     applyFloatingAnimation(arrow3);
@@ -564,5 +561,25 @@ public class SecurityRoomController extends GameController
   public void suspicionReached() {
     Timers mainTimer = Timers.getInstance();
     mainTimer.subtractTime(10);
+  }
+
+  @Override
+  public void start() {
+    started = true;
+  }
+
+  @Override
+  public void reset() {
+    GameState value = GameState.getInstance();
+    value.subscribe(hintsLabel);
+    stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
+    this.player.setPosX(54);
+    this.player.setPosY(300);
+    numbers.setText("");
+    numberOfnumbers = 0;
+    cameraLine1.toFront();
+    cameraLine2.toFront();
+    cameraBase.toFront();
+    cameraTriangle.toFront();
   }
 }

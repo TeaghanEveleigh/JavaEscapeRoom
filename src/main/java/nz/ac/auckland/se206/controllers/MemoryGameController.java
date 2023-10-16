@@ -59,6 +59,7 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
 
   private boolean showingSequence = false;
   private int currentSequenceLength = 1;
+  private boolean started = false;
 
   @FXML
   public void initialize() {
@@ -70,7 +71,7 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     this.lightsPressed = new ArrayList<ImageView>();
     enableHackerPanel();
     disableChat();
-    getIntroduction();
+
     hackerTextArea.setEditable(false);
 
     lights.add(lightOne);
@@ -215,11 +216,17 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
   }
 
   public void start() {
+    if (!started) {
+      getIntroduction();
+    }
+
     resetAllLights();
     sequence.clear();
     chooseSequence(6);
     currentSequenceLength = 1;
     showSequence(currentSequenceLength);
+
+    started = true;
   }
 
   @FXML

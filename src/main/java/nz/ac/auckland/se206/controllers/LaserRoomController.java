@@ -61,12 +61,6 @@ public class LaserRoomController extends GameController
 
   @Override
   public void initialize() {
-    Passcode passcode = Passcode.getInstance();
-    GameState value = GameState.getInstance();
-    value.subscribe(hintsLabel);
-    trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
-    paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
-
     super.initialize();
     boundsObjects.add(
         new Suspicion(boundingBoxOne, this, suspicionProgressBar, suspicionRectangle));
@@ -76,25 +70,10 @@ public class LaserRoomController extends GameController
     boundsObjects.add(new RightDinosaur(rightDinosaurBounds, this));
     boundsObjects.add(new Door(doorRectangle, this, AppUi.MAIN_MENU));
     this.player.setBoundingBoxes(boundsObjects);
-    this.player.setPosX(54);
-    this.player.setPosY(350);
     applyFloatingAnimation(arrow);
     applyFloatingAnimation(arrow1);
     applyFloatingAnimationx(arrow3);
-    enableHackerPanel();
-    Task<Void> task =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            disableHintChatAndExit();
-            ai.runGpt(
-                new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
-            enableHintChatAndExit();
-            exitHackerPanelImage.setDisable(false);
-            return null;
-          }
-        };
-    new Thread(task).start();
+    System.out.println("dsadsadasj");
   }
 
   @FXML
@@ -281,5 +260,41 @@ public class LaserRoomController extends GameController
     System.out.println("Too long in lasers - subtracting time");
     Timers mainTimer = Timers.getInstance();
     mainTimer.subtractTime(1000);
+  }
+
+  @Override
+  public void start() {
+    if (started) return;
+    enableHackerPanel();
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            disableHintChatAndExit();
+            ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
+            enableHintChatAndExit();
+            exitHackerPanelImage.setDisable(false);
+            return null;
+          }
+        };
+    new Thread(task).start();
+
+    started = true;
+  }
+
+  @Override
+  public void reset() {
+    super.reset();
+    Passcode passcode = Passcode.getInstance();
+    GameState value = GameState.getInstance();
+    System.out.println("1");
+    value.subscribe(hintsLabel);
+    trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
+    paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
+    System.out.println("2");
+    this.player.setPosX(54);
+    this.player.setPosY(350);
+    System.out.println("3");
   }
 }

@@ -65,14 +65,12 @@ public class ExitRoomController extends GameController
   @FXML private Rectangle boundingBox1;
   @FXML private Rectangle boundingBox5;
   @FXML private Label hintsLabel;
-  private Passcode passcode = Passcode.getInstance();
+  private Passcode passcode;
 
   @Override
   public void initialize() {
-    GameState value = GameState.getInstance();
-    value.subscribe(hintsLabel);
-    password.setText(passcode.getKeyCode());
     super.initialize();
+
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBox1));
     boundsObjects.add(new SolidBox(boundingBox5));
@@ -81,8 +79,7 @@ public class ExitRoomController extends GameController
     boundsObjects.add(new Safe(safeBounds, this));
     boundsObjects.add(new ExitRoomDoor(doorBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
-    this.player.setPosX(54);
-    this.player.setPosY(450);
+
     applyFloatingAnimation(arrow1);
     applyFloatingAnimation(arrow2);
     applyFloatingAnimation(arrow3);
@@ -335,5 +332,21 @@ public class ExitRoomController extends GameController
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
+  }
+
+  @Override
+  public void start() {
+    started = true;
+  }
+
+  @Override
+  public void reset() {
+    super.reset();
+    GameState value = GameState.getInstance();
+    value.subscribe(hintsLabel);
+    passcode = Passcode.getInstance();
+    password.setText(passcode.getKeyCode());
+    this.player.setPosX(54);
+    this.player.setPosY(450);
   }
 }

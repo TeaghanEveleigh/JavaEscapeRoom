@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Set;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ public class App extends Application {
 
   private static Scene scene;
   private static HashMap<AppUi, String> fxmlMap;
+  private static Set<AppUi> gameRooms;
 
   public static void main(final String[] args) {
     launch();
@@ -40,6 +42,7 @@ public class App extends Application {
   public static void switchScenes(AppUi ui) {
     Parent root = SceneManager.getUiRoot(ui);
     BaseController baseController = SceneManager.getUiController(ui);
+    baseController.start();
     if (baseController instanceof GameController) {
       GameController gameController = (GameController) baseController;
       gameController.unpauseRoom();
@@ -73,6 +76,7 @@ public class App extends Application {
     loadingRoot.requestFocus();
 
     initializeFxmlMap();
+    initializeGameRooms();
     SceneManager.reloadScenes(fxmlMap);
   }
 
@@ -90,10 +94,18 @@ public class App extends Application {
     fxmlMap.put(AppUi.MEMORY_GAME, "memorygame");
   }
 
-  public static void restartGame() throws IOException {
-    SceneManager.reloadScenes(fxmlMap);
+  private static void initializeGameRooms() {
+    gameRooms = Set.of(AppUi.DINOSAUR_ROOM, AppUi.SECURITY_ROOM, AppUi.EXIT_ROOM);
+  }
 
-    // Set the scene to the main menu
-    scene.setRoot(SceneManager.getUiRoot(AppUi.MAIN_MENU));
+  public static void restartGame() throws IOException {
+    Parent root = SceneManager.getLoadingParent();
+    scene.setRoot(root);
+    GameState.resetGameState();
+    KeyState.resetKeys();
+    Passcode.resetPasscode();
+    Timers.reset();
+    root.requestFocus();
+    SceneManager.restartScenes(fxmlMap, gameRooms);
   }
 }
