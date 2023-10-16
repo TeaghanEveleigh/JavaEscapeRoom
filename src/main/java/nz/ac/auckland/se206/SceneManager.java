@@ -76,6 +76,7 @@ public class SceneManager {
     for (HashMap.Entry<AppUi, String> entry : fxmlMap.entrySet()) {
       AppUi appUi = entry.getKey();
       String fxml = entry.getValue();
+      System.out.println("loading " + fxml);
       FXMLLoader loader = App.getFxmlLoader(fxml);
       addUi(appUi, loader.load());
       addController(appUi, loader.getController());

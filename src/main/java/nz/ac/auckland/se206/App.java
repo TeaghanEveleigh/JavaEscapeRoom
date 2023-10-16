@@ -79,16 +79,8 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
 
-    // Load all the views
-    loadMainMenu();
-
-    FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
-    SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
-    SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
-
-    FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
-    SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
-    SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
+    initializeFxmlMap();
+    SceneManager.reloadScenes(fxmlMap);
 
     scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
     Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU);

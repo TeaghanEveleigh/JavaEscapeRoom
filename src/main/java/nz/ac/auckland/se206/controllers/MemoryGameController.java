@@ -298,4 +298,14 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
         };
     new Thread(task).start();
   }
+
+  @FXML
+  private void onTalkToHackerPressed() {
+    return;
+  }
+
+  @FXML
+  private void onChatPressed() {
+    return;
+  }
 }
