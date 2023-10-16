@@ -129,6 +129,8 @@ public class SecurityRoomController extends GameController
   @FXML private Rectangle suspicionRectangle;
   private Passcode passcode = Passcode.getInstance();
 
+  private Suspicion suspicion;
+
   // @FXML private Text number0;
   @FXML
   private void handleClearEnter(MouseEvent event) {
@@ -197,16 +199,15 @@ public class SecurityRoomController extends GameController
     cameraBase.toBack();
     cameraTriangle.toBack();
     boundsObjects.remove(exitBlock);
+    boundsObjects.remove(suspicion);
     // what you can do here is also remove obstacle preventing the player from moving into the
     // camera area
   }
 
   @Override
   public void initialize() {
-
+    suspicion = new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle);
     super.initialize();
-    boundsObjects.add(
-        new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle));
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
     boundsObjects.add(new SolidBox(boundingBox1));
@@ -581,5 +582,6 @@ public class SecurityRoomController extends GameController
     cameraLine2.toFront();
     cameraBase.toFront();
     cameraTriangle.toFront();
+    boundsObjects.add(suspicion);
   }
 }
