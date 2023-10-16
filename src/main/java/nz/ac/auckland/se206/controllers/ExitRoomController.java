@@ -120,6 +120,7 @@ public class ExitRoomController extends GameController
   /** Opens the computer. */
   @FXML
   private void openComputer() {
+    // Bring the computer to the front
     monitorScreen.toFront();
     btnHelp.toFront();
     btnLogin.toFront();
@@ -128,12 +129,13 @@ public class ExitRoomController extends GameController
     monitorStand.toFront();
     exitBtn.toFront();
     passwordText.toFront();
-    computerOpened = true;
+    computerOpened = true; // set computer to opened
   }
 
   /** Closes the computer. */
   @FXML
   private void onHideComputer() {
+    // Send the computer to the back
     monitorScreen.toBack();
     btnHelp.toBack();
     btnLogin.toBack();
@@ -142,14 +144,15 @@ public class ExitRoomController extends GameController
     monitorStand.toBack();
     exitBtn.toBack();
     passwordText.toBack();
-    computerOpened = false;
-    paused = false;
+    computerOpened = false; // set computer to closed
+    paused = false; // unpause room
     helpHint.toBack();
   }
 
   /** Shows the entrance label to the user. */
   @FXML
   private void showEntranceLabel() {
+    // Make the entrance label visible
     entranceLine1.setOpacity(1);
     entranceLine2.setOpacity(1);
     entranceLine3.setOpacity(1);
@@ -161,6 +164,7 @@ public class ExitRoomController extends GameController
   /** Hides the entrance label from the user. */
   @FXML
   private void hideEntranceLabel() {
+    // Make the entrance label invisible
     interractHint.setOpacity(0);
     entranceLine1.setOpacity(0);
     entranceLine2.setOpacity(0);
@@ -201,11 +205,13 @@ public class ExitRoomController extends GameController
   /** Runs when the safe has been opened */
   @FXML
   public void safeOpen() {
-    safeOpened = true;
+    safeOpened = true; // set safe to opened
+    // Bring the opened safe and note to the front
     openedSafe.toFront();
     note.toFront();
     noteLabel.toFront();
     hideSafeLabel();
+    // Bring buttons and game canvas to the front
     gameCanvas.toFront();
     objectivesButton.toFront();
     talkToHackerButton.toFront();

@@ -113,13 +113,16 @@ public class LaserRoomController extends GameController
   /** Disables the lasers in the room. */
   @FXML
   public void disableLasers() {
+    // Sends the lasers to the back
     laser1.toBack();
     laser2.toBack();
     laser3.toBack();
+    // Sends the laser shadows to the back
     laserShadow1.toBack();
     laserShadow2.toBack();
     laserShadow3.toBack();
     itemLabel.toFront();
+    // remove the laser bounding boxes
     boundsObjects.remove(laserBox);
     boundsObjects.add(new Object(objectBounds, this));
     player.setBoundingBoxes(boundsObjects);

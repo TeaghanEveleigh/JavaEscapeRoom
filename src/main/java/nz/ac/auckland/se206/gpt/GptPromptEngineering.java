@@ -15,7 +15,7 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. He is interacting with you and has"
         + " just said: "
-        + message
+        + message // message from the user
         + ". You should respond to your partner with either an answer to their question or a"
         + " response to their statement. You cannot give them any information about how to solve"
         + " any games or puzzles including the keypad game, the wires game, the memory game, or"
@@ -33,13 +33,13 @@ public class GptPromptEngineering {
         + " You have access to the database, and your partner encounters a panel with four"
         + " wires: green, red, yellow, and blue, connecting to four endpoints labeled 1-4."
         + " The wires followed by the connection point is , G,"
-        + GameState.wiresSequence.charAt(0)
+        + GameState.wiresSequence.charAt(0) // the correct matching for the green wire
         + "R,"
-        + +GameState.wiresSequence.charAt(1)
+        + +GameState.wiresSequence.charAt(1) // the correct matching for the red wire
         + "Y,"
-        + +GameState.wiresSequence.charAt(2)
+        + +GameState.wiresSequence.charAt(2) // the correct matching for the yellow wire
         + "B,"
-        + +GameState.wiresSequence.charAt(3)
+        + +GameState.wiresSequence.charAt(3) // the correct matching for the blue wire
         + "It is really important that you dont get the wire connections wrong so please carefully"
         + " analysis which ones belong to which number. Give the user the answer but in a way that"
         + " makes them think dont directly tell them what the corresponding connections are they"
@@ -58,13 +58,13 @@ public class GptPromptEngineering {
         + " blue. Your partner has to connect each wire to the right endpoint. There are"
         + " four endpoints. The endpoints are labelled one, two, three, and four. The"
         + " correct matchings are: green wire to endpoint "
-        + GameState.wiresSequence.charAt(0)
+        + GameState.wiresSequence.charAt(0) // the correct matching for the green wire
         + ", red wire to endpoint "
-        + GameState.wiresSequence.charAt(1)
+        + GameState.wiresSequence.charAt(1) // the correct matching for the red wire
         + ", yellow wire to endpoint "
-        + GameState.wiresSequence.charAt(2)
+        + GameState.wiresSequence.charAt(2) // the correct matching for the yellow wire
         + ", and blue wire to endpoint "
-        + GameState.wiresSequence.charAt(3)
+        + GameState.wiresSequence.charAt(3) // the correct matching for the blue wire
         + ". You have hacked into the museum"
         + " database and found some information about the correct matchings. The information"
         + " doesn't give the correct matchings directly, but rather, gives enough"
@@ -93,12 +93,12 @@ public class GptPromptEngineering {
    */
   public static String getIntroduction() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
-        + " to steal an object that is guarded by lasers. Introduce yourself to them and"
-        + " tell them that they need to steal the Pharaoh's treasure and escape before the"
-        + " time runs out. Tell them that you are their eyes and ears in the museum. Tell"
-        + " them that you have hacked into the museum's database and can use the information"
-        + " from it to help them. Tell them that you can also help them solve the puzzles"
-        + " that they will encounter in the museum. Tell them that you will give them hints"
+        + " to steal an object that is guarded by lasers." // context for the AI
+        + " Introduce yourself to them and tell them that they need to steal the Pharaoh's treasure"
+        + " and escape before the time runs out. Tell them that you are their eyes and ears in the"
+        + " museum. Tell them that you have hacked into the museum's database and can use the"
+        + " information from it to help them. Tell them that you can also help them solve the"
+        + " puzzles that they will encounter in the museum. Tell them that you will give them hints"
         + " if they get stuck. Keep your message under 50 words.";
   }
 
@@ -125,10 +125,10 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. He is currently playing a memory"
         + " game during which he has to match the sequence of flashing lights by pressing"
-        + " the buttons in the order they flash in. He is stuck and needs a hint. Give him a"
-        + " hint about the fact that the user needs to repeat the sequence of flashing"
-        + " lights by pressing them in order. Do not give him the answer directly. Keep your"
-        + " message under 50 words.";
+        + " the buttons in the order they flash in." // context for the AI
+        + " He is stuck and needs a hint. Give him a hint about the fact that the user needs to"
+        + " repeat the sequence of flashing lights by pressing them in order. Do not give him the"
+        + " answer directly. Keep your message under 50 words.";
   }
 
   /**
@@ -140,11 +140,11 @@ public class GptPromptEngineering {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. He is currently playing a memory"
         + " game during which he has to match the sequence of flashing lights by pressing"
-        + " the buttons in the order they flash in. Tell the user that you think its some"
-        + " sort of memory game and that they have to match the sequence of flashing lights"
-        + " by pressing the buttons in the order they flash in. Tell them that you will look"
-        + " through the museum database and give them hints if they get stuck. Keep your"
-        + " message under 100 words.";
+        + " the buttons in the order they flash in. " // context for the AI
+        + " Tell the user that you think its some sort of memory game and that they have to match"
+        + " the sequence of flashing lights by pressing the buttons in the order they flash in."
+        + " Tell them that you will look through the museum database and give them hints if they"
+        + " get stuck. Keep your message under 100 words.";
   }
 
   /**
@@ -260,6 +260,12 @@ public class GptPromptEngineering {
         + " words.";
   }
 
+  /**
+   * Generate a GPT prompt engineering string for when the user is trying to escape but hasn't
+   * stolen the item yet.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getMustStealItem() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. Your partner is trying to exit but"
@@ -311,7 +317,7 @@ public class GptPromptEngineering {
    * Generate a GPT prompt engineering string for when the user has disabled the lasers but not
    * stolen the object.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string.
    */
   public static String getLasersDisabledButNotStolenHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
@@ -320,16 +326,27 @@ public class GptPromptEngineering {
         + " the treasure. Keep your message under 50 words.";
   }
 
+  /**
+   * Geerate a GPT prompt engineering string for when the AI cannot give another hint to the user.
+   *
+   * @return the generated prompt engineering string.
+   */
   public static String getCantGiveHint() {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
         + " to steal an object that is guarded by lasers. You have been locked out of the"
         + " museum database and can't give your partner any hints. Tell them this";
   }
 
+  /**
+   * Gets a response form the AI from the user's chat message.
+   *
+   * @param message The user's chat message.
+   * @return The AI's response.
+   */
   public static String getChatResponse(String message) {
     return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
-        + " to steal an object that is guarded by lasers. Your partner has just said: "
-        + message
+        + " to steal an object that is guarded by lasers. Your partner has just said: " // context
+        + message // message from the user
         + "Respond to them with either an answer to their question or a response to their"
         + " statement. Respond to them as if you were their partner in the museum. You cannot give"
         + " them any information about how to solve any games or puzzles including the keypad game,"

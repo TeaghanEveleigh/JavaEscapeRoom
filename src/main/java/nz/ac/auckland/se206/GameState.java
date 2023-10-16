@@ -134,7 +134,6 @@ public class GameState {
     isEasy = true;
     isMedium = false;
     isHard = false;
-    updateLabels(); // Update labels
   }
 
   /** This method sets the difficulty to medium and updates hint left label accordingly. */
@@ -143,7 +142,6 @@ public class GameState {
     isMedium = true;
     isHard = false;
     hintsLeft = "5";
-    updateLabels(); // Update labels
   }
 
   /** This method sets the difficulty to hard and updates hint left label accordingly. */
@@ -152,6 +150,5 @@ public class GameState {
     isMedium = false;
     isHard = true;
     hintsLeft = "∞";
-    updateLabels(); // Update labels
   }
 }

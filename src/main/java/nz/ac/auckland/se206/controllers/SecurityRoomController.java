@@ -426,6 +426,7 @@ public class SecurityRoomController extends GameController
     blurScreen.toBack();
     keypadRectangle.toBack();
     numberRectangle.toBack();
+    // Sends the numbers to the back of the screen
     number1.toBack();
     number2.toBack();
     number3.toBack();
@@ -437,6 +438,7 @@ public class SecurityRoomController extends GameController
     number9.toBack();
 
     keypad.toBack();
+    // Sends the number backgrounds to the back of the screen
     one.toBack();
     two.toBack();
     three.toBack();
@@ -451,6 +453,7 @@ public class SecurityRoomController extends GameController
     clear.toBack();
     enter.toBack();
     numbers.setOpacity(0);
+    // Sends the keypad text to the back of the screen
     correctColor.setOpacity(0);
     incorrectColor.setOpacity(0);
     correctTxt.setOpacity(0);
