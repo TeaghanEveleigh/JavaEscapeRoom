@@ -70,18 +70,18 @@
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="chatPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="70.0" layoutX="185.0" layoutY="510.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="480.0" />
-      <TextField fx:id="chatTextField" layoutX="191.0" layoutY="520.0" opacity="0.8" prefHeight="52.0" prefWidth="341.0" promptText="What would you like to say to me?" />
-      <Button fx:id="submitButton" layoutX="539.0" layoutY="521.0" mnemonicParsing="false" onAction="#onSubmitPressed" prefHeight="50.0" prefWidth="109.0" text="Submit" textFill="WHITE">
-         <font>
-            <Font name="Baskerville Old Face" size="25.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="exitChatImage" fitHeight="18.0" fitWidth="18.0" layoutX="646.0" layoutY="511.0" onMouseClicked="#onChatExitClicked" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="chatPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="70.0" layoutX="157.0" layoutY="508.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="480.0" />
+      <TextField fx:id="chatTextField" layoutX="163.0" layoutY="518.0" opacity="0.8" prefHeight="52.0" prefWidth="341.0" promptText="What would you like to say to me?" />
+      <ImageView fx:id="exitChatImage" fitHeight="18.0" fitWidth="18.0" layoutX="618.0" layoutY="509.0" onMouseClicked="#onChatExitClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
+      <Button fx:id="submitButton" layoutX="513.0" layoutY="523.0" mnemonicParsing="false" onAction="#onSubmitPressed" prefHeight="34.0" prefWidth="106.0" text="Submit" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="18.0" />
+         </font>
+      </Button>
       <Text fx:id="paroText" fill="#6b6b57" layoutX="252.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parasaurolophus Discovered 16th century " wrappingWidth="377.9719295501709">
          <font>
             <Font name="BM HANNA Air OTF" size="31.0" />
@@ -344,12 +344,7 @@
             <Image url="@../images/vector%20right%20arrow%20icon_4231911.png" />
          </image>
       </ImageView>
-      <Button fx:id="talkToHackerButton" layoutX="668.0" layoutY="526.0" mnemonicParsing="false" onAction="#onTalkToHackerPressed" prefHeight="50.0" prefWidth="132.0" text="Talk to Hacker" textFill="WHITE">
-         <font>
-            <Font name="Baskerville Old Face" size="25.0" />
-         </font>
-      </Button>
-      <Rectangle fx:id="hackerPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="181.0" layoutX="4.0" layoutY="2.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="810.0" />
+      <Rectangle fx:id="hackerPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="174.0" layoutX="4.0" layoutY="2.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="810.0" />
       <TextArea fx:id="hackerTextArea" layoutX="42.0" layoutY="9.0" opacity="0.8" prefHeight="109.0" prefWidth="607.0" wrapText="true">
          <font>
             <Font size="15.0" />
@@ -365,33 +360,39 @@
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Button fx:id="hintButton" layoutX="640.0" layoutY="126.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="30.0" prefWidth="81.0" text="Hint" textFill="WHITE">
+      <Button fx:id="hintButton" layoutX="640.0" layoutY="126.0" mnemonicParsing="false" onAction="#onHintPressed" prefHeight="29.0" prefWidth="85.0" text="Hint" textFill="WHITE">
          <font>
-            <Font name="Baskerville Old Face" size="25.0" />
+            <Font name="BM HANNA Air OTF" size="20.0" />
          </font>
       </Button>
       <Button fx:id="chatButton" layoutX="728.0" layoutY="126.0" mnemonicParsing="false" onAction="#onChatPressed" prefHeight="30.0" prefWidth="81.0" text="Chat" textFill="WHITE">
          <font>
-            <Font name="Baskerville Old Face" size="25.0" />
+            <Font name="BM HANNA Air OTF" size="21.0" />
          </font>
       </Button>
-      <Label fx:id="hintsLabel" alignment="CENTER" layoutX="46.0" layoutY="128.0" prefHeight="45.0" prefWidth="190.0" text="Hints Left: " textFill="WHITE">
+      <Label fx:id="hintsLabel" alignment="CENTER" layoutX="46.0" layoutY="128.0" prefHeight="45.0" prefWidth="190.0" text="Hints Left: ">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="47.0" layoutY="529.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#474a4d" height="53.0" layoutX="14.0" layoutY="526.0" stroke="BLACK" strokeType="INSIDE" width="112.0" />
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="-5.0" layoutY="517.0" prefHeight="70.0" prefWidth="150.0" text="Label" textFill="#0ccd0c">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="objectivesButton" layoutX="13.0" layoutY="453.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="47.0" prefWidth="160.0" text="Objectives" textFill="WHITE">
+      <Button fx:id="objectivesButton" layoutX="5.0" layoutY="474.0" mnemonicParsing="false" onAction="#onObjectivePressed" prefHeight="45.0" prefWidth="130.0" text="Objectives" textFill="WHITE">
          <font>
-            <Font name="Baskerville Old Face" size="25.0" />
+            <Font name="BM HANNA Air OTF" size="20.0" />
          </font>
       </Button>
-      <ProgressBar fx:id="suspicionProgressBar" layoutX="290.0" layoutY="17.0" prefHeight="38.0" prefWidth="270.0" progress="0.0" />
+      <Button fx:id="talkToHackerButton" layoutX="657.0" layoutY="538.0" mnemonicParsing="false" onAction="#onTalkToHackerPressed" prefHeight="38.0" prefWidth="143.0" text="Talk to Hacker" textFill="WHITE">
+         <font>
+            <Font name="BM HANNA Air OTF" size="17.0" />
+         </font>
+      </Button>
       <Rectangle fx:id="suspicionRectangle" arcHeight="5.0" arcWidth="5.0" fill="#ff341f" height="691.0" layoutX="-56.0" layoutY="-60.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="918.0" />
+      <ProgressBar fx:id="suspicionProgressBar" layoutX="290.0" layoutY="17.0" prefHeight="38.0" prefWidth="270.0" progress="0.0" />
 
    </children>
 </AnchorPane>

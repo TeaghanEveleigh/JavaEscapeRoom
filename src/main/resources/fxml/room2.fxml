@@ -21,6 +21,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ExitRoomController">
    <children>
+      <Rectangle fx:id="chatPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="70.0" layoutX="172.0" layoutY="510.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="480.0" />
+      <TextField fx:id="chatTextField" layoutX="178.0" layoutY="520.0" opacity="0.8" prefHeight="52.0" prefWidth="341.0" promptText="What would you like to say to me?" />
+      <Button fx:id="submitButton" layoutX="526.0" layoutY="521.0" mnemonicParsing="false" onAction="#onSubmitPressed" prefHeight="50.0" prefWidth="109.0" text="Submit" textFill="WHITE">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="exitChatImage" fitHeight="18.0" fitWidth="18.0" layoutX="633.0" layoutY="511.0" onMouseClicked="#onChatExitClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cross.png" />
+         </image>
+      </ImageView>
       <Text fx:id="helpHint" fill="RED" layoutX="49.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recovery: Musuem discoveries in ascending order" />
       <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="13.0" layoutY="316.0" opacity="0.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
          <effect>
@@ -66,18 +78,6 @@
       <Circle fx:id="stolenTreasureCircle" fill="WHITE" layoutX="28.0" layoutY="404.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="disabledLasersCircle" fill="WHITE" layoutX="28.0" layoutY="378.0" opacity="0.5" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fx:id="exitObjectiveImage" fitHeight="29.0" fitWidth="28.0" layoutX="179.0" layoutY="316.0" onMouseClicked="#onObjectiveExitClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/cross.png" />
-         </image>
-      </ImageView>
-      <Rectangle fx:id="chatPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="70.0" layoutX="185.0" layoutY="510.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="480.0" />
-      <TextField fx:id="chatTextField" layoutX="191.0" layoutY="520.0" opacity="0.8" prefHeight="52.0" prefWidth="341.0" promptText="What would you like to say to me?" />
-      <Button fx:id="submitButton" layoutX="539.0" layoutY="521.0" mnemonicParsing="false" onAction="#onSubmitPressed" prefHeight="50.0" prefWidth="109.0" text="Submit" textFill="WHITE">
-         <font>
-            <Font name="Baskerville Old Face" size="25.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="exitChatImage" fitHeight="18.0" fitWidth="18.0" layoutX="646.0" layoutY="511.0" onMouseClicked="#onChatExitClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/cross.png" />
          </image>
