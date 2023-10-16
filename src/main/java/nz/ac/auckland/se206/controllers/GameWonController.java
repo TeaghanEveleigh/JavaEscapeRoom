@@ -24,7 +24,6 @@ public class GameWonController implements BaseController {
 
     Media media = new Media(soundPath);
     mediaPlayer = new MediaPlayer(media);
-    playVictorySound();
   }
 
   /** Play the victory sound. */
@@ -48,6 +47,6 @@ public class GameWonController implements BaseController {
 
   @Override
   public void start() {
-    return;
+    playVictorySound();
   }
 }

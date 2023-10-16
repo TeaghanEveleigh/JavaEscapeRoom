@@ -54,6 +54,7 @@ public class GameController extends HackerUiToggler implements BaseController {
   @FXML protected Circle keycodeFoundCircle;
   @FXML protected Circle exitUnlockedCircle;
   @FXML protected ImageView exitObjectiveImage;
+  @FXML protected Label mainTimerLabel;
 
   protected GraphicsContext graphicsContext;
   protected CanvasRenderer renderer;
