@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Stack;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 /** Manages the different views of the application. */
@@ -65,5 +67,18 @@ public class SceneManager {
 
   public static void clearAll() {
     sceneMap.clear();
+    controllerMap.clear();
+  }
+
+  public void reloadScenes(HashMap<AppUi, String> fxmlMap) throws IOException {
+    clearAll();
+
+    for (HashMap.Entry<AppUi, String> entry : fxmlMap.entrySet()) {
+      AppUi appUi = entry.getKey();
+      String fxml = entry.getValue();
+      FXMLLoader loader = App.getFxmlLoader(fxml);
+      addUi(appUi, loader.load());
+      addController(appUi, loader.getController());
+    }
   }
 }
