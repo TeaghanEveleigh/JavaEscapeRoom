@@ -78,9 +78,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
 
     // Load all the views
-    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
-    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
-    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
+    loadMainMenu();
 
     FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
@@ -102,9 +100,7 @@ public class App extends Application {
     SceneManager.clearAll();
 
     // Reload all the views
-    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
-    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
-    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
+    loadMainMenu();
 
     FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
     SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
@@ -116,5 +112,11 @@ public class App extends Application {
 
     // Set the scene to the main menu
     scene.setRoot(SceneManager.getUiRoot(AppUi.MAIN_MENU));
+  }
+
+  public static void loadMainMenu() throws IOException {
+    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
+    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
+    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
   }
 }
