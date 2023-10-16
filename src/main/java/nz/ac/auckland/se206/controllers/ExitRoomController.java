@@ -185,6 +185,13 @@ public class ExitRoomController extends GameController
     mainTimerLabel.toFront();
   }
 
+  public void closeSafe() {
+    safeOpened = false;
+    openedSafe.toBack();
+    note.toBack();
+    noteLabel.toBack();
+  }
+
   @FXML
   private void showBigNote() {
     bigNote.toFront();
@@ -348,5 +355,6 @@ public class ExitRoomController extends GameController
     password.setText(passcode.getKeyCode());
     this.player.setPosX(54);
     this.player.setPosY(450);
+    closeSafe();
   }
 }
