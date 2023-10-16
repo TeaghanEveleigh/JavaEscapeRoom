@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/MainMenu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingMenuController">
+   <bottom>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b9b7b5" height="15.0" stroke="#b9b7b5" strokeType="INSIDE" width="814.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b9b7b5" height="607.0" stroke="#b9b7b5" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b9b7b5" height="590.0" stroke="#b9b7b5" strokeType="INSIDE" width="15.0" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="599.0" fitWidth="826.0" layoutX="-8.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/brick-wall-realistic/4683.jpg" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="76.0" layoutY="65.0" prefHeight="113.0" prefWidth="694.0" text="MUSEUM HEIST ">
+               <font>
+                  <Font name="BM HANNA Air OTF" size="84.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.5657894611358643" green="0.5657894611358643" blue="0.5657894611358643" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Text layoutX="357.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading">
+               <font>
+                  <Font name="BM HANNA Air OTF" size="40.0" />
+               </font>
+            </Text>
+            <ProgressBar fx:id="loadingBar" layoutX="206.0" layoutY="278.0" prefHeight="22.0" prefWidth="419.0" progress="0.0" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

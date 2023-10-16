@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Stack;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import nz.ac.auckland.se206.controllers.LoadingMenuController;
 
 /** Manages the different views of the application. */
 public class SceneManager {
@@ -26,6 +27,8 @@ public class SceneManager {
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
   private static HashMap<AppUi, BaseController> controllerMap =
       new HashMap<AppUi, BaseController>();
+  private static Parent loadingRoot;
+  private static LoadingMenuController loadingController;
 
   public static void addToHistory(AppUi appUi) {
     if (appUi != AppUi.SIN_MINIGAME) { // Replace with your actual condition for rooms
@@ -81,5 +84,11 @@ public class SceneManager {
       addUi(appUi, loader.load());
       addController(appUi, loader.getController());
     }
+  }
+
+  public static void initializeLoadingScreen(String fxml) throws IOException {
+    FXMLLoader loader = App.getFxmlLoader(fxml);
+    loadingRoot = loader.load();
+    loadingController = (LoadingMenuController) loader.getController();
   }
 }

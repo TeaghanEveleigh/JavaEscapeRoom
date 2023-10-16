@@ -104,17 +104,9 @@ public class App extends Application {
   }
 
   public static void restartGame() throws IOException {
-    initializeFxmlMap();
-
     SceneManager.reloadScenes(fxmlMap);
 
     // Set the scene to the main menu
     scene.setRoot(SceneManager.getUiRoot(AppUi.MAIN_MENU));
-  }
-
-  public static void loadMainMenu() throws IOException {
-    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
-    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
-    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
   }
 }
