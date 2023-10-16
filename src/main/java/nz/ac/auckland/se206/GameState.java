@@ -26,7 +26,6 @@ public class GameState {
   public static String wiresSequence = generateWiresSequence();
 
   private static String hintsLeft;
-  private List<Label> subscribers = new ArrayList<>();
   private static final GameState instance = new GameState();
 
   public static void disableCamera() {
@@ -66,6 +65,8 @@ public class GameState {
   private GameState() {
     setMedium(); // Just for initialization, you can remove or change this line as needed
   }
+
+  private List<Label> subscribers = new ArrayList<>();
 
   public void subscribe(Label label) {
     subscribers.add(label);
