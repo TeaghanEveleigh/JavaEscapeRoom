@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,7 @@ import nz.ac.auckland.se206.controllers.GameController;
 public class App extends Application {
 
   private static Scene scene;
+  private static HashMap<AppUi, String> fxmlMap;
 
   public static void main(final String[] args) {
     launch();
@@ -95,20 +97,24 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  private static void initializeFxmlMap() {
+    fxmlMap = new HashMap<AppUi, String>();
+    fxmlMap.put(AppUi.MAIN_MENU, "mainmenu");
+    fxmlMap.put(AppUi.GAME_SETTINGS, "gamesettings");
+    fxmlMap.put(AppUi.GAME_WON, "gamewon");
+    fxmlMap.put(AppUi.GAME_LOST, "gamelost");
+    fxmlMap.put(AppUi.DINOSAUR_ROOM, "room1");
+    fxmlMap.put(AppUi.SECURITY_ROOM, "securityroom");
+    fxmlMap.put(AppUi.EXIT_ROOM, "room2");
+    fxmlMap.put(AppUi.SIN_MINIGAME, "frequencyMinigame");
+    fxmlMap.put(AppUi.WIRES_GAME, "wires");
+    fxmlMap.put(AppUi.MEMORY_GAME, "memorygame");
+  }
+
   public static void restartGame() throws IOException {
-    // Clear previously loaded scenes and controllers
-    SceneManager.clearAll();
+    initializeFxmlMap();
 
-    // Reload all the views
-    loadMainMenu();
-
-    FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
-    SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
-    SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
-
-    FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
-    SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
-    SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
+    SceneManager.reloadScenes(fxmlMap);
 
     // Set the scene to the main menu
     scene.setRoot(SceneManager.getUiRoot(AppUi.MAIN_MENU));

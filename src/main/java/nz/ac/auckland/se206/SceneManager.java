@@ -70,7 +70,7 @@ public class SceneManager {
     controllerMap.clear();
   }
 
-  public void reloadScenes(HashMap<AppUi, String> fxmlMap) throws IOException {
+  public static void reloadScenes(HashMap<AppUi, String> fxmlMap) throws IOException {
     clearAll();
 
     for (HashMap.Entry<AppUi, String> entry : fxmlMap.entrySet()) {
