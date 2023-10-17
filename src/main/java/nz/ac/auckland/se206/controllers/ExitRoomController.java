@@ -105,7 +105,7 @@ public class ExitRoomController extends GameController
   void hideComputerLabel() {
     computerLabel.setOpacity(0);
     interractHint.setOpacity(0);
-    arrow2.toFront();
+    arrow1.toFront();
   }
 
   /** This method is used to open the computer when the user clicks on it. */
@@ -169,7 +169,7 @@ public class ExitRoomController extends GameController
   private void hideSafeLabel() {
     safeLabel.setOpacity(0);
     interractHint.setOpacity(0);
-    arrow2.toBack();
+    arrow2.toFront();
   }
 
   /** Shows the safe label to the user. */
@@ -399,6 +399,9 @@ public class ExitRoomController extends GameController
   @Override
   public void reset() {
     super.reset();
+    safeOpened = false;
+    computerOpened = false;
+    incorrectPassword = false;
     GameState value = GameState.getInstance();
     value.subscribe(hintsLabel); // reset the hints label
     passcode = Passcode.getInstance();
