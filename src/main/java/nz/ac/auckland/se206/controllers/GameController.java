@@ -28,8 +28,9 @@ import nz.ac.auckland.se206.game.Player;
 
 public class GameController extends HackerUiToggler implements BaseController {
 
-  // Updates all checklists
+  /** This method is used to update all checklists of all game rooms. */
   public static void updateAllChecklists() {
+    // Get all room controllers and update their checklists
     ExitRoomController securityRoomController =
         (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
     securityRoomController.updateChecklist();
@@ -43,6 +44,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** This method resets all checklists. */
   public static void resetAllChecklists() {
+    // Get and reset all room controllers checklists
     ExitRoomController securityRoomController =
         (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
     securityRoomController.resetChecklist();
@@ -84,7 +86,9 @@ public class GameController extends HackerUiToggler implements BaseController {
   protected boolean started = false;
   private AnimationTimer timer;
 
+  /** Initialises the game controller - run when first loaded. */
   public void initialize() {
+    // Load and set the font
     Font font =
         Font.loadFont(
             getClass().getResource("/fonts/KgTenThousandReasons-R1ll.ttf").toExternalForm(), 12);
@@ -97,6 +101,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     player = new Player(50, 100, 50, 50);
     boundsObjects = new ArrayList<BoundsObject>();
 
+    // Must run reset code when initialising - contains initialisation code
     reset();
     disbleObjectives();
     gameCanvas.requestFocus();
@@ -108,6 +113,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
     renderer.addEntity(player);
 
+    // Create game loop timer for movement / interaction
     timer =
         new AnimationTimer() {
 
@@ -125,11 +131,13 @@ public class GameController extends HackerUiToggler implements BaseController {
     pauseRoom();
   }
 
+  /** Pauses movement / interaction timer and stops running sound. */
   public void pauseRoom() {
     paused = true;
     player.stopRunSounds();
   }
 
+  /** Unpauses room. */
   public void unpauseRoom() {
     paused = false;
   }
@@ -164,8 +172,9 @@ public class GameController extends HackerUiToggler implements BaseController {
     enableObjectives();
   }
 
-  // Disables the objectives panel
+  /** Disables the objectives panel */
   public void disbleObjectives() {
+    // Send all elements to back of scene
     planNote.toBack();
     checklistRectangle.toBack();
     objectivesLabel.toBack();
@@ -180,13 +189,15 @@ public class GameController extends HackerUiToggler implements BaseController {
     keycodeFoundCircle.toBack();
     exitUnlockedCircle.toBack();
     exitObjectiveImage.toBack();
+    // Show objectives button and enable it it
     objectivesButton.setVisible(true);
     objectivesButton.setDisable(false);
     gameCanvas.requestFocus();
   }
 
-  // Enbles the objectives panel
+  /** Enbles the objectives panel */
   public void enableObjectives() {
+    // Send all elements of the objectives panel to the front of the screen
     planNote.toFront();
     checklistRectangle.toFront();
     objectivesLabel.toFront();
@@ -201,12 +212,13 @@ public class GameController extends HackerUiToggler implements BaseController {
     keycodeFoundCircle.toFront();
     exitUnlockedCircle.toFront();
     exitObjectiveImage.toFront();
+    // Show objectives button and set it to be enabled
     objectivesButton.setVisible(false);
     objectivesButton.setDisable(true);
     gameCanvas.requestFocus();
   }
 
-  // Updates the checklist based on what the player has completed
+  /** Updates the checklist based on what the player has completed. */
   public void updateChecklist() {
     startSound.stop(); // Stop any currently playing sound
     startSound.seek(Duration.ZERO); // Reset the sound to the beginning
@@ -257,6 +269,7 @@ public class GameController extends HackerUiToggler implements BaseController {
   public void resetChecklist() {
     Platform.runLater(
         () -> {
+          // Fill laser circles with white to reset
           disabledLasersCircle.setFill(Color.WHITE);
           stolenTreasureCircle.setFill(Color.WHITE);
           disabledCameraCircle.setFill(Color.WHITE);

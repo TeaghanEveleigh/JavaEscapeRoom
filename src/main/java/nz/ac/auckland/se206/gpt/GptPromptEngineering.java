@@ -42,8 +42,10 @@ public class GptPromptEngineering {
         + GameState.wiresSequence.charAt(2) // the correct matching for the yellow wire
         + ", and blue wire to endpoint "
         + GameState.wiresSequence.charAt(3) // the correct matching for the blue wire
-        + ". You have hacked into the museum"
-        + " database and found some information about the correct matchings. The information gives the correct matchings of the wires, but does so in a very cryptic way. Give this information to the user. Keep your message under 100 words.";
+        + ". You have hacked into the museum database and found some information about the correct"
+        + " matchings. The information gives the correct matchings of the wires, but does so in a"
+        + " very cryptic way. Give this information to the user. Keep your message under 100"
+        + " words.";
   }
 
   /**
@@ -65,8 +67,10 @@ public class GptPromptEngineering {
         + GameState.wiresSequence.charAt(2) // the correct matching for the yellow wire
         + ", and blue wire to endpoint "
         + GameState.wiresSequence.charAt(3) // the correct matching for the blue wire
-        + ". You have hacked into the museum"
-        + " database and found some information about the correct matchings. The information gives the correct matchings of the wires, but does so in a very cryptic way. Tell the user you think you know one of the matchings, and then give them one of the matchings. Keep your message under 100 words.";
+        + ". You have hacked into the museum database and found some information about the correct"
+        + " matchings. The information gives the correct matchings of the wires, but does so in a"
+        + " very cryptic way. Tell the user you think you know one of the matchings, and then give"
+        + " them one of the matchings. Keep your message under 100 words.";
   }
 
   /**
