@@ -409,7 +409,21 @@ public class SecurityRoomController extends GameController
     zero1.toFront();
     clear.toFront();
     enter.toFront();
-    zeroKey.toFront(); // This makes sure the numbers text is visible on the top
+    zeroKey.toFront(); 
+    numbers.setOpacity(1); // Reset the opacity of the numbers text
+    // Enable interaction for the keys
+    one.setDisable(false);
+    two.setDisable(false);
+    three.setDisable(false);
+    four.setDisable(false);
+    five.setDisable(false);
+    six.setDisable(false);
+    seven.setDisable(false);
+    eight.setDisable(false);
+    nine.setDisable(false);
+    zero1.setDisable(false);
+    clear.setDisable(false);
+    enter.setDisable(false);// This makes sure the numbers text is visible on the top
   }
 
   /** Hides the keypad from the user. */
@@ -451,6 +465,20 @@ public class SecurityRoomController extends GameController
     correctTxt.setOpacity(0);
     incorrectTxt.setOpacity(0);
     zeroKey.toBack();
+    numbers.setOpacity(0); // Clear the numbers text
+    // Disable interaction for the keys
+    one.setDisable(true);
+    two.setDisable(true);
+    three.setDisable(true);
+    four.setDisable(true);
+    five.setDisable(true);
+    six.setDisable(true);
+    seven.setDisable(true);
+    eight.setDisable(true);
+    nine.setDisable(true);
+    zero1.setDisable(true);
+    clear.setDisable(true);
+    enter.setDisable(true);
   }
 
   /** This method runs when the player interacts with the keypad. */

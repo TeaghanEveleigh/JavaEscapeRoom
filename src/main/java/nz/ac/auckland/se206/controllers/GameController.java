@@ -9,9 +9,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.GameState;
@@ -32,14 +35,14 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** Updates the checklist in the security room, laser room, and exit room. */
   public static void updateAllChecklists() {
-    ExitRoomController securityRoomController =
-        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    SecurityRoomController securityRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
     securityRoomController.updateChecklist(); // Updates the checklist in the security room
     LaserRoomController laserRoomController =
         (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
     laserRoomController.updateChecklist(); // Updates the checklist in the dinosaur room
-    SecurityRoomController exitRoomController =
-        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    ExitRoomController exitRoomController =
+        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
     exitRoomController.updateChecklist(); // Updates the checklist in the exit room
   }
 
@@ -59,6 +62,7 @@ public class GameController extends HackerUiToggler implements BaseController {
   @FXML protected Circle keycodeFoundCircle;
   @FXML protected Circle exitUnlockedCircle;
   @FXML protected ImageView exitObjectiveImage;
+  @FXML private ImageView planNote;
   @FXML protected Label mainTimerLabel;
 
   protected GraphicsContext graphicsContext;
@@ -66,6 +70,11 @@ public class GameController extends HackerUiToggler implements BaseController {
   protected Player player;
   protected ArrayList<BoundsObject> boundsObjects;
   protected boolean paused = true;
+  private String scribble =
+      getClass().getResource("/sounds/pencil_check_mark_2-105940.mp3").toString();
+  private Media media = new Media(scribble);
+  private MediaPlayer startSound = new MediaPlayer(media);
+
   protected boolean started = false;
   private AnimationTimer timer;
 
@@ -74,7 +83,15 @@ public class GameController extends HackerUiToggler implements BaseController {
    * been loaded.
    */
   public void initialize() {
-    // Create a new player
+    Font font =
+        Font.loadFont(
+            getClass().getResource("/fonts/KgTenThousandReasons-R1ll.ttf").toExternalForm(), 12);
+    disabledCameraLabel.setFont(font);
+    disabledLasersLabel.setFont(font);
+    stolenTreasureLabel.setFont(font);
+    objectivesLabel.setFont(font);
+    keycodeFoundLabel.setFont(font);
+
     player = new Player(50, 100, 50, 50);
     boundsObjects = new ArrayList<BoundsObject>();
 
@@ -151,6 +168,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** This method is used to disable the objectives panel. */
   public void disbleObjectives() {
+    planNote.toBack();
     checklistRectangle.toBack();
     objectivesLabel.toBack();
     disabledLasersLabel.toBack();
@@ -171,6 +189,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** This method is used to enable the objectives panel. */
   public void enableObjectives() {
+    planNote.toFront();
     checklistRectangle.toFront();
     objectivesLabel.toFront();
     disabledLasersLabel.toFront();
@@ -191,6 +210,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** Updates the checklist in the security room, laser room, and exit room. */
   public void updateChecklist() {
+    startSound.play();
     if (GameState.isLasersDisabled) { // lasers disabled
       Platform.runLater(
           () -> {

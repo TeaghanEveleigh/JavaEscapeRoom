@@ -21,6 +21,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ExitRoomController">
    <children>
+      <Text fx:id="titleComputer" layoutX="153.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password to login">
+         <font>
+            <Font name="BM HANNA Air OTF" size="55.0" />
+         </font>
+      </Text>
+      <Text fx:id="helpHint" fill="RED" layoutX="148.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recovery: Musuem discoveries in ascending order" wrappingWidth="625.31787109375">
+         <font>
+            <Font size="27.0" />
+         </font></Text>
       <Rectangle fx:id="chatPanelBackground" arcHeight="5.0" arcWidth="5.0" fill="#697580" height="70.0" layoutX="172.0" layoutY="510.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="480.0" />
       <TextField fx:id="chatTextField" layoutX="178.0" layoutY="520.0" opacity="0.8" prefHeight="52.0" prefWidth="341.0" promptText="What would you like to say to me?" />
       <Button fx:id="submitButton" layoutX="526.0" layoutY="521.0" mnemonicParsing="false" onAction="#onSubmitPressed" prefHeight="50.0" prefWidth="109.0" text="Submit" textFill="WHITE">
@@ -33,8 +42,7 @@
             <Image url="@../images/cross.png" />
          </image>
       </ImageView>
-      <Text fx:id="helpHint" fill="RED" layoutX="49.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recovery: Musuem discoveries in ascending order" />
-      <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="13.0" layoutY="316.0" opacity="0.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
+      <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="13.0" layoutY="316.0" opacity="0.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
          <effect>
             <ColorAdjust />
          </effect>
@@ -116,11 +124,6 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Text fx:id="titleComputer" layoutX="153.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password to login">
-         <font>
-            <Font name="BM HANNA Air OTF" size="55.0" />
-         </font>
-      </Text>
       <Rectangle fx:id="monitorStand" arcHeight="5.0" arcWidth="5.0" fill="#3b3c3c" height="233.0" layoutX="319.0" layoutY="542.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Button fx:id="btnLogin" layoutX="426.0" layoutY="335.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="93.0" text="Login" textFill="WHITE">
          <font>
@@ -508,11 +511,16 @@
          </font>
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3d4043" height="62.0" layoutX="14.0" layoutY="515.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
-      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="40.0" layoutY="523.0" prefHeight="45.0" prefWidth="88.0" text="Label" textFill="#12ff39">
+      <Label fx:id="mainTimerLabel" alignment="CENTER" layoutX="2.0" layoutY="499.0" prefHeight="90.0" prefWidth="166.0" text="Label" textFill="#12ff39">
          <font>
             <Font name="BM HANNA Air OTF" size="30.0" />
          </font>
       </Label>
+      <ImageView fx:id="planNote" fitHeight="259.0" fitWidth="247.0" layoutX="-18.0" layoutY="282.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/AICutout_e96i_Fotor.png" />
+         </image>
+      </ImageView>
 
    </children>
 </AnchorPane>
