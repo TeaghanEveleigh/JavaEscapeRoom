@@ -17,6 +17,9 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class Timers {
 
   private static Timers instance;
+  private static Timeline countdownTimeline;
+  private static List<Label> subscribedLabels = new ArrayList<>();
+  private static boolean is30SecondTriggered = false;
 
   /**
    * This method is used to get the instance of the Timers singleton.
@@ -32,9 +35,6 @@ public class Timers {
 
   private int startingTimeInMilliseconds;
   private int timeInMilliseconds;
-  private static Timeline countdownTimeline;
-  private static List<Label> subscribedLabels = new ArrayList<>();
-  private static boolean is30SecondTriggered = false;
 
   /** This constructor ensures the Singleton pattern is used. */
   private Timers() {

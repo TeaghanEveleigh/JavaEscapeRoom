@@ -273,6 +273,7 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
       getIntroduction();
     }
 
+    // Reset the lights
     resetAllLights();
     sequence.clear();
     chooseSequence(6);

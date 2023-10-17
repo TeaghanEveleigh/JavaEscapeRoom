@@ -97,8 +97,10 @@ public class App extends Application {
     SceneManager.reloadScenes(fxmlMap);
   }
 
+  /** This method initializes the FXML map. */
   private static void initializeFxmlMap() {
     fxmlMap = new HashMap<AppUi, String>();
+    // Add all the FXML files to the map
     fxmlMap.put(AppUi.MAIN_MENU, "mainmenu");
     fxmlMap.put(AppUi.GAME_SETTINGS, "gamesettings");
     fxmlMap.put(AppUi.GAME_WON, "gamewon");
@@ -111,13 +113,20 @@ public class App extends Application {
     fxmlMap.put(AppUi.MEMORY_GAME, "memorygame");
   }
 
+  /** This method initializes the game rooms. */
   private static void initializeGameRooms() {
     gameRooms = Set.of(AppUi.DINOSAUR_ROOM, AppUi.SECURITY_ROOM, AppUi.EXIT_ROOM);
   }
 
+  /**
+   * This method is called when the JavaFX application is restarted.
+   *
+   * @throws IOException If the FXML file for the loading screen is not found.
+   */
   public static void restartGame() throws IOException {
-    Parent root = SceneManager.getLoadingParent();
+    Parent root = SceneManager.getLoadingParent(); // Get the loading screen
     scene.setRoot(root);
+    // Reset all states to their default values
     GameState.resetGameState();
     KeyState.resetKeys();
     Passcode.resetPasscode();

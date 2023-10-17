@@ -128,10 +128,14 @@ public class SecurityRoomController extends GameController
   @FXML private ProgressBar suspicionProgressBar;
   @FXML private Rectangle suspicionRectangle;
   private Passcode passcode;
-
   private Suspicion suspicion;
 
-  // @FXML private Text number0;
+  /**
+   * Runs when the clear or enter button is pressed. Clears the numbers text if clear is pressed and
+   * checks the pin if enter is pressed.
+   *
+   * @param event the mouse event triggered by the clear or enter button
+   */
   @FXML
   private void handleClearEnter(MouseEvent event) {
     Rectangle clickRectangle = (Rectangle) event.getSource();
@@ -208,6 +212,7 @@ public class SecurityRoomController extends GameController
   public void initialize() {
     suspicion = new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle);
     super.initialize();
+    // Adds the bounding boxes to the list of bounding boxes
     boundsObjects.add(new SolidBox(boundingBox3));
     boundsObjects.add(new SolidBox(boundingBox4));
     boundsObjects.add(new SolidBox(boundingBox5));
@@ -222,6 +227,7 @@ public class SecurityRoomController extends GameController
     boundsObjects.add(new SolidBox(boundingBox14));
     boundsObjects.add(new SolidBox(boundingBox15));
     boundsObjects.add(new SolidBox(boundingBox16));
+    // Adds the bounding boxes to the wires and keypad
     boundsObjects.add(new Keypad(keypadBounds, this));
     boundsObjects.add(new Wires(wiresBounds, this));
     boundsObjects.add(new SecurityRoomDoor(securityDoorBounds, this));
@@ -368,7 +374,21 @@ public class SecurityRoomController extends GameController
     zero1.toFront();
     clear.toFront();
     enter.toFront();
-    zeroKey.toFront(); // This makes sure the numbers text is visible on the top
+    zeroKey.toFront(); 
+    numbers.setOpacity(1); // Reset the opacity of the numbers text
+    // Enable interaction for the keys
+    one.setDisable(false);
+    two.setDisable(false);
+    three.setDisable(false);
+    four.setDisable(false);
+    five.setDisable(false);
+    six.setDisable(false);
+    seven.setDisable(false);
+    eight.setDisable(false);
+    nine.setDisable(false);
+    zero1.setDisable(false);
+    clear.setDisable(false);
+    enter.setDisable(false);// This makes sure the numbers text is visible on the top
   }
 
   @FXML
@@ -406,6 +426,20 @@ public class SecurityRoomController extends GameController
     correctTxt.setOpacity(0);
     incorrectTxt.setOpacity(0);
     zeroKey.toBack();
+    numbers.setOpacity(0); // Clear the numbers text
+    // Disable interaction for the keys
+    one.setDisable(true);
+    two.setDisable(true);
+    three.setDisable(true);
+    four.setDisable(true);
+    five.setDisable(true);
+    six.setDisable(true);
+    seven.setDisable(true);
+    eight.setDisable(true);
+    nine.setDisable(true);
+    zero1.setDisable(true);
+    clear.setDisable(true);
+    enter.setDisable(true);
   }
 
   @Override
@@ -560,16 +594,19 @@ public class SecurityRoomController extends GameController
     mainTimer.subtractTime(10);
   }
 
+  /** This method is used to signal that the room has started. */
   @Override
   public void start() {
     started = true;
   }
 
+  /** This method is called when the game is reset. */
   @Override
   public void reset() {
     GameState value = GameState.getInstance();
     passcode = Passcode.getInstance();
     value.subscribe(hintsLabel);
+    // Set the date to the new value
     stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     this.player.setPosX(54);
     this.player.setPosY(300);

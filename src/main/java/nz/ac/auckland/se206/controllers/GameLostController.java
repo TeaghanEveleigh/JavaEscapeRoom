@@ -20,8 +20,7 @@ public class GameLostController implements BaseController {
     App.restartGame();
   }
 
+  /** This method is used to start the controller. */
   @Override
-  public void start() {
-    return;
-  }
+  public void start() {}
 }

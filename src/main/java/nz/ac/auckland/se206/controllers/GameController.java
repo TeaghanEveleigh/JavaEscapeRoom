@@ -9,9 +9,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.GameState;
@@ -67,6 +70,7 @@ public class GameController extends HackerUiToggler implements BaseController {
   @FXML protected Circle keycodeFoundCircle;
   @FXML protected Circle exitUnlockedCircle;
   @FXML protected ImageView exitObjectiveImage;
+  @FXML private ImageView planNote;
   @FXML protected Label mainTimerLabel;
 
   protected GraphicsContext graphicsContext;
@@ -74,20 +78,34 @@ public class GameController extends HackerUiToggler implements BaseController {
   protected Player player;
   protected ArrayList<BoundsObject> boundsObjects;
   protected boolean paused = true;
+  private String scribble =
+      getClass().getResource("/sounds/pencil_check_mark_2-105940.mp3").toString();
+  private Media media = new Media(scribble);
+  private MediaPlayer startSound = new MediaPlayer(media);
+
   protected boolean started = false;
   private AnimationTimer timer;
 
   public void initialize() {
+    Font font =
+        Font.loadFont(
+            getClass().getResource("/fonts/KgTenThousandReasons-R1ll.ttf").toExternalForm(), 12);
+    disabledCameraLabel.setFont(font);
+    disabledLasersLabel.setFont(font);
+    stolenTreasureLabel.setFont(font);
+    objectivesLabel.setFont(font);
+    keycodeFoundLabel.setFont(font);
+
     player = new Player(50, 100, 50, 50);
     boundsObjects = new ArrayList<BoundsObject>();
 
     reset();
-
     disbleObjectives();
     gameCanvas.requestFocus();
     disableHackerPanel();
     hackerTextArea.setEditable(false);
     graphicsContext = gameCanvas.getGraphicsContext2D();
+    // Create a new renderer for the player
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
 
     renderer.addEntity(player);
@@ -150,6 +168,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   // Disables the objectives panel
   public void disbleObjectives() {
+    planNote.toBack();
     checklistRectangle.toBack();
     objectivesLabel.toBack();
     disabledLasersLabel.toBack();
@@ -170,6 +189,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   // Enbles the objectives panel
   public void enableObjectives() {
+    planNote.toFront();
     checklistRectangle.toFront();
     objectivesLabel.toFront();
     disabledLasersLabel.toFront();
@@ -190,6 +210,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   // Updates the checklist based on what the player has completed
   public void updateChecklist() {
+    startSound.play();
     if (GameState.isLasersDisabled) { // lasers disabled
       Platform.runLater(
           () -> {
@@ -234,10 +255,9 @@ public class GameController extends HackerUiToggler implements BaseController {
         });
   }
 
+  /** This method is used to start the controller. */
   @Override
-  public void start() {
-    return;
-  }
+  public void start() {}
 
   public void reset() {
     Timers mainTimer = Timers.getInstance();
