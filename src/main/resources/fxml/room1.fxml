@@ -22,6 +22,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserRoomController">
    <children>
+      <Text fx:id="interactHint" fill="WHITE" layoutX="234.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact" wrappingWidth="486.31640625">
+         <font>
+            <Font name="BM HANNA Air OTF" size="50.0" />
+         </font>
+      </Text>
       <ProgressBar fx:id="suspicionProgressBar" layoutX="644.0" layoutY="320.0" opacity="0.83" prefHeight="28.0" prefWidth="270.0" progress="0.0" rotate="-90.0" />
       <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="13.0" layoutY="316.0" opacity="0.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
          <effect>
@@ -325,11 +330,6 @@
       <Rectangle fx:id="leftDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="41.0" layoutY="203.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="179.0" />
       <Rectangle fx:id="rightDinosaurBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" layoutX="482.0" layoutY="176.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="306.0" />
       <Rectangle fx:id="objectBounds" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="370.0" layoutY="328.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="98.0" />
-      <Text fx:id="interactHint" layoutX="234.0" layoutY="554.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press e to interact" wrappingWidth="486.31640625">
-         <font>
-            <Font name="BM HANNA Air OTF" size="50.0" />
-         </font>
-      </Text>
       <ImageView fx:id="arrow" fitHeight="60.0" fitWidth="60.0" layoutX="86.0" layoutY="298.0" opacity="0.47" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/vector%20right%20arrow%20icon_4231911.png" />
