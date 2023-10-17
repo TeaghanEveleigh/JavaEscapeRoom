@@ -28,7 +28,7 @@ import nz.ac.auckland.se206.game.Player;
 
 public class GameController extends HackerUiToggler implements BaseController {
 
-  // Updates all checklists
+  /** This method is used to update all checklists of all game rooms. */
   public static void updateAllChecklists() {
     ExitRoomController securityRoomController =
         (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
@@ -86,6 +86,7 @@ public class GameController extends HackerUiToggler implements BaseController {
   protected boolean started = false;
   private AnimationTimer timer;
 
+  /** Initialises the game controller - run when first loaded. */
   public void initialize() {
     Font font =
         Font.loadFont(
@@ -127,11 +128,13 @@ public class GameController extends HackerUiToggler implements BaseController {
     pauseRoom();
   }
 
+  /** Pauses movement / interaction timer and stops running sound. */
   public void pauseRoom() {
     paused = true;
     player.stopRunSounds();
   }
 
+  /** Unpauses room. */
   public void unpauseRoom() {
     paused = false;
   }
@@ -166,7 +169,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     enableObjectives();
   }
 
-  // Disables the objectives panel
+  /** Disables the objectives panel */
   public void disbleObjectives() {
     planNote.toBack();
     checklistRectangle.toBack();
@@ -187,7 +190,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     gameCanvas.requestFocus();
   }
 
-  // Enbles the objectives panel
+  /** Enbles the objectives panel */
   public void enableObjectives() {
     planNote.toFront();
     checklistRectangle.toFront();
@@ -208,7 +211,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     gameCanvas.requestFocus();
   }
 
-  // Updates the checklist based on what the player has completed
+  /** Updates the checklist based on what the player has completed. */
   public void updateChecklist() {
     startSound.play();
     if (GameState.isLasersDisabled) { // lasers disabled
