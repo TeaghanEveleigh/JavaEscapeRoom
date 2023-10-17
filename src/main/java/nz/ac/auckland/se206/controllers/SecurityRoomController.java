@@ -409,7 +409,7 @@ public class SecurityRoomController extends GameController
     zero1.toFront();
     clear.toFront();
     enter.toFront();
-    zeroKey.toFront(); 
+    zeroKey.toFront();
     numbers.setOpacity(1); // Reset the opacity of the numbers text
     // Enable interaction for the keys
     one.setDisable(false);
@@ -423,7 +423,7 @@ public class SecurityRoomController extends GameController
     nine.setDisable(false);
     zero1.setDisable(false);
     clear.setDisable(false);
-    enter.setDisable(false);// This makes sure the numbers text is visible on the top
+    enter.setDisable(false); // This makes sure the numbers text is visible on the top
   }
 
   /** Hides the keypad from the user. */

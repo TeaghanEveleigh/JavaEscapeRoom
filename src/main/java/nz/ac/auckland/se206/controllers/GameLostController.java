@@ -13,7 +13,7 @@ public class GameLostController implements BaseController {
    * Ends the game and exits the program.
    *
    * @param event the action event triggered by the go back button
-   * @throws IOException
+   * @throws IOException if the input is not recognised
    */
   @FXML
   private void onExitGame(ActionEvent event) throws IOException {

@@ -412,11 +412,14 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     new Thread(task).start();
   }
 
+  /** This method is used to start the controller. */
   @Override
   public void start() {
     if (started) {
       return;
     }
+
+    // Set the timer label to show the time remaining
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel);
     getRiddle();
