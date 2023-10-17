@@ -34,7 +34,7 @@ public class Passcode {
     nums[0] = rand.nextInt(11) + 10; // Adjusted to generate numbers between 10 to 20
     nums[1] = rand.nextInt(11) + 10; // Adjusted to generate numbers between 10 to 20
     nums[2] = rand.nextInt(11) + 10; // Adjusted to generate numbers between 10 to 20
-    keyCode = rand.nextInt(900000) + 100000; // Adjusted to generate a 6-digit keycode
+    keyCode = rand.nextInt(90000) + 10000; // Adjusted to generate a 6-digit keycode
 
     // Sort the random numbers in ascending order
     Arrays.sort(nums);

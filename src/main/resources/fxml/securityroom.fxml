@@ -20,6 +20,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityRoomController">
    <children>
+      <Text fx:id="correctTxt" layoutX="378.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="correct" AnchorPane.leftAnchor="378.0">
+         <font>
+            <Font name="BM HANNA Air OTF" size="19.0" />
+         </font>
+      </Text>
       <Rectangle fx:id="boundboxwall1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="97.0" layoutX="400.0" layoutY="-11.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Rectangle fx:id="boundboxwall2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="97.0" layoutX="5.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="394.0" />
       <Rectangle fx:id="zeroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="399.0" layoutY="375.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
@@ -197,11 +202,6 @@
          </image>
       </ImageView>
       <Ellipse fill="#bc3a3a" layoutX="515.0" layoutY="428.0" opacity="0.34" radiusX="199.0" radiusY="108.0" rotate="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Text fx:id="correctTxt" layoutX="247.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="correct" AnchorPane.leftAnchor="378.0">
-         <font>
-            <Font name="BM HANNA Air OTF" size="19.0" />
-         </font>
-      </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7f3717" height="197.0" layoutX="553.0" layoutY="199.0" rotate="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="68.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a7171f0" height="191.0" layoutX="388.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="220.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3f3f3f" height="200.0" layoutX="515.0" layoutY="-73.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
