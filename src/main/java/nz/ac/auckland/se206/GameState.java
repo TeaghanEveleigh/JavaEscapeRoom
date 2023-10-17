@@ -57,7 +57,7 @@ public class GameState {
   }
 
   /**
-   * This method returns the number of hints left.
+   * This method is used to get the number of hints left.
    *
    * @return The number of hints left.
    */

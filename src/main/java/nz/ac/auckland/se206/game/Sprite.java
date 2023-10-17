@@ -30,7 +30,7 @@ public abstract class Sprite {
   }
 
   /**
-   * This method returns the image of the sprite.
+   * This method is used to get the image of the sprite.
    *
    * @return the image of the sprite.
    */
@@ -57,7 +57,7 @@ public abstract class Sprite {
   }
 
   /**
-   * This method returns the width of the sprite.
+   * This method is used to get the width of the sprite.
    *
    * @return the width of the sprite.
    */

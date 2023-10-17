@@ -10,7 +10,7 @@ import javafx.scene.Parent;
  */
 public class SceneManager {
 
-  /** This enum is used to store the different views in the game */
+  /** This enum is used to store the different views in the game. */
   public enum AppUi {
     MAIN_MENU,
     GAME_SETTINGS,

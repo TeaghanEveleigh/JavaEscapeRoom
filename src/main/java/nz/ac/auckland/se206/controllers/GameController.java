@@ -32,14 +32,14 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** Updates the checklist in the security room, laser room, and exit room. */
   public static void updateAllChecklists() {
-    SecurityRoomController securityRoomController =
-        (SecurityRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    ExitRoomController securityRoomController =
+        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
     securityRoomController.updateChecklist(); // Updates the checklist in the security room
     LaserRoomController laserRoomController =
         (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
     laserRoomController.updateChecklist(); // Updates the checklist in the dinosaur room
-    ExitRoomController exitRoomController =
-        (ExitRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    SecurityRoomController exitRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
     exitRoomController.updateChecklist(); // Updates the checklist in the exit room
   }
 
