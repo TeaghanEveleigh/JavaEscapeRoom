@@ -37,10 +37,6 @@ import nz.ac.auckland.se206.listeners.StoneCarvingListener;
 import nz.ac.auckland.se206.listeners.SuspicionListener;
 import nz.ac.auckland.se206.listeners.WiresListener;
 
-/**
- * Controller class for the security room. This is where the player can interact with the keypad and
- * wires game.
- */
 public class SecurityRoomController extends GameController
     implements KeypadListener,
         WiresListener,
@@ -95,7 +91,6 @@ public class SecurityRoomController extends GameController
   @FXML private Text zeroKey;
   @FXML private Rectangle number0;
 
-  // Bounding boxes
   @FXML private Rectangle boundingBox2;
   @FXML private Rectangle boundingBox3;
   @FXML private Rectangle boundingBox4;
@@ -115,8 +110,6 @@ public class SecurityRoomController extends GameController
   @FXML private Line securityLine2;
   @FXML private Line securityLine3;
   @FXML private Text securityText;
-
-  // Bounding boxes
   @FXML private Rectangle boundingBoxOne;
   @FXML private Rectangle boundingBoxTwo;
   @FXML private Rectangle wiresBounds;
@@ -127,8 +120,6 @@ public class SecurityRoomController extends GameController
   @FXML private Rectangle stoneCarvingBounds;
   private SolidBox exitBlock;
   @FXML private Rectangle boundingBox1;
-
-  // Arrows for interactables
   @FXML private ImageView arrow1;
   @FXML private ImageView arrow2;
   @FXML private ImageView arrow3;
@@ -136,28 +127,22 @@ public class SecurityRoomController extends GameController
   @FXML private ImageView arrow5;
   @FXML private ProgressBar suspicionProgressBar;
   @FXML private Rectangle suspicionRectangle;
-  private Passcode passcode = Passcode.getInstance();
+  private Passcode passcode;
+
   private Suspicion suspicion;
 
-  /**
-   * Runs when the clear or enter button is pressed. Clears the numbers text if clear is pressed and
-   * checks the pin if enter is pressed.
-   *
-   * @param event the mouse event triggered by the clear or enter button
-   */
-
+  // @FXML private Text number0;
   @FXML
   private void handleClearEnter(MouseEvent event) {
     Rectangle clickRectangle = (Rectangle) event.getSource();
-    if (clickRectangle == clear) { // If the clear button was pressed
+    if (clickRectangle == clear) {
       numbers.setText("");
       numberOfnumbers = 0;
-    } else if (clickRectangle == enter) { // If the enter button was pressed
-      checkPin(); // Check the pin
+    } else if (clickRectangle == enter) {
+      checkPin();
     }
   }
 
-  /** Runs when the player moves close to the door. Shows the door label and interact hint. */
   @FXML
   private void showDoorLabel() {
     doorLabel.setOpacity(1);
@@ -165,7 +150,6 @@ public class SecurityRoomController extends GameController
     arrow5.toBack();
   }
 
-  /** Runs when the player moves away from the door. Hides the door label and interact hint. */
   @FXML
   void hideDoorLabel() {
     doorLabel.setOpacity(0);
@@ -173,7 +157,6 @@ public class SecurityRoomController extends GameController
     arrow5.toFront();
   }
 
-  /** Shows the security to the user. */
   @FXML
   private void showSecurity() {
     // Change the stroke width of all three security lines to 3
@@ -189,7 +172,6 @@ public class SecurityRoomController extends GameController
     arrow3.toBack();
   }
 
-  /** Hides the security from the user. */
   @FXML
   private void hideSecurity() {
     // Reset the stroke width of all three security lines (assuming it was originally 1, adjust as
@@ -210,7 +192,6 @@ public class SecurityRoomController extends GameController
     arrow3.toFront();
   }
 
-  /** Disables the camera in the security room. */
   @FXML
   public void disableCamera() {
     cameraLine1.toBack();
@@ -219,12 +200,10 @@ public class SecurityRoomController extends GameController
     cameraTriangle.toBack();
     boundsObjects.remove(exitBlock);
     boundsObjects.remove(suspicion);
+    // what you can do here is also remove obstacle preventing the player from moving into the
+    // camera area
   }
 
-  /**
-   * Initializes the security room. This method is automatically called after the fxml file has been
-   * loaded.
-   */
   @Override
   public void initialize() {
     suspicion = new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle);
@@ -249,7 +228,7 @@ public class SecurityRoomController extends GameController
     boundsObjects.add(new Portal(dinosaurRoomBounds, this, AppUi.DINOSAUR_ROOM));
     boundsObjects.add(new StoneCarving(stoneCarvingBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
-    // Applies the animations to each arrow in the room
+
     applyFloatingAnimation(arrow1);
     applyFloatingAnimation(arrow2);
     applyFloatingAnimation(arrow3);
@@ -257,11 +236,6 @@ public class SecurityRoomController extends GameController
     applyFloatingAnimation(arrow5);
   }
 
-  /**
-   * Handles the event when the mouse is clicked.
-   *
-   * @param event the mouse event triggered by the mouse click.
-   */
   @FXML
   private void handleMouseClicked(MouseEvent event) {
     // Get the source rectangle that was clicked
@@ -293,17 +267,11 @@ public class SecurityRoomController extends GameController
     }
   }
 
-  /**
-   * Enters a value into the numbers text for the keypad.
-   *
-   * @param value the value to be entered
-   */
   private void enterValue(String value) {
-    numbers.setText(numbers.getText() + value); // Append the value to the numbers text
+    numbers.setText(numbers.getText() + value);
     numberOfnumbers++;
   }
 
-  /** Checks the pin entered by the user. */
   private void checkPin() {
     // Get the keycode from the Passcode singleton and format it
     String pin = Passcode.getInstance().getKeyCode();
@@ -321,12 +289,10 @@ public class SecurityRoomController extends GameController
 
     System.out.println(numbers.getText());
 
-    if (pin.equals(numbers.getText())) { // If the pin is correct
+    if (pin.equals(numbers.getText())) {
       GameState.isDoorOpen = true;
       GameState.isExitDoorUnlocked = true;
-      GameController
-          .updateAllChecklists(); // Update the checklist to show that the exit door has been
-      // unlocked
+      GameController.updateAllChecklists();
       correctColor.toFront();
       correctTxt.toFront();
       numbers.setOpacity(0);
@@ -336,11 +302,11 @@ public class SecurityRoomController extends GameController
       pause.setOnFinished(event -> hideKeyPad());
       pause.play();
 
-    } else { // If the pin is incorrect
+    } else {
       incorrectColor.toFront();
       incorrectTxt.toFront();
       numbers.setOpacity(0);
-      numbers.setText(""); // Reset the numbers text
+      numbers.setText("");
 
       // Wait for 0.5 seconds then reset the numbers
       PauseTransition pause = new PauseTransition(Duration.seconds(1));
@@ -349,7 +315,6 @@ public class SecurityRoomController extends GameController
     }
   }
 
-  /** Runs when the player moves close to the wires. Shows the wire label and interact hint. */
   @FXML
   private void showWireLabel() {
     wireLabel.setOpacity(1);
@@ -357,7 +322,6 @@ public class SecurityRoomController extends GameController
     arrow2.toBack();
   }
 
-  /** Runs when the player moves away from the wires. Hides the wire label and interact hint. */
   @FXML
   private void hideWireLabel() {
     wireLabel.setOpacity(0);
@@ -365,7 +329,6 @@ public class SecurityRoomController extends GameController
     arrow2.toFront();
   }
 
-  /** Resets the numbers entered into the keypad. */
   private void resetNumbers() {
     numbers.setText("");
     numberOfnumbers = 0;
@@ -374,7 +337,6 @@ public class SecurityRoomController extends GameController
     numbers.setOpacity(1);
   }
 
-  /** Puts the keypad to the front of the screen for the user to enter the keypad. */
   @FXML
   private void showKeyPad() {
     blurScreen.toFront();
@@ -382,7 +344,6 @@ public class SecurityRoomController extends GameController
 
     keypad.toFront();
 
-    // Bring all the components of the keypad to the front of the screen in the right order
     numberRectangle.toFront();
     numbers.toFront();
     number0.toFront();
@@ -410,13 +371,11 @@ public class SecurityRoomController extends GameController
     zeroKey.toFront(); // This makes sure the numbers text is visible on the top
   }
 
-  /** Hides the keypad from the user. */
   @FXML
   private void hideKeyPad() {
     blurScreen.toBack();
     keypadRectangle.toBack();
     numberRectangle.toBack();
-    // Sends the numbers to the back of the screen
     number1.toBack();
     number2.toBack();
     number3.toBack();
@@ -428,7 +387,6 @@ public class SecurityRoomController extends GameController
     number9.toBack();
 
     keypad.toBack();
-    // Sends the number backgrounds to the back of the screen
     one.toBack();
     two.toBack();
     three.toBack();
@@ -443,7 +401,6 @@ public class SecurityRoomController extends GameController
     clear.toBack();
     enter.toBack();
     numbers.setOpacity(0);
-    // Sends the keypad text to the back of the screen
     correctColor.setOpacity(0);
     incorrectColor.setOpacity(0);
     correctTxt.setOpacity(0);
@@ -451,10 +408,9 @@ public class SecurityRoomController extends GameController
     zeroKey.toBack();
   }
 
-  /** This method runs when the player interacts with the keypad. */
   @Override
   public void keypadInteracted() {
-    if (!GameState.isDoorOpen) { // If the door hasn't already been unlocked
+    if (!GameState.isDoorOpen) {
       showKeyPad();
     } else if (!GameState.isTreasureStolen) {
       Task<Void> task =
@@ -462,7 +418,6 @@ public class SecurityRoomController extends GameController
             @Override
             protected Void call() throws Exception {
               disableHintChatAndExit();
-              // Tell the user they need to steal the item before they can escape
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getMustStealItem()), hackerTextArea);
               enableHintChatAndExit();
@@ -470,12 +425,13 @@ public class SecurityRoomController extends GameController
             }
           };
       new Thread(task).start();
-    } else { // If the door has already been unlocked
-      // load the game won scene
+    } else {
+      // hjgjhgkjgjgjgjgjhgjgjgkjgjkgjgjg
       FXMLLoader gameWonLoader = App.getFxmlLoader("gamewon");
       try {
         SceneManager.addUi(AppUi.GAME_WON, gameWonLoader.load());
       } catch (IOException e) {
+        // TODO Auto-generated catch block
         e.printStackTrace();
       }
       SceneManager.addController(AppUi.GAME_WON, gameWonLoader.getController());
@@ -483,25 +439,22 @@ public class SecurityRoomController extends GameController
     }
   }
 
-  /** Runs when the user hovers over the keypad. */
   @Override
   public void keypadTouched() {
     showDoorLabel();
   }
 
-  /** Runs when the user moves away from the keypad. */
   @Override
   public void keypadNotTouched() {
     hideDoorLabel();
     hideKeyPad();
   }
 
-  /** Runs when the user interacts with the wires. */
   @Override
   public void wiresInteracted() {
-    if (SceneManager.containsUi(AppUi.WIRES_GAME)) { // If the wires game has already been loaded
+    if (SceneManager.containsUi(AppUi.WIRES_GAME)) {
       App.switchScenes(AppUi.WIRES_GAME);
-    } else { // If the wires game hasn't been loaded yet
+    } else {
       FXMLLoader wiresLoader = App.getFxmlLoader("wires");
       try {
         SceneManager.addUi(AppUi.WIRES_GAME, wiresLoader.load());
@@ -513,38 +466,32 @@ public class SecurityRoomController extends GameController
     }
   }
 
-  /** Runs when the user moves close to the wires. */
   @Override
   public void wiresTouched() {
     showWireLabel();
   }
 
-  /** Runs when the user moves away from the wires. */
   @Override
   public void wiresUntouched() {
     hideWireLabel();
   }
 
-  /** Runs when the user interacts with the security door. */
   @Override
   public void onSecurityDoorInteracted() {
     pauseRoom();
-    App.switchScenes(AppUi.SECURITY_ROOM); // Load the security room
+    App.switchScenes(AppUi.SECURITY_ROOM);
   }
 
-  /** Runs when the user moves close to the security door. */
   @Override
   public void onSecurityDoorTouched() {
     showSecurity();
   }
 
-  /** Runs when the user moves away from the security door. */
   @Override
   public void onSecurityDoorNotTouched() {
     hideSecurity();
   }
 
-  /** Runs when the user interacts with the stone carving. */
   @FXML
   private void showStoneCarving() {
     blurScreen.toFront();
@@ -552,7 +499,6 @@ public class SecurityRoomController extends GameController
     stoneText.toFront();
   }
 
-  /** Runs when the user exits from the stone carving. */
   @FXML
   private void hideStoneCarving() {
     blurScreen.toBack();
@@ -560,40 +506,34 @@ public class SecurityRoomController extends GameController
     stoneText.toBack();
   }
 
-  /** Runs when the user moves close to the stone carving. */
   @FXML
   private void showCarvingLabel() {
     carvingLabel.setOpacity(1);
     arrow4.toBack();
   }
 
-  /** Runs when the user moves away from the stone carving. */
   @FXML
   private void hideCarvingLabel() {
     carvingLabel.setOpacity(0);
     arrow4.toFront();
   }
 
-  /** Runs when the user interacts with the stone carving. Shows the stone carving and the text */
   @Override
   public void stoneCarvingInteracted() {
     showStoneCarving();
   }
 
-  /** Runs when the user moves close to the stone carving. */
   @Override
   public void stoneCarvingTouched() {
     showCarvingLabel();
   }
 
-  /** Runs when the user moves away from the stone carving. */
   @Override
   public void stoneCaringUntouched() {
     hideCarvingLabel();
     hideStoneCarving();
   }
 
-  /** Applies the animation to all the arrows in the room. */
   private void applyFloatingAnimation(ImageView imageView) {
     TranslateTransition translateTransition =
         new TranslateTransition(Duration.seconds(1), imageView);
@@ -603,24 +543,21 @@ public class SecurityRoomController extends GameController
     translateTransition.play();
   }
 
-  /** Runs when the user moves into the camera visual zone. */
   @Override
   public void suspicionTouched() {
     suspicionProgressBar.toFront();
     suspicionRectangle.toFront();
   }
 
-  /** Runs when the user moves out of the camera visual zone. */
   @Override
   public void suspicionNotTouched() {
     suspicionRectangle.toBack();
   }
 
-  /** Runs when the user is caught by the camera. */
   @Override
   public void suspicionReached() {
     Timers mainTimer = Timers.getInstance();
-    mainTimer.subtractTime(10); // Subtract 10 seconds from the main timer
+    mainTimer.subtractTime(10);
   }
 
   @Override
@@ -631,6 +568,7 @@ public class SecurityRoomController extends GameController
   @Override
   public void reset() {
     GameState value = GameState.getInstance();
+    passcode = Passcode.getInstance();
     value.subscribe(hintsLabel);
     stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     this.player.setPosX(54);
@@ -643,7 +581,6 @@ public class SecurityRoomController extends GameController
     cameraBase.toFront();
     cameraTriangle.toFront();
     boundsObjects.add(suspicion);
-    System.out.println("dsadsadsa");
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel);
   }
