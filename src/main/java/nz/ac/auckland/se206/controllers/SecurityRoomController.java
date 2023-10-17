@@ -194,10 +194,10 @@ public class SecurityRoomController extends GameController
 
   @FXML
   public void disableCamera() {
-    cameraLine1.toBack();
-    cameraLine2.toBack();
-    cameraBase.toBack();
-    cameraTriangle.toBack();
+    cameraLine1.setOpacity(0.0);
+    cameraLine2.setOpacity(0.0);
+    cameraBase.setOpacity(0.0);
+    cameraTriangle.setOpacity(0.0);
     boundsObjects.remove(exitBlock);
     boundsObjects.remove(suspicion);
     // what you can do here is also remove obstacle preventing the player from moving into the
@@ -576,10 +576,10 @@ public class SecurityRoomController extends GameController
 
     numbers.setText("");
     numberOfnumbers = 0;
-    cameraLine1.toFront();
-    cameraLine2.toFront();
-    cameraBase.toFront();
-    cameraTriangle.toFront();
+    cameraLine1.setOpacity(1.0);
+    cameraLine2.setOpacity(1.0);
+    cameraBase.setOpacity(1.0);
+    cameraTriangle.setOpacity(0.34);
     boundsObjects.add(suspicion);
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel);
