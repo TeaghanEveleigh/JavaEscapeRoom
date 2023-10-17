@@ -49,7 +49,6 @@
       </Button>
       <Rectangle fx:id="correctColor" arcHeight="5.0" arcWidth="5.0" fill="#47d13b84" height="32.0" layoutX="349.0" layoutY="208.0" stroke="BLACK" strokeType="INSIDE" width="140.0" AnchorPane.rightAnchor="327.0" />
       <Rectangle fx:id="incorrectColor" arcHeight="5.0" arcWidth="5.0" fill="#ff0000af" height="33.0" layoutX="349.0" layoutY="208.0" opacity="0.58" stroke="BLACK" strokeType="INSIDE" width="140.0" />
-      <Rectangle fx:id="number0" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="399.0" layoutY="375.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
       <Rectangle fx:id="checklistRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="187.0" layoutX="13.0" layoutY="316.0" opacity="0.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="194.0">
          <effect>
             <ColorAdjust />
@@ -109,7 +108,7 @@
          </font>
       </Text>
       <Rectangle fx:id="blurScreen" arcHeight="5.0" arcWidth="5.0" fill="#3f4143" height="606.0" layoutX="-6.0" layoutY="-13.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="830.0" />
-      <Rectangle fx:id="zero1" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="397.0" layoutY="376.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="35.0" />
+      <Rectangle fx:id="zero" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="397.0" layoutY="376.0" onMouseClicked="#handleMouseClicked" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="35.0" />
       <Rectangle fx:id="enter" arcHeight="5.0" arcWidth="5.0" fill="#0c9e11" height="34.0" layoutX="443.0" layoutY="376.0" onMouseClicked="#handleClearEnter" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" AnchorPane.bottomAnchor="175.0" AnchorPane.topAnchor="376.0" />
       <Rectangle fx:id="clear" arcHeight="5.0" arcWidth="5.0" fill="#9c120c" height="34.0" layoutX="356.0" layoutY="376.0" onMouseClicked="#handleClearEnter" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
       <Rectangle fx:id="keypadRectangle" arcHeight="5.0" arcWidth="5.0" fill="#7b7e80" height="246.0" layoutX="317.0" layoutY="177.0" opacity="0.71" stroke="BLACK" strokeType="INSIDE" width="199.0" />
@@ -428,6 +427,7 @@
          </font>
       </Button>
       <Rectangle fx:id="suspicionRectangle" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="677.0" layoutX="-86.0" layoutY="-59.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="961.0" />
+      <Rectangle fx:id="zeroRectangle" arcHeight="5.0" arcWidth="5.0" fill="#393c40" height="34.0" layoutX="399.0" layoutY="375.0" onMouseClicked="#handleMouseClicked" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass="keypad" width="34.0" />
 
 
 

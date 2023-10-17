@@ -29,21 +29,21 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getWiresRiddle() {
-    return "You are a hacker aiding your partner in a museum heist to steal a laser-guarded object."
-        + " You have access to the database, and your partner encounters a panel with four"
-        + " wires: green, red, yellow, and blue, connecting to four endpoints labeled 1-4."
-        + " The wires followed by the connection point is , G,"
+    return "You are a hacker trying to help your partner escape from a museum heist. He is trying"
+        + " to steal an object that is guarded by lasers. He has found a panel with some"
+        + " wires in it. There are four wires. The wire colours are green, red, yellow and"
+        + " blue. Your partner has to connect each wire to the right endpoint. There are"
+        + " four endpoints. The endpoints are labelled one, two, three, and four. The"
+        + " correct matchings are: green wire to endpoint "
         + GameState.wiresSequence.charAt(0) // the correct matching for the green wire
-        + "R,"
-        + +GameState.wiresSequence.charAt(1) // the correct matching for the red wire
-        + "Y,"
-        + +GameState.wiresSequence.charAt(2) // the correct matching for the yellow wire
-        + "B,"
-        + +GameState.wiresSequence.charAt(3) // the correct matching for the blue wire
-        + "It is really important that you dont get the wire connections wrong so please carefully"
-        + " analysis which ones belong to which number. Give the user the answer but in a way that"
-        + " makes them think dont directly tell them what the corresponding connections are they"
-        + " should need to think about it in some way";
+        + ", red wire to endpoint "
+        + GameState.wiresSequence.charAt(1) // the correct matching for the red wire
+        + ", yellow wire to endpoint "
+        + GameState.wiresSequence.charAt(2) // the correct matching for the yellow wire
+        + ", and blue wire to endpoint "
+        + GameState.wiresSequence.charAt(3) // the correct matching for the blue wire
+        + ". You have hacked into the museum"
+        + " database and found some information about the correct matchings. The information gives the correct matchings of the wires, but does so in a very cryptic way. Give this information to the user. Keep your message under 100 words.";
   }
 
   /**
@@ -66,12 +66,7 @@ public class GptPromptEngineering {
         + ", and blue wire to endpoint "
         + GameState.wiresSequence.charAt(3) // the correct matching for the blue wire
         + ". You have hacked into the museum"
-        + " database and found some information about the correct matchings. The information"
-        + " doesn't give the correct matchings directly, but rather, gives enough"
-        + " information for someone to be able to figure out the correct matchings. You have"
-        + " given this information to your partner and they are stuck with what to do. Give"
-        + " them a hint about the order of the correct matching of the wires. Do not give"
-        + " them the answer directly. Keep your message under 100 words.";
+        + " database and found some information about the correct matchings. The information gives the correct matchings of the wires, but does so in a very cryptic way. Tell the user you think you know one of the matchings, and then give them one of the matchings. Keep your message under 100 words.";
   }
 
   /**

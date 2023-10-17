@@ -131,6 +131,7 @@ public class App extends Application {
     KeyState.resetKeys();
     Passcode.resetPasscode();
     Timers.reset();
+    GameController.resetAllChecklists();
     root.requestFocus();
     SceneManager.restartScenes(fxmlMap, gameRooms);
   }
