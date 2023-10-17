@@ -21,6 +21,9 @@ public class Timers {
   private static List<Label> subscribedLabels = new ArrayList<>();
   private static boolean is30SecondTriggered = false;
 
+  private int startingTimeInMilliseconds;
+  private int timeInMilliseconds;
+
   /**
    * This method is used to get the instance of the Timers singleton.
    *
@@ -32,9 +35,6 @@ public class Timers {
     }
     return instance;
   }
-
-  private int startingTimeInMilliseconds;
-  private int timeInMilliseconds;
 
   /** This constructor ensures the Singleton pattern is used. */
   private Timers() {
@@ -153,6 +153,7 @@ public class Timers {
             }));
   }
 
+  /** This method resets the main timer of the game. */
   public static void reset() {
     subscribedLabels.clear();
     countdownTimeline.stop();

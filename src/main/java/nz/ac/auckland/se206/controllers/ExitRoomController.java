@@ -209,6 +209,10 @@ public class ExitRoomController extends GameController
     mainTimerLabel.toFront();
   }
 
+  /**
+   * Runs when the safe has been closed. This method is used to reset the safe to its original
+   * state.
+   */
   public void closeSafe() {
     safeOpened = false;
     openedSafe.toBack();
