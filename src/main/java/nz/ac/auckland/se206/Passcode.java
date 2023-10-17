@@ -11,6 +11,11 @@ public class Passcode {
 
   private static Passcode instance = new Passcode();
 
+  private final int firstNum;
+  private final int secondNum;
+  private final int thirdNum;
+  private final int keyCode;
+
   /**
    * This method is used to get the instance of the Passcode singleton.
    *
@@ -19,11 +24,6 @@ public class Passcode {
   public static Passcode getInstance() {
     return instance;
   }
-
-  private final int firstNum;
-  private final int secondNum;
-  private final int thirdNum;
-  private final int keyCode;
 
   /** This constructor generates a new passcode and ensures the Singleton pattern is used. */
   private Passcode() {
