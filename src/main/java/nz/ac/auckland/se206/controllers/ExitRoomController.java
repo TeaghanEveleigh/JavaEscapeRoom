@@ -62,7 +62,6 @@ public class ExitRoomController extends GameController
   @FXML private ImageView arrow3;
   @FXML private Label computerLabel;
   @FXML private Button btnHelp;
-  @FXML private Button btnLogin;
   @FXML private Rectangle monitorScreen;
   @FXML private Rectangle rectangleText;
   @FXML private Text titleComputer;
@@ -114,7 +113,6 @@ public class ExitRoomController extends GameController
     // Bring the computer to the front
     monitorScreen.toFront();
     btnHelp.toFront();
-    btnLogin.toFront();
     rectangleText.toFront();
     titleComputer.toFront();
     monitorStand.toFront();
@@ -129,7 +127,6 @@ public class ExitRoomController extends GameController
     // Send the computer to the back
     monitorScreen.toBack();
     btnHelp.toBack();
-    btnLogin.toBack();
     rectangleText.toBack();
     titleComputer.toBack();
     monitorStand.toBack();
