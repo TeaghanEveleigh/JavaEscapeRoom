@@ -11,11 +11,6 @@ public class Passcode {
 
   private static Passcode instance = new Passcode();
 
-  private final int firstNum;
-  private final int secondNum;
-  private final int thirdNum;
-  private final int keyCode;
-
   /**
    * This method is used to get the instance of the Passcode singleton.
    *
@@ -24,6 +19,15 @@ public class Passcode {
   public static Passcode getInstance() {
     return instance;
   }
+
+  public static void resetPasscode() {
+    instance = new Passcode();
+  }
+
+  private final int firstNum;
+  private final int secondNum;
+  private final int thirdNum;
+  private final int keyCode;
 
   /** This constructor generates a new passcode and ensures the Singleton pattern is used. */
   private Passcode() {
@@ -44,7 +48,7 @@ public class Passcode {
     thirdNum = nums[2];
 
     System.out.println("Passcode: " + getFullNum());
-}
+  }
 
   /**
    * This method is used to get the first number of the passcode.
@@ -111,9 +115,5 @@ public class Passcode {
       default: // Otherwise, return th
         return number + "th";
     }
-  }
-
-  public static void resetPasscode() {
-    instance = new Passcode();
   }
 }

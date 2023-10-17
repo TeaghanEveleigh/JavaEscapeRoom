@@ -26,6 +26,10 @@ import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
 
+/**
+ * This class is used to control the game. It implements the BaseController interface. The three
+ * main rooms all extend this class.
+ */
 public class GameController extends HackerUiToggler implements BaseController {
 
   /** This method is used to update all checklists of all game rooms. */
@@ -137,7 +141,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     player.stopRunSounds();
   }
 
-  /** Unpauses room. */
+  /** This method is used to unpause room. */
   public void unpauseRoom() {
     paused = false;
   }
@@ -172,7 +176,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     enableObjectives();
   }
 
-  /** Disables the objectives panel */
+  /** This method is run to disable the objectives panel. */
   public void disbleObjectives() {
     // Send all elements to back of scene
     planNote.toBack();
@@ -195,7 +199,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     gameCanvas.requestFocus();
   }
 
-  /** Enbles the objectives panel */
+  /** This method is run to enble the objectives panel. */
   public void enableObjectives() {
     // Send all elements of the objectives panel to the front of the screen
     planNote.toFront();

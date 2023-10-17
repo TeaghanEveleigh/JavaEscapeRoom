@@ -33,6 +33,14 @@ public class Timers {
     return instance;
   }
 
+  /** This method resets the main timer of the game. */
+  public static void reset() {
+    subscribedLabels.clear();
+    countdownTimeline.stop();
+    countdownTimeline = null;
+    is30SecondTriggered = false;
+  }
+
   private int startingTimeInMilliseconds;
   private int timeInMilliseconds;
 
@@ -144,8 +152,10 @@ public class Timers {
               if (timeInMilliseconds == 0) { // If time is up
                 for (Label label : subscribedLabels) {
                   Platform.runLater(
-                      () -> label.setStyle("-fx-text-fill: limegreen;")); // Change text color to limegreen
-              }
+                      () ->
+                          label.setStyle(
+                              "-fx-text-fill: limegreen;")); // Change text color to limegreen
+                }
                 App.switchScenes(AppUi.GAME_LOST);
               }
               if (!is30SecondTriggered
@@ -155,13 +165,5 @@ public class Timers {
                 is30SecondTriggered = true;
               }
             }));
-  }
-
-  /** This method resets the main timer of the game. */
-  public static void reset() {
-    subscribedLabels.clear();
-    countdownTimeline.stop();
-    countdownTimeline = null;
-    is30SecondTriggered = false;
   }
 }
