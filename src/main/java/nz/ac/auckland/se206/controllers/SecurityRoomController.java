@@ -141,6 +141,7 @@ public class SecurityRoomController extends GameController
   private void handleClearEnter(MouseEvent event) {
     Rectangle clickRectangle = (Rectangle) event.getSource();
     if (clickRectangle == clear) {
+      // Reset the entered values
       numbers.setText("");
       numberOfnumbers = 0;
     } else if (clickRectangle == enter) {
@@ -395,6 +396,7 @@ public class SecurityRoomController extends GameController
 
   @FXML
   private void hideKeyPad() {
+    // Send all elements to the back of the screen
     blurScreen.toBack();
     keypadRectangle.toBack();
     numberRectangle.toBack();
@@ -422,6 +424,7 @@ public class SecurityRoomController extends GameController
     zeroRectangle.toBack();
     clear.toBack();
     enter.toBack();
+    // Hide by changing opacity to 0
     numbers.setOpacity(0);
     correctColor.setOpacity(0);
     incorrectColor.setOpacity(0);
@@ -488,9 +491,11 @@ public class SecurityRoomController extends GameController
 
   @Override
   public void wiresInteracted() {
+    // Check if the wires game has already been loaded
     if (SceneManager.containsUi(AppUi.WIRES_GAME)) {
       App.switchScenes(AppUi.WIRES_GAME);
     } else {
+      // Load the wires game if not loaded
       FXMLLoader wiresLoader = App.getFxmlLoader("wires");
       try {
         SceneManager.addUi(AppUi.WIRES_GAME, wiresLoader.load());
