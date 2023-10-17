@@ -37,6 +37,7 @@ import nz.ac.auckland.se206.listeners.StoneCarvingListener;
 import nz.ac.auckland.se206.listeners.SuspicionListener;
 import nz.ac.auckland.se206.listeners.WiresListener;
 
+/** Controller for the security game room - this is the room that contains the keypad and wires. */
 public class SecurityRoomController extends GameController
     implements KeypadListener,
         WiresListener,
@@ -196,6 +197,7 @@ public class SecurityRoomController extends GameController
     arrow3.toFront();
   }
 
+  /** Disables the and removes the suspicion object. */
   @FXML
   public void disableCamera() {
     cameraLine1.setOpacity(0.0);
