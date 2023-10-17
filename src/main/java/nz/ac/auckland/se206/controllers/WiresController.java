@@ -25,9 +25,9 @@ import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
-/*
- * This is the controller class for the wires game window.
- * The wires are made draggable and are checked if they're connected to the right endpoints.
+/**
+ * This class is the controller for the wires game. The wires game allows the user to drag wires
+ * around a control panel and try and match them to the correct endpoints.
  */
 public class WiresController extends HackerUiToggler implements Initializable, BaseController {
 
@@ -86,6 +86,7 @@ public class WiresController extends HackerUiToggler implements Initializable, B
   private boolean isBlueCorrect = false;
   private boolean isYellowCorrect = false;
   private boolean[] isEndpointConnected = {false, false, false, false};
+  private boolean started = false;
 
   // Colour of endpoints
   private Color endpointColour = Color.rgb(85, 96, 107);
@@ -104,8 +105,7 @@ public class WiresController extends HackerUiToggler implements Initializable, B
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Timers mainTimer = Timers.getInstance();
-    mainTimer.subscribeLabel(mainTimerLabel); // Subscribes the main timer to the main timer label
+
     winLabel.setVisible(false);
     endpoints =
         List.of(endpointoneCircle, endpointtwoCircle, endpointthreeCircle, endpointfourCircle);
@@ -116,15 +116,15 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     makeDraggable(greenWire);
     makeDraggable(redWire);
     makeDraggable(yellowWire);
-    getRiddle();
+
     hackerTextArea.setEditable(false);
     disableChat();
   }
 
   /**
-   * This method returns the user to the main menu.
+   * This method is used to return the user to the exit room when the back button is pressed.
    *
-   * @throws IOException
+   * @throws IOException If the input is not recognised.
    */
   @FXML
   private void onBackPressed() throws IOException {
@@ -410,5 +410,16 @@ public class WiresController extends HackerUiToggler implements Initializable, B
           }
         };
     new Thread(task).start();
+  }
+
+  @Override
+  public void start() {
+    if (started) return;
+
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
+    getRiddle();
+
+    started = true;
   }
 }

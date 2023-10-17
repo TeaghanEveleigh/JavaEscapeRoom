@@ -62,6 +62,7 @@ public class GameController extends HackerUiToggler implements BaseController {
   @FXML protected Circle exitUnlockedCircle;
   @FXML protected ImageView exitObjectiveImage;
   @FXML private ImageView planNote;
+  @FXML protected Label mainTimerLabel;
 
   protected GraphicsContext graphicsContext;
   protected CanvasRenderer renderer;
@@ -73,6 +74,8 @@ public class GameController extends HackerUiToggler implements BaseController {
   private Media media = new Media(scribble);
   private MediaPlayer startSound = new MediaPlayer(media);
 
+  protected boolean started = false;
+  private AnimationTimer timer;
 
   /**
    * Initializes the controller class. This method is automatically called after the fxml file has
@@ -86,21 +89,20 @@ public class GameController extends HackerUiToggler implements BaseController {
     objectivesLabel.setFont(font);
     keycodeFoundLabel.setFont(font);
 
+    player = new Player(50, 100, 50, 50);
+    boundsObjects = new ArrayList<BoundsObject>();
+
+    reset();
+
     disbleObjectives();
-    Timers mainTimer = Timers.getInstance();
-    mainTimer.subscribeLabel(mainTimerLabel); // Subscribes the main timer to the main timer label
     gameCanvas.requestFocus();
     disableHackerPanel(); // Disables the hacker panel
     hackerTextArea.setEditable(false);
     graphicsContext = gameCanvas.getGraphicsContext2D();
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
-    boundsObjects = new ArrayList<BoundsObject>();
-
-    // Creates the player
-    player = new Player(50, 100, 50, 50);
     renderer.addEntity(player);
 
-    AnimationTimer timer =
+    timer =
         new AnimationTimer() {
 
           @Override
@@ -112,8 +114,10 @@ public class GameController extends HackerUiToggler implements BaseController {
             renderer.renderEntities();
           }
         };
+    System.out.println("dsadsadsa");
 
     timer.start();
+    pauseRoom();
   }
 
   /** Pauses the room to prevent the player from moving when not appropriate. */
@@ -159,7 +163,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     enableObjectives();
   }
 
-  /** Disables the objectives panel. */
+  /** This method is used to disable the objectives panel. */
   public void disbleObjectives() {
     planNote.toBack();
     checklistRectangle.toBack();
@@ -180,7 +184,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     gameCanvas.requestFocus(); // Requests focus for the game canvas
   }
 
-  /** Enables the objectives panel. */
+  /** This method is used to enable the objectives panel. */
   public void enableObjectives() {
     planNote.toFront();
     checklistRectangle.toFront();
@@ -235,5 +239,14 @@ public class GameController extends HackerUiToggler implements BaseController {
           });
     }
   }
-  
+
+  @Override
+  public void start() {
+    return;
+  }
+
+  public void reset() {
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
+  }
 }

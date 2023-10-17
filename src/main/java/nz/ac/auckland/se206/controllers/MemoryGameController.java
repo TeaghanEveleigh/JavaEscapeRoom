@@ -63,6 +63,7 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
 
   private boolean showingSequence = false;
   private int currentSequenceLength = 1;
+  private boolean started = false;
 
   /**
    * Initializes the controller class. This method is automatically called after the fxml file has
@@ -76,9 +77,9 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     this.lights = new ArrayList<ImageView>();
     this.sequence = new ArrayList<ImageView>();
     this.lightsPressed = new ArrayList<ImageView>();
+
     enableHackerPanel(); // enables the hacker panel
     disableChat(); // disables the chat
-    getIntroduction(); // gets the introduction
     hackerTextArea.setEditable(false);
 
     // Add all the lights to the lights array
@@ -268,11 +269,17 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
    * @throws IOException if the fxml file cannot be loaded.
    */
   public void start() {
+    if (!started) {
+      getIntroduction();
+    }
+
     resetAllLights();
     sequence.clear();
     chooseSequence(6);
     currentSequenceLength = 1;
     showSequence(currentSequenceLength);
+
+    started = true;
   }
 
   /**
@@ -330,9 +337,9 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
   }
 
   /**
-   * This method returns the user to the main menu.
+   * This method is used to take the user back to the security room.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file cannot be loaded.
    */
   @FXML
   private void onBackPressed() throws IOException {

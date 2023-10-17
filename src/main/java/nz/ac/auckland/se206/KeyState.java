@@ -32,7 +32,7 @@ public class KeyState {
   }
 
   /**
-   * This method returns a set of all keys that are currently pressed.
+   * This method is used to get a set of all keys that are currently pressed.
    *
    * @return A set of all keys that are currently pressed.
    */

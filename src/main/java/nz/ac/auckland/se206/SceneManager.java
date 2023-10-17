@@ -1,11 +1,22 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.Stack;
+import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import nz.ac.auckland.se206.controllers.GameController;
+import nz.ac.auckland.se206.controllers.LoadingMenuController;
 
-/** Manages the different views of the application. */
+/**
+ * Manages the different views of the application. Adds a set of controllers and fxml files that can
+ * be accessed throughout the game.
+ */
 public class SceneManager {
+
+  /** This enum is used to store the different views in the game. */
   public enum AppUi {
     MAIN_MENU,
     GAME_SETTINGS,
@@ -24,6 +35,8 @@ public class SceneManager {
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
   private static HashMap<AppUi, BaseController> controllerMap =
       new HashMap<AppUi, BaseController>();
+  private static Parent loadingRoot;
+  private static LoadingMenuController loadingController;
 
   /**
    * This method adds the given scene to the history of all scenes.
@@ -38,7 +51,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns the second last scene that was added to the history.
+   * This method gets the second last scene that was added to the history nd returns it.
    *
    * @return The previous scene.
    */
@@ -73,7 +86,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns the root of the UI.
+   * This method is used to get the root of the UI.
    *
    * @param appUi The UI to get the root of.
    * @return The root of the UI.
@@ -83,7 +96,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns the controller of the UI.
+   * This method is used to get the controller of the UI that is related to a given app UI.
    *
    * @param appUi The UI to get the controller of.
    * @return The controller of the UI.
@@ -93,7 +106,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns whether the given UI is in the collection of UIs.
+   * This method is used to check if a scene hs been loaded and initialised.
    *
    * @param appUi The UI to check.
    * @return Whether the given UI is in the collection of UIs.
@@ -105,5 +118,112 @@ public class SceneManager {
   /** This method clears all UIs from the collection of UIs. */
   public static void clearAll() {
     sceneMap.clear();
+    controllerMap.clear();
+    history.clear();
+    currentRoom = null;
+    System.gc();
+  }
+
+  public static void reloadScenes(HashMap<AppUi, String> fxmlMap) {
+    clearAll();
+
+    loadingController.resetLoadingBar();
+
+    Task<Void> loadingTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            double progress = 0.0;
+            double increment = 1.0 / fxmlMap.size();
+
+            for (HashMap.Entry<AppUi, String> entry : fxmlMap.entrySet()) {
+              loadEntry(entry);
+              progress += increment;
+              loadingController.updateLoadingBar(progress);
+            }
+
+            return null;
+          }
+        };
+
+    loadingTask.setOnSucceeded(
+        e -> {
+          System.out.println("Completed loading");
+          App.switchScenes(AppUi.MAIN_MENU);
+        });
+
+    Thread loadingThread = new Thread(loadingTask);
+    loadingThread.start();
+  }
+
+  public static void restartScenes(HashMap<AppUi, String> fxmlMap, Set<AppUi> gameRooms) {
+    // Remove scenes that are not in the gameRooms set
+    for (AppUi scene : AppUi.values()) {
+      if (!gameRooms.contains(scene)) {
+        controllerMap.remove(scene);
+        sceneMap.remove(scene);
+      }
+    }
+    history.clear();
+    currentRoom = null;
+    System.gc();
+
+    loadingController.resetLoadingBar();
+
+    Task<Void> loadingTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            double progress = 0.0;
+            double increment = 1.0 / fxmlMap.size();
+
+            for (HashMap.Entry<AppUi, String> entry : fxmlMap.entrySet()) {
+              if (gameRooms.contains(entry.getKey())) {
+                GameController gameController =
+                    (GameController) SceneManager.getUiController(entry.getKey());
+                gameController.reset();
+              } else {
+                loadEntry(entry);
+              }
+              progress += increment;
+              loadingController.updateLoadingBar(progress);
+            }
+
+            return null;
+          }
+        };
+
+    loadingTask.setOnSucceeded(
+        e -> {
+          System.out.println("Completed restarting");
+          App.switchScenes(AppUi.MAIN_MENU);
+        });
+
+    Thread loadingThread = new Thread(loadingTask);
+    loadingThread.start();
+  }
+
+  private static void loadEntry(HashMap.Entry<AppUi, String> entry) throws IOException {
+    AppUi appUi = entry.getKey();
+    String fxml = entry.getValue();
+    System.out.println("loading " + fxml);
+    FXMLLoader loader = App.getFxmlLoader(fxml);
+    addUi(appUi, loader.load());
+    addController(appUi, loader.getController());
+  }
+
+  public static Parent initializeLoadingScreen(String fxml) throws IOException {
+    FXMLLoader loader = App.getFxmlLoader(fxml);
+    loadingRoot = loader.load();
+    loadingController = (LoadingMenuController) loader.getController();
+    return loadingRoot;
+  }
+
+  public static Parent getLoadingParent() {
+    return loadingRoot;
   }
 }

@@ -9,10 +9,10 @@ import java.util.Random;
  */
 public class Passcode {
 
-  private static final Passcode instance = new Passcode();
+  private static Passcode instance = new Passcode();
 
   /**
-   * This method returns the instance of the Passcode singleton.
+   * This method is used to get the instance of the Passcode singleton.
    *
    * @return The instance of the Passcode singleton.
    */
@@ -45,7 +45,7 @@ public class Passcode {
   }
 
   /**
-   * This method returns the first number of the passcode.
+   * This method is used to get the first number of the passcode.
    *
    * @return The first number of the passcode.
    */
@@ -54,7 +54,7 @@ public class Passcode {
   }
 
   /**
-   * This method returns the key code of the passcode.
+   * This method is used to get the key code of the passcode.
    *
    * @return The key code of the passcode.
    */
@@ -63,7 +63,7 @@ public class Passcode {
   }
 
   /**
-   * This method returns the second number of the passcode.
+   * This method is used to get the second number of the passcode.
    *
    * @return The second number of the passcode.
    */
@@ -72,7 +72,7 @@ public class Passcode {
   }
 
   /**
-   * This method returns the third number of the passcode.
+   * This method is used to get the third number of the passcode.
    *
    * @return The third number of the passcode.
    */
@@ -81,7 +81,7 @@ public class Passcode {
   }
 
   /**
-   * This method returns the full passcode.
+   * This method is used to get the full passcode.
    *
    * @return The full passcode.
    */
@@ -109,5 +109,9 @@ public class Passcode {
       default: // Otherwise, return th
         return number + "th";
     }
+  }
+
+  public static void resetPasscode() {
+    instance = new Passcode();
   }
 }

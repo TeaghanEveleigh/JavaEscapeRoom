@@ -69,7 +69,7 @@ public class ExitRoomController extends GameController
   @FXML private Rectangle boundingBox1;
   @FXML private Rectangle boundingBox5;
   @FXML private Label hintsLabel;
-  private Passcode passcode = Passcode.getInstance();
+  private Passcode passcode;
 
   /**
    * Initializes the controller class. This method is automatically called after the fxml file has
@@ -77,13 +77,7 @@ public class ExitRoomController extends GameController
    */
   @Override
   public void initialize() {
-    // Subscribe to GameState to update the hints label
-    GameState value = GameState.getInstance();
-    value.subscribe(hintsLabel);
-    password.setText(passcode.getKeyCode()); // set password to the keycode
-    super.initialize(); // call super to set up player
-
-    // Set up the bounding boxes for the room
+    super.initialize();
     boundsObjects.add(new SolidBox(boundingBoxOne));
     boundsObjects.add(new SolidBox(boundingBox1));
     boundsObjects.add(new SolidBox(boundingBox5));
@@ -92,9 +86,6 @@ public class ExitRoomController extends GameController
     boundsObjects.add(new Safe(safeBounds, this));
     boundsObjects.add(new ExitRoomDoor(doorBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
-    this.player.setPosX(54); // set player position
-    this.player.setPosY(450); // set player position
-
     // Set up the floating animations for the arrows
     applyFloatingAnimation(arrow1);
     applyFloatingAnimation(arrow2);
@@ -117,7 +108,7 @@ public class ExitRoomController extends GameController
     arrow2.toFront();
   }
 
-  /** Opens the computer. */
+  /** This method is used to open the computer when the user clicks on it. */
   @FXML
   private void openComputer() {
     // Bring the computer to the front
@@ -132,7 +123,7 @@ public class ExitRoomController extends GameController
     computerOpened = true; // set computer to opened
   }
 
-  /** Closes the computer. */
+  /** This method is used to closes the computer when the user exits it. */
   @FXML
   private void onHideComputer() {
     // Send the computer to the back
@@ -202,7 +193,7 @@ public class ExitRoomController extends GameController
     interractHint.setOpacity(0);
   }
 
-  /** Runs when the safe has been opened */
+  /** Runs when the safe has been opened. */
   @FXML
   public void safeOpen() {
     safeOpened = true; // set safe to opened
@@ -217,6 +208,15 @@ public class ExitRoomController extends GameController
     talkToHackerButton.toFront();
     mainTimerLabel.toFront();
   }
+
+
+  public void closeSafe() {
+    safeOpened = false;
+    openedSafe.toBack();
+    note.toBack();
+    noteLabel.toBack();
+  }
+
 
   /** Shows the keycode on a note to the user. */
   @FXML
@@ -380,7 +380,7 @@ public class ExitRoomController extends GameController
   /**
    * Applies the floating animation to the arrows for interactable objects.
    *
-   * @param imageView
+   * @param imageView The image view to apply the animation to.
    */
   private void applyFloatingAnimation(ImageView imageView) {
     TranslateTransition translateTransition =
@@ -389,5 +389,22 @@ public class ExitRoomController extends GameController
     translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
     translateTransition.setAutoReverse(true);
     translateTransition.play();
+  }
+
+  @Override
+  public void start() {
+    started = true;
+  }
+
+  @Override
+  public void reset() {
+    super.reset();
+    GameState value = GameState.getInstance();
+    value.subscribe(hintsLabel);
+    passcode = Passcode.getInstance();
+    password.setText(passcode.getKeyCode());
+    this.player.setPosX(54);
+    this.player.setPosY(450);
+    closeSafe();
   }
 }

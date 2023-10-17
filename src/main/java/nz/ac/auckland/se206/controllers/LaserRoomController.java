@@ -69,15 +69,7 @@ public class LaserRoomController extends GameController
    */
   @Override
   public void initialize() {
-    Passcode passcode = Passcode.getInstance();
-    GameState value = GameState.getInstance();
-    value.subscribe(hintsLabel); // subscribe to hints
-    trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
-    paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
-
-    super.initialize(); // call super initialize
-
-    // Sets the bounding boxes for the room
+    super.initialize();
     boundsObjects.add(
         new Suspicion(boundingBoxOne, this, suspicionProgressBar, suspicionRectangle));
     boundsObjects.add(new SolidBox(boundingBoxTwo));
@@ -86,28 +78,10 @@ public class LaserRoomController extends GameController
     boundsObjects.add(new RightDinosaur(rightDinosaurBounds, this));
     boundsObjects.add(new Door(doorRectangle, this, AppUi.MAIN_MENU));
     this.player.setBoundingBoxes(boundsObjects);
-    this.player.setPosX(54);
-    this.player.setPosY(350);
-
-    // Applies the bouncing animations for the arrows
     applyFloatingAnimation(arrow);
     applyFloatingAnimation(arrow1);
     applyFloatingAnimationx(arrow3);
-    enableHackerPanel();
-    Task<Void> task =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            disableHintChatAndExit(); // Disables the hint chat and exit buttons
-            // Introduces the game to the user
-            ai.runGpt(
-                new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
-            enableHintChatAndExit(); // Enables the hint chat and exit buttons
-            exitHackerPanelImage.setDisable(false);
-            return null;
-          }
-        };
-    new Thread(task).start();
+
   }
 
   /** Disables the lasers in the room. */
@@ -128,14 +102,14 @@ public class LaserRoomController extends GameController
     player.setBoundingBoxes(boundsObjects);
   }
 
-  /** Shows the item label. */
+  /** This method shows the tresure item label when the user gets close to it. */
   @FXML
   private void itemLabelShow() {
     itemLabel.setOpacity(0.8);
     interactHint.toFront();
   }
 
-  /** Hides the item label. */
+  /** This method hides the treasure item label when the user moves away from it. */
   @FXML
   private void itemLabelHide() {
     itemLabel.setOpacity(0);
@@ -340,6 +314,40 @@ public class LaserRoomController extends GameController
   public void suspicionReached() {
     System.out.println("Too long in lasers - subtracting time");
     Timers mainTimer = Timers.getInstance();
-    mainTimer.subtractTime(10); // Subtracts 10 seconds from the main timer
+    mainTimer.subtractTime(10000);
+  }
+
+  @Override
+  public void start() {
+    if (started) return;
+    enableHackerPanel();
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            disableHintChatAndExit();
+            ai.runGpt(
+                new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
+            enableHintChatAndExit();
+            exitHackerPanelImage.setDisable(false);
+            return null;
+          }
+        };
+    new Thread(task).start();
+
+    started = true;
+  }
+
+  @Override
+  public void reset() {
+    super.reset();
+    Passcode passcode = Passcode.getInstance();
+    GameState value = GameState.getInstance();
+    value.subscribe(hintsLabel);
+    trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
+    paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
+    this.player.setPosX(54);
+    this.player.setPosY(350);
+
   }
 }

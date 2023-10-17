@@ -86,25 +86,21 @@ public class Player extends Sprite {
     // Run movement code for WASD
     for (KeyCode key : keysPressed) {
       switch (key) {
-          // If the player wants to move left
         case A:
         case LEFT:
-          moveLeft();
+          moveLeft(); // If the player wants to move left
           break;
-          // If the player wants to move right
         case D:
         case RIGHT:
-          moveRight();
+          moveRight(); // If the player wants to move right
           break;
-          // If the player wants to move up
         case W:
         case UP:
-          moveUp();
+          moveUp(); // If the player wants to move up
           break;
-          // If the player wants to move down
         case S:
         case DOWN:
-          moveDown();
+          moveDown(); // If the player wants to move down
           break;
         default:
           break;
@@ -221,7 +217,7 @@ public class Player extends Sprite {
   }
 
   /**
-   * This method returns the bounds of the player.
+   * This method is used to get the bounds of the player.
    *
    * @return The bounds of the player.
    */

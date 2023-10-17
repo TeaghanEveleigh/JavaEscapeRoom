@@ -30,7 +30,24 @@ public class GameState {
   public static String wiresSequence = generateWiresSequence();
 
   private static String hintsLeft;
-  private static final GameState instance = new GameState();
+  private static GameState instance = new GameState();
+  private static List<Label> subscribers = new ArrayList<>();
+
+  public static void resetGameState() {
+    isLasersDisabled = false;
+    isCamerasDisabled = false;
+    isTreasureStolen = false;
+    isKeycodeFound = false;
+    isExitDoorUnlocked = false;
+    isEasy = true;
+    isMedium = false;
+    isHard = false;
+    timeLimit = 2;
+    textToSpeech = false;
+    isDoorOpen = false;
+    wiresSequence = generateWiresSequence();
+    subscribers.clear();
+  }
 
   /** This method disables the cameras in the room to exit from. */
   public static void disableCamera() {
@@ -48,7 +65,7 @@ public class GameState {
   }
 
   /**
-   * This method returns the instance of the GameState singleton.
+   * This method is used to get the instance of the GameState singleton.
    *
    * @return The instance of the GameState singleton.
    */
@@ -57,7 +74,7 @@ public class GameState {
   }
 
   /**
-   * This method returns the number of hints left.
+   * This method is used to get the number of hints left.
    *
    * @return The number of hints left.
    */
@@ -81,8 +98,6 @@ public class GameState {
     }
     return sb.toString();
   }
-
-  private List<Label> subscribers = new ArrayList<>();
 
   /** This constructor creates a new GameState instance to ensure singleton. */
   private GameState() {

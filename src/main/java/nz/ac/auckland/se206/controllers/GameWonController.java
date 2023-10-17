@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.media.Media;
@@ -7,7 +8,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
-import nz.ac.auckland.se206.SceneManager;
 
 /**
  * Controller class for the game won view. This runs when player successfully steals the treasure
@@ -32,10 +32,9 @@ public class GameWonController implements BaseController {
     // Create a new media player and play the victory sound
     Media media = new Media(soundPath);
     mediaPlayer = new MediaPlayer(media);
-    playVictorySound();
   }
 
-  /** Play the victory sound. */
+  /** Play the victory sound when the user wins the game. */
   public void playVictorySound() {
     if (mediaPlayer != null) {
       mediaPlayer.seek(Duration.ZERO);
@@ -46,17 +45,17 @@ public class GameWonController implements BaseController {
   /**
    * Ends the game and exits the program.
    *
-   * @param event the action event triggered by the go back button.
+   * @param event the action event triggered by the go back button
+   * @throws IOException if input not registered
+
    */
   @FXML
-  private void onExitGame(ActionEvent event) {
-    App.switchScenes(SceneManager.AppUi.MAIN_MENU);
+  private void onExitGame(ActionEvent event) throws IOException {
+    App.restartGame();
+  }
 
-    // Get the MainMenuController and replay the menu music
-    MainMenuController mainMenuController =
-        (MainMenuController) SceneManager.getUiController(SceneManager.AppUi.MAIN_MENU);
-    if (mainMenuController != null) {
-      mainMenuController.replayMenuMusic();
-    }
+  @Override
+  public void start() {
+    playVictorySound();
   }
 }
