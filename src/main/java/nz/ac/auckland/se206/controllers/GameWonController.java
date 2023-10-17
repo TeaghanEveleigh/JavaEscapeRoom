@@ -47,10 +47,10 @@ public class GameWonController implements BaseController {
    *
    * @param event the action event triggered by the go back button
    * @throws IOException if input not registered
-
    */
   @FXML
   private void onExitGame(ActionEvent event) throws IOException {
+    mediaPlayer.stop();
     App.restartGame();
   }
 
