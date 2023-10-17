@@ -73,7 +73,7 @@ public class SecurityRoomController extends GameController
   @FXML private Rectangle seven;
   @FXML private Rectangle eight;
   @FXML private Rectangle nine;
-  @FXML private Rectangle zero1;
+  @FXML private Rectangle zero;
   @FXML private Rectangle clear;
   @FXML private Rectangle enter;
   @FXML private ImageView keypad;
@@ -93,7 +93,7 @@ public class SecurityRoomController extends GameController
   @FXML private Text number9;
 
   @FXML private Text zeroKey;
-  @FXML private Rectangle number0;
+  @FXML private Rectangle zeroRectangle;
 
   // Bounding boxes
   @FXML private Rectangle boundingBox2;
@@ -287,7 +287,7 @@ public class SecurityRoomController extends GameController
         enterValue(" 8");
       } else if (clickedRectangle == nine) {
         enterValue(" 9");
-      } else if (clickedRectangle == zero1) {
+      } else if (clickedRectangle == zero) {
         enterValue(" 0");
       }
     }
@@ -385,7 +385,7 @@ public class SecurityRoomController extends GameController
     // Bring all the components of the keypad to the front of the screen in the right order
     numberRectangle.toFront();
     numbers.toFront();
-    number0.toFront();
+    zeroRectangle.toFront();
     number1.toFront();
     number2.toFront();
     number3.toFront();
@@ -404,7 +404,7 @@ public class SecurityRoomController extends GameController
     seven.toFront();
     eight.toFront();
     nine.toFront();
-    zero1.toFront();
+    zero.toFront();
     clear.toFront();
     enter.toFront();
     zeroKey.toFront(); 
@@ -419,7 +419,7 @@ public class SecurityRoomController extends GameController
     seven.setDisable(false);
     eight.setDisable(false);
     nine.setDisable(false);
-    zero1.setDisable(false);
+    zero.setDisable(false);
     clear.setDisable(false);
     enter.setDisable(false);// This makes sure the numbers text is visible on the top
   }
@@ -452,8 +452,8 @@ public class SecurityRoomController extends GameController
     seven.toBack();
     eight.toBack();
     nine.toBack();
-    zero1.toBack();
-    number0.toBack();
+    zero.toBack();
+    zeroRectangle.toBack();
     clear.toBack();
     enter.toBack();
     numbers.setOpacity(0);
@@ -474,7 +474,7 @@ public class SecurityRoomController extends GameController
     seven.setDisable(true);
     eight.setDisable(true);
     nine.setDisable(true);
-    zero1.setDisable(true);
+    zero.setDisable(true);
     clear.setDisable(true);
     enter.setDisable(true);
   }
