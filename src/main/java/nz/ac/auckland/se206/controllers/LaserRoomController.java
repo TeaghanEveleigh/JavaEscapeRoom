@@ -107,13 +107,16 @@ public class LaserRoomController extends GameController
 
   /** Enables the lasers in the room. */
   public void enableLasers() {
+    // Set all relevant elements to visible
     laser1.setOpacity(1.0);
     laser2.setOpacity(1.0);
     laser3.setOpacity(1.0);
     laserShadow1.setOpacity(1.0);
     laserShadow2.setOpacity(1.0);
     laserShadow3.setOpacity(1.0);
+    // Hide item label
     itemLabel.setOpacity(0.0);
+    // Remove the treasure object to prevent taking
     boundsObjects.remove(treasure);
   }
 
