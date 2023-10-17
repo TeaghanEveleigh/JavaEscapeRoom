@@ -412,16 +412,6 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     new Thread(task).start();
   }
 
-  @FXML
-  private void onTalkToHackerPressed() {
-    return;
-  }
-
-  @FXML
-  private void onChatPressed() {
-    return;
-  }
-
   @Override
   public void start() {
     if (started) return;
