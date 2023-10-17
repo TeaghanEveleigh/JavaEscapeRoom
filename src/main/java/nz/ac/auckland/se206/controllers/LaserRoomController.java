@@ -63,6 +63,7 @@ public class LaserRoomController extends GameController
 
   private SolidBox laserBox;
   private Object treasure;
+  private Suspicion suspicion;
 
   /**
    * Initialises the controller class. This method is automatically called after the fxml file has
@@ -71,9 +72,8 @@ public class LaserRoomController extends GameController
   @Override
   public void initialize() {
     treasure = new Object(objectBounds, this);
+    suspicion = new Suspicion(boundingBoxOne, this, suspicionProgressBar, suspicionRectangle);
     super.initialize();
-    boundsObjects.add(
-        new Suspicion(boundingBoxOne, this, suspicionProgressBar, suspicionRectangle));
     // Adds the bonding boxes of the interactable objects in the room
     boundsObjects.add(new SolidBox(boundingBoxTwo));
     boundsObjects.add(new Portal(doorRectangle, this, AppUi.EXIT_ROOM));
@@ -101,6 +101,7 @@ public class LaserRoomController extends GameController
     itemLabel.setOpacity(2.0);
     // remove the laser bounding boxes
     boundsObjects.remove(laserBox);
+    boundsObjects.remove(suspicion);
     boundsObjects.add(treasure);
     player.setBoundingBoxes(boundsObjects);
   }
@@ -118,6 +119,7 @@ public class LaserRoomController extends GameController
     itemLabel.setOpacity(0.0);
     // Remove the treasure object to prevent taking
     boundsObjects.remove(treasure);
+    boundsObjects.add(suspicion);
   }
 
   /** This method shows the tresure item label when the user gets close to it. */

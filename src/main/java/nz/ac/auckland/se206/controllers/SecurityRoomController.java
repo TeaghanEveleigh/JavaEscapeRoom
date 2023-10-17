@@ -209,6 +209,7 @@ public class SecurityRoomController extends GameController
     cameraTriangle.setOpacity(0.0);
     boundsObjects.remove(exitBlock);
     boundsObjects.remove(suspicion);
+    player.setBoundingBoxes(boundsObjects);
     // what you can do here is also remove obstacle preventing the player from moving into the
     // camera area
   }
@@ -378,11 +379,11 @@ public class SecurityRoomController extends GameController
     seven.toFront();
     eight.toFront();
     nine.toFront();
-    zeroKey.toFront(); 
+    zeroKey.toFront();
     zero.toFront();
     clear.toFront();
     enter.toFront();
-    
+
     numbers.setOpacity(1); // Reset the opacity of the numbers text
     // Enable interaction for the keys
     one.setDisable(false);
@@ -603,7 +604,7 @@ public class SecurityRoomController extends GameController
   @Override
   public void suspicionReached() {
     Timers mainTimer = Timers.getInstance();
-    mainTimer.subtractTime(10);
+    mainTimer.subtractTime(10000);
   }
 
   /** This method is used to signal that the room has started. */
