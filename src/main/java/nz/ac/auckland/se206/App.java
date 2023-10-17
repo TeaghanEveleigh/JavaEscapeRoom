@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Set;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +18,8 @@ import nz.ac.auckland.se206.controllers.GameController;
 public class App extends Application {
 
   private static Scene scene;
+  private static HashMap<AppUi, String> fxmlMap;
+  private static Set<AppUi> gameRooms;
 
   public static void main(final String[] args) {
     launch();
@@ -47,21 +51,9 @@ public class App extends Application {
    * @param ui The AppUi to switch to.
    */
   public static void switchScenes(AppUi ui) {
-    // Load the scene only if it's not already loaded or if it's a special case
-    if (ui == AppUi.SIN_MINIGAME && !SceneManager.containsUi(AppUi.SIN_MINIGAME)) {
-      try {
-        FXMLLoader sinMinigLoader = App.getFxmlLoader("frequencyMinigame");
-        Parent sinMinigameRoot = sinMinigLoader.load();
-        SceneManager.addUi(AppUi.SIN_MINIGAME, sinMinigameRoot);
-        SceneManager.addController(AppUi.SIN_MINIGAME, sinMinigLoader.getController());
-      } catch (IOException e) {
-        e.printStackTrace();
-        return; // If an error occurs, exit the method
-      }
-    }
-
     Parent root = SceneManager.getUiRoot(ui);
     BaseController baseController = SceneManager.getUiController(ui);
+    baseController.start();
     if (baseController instanceof GameController) { // If the controller is a GameController
       GameController gameController = (GameController) baseController;
       gameController.unpauseRoom();
@@ -94,61 +86,44 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-
-    // Load all the views
-    loadMainMenu();
-
-    // Load the game settings screen
-    FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
-    SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
-    SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
-
-    // Load the game lost screen
-    FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
-    SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
-    SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
-
-    scene = new Scene(SceneManager.getUiRoot(AppUi.MAIN_MENU), 816, 585);
-    Parent root = SceneManager.getUiRoot(AppUi.MAIN_MENU); //
-    stage.setScene(scene); // Sets the scene to the main menu
+    Parent loadingRoot = SceneManager.initializeLoadingScreen("loading");
+    scene = new Scene(loadingRoot, 816, 585);
+    stage.setScene(scene);
     stage.show();
-    root.requestFocus();
+    loadingRoot.requestFocus();
+
+    initializeFxmlMap();
+    initializeGameRooms();
+    SceneManager.reloadScenes(fxmlMap);
   }
 
-  /**
-   * This method is run when the game is restarted after it is either won or lost.
-   *
-   * @throws IOException If the FXML file for the main menu is not found.
-   */
+  private static void initializeFxmlMap() {
+    fxmlMap = new HashMap<AppUi, String>();
+    fxmlMap.put(AppUi.MAIN_MENU, "mainmenu");
+    fxmlMap.put(AppUi.GAME_SETTINGS, "gamesettings");
+    fxmlMap.put(AppUi.GAME_WON, "gamewon");
+    fxmlMap.put(AppUi.GAME_LOST, "gamelost");
+    fxmlMap.put(AppUi.DINOSAUR_ROOM, "room1");
+    fxmlMap.put(AppUi.SECURITY_ROOM, "room2");
+    fxmlMap.put(AppUi.EXIT_ROOM, "securityroom");
+    fxmlMap.put(AppUi.SIN_MINIGAME, "frequencyMinigame");
+    fxmlMap.put(AppUi.WIRES_GAME, "wires");
+    fxmlMap.put(AppUi.MEMORY_GAME, "memorygame");
+  }
+
+
+  private static void initializeGameRooms() {
+    gameRooms = Set.of(AppUi.DINOSAUR_ROOM, AppUi.SECURITY_ROOM, AppUi.EXIT_ROOM);
+  }
+
   public static void restartGame() throws IOException {
-    // Clear previously loaded scenes and controllers
-    SceneManager.clearAll();
-
-    // Reload all the views
-    loadMainMenu();
-
-    // Load the game settings screen
-    FXMLLoader gameSettingsLoader = getFxmlLoader("gamesettings");
-    SceneManager.addUi(AppUi.GAME_SETTINGS, gameSettingsLoader.load());
-    SceneManager.addController(AppUi.GAME_SETTINGS, gameSettingsLoader.getController());
-
-    // Load the game lost screen
-    FXMLLoader gameLostLoader = getFxmlLoader("gamelost");
-    SceneManager.addUi(AppUi.GAME_LOST, gameLostLoader.load());
-    SceneManager.addController(AppUi.GAME_LOST, gameLostLoader.getController());
-
-    // Set the scene to the main menu
-    scene.setRoot(SceneManager.getUiRoot(AppUi.MAIN_MENU));
-  }
-
-  /**
-   * This method loads the main menu of the game when it is stared or restarted.
-   *
-   * @throws IOException If the FXML file for the main menu is not found.
-   */
-  public static void loadMainMenu() throws IOException {
-    FXMLLoader mainMenuLoader = getFxmlLoader("mainmenu");
-    SceneManager.addUi(AppUi.MAIN_MENU, mainMenuLoader.load());
-    SceneManager.addController(AppUi.MAIN_MENU, mainMenuLoader.getController());
+    Parent root = SceneManager.getLoadingParent();
+    scene.setRoot(root);
+    GameState.resetGameState();
+    KeyState.resetKeys();
+    Passcode.resetPasscode();
+    Timers.reset();
+    root.requestFocus();
+    SceneManager.restartScenes(fxmlMap, gameRooms);
   }
 }

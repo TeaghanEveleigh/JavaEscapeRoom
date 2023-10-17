@@ -86,6 +86,7 @@ public class WiresController extends HackerUiToggler implements Initializable, B
   private boolean isBlueCorrect = false;
   private boolean isYellowCorrect = false;
   private boolean[] isEndpointConnected = {false, false, false, false};
+  private boolean started = false;
 
   // Colour of endpoints
   private Color endpointColour = Color.rgb(85, 96, 107);
@@ -104,8 +105,7 @@ public class WiresController extends HackerUiToggler implements Initializable, B
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Timers mainTimer = Timers.getInstance();
-    mainTimer.subscribeLabel(mainTimerLabel); // Subscribes the main timer to the main timer label
+
     winLabel.setVisible(false);
     endpoints =
         List.of(endpointoneCircle, endpointtwoCircle, endpointthreeCircle, endpointfourCircle);
@@ -116,7 +116,7 @@ public class WiresController extends HackerUiToggler implements Initializable, B
     makeDraggable(greenWire);
     makeDraggable(redWire);
     makeDraggable(yellowWire);
-    getRiddle();
+
     hackerTextArea.setEditable(false);
     disableChat();
   }
@@ -410,5 +410,26 @@ public class WiresController extends HackerUiToggler implements Initializable, B
           }
         };
     new Thread(task).start();
+  }
+
+  @FXML
+  private void onTalkToHackerPressed() {
+    return;
+  }
+
+  @FXML
+  private void onChatPressed() {
+    return;
+  }
+
+  @Override
+  public void start() {
+    if (started) return;
+
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
+    getRiddle();
+
+    started = true;
   }
 }

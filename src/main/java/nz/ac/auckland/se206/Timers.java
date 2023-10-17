@@ -32,9 +32,9 @@ public class Timers {
 
   private int startingTimeInMilliseconds;
   private int timeInMilliseconds;
-  private Timeline countdownTimeline;
-  private List<Label> subscribedLabels = new ArrayList<>();
-  private boolean is30SecondTriggered = false;
+  private static Timeline countdownTimeline;
+  private static List<Label> subscribedLabels = new ArrayList<>();
+  private static boolean is30SecondTriggered = false;
 
   /** This constructor ensures the Singleton pattern is used. */
   private Timers() {
@@ -64,6 +64,7 @@ public class Timers {
     subscribedLabels.add(label);
     Font font = Font.loadFont(getClass().getResource("/fonts/DS-DIGIB.TTF").toExternalForm(), 40);
     label.setFont(font);
+    System.out.println("Subscribed label: " + label);
   }
 
   /**
@@ -80,7 +81,6 @@ public class Timers {
 
   /** This method switches to the frequency game when 30 seconds have passed. */
   private void thirtySecondPassed() {
-
     App.switchScenes(AppUi.SIN_MINIGAME);
     System.out.println("30 seconds have passed.");
   }
@@ -151,5 +151,12 @@ public class Timers {
                 is30SecondTriggered = true;
               }
             }));
+  }
+
+  public static void reset() {
+    subscribedLabels.clear();
+    countdownTimeline.stop();
+    countdownTimeline = null;
+    is30SecondTriggered = false;
   }
 }

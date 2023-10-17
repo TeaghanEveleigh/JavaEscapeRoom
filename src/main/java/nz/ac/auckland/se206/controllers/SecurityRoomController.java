@@ -137,6 +137,7 @@ public class SecurityRoomController extends GameController
   @FXML private ProgressBar suspicionProgressBar;
   @FXML private Rectangle suspicionRectangle;
   private Passcode passcode = Passcode.getInstance();
+  private Suspicion suspicion;
 
   /**
    * Runs when the clear or enter button is pressed. Clears the numbers text if clear is pressed and
@@ -144,6 +145,7 @@ public class SecurityRoomController extends GameController
    *
    * @param event the mouse event triggered by the clear or enter button
    */
+
   @FXML
   private void handleClearEnter(MouseEvent event) {
     Rectangle clickRectangle = (Rectangle) event.getSource();
@@ -216,6 +218,7 @@ public class SecurityRoomController extends GameController
     cameraBase.toBack();
     cameraTriangle.toBack();
     boundsObjects.remove(exitBlock);
+    boundsObjects.remove(suspicion);
   }
 
   /**
@@ -224,18 +227,8 @@ public class SecurityRoomController extends GameController
    */
   @Override
   public void initialize() {
-    GameState value = GameState.getInstance();
-    value.subscribe(hintsLabel); // Subscribes the hints label to the hints
-    stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
-    super.initialize(); // Calls the initialize method in the superclass
-
-    // Add the bounding boxes to the player and to the room
-    boundsObjects.add(
-        new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle));
-    boundsObjects.add(new SolidBox(boundingBoxOne));
-    boundsObjects.add(new SolidBox(boundingBoxTwo));
-    boundsObjects.add(new SolidBox(boundingBox1));
-    boundsObjects.add(new SolidBox(boundingBox2));
+    suspicion = new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle);
+    super.initialize();
     boundsObjects.add(new SolidBox(boundingBox3));
     boundsObjects.add(new SolidBox(boundingBox4));
     boundsObjects.add(new SolidBox(boundingBox5));
@@ -256,9 +249,6 @@ public class SecurityRoomController extends GameController
     boundsObjects.add(new Portal(dinosaurRoomBounds, this, AppUi.DINOSAUR_ROOM));
     boundsObjects.add(new StoneCarving(stoneCarvingBounds, this));
     this.player.setBoundingBoxes(boundsObjects);
-    this.player.setPosX(54);
-    this.player.setPosY(300);
-
     // Applies the animations to each arrow in the room
     applyFloatingAnimation(arrow1);
     applyFloatingAnimation(arrow2);
@@ -631,5 +621,30 @@ public class SecurityRoomController extends GameController
   public void suspicionReached() {
     Timers mainTimer = Timers.getInstance();
     mainTimer.subtractTime(10); // Subtract 10 seconds from the main timer
+  }
+
+  @Override
+  public void start() {
+    started = true;
+  }
+
+  @Override
+  public void reset() {
+    GameState value = GameState.getInstance();
+    value.subscribe(hintsLabel);
+    stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
+    this.player.setPosX(54);
+    this.player.setPosY(300);
+
+    numbers.setText("");
+    numberOfnumbers = 0;
+    cameraLine1.toFront();
+    cameraLine2.toFront();
+    cameraBase.toFront();
+    cameraTriangle.toFront();
+    boundsObjects.add(suspicion);
+    System.out.println("dsadsadsa");
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
   }
 }

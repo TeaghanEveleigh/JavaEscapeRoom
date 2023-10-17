@@ -59,33 +59,35 @@ public class GameController extends HackerUiToggler implements BaseController {
   @FXML protected Circle keycodeFoundCircle;
   @FXML protected Circle exitUnlockedCircle;
   @FXML protected ImageView exitObjectiveImage;
+  @FXML protected Label mainTimerLabel;
 
   protected GraphicsContext graphicsContext;
   protected CanvasRenderer renderer;
   protected Player player;
   protected ArrayList<BoundsObject> boundsObjects;
   protected boolean paused = true;
+  protected boolean started = false;
+  private AnimationTimer timer;
 
   /**
    * Initializes the controller class. This method is automatically called after the fxml file has
    * been loaded.
    */
   public void initialize() {
+    player = new Player(50, 100, 50, 50);
+    boundsObjects = new ArrayList<BoundsObject>();
+
+    reset();
+
     disbleObjectives();
-    Timers mainTimer = Timers.getInstance();
-    mainTimer.subscribeLabel(mainTimerLabel); // Subscribes the main timer to the main timer label
     gameCanvas.requestFocus();
     disableHackerPanel(); // Disables the hacker panel
     hackerTextArea.setEditable(false);
     graphicsContext = gameCanvas.getGraphicsContext2D();
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
-    boundsObjects = new ArrayList<BoundsObject>();
-
-    // Creates the player
-    player = new Player(50, 100, 50, 50);
     renderer.addEntity(player);
 
-    AnimationTimer timer =
+    timer =
         new AnimationTimer() {
 
           @Override
@@ -97,8 +99,10 @@ public class GameController extends HackerUiToggler implements BaseController {
             renderer.renderEntities();
           }
         };
+    System.out.println("dsadsadsa");
 
     timer.start();
+    pauseRoom();
   }
 
   /** Pauses the room to prevent the player from moving when not appropriate. */
@@ -216,5 +220,15 @@ public class GameController extends HackerUiToggler implements BaseController {
             exitUnlockedCircle.setFill(Color.BLACK);
           });
     }
+  }
+
+  @Override
+  public void start() {
+    return;
+  }
+
+  public void reset() {
+    Timers mainTimer = Timers.getInstance();
+    mainTimer.subscribeLabel(mainTimerLabel);
   }
 }

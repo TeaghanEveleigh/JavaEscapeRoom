@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class Passcode {
 
-  private static final Passcode instance = new Passcode();
+  private static Passcode instance = new Passcode();
 
   /**
    * This method is used to get the instance of the Passcode singleton.
@@ -109,5 +109,9 @@ public class Passcode {
       default: // Otherwise, return th
         return number + "th";
     }
+  }
+
+  public static void resetPasscode() {
+    instance = new Passcode();
   }
 }
