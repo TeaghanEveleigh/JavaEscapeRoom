@@ -20,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedHandler" onKeyReleased="#keyReleasedHandler" prefHeight="585.0" prefWidth="816.0" stylesheets="@../css/room1.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityRoomController">
    <children>
-      <Text fx:id="correctTxt" layoutX="378.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="correct" AnchorPane.leftAnchor="378.0">
+      <Text fx:id="correctTxt" layoutX="378.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="correct" AnchorPane.leftAnchor="378.0">
          <font>
             <Font name="BM HANNA Air OTF" size="19.0" />
          </font>
