@@ -128,8 +128,7 @@ public class GameSettingsController implements BaseController {
     GameState.textToSpeech = false;
   }
 
+  /** This method is used to start the game settings. */
   @Override
-  public void start() {
-    return;
-  }
+  public void start() {}
 }

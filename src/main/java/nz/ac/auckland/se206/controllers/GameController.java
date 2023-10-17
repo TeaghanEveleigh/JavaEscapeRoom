@@ -74,16 +74,17 @@ public class GameController extends HackerUiToggler implements BaseController {
    * been loaded.
    */
   public void initialize() {
+    // Create a new player
     player = new Player(50, 100, 50, 50);
     boundsObjects = new ArrayList<BoundsObject>();
 
     reset();
-
     disbleObjectives();
     gameCanvas.requestFocus();
     disableHackerPanel(); // Disables the hacker panel
     hackerTextArea.setEditable(false);
     graphicsContext = gameCanvas.getGraphicsContext2D();
+    // Create a new renderer for the player
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
     renderer.addEntity(player);
 
@@ -222,10 +223,9 @@ public class GameController extends HackerUiToggler implements BaseController {
     }
   }
 
+  /** This method is used to start the controller. */
   @Override
-  public void start() {
-    return;
-  }
+  public void start() {}
 
   public void reset() {
     Timers mainTimer = Timers.getInstance();

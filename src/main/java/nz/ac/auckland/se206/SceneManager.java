@@ -124,8 +124,13 @@ public class SceneManager {
     System.gc();
   }
 
+  /**
+   * This method is used to reload all the scenes in the game.
+   *
+   * @param fxmlMap The map of scenes to load.
+   */
   public static void reloadScenes(HashMap<AppUi, String> fxmlMap) {
-    clearAll();
+    clearAll(); // Clear all scenes
 
     loadingController.resetLoadingBar();
 
@@ -141,7 +146,7 @@ public class SceneManager {
             for (HashMap.Entry<AppUi, String> entry : fxmlMap.entrySet()) {
               loadEntry(entry);
               progress += increment;
-              loadingController.updateLoadingBar(progress);
+              loadingController.updateLoadingBar(progress); // Update loading bar
             }
 
             return null;
@@ -158,6 +163,12 @@ public class SceneManager {
     loadingThread.start();
   }
 
+  /**
+   * This method is used to restart all the scenes in the game.
+   *
+   * @param fxmlMap The map of scenes to load.
+   * @param gameRooms The set of rooms to restart.
+   */
   public static void restartScenes(HashMap<AppUi, String> fxmlMap, Set<AppUi> gameRooms) {
     // Remove scenes that are not in the gameRooms set
     for (AppUi scene : AppUi.values()) {
@@ -166,7 +177,7 @@ public class SceneManager {
         sceneMap.remove(scene);
       }
     }
-    history.clear();
+    history.clear(); // Clears the history of scenes
     currentRoom = null;
     System.gc();
 
@@ -185,10 +196,11 @@ public class SceneManager {
               if (gameRooms.contains(entry.getKey())) {
                 GameController gameController =
                     (GameController) SceneManager.getUiController(entry.getKey());
-                gameController.reset();
+                gameController.reset(); // Reset the game controller map
               } else {
                 loadEntry(entry);
               }
+              // Update the loading bar
               progress += increment;
               loadingController.updateLoadingBar(progress);
             }
@@ -199,6 +211,7 @@ public class SceneManager {
 
     loadingTask.setOnSucceeded(
         e -> {
+          // Switch to the main menu
           System.out.println("Completed restarting");
           App.switchScenes(AppUi.MAIN_MENU);
         });
@@ -207,15 +220,29 @@ public class SceneManager {
     loadingThread.start();
   }
 
+  /**
+   * This method is used to load a scene from the given entry.
+   *
+   * @param entry The entry to load.
+   * @throws IOException If the FXML file for the given entry is not found.
+   */
   private static void loadEntry(HashMap.Entry<AppUi, String> entry) throws IOException {
     AppUi appUi = entry.getKey();
     String fxml = entry.getValue();
     System.out.println("loading " + fxml);
     FXMLLoader loader = App.getFxmlLoader(fxml);
+    // Add the UI and controller to the collection of UIs and controllers
     addUi(appUi, loader.load());
     addController(appUi, loader.getController());
   }
 
+  /**
+   * This method is used to initialize the loading screen.
+   *
+   * @param fxml The FXML file to load.
+   * @return The root of the loading screen.
+   * @throws IOException If the FXML file for the loading screen is not found.
+   */
   public static Parent initializeLoadingScreen(String fxml) throws IOException {
     FXMLLoader loader = App.getFxmlLoader(fxml);
     loadingRoot = loader.load();
@@ -223,6 +250,7 @@ public class SceneManager {
     return loadingRoot;
   }
 
+  /** This method is used to get the root of the loading screen. */
   public static Parent getLoadingParent() {
     return loadingRoot;
   }

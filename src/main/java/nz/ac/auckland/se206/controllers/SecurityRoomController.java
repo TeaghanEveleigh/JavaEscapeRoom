@@ -145,7 +145,6 @@ public class SecurityRoomController extends GameController
    *
    * @param event the mouse event triggered by the clear or enter button
    */
-
   @FXML
   private void handleClearEnter(MouseEvent event) {
     Rectangle clickRectangle = (Rectangle) event.getSource();
@@ -213,6 +212,7 @@ public class SecurityRoomController extends GameController
   /** Disables the camera in the security room. */
   @FXML
   public void disableCamera() {
+    // Sends the camera view to the back
     cameraLine1.toBack();
     cameraLine2.toBack();
     cameraBase.toBack();
@@ -229,6 +229,7 @@ public class SecurityRoomController extends GameController
   public void initialize() {
     suspicion = new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle);
     super.initialize();
+    // Adds the bounding boxes to the list of bounding boxes
     boundsObjects.add(new SolidBox(boundingBox3));
     boundsObjects.add(new SolidBox(boundingBox4));
     boundsObjects.add(new SolidBox(boundingBox5));
@@ -243,6 +244,7 @@ public class SecurityRoomController extends GameController
     boundsObjects.add(new SolidBox(boundingBox14));
     boundsObjects.add(new SolidBox(boundingBox15));
     boundsObjects.add(new SolidBox(boundingBox16));
+    // Adds the bounding boxes to the wires and keypad
     boundsObjects.add(new Keypad(keypadBounds, this));
     boundsObjects.add(new Wires(wiresBounds, this));
     boundsObjects.add(new SecurityRoomDoor(securityDoorBounds, this));
@@ -623,21 +625,25 @@ public class SecurityRoomController extends GameController
     mainTimer.subtractTime(10); // Subtract 10 seconds from the main timer
   }
 
+  /** This method is used to signal that the room has started. */
   @Override
   public void start() {
     started = true;
   }
 
+  /** This method is called when the game is reset. */
   @Override
   public void reset() {
     GameState value = GameState.getInstance();
     value.subscribe(hintsLabel);
+    // Set the date to the new value
     stoneText.setText("Discovered " + passcode.getThirdNum() + " century");
     this.player.setPosX(54);
     this.player.setPosY(300);
 
     numbers.setText("");
     numberOfnumbers = 0;
+    // Bring the camer back to the front
     cameraLine1.toFront();
     cameraLine2.toFront();
     cameraBase.toFront();

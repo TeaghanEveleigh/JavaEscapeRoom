@@ -36,9 +36,7 @@ public class MainMenuController implements BaseController {
    * Initializes the controller class. This method is automatically called after the fxml file has
    * been loaded.
    */
-  public void initialize() {
-    return;
-  }
+  public void initialize() {}
 
   @FXML
   private void onSettingsPressed(ActionEvent event) throws IOException {

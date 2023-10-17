@@ -72,16 +72,17 @@ public class LaserRoomController extends GameController
     super.initialize();
     boundsObjects.add(
         new Suspicion(boundingBoxOne, this, suspicionProgressBar, suspicionRectangle));
+    // Adds the bonding boxes of the interactable objects in the room
     boundsObjects.add(new SolidBox(boundingBoxTwo));
     boundsObjects.add(new Portal(doorRectangle, this, AppUi.EXIT_ROOM));
     boundsObjects.add(new LeftDinosaur(leftDinosaurBounds, this));
     boundsObjects.add(new RightDinosaur(rightDinosaurBounds, this));
     boundsObjects.add(new Door(doorRectangle, this, AppUi.MAIN_MENU));
     this.player.setBoundingBoxes(boundsObjects);
+    // Adds the floating animations to the arrows
     applyFloatingAnimation(arrow);
     applyFloatingAnimation(arrow1);
     applyFloatingAnimationx(arrow3);
-
   }
 
   /** Disables the lasers in the room. */
@@ -317,15 +318,19 @@ public class LaserRoomController extends GameController
     mainTimer.subtractTime(10000);
   }
 
+  /** Runs when the user starts the game. This method gives the user an introduction to the game. */
   @Override
   public void start() {
-    if (started) return;
+    if (started) { // If the game has already started
+      return;
+    }
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
             disableHintChatAndExit();
+            // Give the user an introduction to the game
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getIntroduction()), hackerTextArea);
             enableHintChatAndExit();
@@ -338,16 +343,18 @@ public class LaserRoomController extends GameController
     started = true;
   }
 
+  /** Runs when the user resets the game. This method resets the game to its initial state. */
   @Override
   public void reset() {
     super.reset();
+    // Resets the random values for the interctables in the room
     Passcode passcode = Passcode.getInstance();
     GameState value = GameState.getInstance();
     value.subscribe(hintsLabel);
     trexText.setText("T-Rex Discovered " + passcode.getFirstNum() + " century");
     paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
+    // reset player position
     this.player.setPosX(54);
     this.player.setPosY(350);
-
   }
 }
