@@ -42,6 +42,8 @@ public class Passcode {
     firstNum = nums[0];
     secondNum = nums[1];
     thirdNum = nums[2];
+
+    System.out.println("Passcode: " + getFullNum());
   }
 
   /**

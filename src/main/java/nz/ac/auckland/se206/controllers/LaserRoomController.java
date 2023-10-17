@@ -62,6 +62,7 @@ public class LaserRoomController extends GameController
   @FXML private Rectangle suspicionRectangle;
 
   private SolidBox laserBox;
+  private Object treasure;
 
   /**
    * Initialises the controller class. This method is automatically called after the fxml file has
@@ -69,6 +70,7 @@ public class LaserRoomController extends GameController
    */
   @Override
   public void initialize() {
+    treasure = new Object(objectBounds, this);
     super.initialize();
     boundsObjects.add(
         new Suspicion(boundingBoxOne, this, suspicionProgressBar, suspicionRectangle));
@@ -81,25 +83,36 @@ public class LaserRoomController extends GameController
     applyFloatingAnimation(arrow);
     applyFloatingAnimation(arrow1);
     applyFloatingAnimationx(arrow3);
-
   }
 
   /** Disables the lasers in the room. */
   @FXML
   public void disableLasers() {
     // Sends the lasers to the back
-    laser1.toBack();
-    laser2.toBack();
-    laser3.toBack();
+    laser1.setOpacity(0.0);
+    laser2.setOpacity(0.0);
+    laser3.setOpacity(0.0);
     // Sends the laser shadows to the back
-    laserShadow1.toBack();
-    laserShadow2.toBack();
-    laserShadow3.toBack();
-    itemLabel.toFront();
+    laserShadow1.setOpacity(0.0);
+    laserShadow2.setOpacity(0.0);
+    laserShadow3.setOpacity(0.0);
+    itemLabel.setOpacity(2.0);
     // remove the laser bounding boxes
     boundsObjects.remove(laserBox);
-    boundsObjects.add(new Object(objectBounds, this));
+    boundsObjects.add(treasure);
     player.setBoundingBoxes(boundsObjects);
+  }
+
+  /** Enables the lasers in the room. */
+  public void enableLasers() {
+    laser1.setOpacity(1.0);
+    laser2.setOpacity(1.0);
+    laser3.setOpacity(1.0);
+    laserShadow1.setOpacity(1.0);
+    laserShadow2.setOpacity(1.0);
+    laserShadow3.setOpacity(1.0);
+    itemLabel.setOpacity(0.0);
+    boundsObjects.remove(treasure);
   }
 
   /** This method shows the tresure item label when the user gets close to it. */
@@ -122,8 +135,9 @@ public class LaserRoomController extends GameController
     GameState.isTreasureStolen = true;
     GameController
         .updateAllChecklists(); // Updates the checklist to show that the treasure has been stolen
-    object.toBack();
-    itemLabel.toBack();
+    object.setOpacity(0.0);
+    itemLabel.setOpacity(0.0);
+    boundsObjects.remove(treasure);
     Task<Void> task =
         new Task<Void>() {
           @Override
@@ -341,6 +355,9 @@ public class LaserRoomController extends GameController
   @Override
   public void reset() {
     super.reset();
+    enableLasers();
+    object.setOpacity(1);
+    itemLabel.setOpacity(0);
     Passcode passcode = Passcode.getInstance();
     GameState value = GameState.getInstance();
     value.subscribe(hintsLabel);
@@ -348,6 +365,5 @@ public class LaserRoomController extends GameController
     paroText.setText("Parasaurolophus Discovered " + passcode.getSecondNum() + " century");
     this.player.setPosX(54);
     this.player.setPosY(350);
-
   }
 }

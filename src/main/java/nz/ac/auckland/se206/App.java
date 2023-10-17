@@ -111,7 +111,6 @@ public class App extends Application {
     fxmlMap.put(AppUi.MEMORY_GAME, "memorygame");
   }
 
-
   private static void initializeGameRooms() {
     gameRooms = Set.of(AppUi.DINOSAUR_ROOM, AppUi.SECURITY_ROOM, AppUi.EXIT_ROOM);
   }
@@ -123,6 +122,7 @@ public class App extends Application {
     KeyState.resetKeys();
     Passcode.resetPasscode();
     Timers.reset();
+    GameController.resetAllChecklists();
     root.requestFocus();
     SceneManager.restartScenes(fxmlMap, gameRooms);
   }
