@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.GameState;
@@ -22,7 +23,8 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 /**
  * Controller class for the main rooms. This is where the player can move around the map and
  * interact with the game world. Each main room extends this class as they all share the
@@ -33,13 +35,13 @@ public class GameController extends HackerUiToggler implements BaseController {
   /** Updates the checklist in the security room, laser room, and exit room. */
   public static void updateAllChecklists() {
     SecurityRoomController securityRoomController =
-        (SecurityRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
     securityRoomController.updateChecklist(); // Updates the checklist in the security room
     LaserRoomController laserRoomController =
         (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
     laserRoomController.updateChecklist(); // Updates the checklist in the dinosaur room
     ExitRoomController exitRoomController =
-        (ExitRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
     exitRoomController.updateChecklist(); // Updates the checklist in the exit room
   }
 
@@ -59,18 +61,31 @@ public class GameController extends HackerUiToggler implements BaseController {
   @FXML protected Circle keycodeFoundCircle;
   @FXML protected Circle exitUnlockedCircle;
   @FXML protected ImageView exitObjectiveImage;
+  @FXML private ImageView planNote;
 
   protected GraphicsContext graphicsContext;
   protected CanvasRenderer renderer;
   protected Player player;
   protected ArrayList<BoundsObject> boundsObjects;
   protected boolean paused = true;
+  private String scribble =
+      getClass().getResource("/sounds/pencil_check_mark_2-105940.mp3").toString();
+  private Media media = new Media(scribble);
+  private MediaPlayer startSound = new MediaPlayer(media);
+
 
   /**
    * Initializes the controller class. This method is automatically called after the fxml file has
    * been loaded.
    */
   public void initialize() {
+    Font font = Font.loadFont(getClass().getResource("/fonts/KgTenThousandReasons-R1ll.ttf").toExternalForm(), 12);
+    disabledCameraLabel.setFont(font);
+    disabledLasersLabel.setFont(font);
+    stolenTreasureLabel.setFont(font);
+    objectivesLabel.setFont(font);
+    keycodeFoundLabel.setFont(font);
+
     disbleObjectives();
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel); // Subscribes the main timer to the main timer label
@@ -146,6 +161,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** Disables the objectives panel. */
   public void disbleObjectives() {
+    planNote.toBack();
     checklistRectangle.toBack();
     objectivesLabel.toBack();
     disabledLasersLabel.toBack();
@@ -166,6 +182,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** Enables the objectives panel. */
   public void enableObjectives() {
+    planNote.toFront();
     checklistRectangle.toFront();
     objectivesLabel.toFront();
     disabledLasersLabel.toFront();
@@ -186,6 +203,7 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   /** Updates the checklist in the security room, laser room, and exit room. */
   public void updateChecklist() {
+    startSound.play();
     if (GameState.isLasersDisabled) { // lasers disabled
       Platform.runLater(
           () -> {
@@ -217,4 +235,5 @@ public class GameController extends HackerUiToggler implements BaseController {
           });
     }
   }
+  
 }

@@ -17,7 +17,7 @@ public class Suspicion extends Interactable {
   private SuspicionListener listener;
   private Timeline timeline;
   private double suspicionLevel = 0.0;
-  private double maximumSuspicionLevel = 5.0;
+  private double maximumSuspicionLevel = 2.5;
   private ProgressBar progressBar;
   private Rectangle suspicionLight;
   private double minimumOpactiy = 0.1;
@@ -41,9 +41,14 @@ public class Suspicion extends Interactable {
     this.listener = listener;
     this.progressBar = progressBar;
     this.suspicionLight = suspicionLight;
+    suspicionLight.setMouseTransparent(true);
+
     suspicionLight.setOpacity(0.0);
     timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> updateSuspicion()));
     timeline.setCycleCount(Timeline.INDEFINITE);
+    progressBar.setStyle("-fx-background-color: rgb(128, 128, 128); -fx-accent: red;");
+    progressBar.setOpacity(0.8);
+
   }
 
   /** This method updates the suspicion level of the player. */
