@@ -11,7 +11,6 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /**
  * This class is used to toggle the hacker UI. The main rooms, as well as the wires game and memory
@@ -69,13 +68,21 @@ public abstract class HackerUiToggler {
     chatTextField.clear(); // Clear the text field
     if (message.length() > 0) {
       disableHintChatAndExit();
-      try {
-        // Gives the response to the user's message
-        ai.runGpt(
-            new ChatMessage("user", GptPromptEngineering.getChatResponse(message)), hackerTextArea);
-      } catch (ApiProxyException e) {
-        e.printStackTrace();
-      }
+      Task<Void> task =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              disableHintChatAndExit();
+              // Tells the user they have solved the wires riddle and completed the game
+              // Gives the response to the user's message
+              ai.runGpt(
+                  new ChatMessage("user", GptPromptEngineering.getChatResponse(message)),
+                  hackerTextArea);
+              enableHintChatAndExit();
+              return null;
+            }
+          };
+      new Thread(task).start();
       enableHintChatAndExit();
     }
   }
