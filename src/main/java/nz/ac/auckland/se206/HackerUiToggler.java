@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -21,6 +22,7 @@ public abstract class HackerUiToggler {
   @FXML protected Button hintButton;
   @FXML protected Button chatButton;
   @FXML protected Button talkToHackerButton;
+  @FXML protected Canvas gameCanvas;
   protected Ai ai = new Ai();
 
   // Hacker panel
@@ -85,6 +87,7 @@ public abstract class HackerUiToggler {
       new Thread(task).start();
       enableHintChatAndExit();
     }
+    gameCanvas.requestFocus();
   }
 
   /** This method runs when the user wants to ask for a hint. */
@@ -137,6 +140,7 @@ public abstract class HackerUiToggler {
           }
         };
     new Thread(task).start();
+    gameCanvas.requestFocus();
   }
 
   /** This method runs when the user wants to exit from the hacker panel. */
