@@ -18,7 +18,7 @@ public abstract class BoundsObject {
   }
 
   /**
-   * This method returns the bounds of an object.
+   * This method is used to get the bounds of an object.
    *
    * @return the bounds of an object.
    */

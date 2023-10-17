@@ -304,7 +304,7 @@ public class SecurityRoomController extends GameController
   }
 
   /**
-   * Enters a value into the numbers text for the keypad
+   * Enters a value into the numbers text for the keypad.
    *
    * @param value the value to be entered
    */
@@ -461,7 +461,7 @@ public class SecurityRoomController extends GameController
     zeroKey.toBack();
   }
 
-  /** Runs when the player interacts with the keypad */
+  /** This method runs when the player interacts with the keypad. */
   @Override
   public void keypadInteracted() {
     if (!GameState.isDoorOpen) { // If the door hasn't already been unlocked

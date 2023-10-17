@@ -104,7 +104,7 @@ public class MainMenuController implements BaseController {
   }
 
   /**
-   * Opens the tutorial.
+   * This method is used to opens the tutorial when the tutorial button is pressed.
    *
    * @param event The event that triggered this method.
    * @throws IOException If the fxml file cannot be loaded.
@@ -115,7 +115,7 @@ public class MainMenuController implements BaseController {
   }
 
   /**
-   * Starts the game.
+   * This method is used to start the game when the start button is pressed.
    *
    * @param event The event that triggered this method.
    * @throws IOException If the fxml file cannot be loaded.
@@ -214,7 +214,7 @@ public class MainMenuController implements BaseController {
     startSound.pause();
   }
 
-  /** Replay the menu music. */
+  /** This method is used to replay the menu music. */
   public void replayMenuMusic() {
     if (startSound != null) {
       // Replay the menu music

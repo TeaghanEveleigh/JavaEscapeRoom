@@ -117,7 +117,7 @@ public class ExitRoomController extends GameController
     arrow2.toFront();
   }
 
-  /** Opens the computer. */
+  /** This method is used to open the computer when the user clicks on it. */
   @FXML
   private void openComputer() {
     // Bring the computer to the front
@@ -132,7 +132,7 @@ public class ExitRoomController extends GameController
     computerOpened = true; // set computer to opened
   }
 
-  /** Closes the computer. */
+  /** This method is used to closes the computer when the user exits it. */
   @FXML
   private void onHideComputer() {
     // Send the computer to the back
@@ -202,7 +202,7 @@ public class ExitRoomController extends GameController
     interractHint.setOpacity(0);
   }
 
-  /** Runs when the safe has been opened */
+  /** Runs when the safe has been opened. */
   @FXML
   public void safeOpen() {
     safeOpened = true; // set safe to opened
@@ -380,7 +380,7 @@ public class ExitRoomController extends GameController
   /**
    * Applies the floating animation to the arrows for interactable objects.
    *
-   * @param imageView
+   * @param imageView The image view to apply the animation to.
    */
   private void applyFloatingAnimation(ImageView imageView) {
     TranslateTransition translateTransition =

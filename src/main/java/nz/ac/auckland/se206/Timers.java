@@ -19,7 +19,7 @@ public class Timers {
   private static Timers instance;
 
   /**
-   * This method returns the instance of the Timers singleton.
+   * This method is used to get the instance of the Timers singleton.
    *
    * @return The instance of the Timers singleton.
    */

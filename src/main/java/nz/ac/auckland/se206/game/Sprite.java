@@ -39,7 +39,7 @@ public abstract class Sprite {
   }
 
   /**
-   * This method returns the x position of the sprite.
+   * This method is used to get the x position of the sprite.
    *
    * @return the x position of the sprite.
    */
@@ -48,7 +48,7 @@ public abstract class Sprite {
   }
 
   /**
-   * This method returns the y position of the sprite.
+   * This method is used to get the y position of the sprite.
    *
    * @return the y position of the sprite.
    */
@@ -66,7 +66,7 @@ public abstract class Sprite {
   }
 
   /**
-   * This method returns the height of the sprite.
+   * This method is used to get the height of the sprite.
    *
    * @return the height of the sprite.
    */

@@ -122,7 +122,7 @@ public class WiresController extends HackerUiToggler implements Initializable, B
   }
 
   /**
-   * This method returns the user to the exit room when the back button is pressed.
+   * This method is used to return the user to the exit room when the back button is pressed.
    *
    * @throws IOException If the input is not recognised.
    */

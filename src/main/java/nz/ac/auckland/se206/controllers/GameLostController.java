@@ -10,7 +10,7 @@ import nz.ac.auckland.se206.SceneManager;
 public class GameLostController implements BaseController {
 
   /**
-   * Ends the game and exits the program
+   * Ends the game and exits the program.
    *
    * @param event the action event triggered by the go back button
    */

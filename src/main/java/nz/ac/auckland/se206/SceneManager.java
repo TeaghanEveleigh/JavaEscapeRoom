@@ -9,6 +9,8 @@ import javafx.scene.Parent;
  * be accessed throughout the game.
  */
 public class SceneManager {
+
+  /** This enum is used to store the different views in the game */
   public enum AppUi {
     MAIN_MENU,
     GAME_SETTINGS,
@@ -76,7 +78,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns the root of the UI.
+   * This method is used to get the root of the UI.
    *
    * @param appUi The UI to get the root of.
    * @return The root of the UI.
@@ -86,7 +88,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns the controller of the UI that is related to a given app UI.
+   * This method is used to get the controller of the UI that is related to a given app UI.
    *
    * @param appUi The UI to get the controller of.
    * @return The controller of the UI.
@@ -96,8 +98,7 @@ public class SceneManager {
   }
 
   /**
-   * This method returns boolean value depending on whether the given UI is in the collection of
-   * UIs.
+   * This method is used to check if a scene hs been loaded and initialised.
    *
    * @param appUi The UI to check.
    * @return Whether the given UI is in the collection of UIs.

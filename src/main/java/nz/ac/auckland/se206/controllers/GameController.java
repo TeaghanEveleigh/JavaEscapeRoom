@@ -144,7 +144,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     enableObjectives();
   }
 
-  /** Disables the objectives panel. */
+  /** This method is used to disable the objectives panel. */
   public void disbleObjectives() {
     checklistRectangle.toBack();
     objectivesLabel.toBack();
@@ -164,7 +164,7 @@ public class GameController extends HackerUiToggler implements BaseController {
     gameCanvas.requestFocus(); // Requests focus for the game canvas
   }
 
-  /** Enables the objectives panel. */
+  /** This method is used to enable the objectives panel. */
   public void enableObjectives() {
     checklistRectangle.toFront();
     objectivesLabel.toFront();

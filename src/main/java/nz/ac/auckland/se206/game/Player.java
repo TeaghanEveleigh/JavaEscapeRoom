@@ -217,7 +217,7 @@ public class Player extends Sprite {
   }
 
   /**
-   * This method returns the bounds of the player.
+   * This method is used to get the bounds of the player.
    *
    * @return The bounds of the player.
    */

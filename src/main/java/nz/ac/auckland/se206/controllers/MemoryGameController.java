@@ -330,9 +330,9 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
   }
 
   /**
-   * This method returns the user to the main menu.
+   * This method is used to take the user back to the security room.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file cannot be loaded.
    */
   @FXML
   private void onBackPressed() throws IOException {

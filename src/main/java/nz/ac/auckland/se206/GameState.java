@@ -48,7 +48,7 @@ public class GameState {
   }
 
   /**
-   * This method returns the instance of the GameState singleton.
+   * This method is used to get the instance of the GameState singleton.
    *
    * @return The instance of the GameState singleton.
    */
