@@ -9,11 +9,18 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 
-/** Controller class for the game won view. */
+/**
+ * Controller class for the game won view. This runs when player successfully steals the treasure
+ * and escapes within the given time.
+ */
 public class GameWonController implements BaseController {
 
   private MediaPlayer mediaPlayer;
 
+  /**
+   * Initializes the controller class. This method is automatically called after the fxml file has
+   * been loaded.
+   */
   @FXML
   public void initialize() {
     String soundPath = getClass().getResource("/sounds/victory-96688.mp3").toString();
@@ -22,11 +29,12 @@ public class GameWonController implements BaseController {
       return;
     }
 
+    // Create a new media player and play the victory sound
     Media media = new Media(soundPath);
     mediaPlayer = new MediaPlayer(media);
   }
 
-  /** Play the victory sound. */
+  /** Play the victory sound when the user wins the game. */
   public void playVictorySound() {
     if (mediaPlayer != null) {
       mediaPlayer.seek(Duration.ZERO);
@@ -35,10 +43,11 @@ public class GameWonController implements BaseController {
   }
 
   /**
-   * Ends the game and exits the program
+   * Ends the game and exits the program.
    *
    * @param event the action event triggered by the go back button
-   * @throws IOException
+   * @throws IOException if input not registered
+
    */
   @FXML
   private void onExitGame(ActionEvent event) throws IOException {

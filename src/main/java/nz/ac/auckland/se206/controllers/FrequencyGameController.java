@@ -21,6 +21,10 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.Timers;
 
+/**
+ * Controller class for the frequency game. This game loads after a certain amount of time and takes
+ * away a portion of the time left if the user loses the game.
+ */
 public class FrequencyGameController implements BaseController {
 
   private String policeSound =
@@ -49,6 +53,10 @@ public class FrequencyGameController implements BaseController {
   private Timeline countdownTimeline;
   private int timeInSeconds = 10000; // 10 seconds * 1000 milliseconds
 
+  /**
+   * Initializes the controller class. This method is automatically called after the fxml file has
+   * been loaded.
+   */
   @FXML
   public void initialize() {
     amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateWave());
@@ -60,6 +68,12 @@ public class FrequencyGameController implements BaseController {
     drawTargetWave();
   }
 
+  /**
+   * Sets a random initial wave for the user to match.
+   *
+   * @param updateImmediately whether to update the wave immediately after setting the random
+   *     values.
+   */
   private void setRandomInitialWave(boolean updateImmediately) {
     Random random = new Random(LocalTime.now().toNanoOfDay());
 
@@ -93,6 +107,7 @@ public class FrequencyGameController implements BaseController {
     }
   }
 
+  /** Initializes the countdown timer. When the timer runs out, the game is lost. */
   private void initializeCountdown() {
     startSound.play();
     countdownTimeline =
@@ -103,13 +118,16 @@ public class FrequencyGameController implements BaseController {
                   timeInSeconds--;
 
                   int seconds = timeInSeconds / 1000;
-                  timer.setText(String.format("%2d", seconds));
+                  timer.setText(String.format("%2d", seconds)); // Display time left to the user
 
                   if (seconds <= 3) {
                     timer.setStyle("-fx-text-fill: red;"); // Changing text color to red
                   }
 
-                  if (timeInSeconds <= 0 && matched != true) {
+                  if (timeInSeconds <= 0
+                      && matched
+                          != true) { // If the timer runs out and the user has not matched the
+                    // waves, the game is lost.
                     countdownTimeline.stop();
                     gameOver("timer_done");
                   }
@@ -119,6 +137,7 @@ public class FrequencyGameController implements BaseController {
     countdownTimeline.play();
   }
 
+  /** Creates the wave that the user has to match to. */
   private void drawTargetWave() {
     targetSineWave.getElements().add(new MoveTo(0, 150));
     for (int i = 0; i <= 480; i += 10) {
@@ -127,11 +146,12 @@ public class FrequencyGameController implements BaseController {
     }
   }
 
+  /** Updates the user's wave. */
   private void updateWave() {
     userSineWave.getElements().clear();
 
-    double amplitude = amplitudeSlider.getValue();
-    double frequency = frequencySlider.getValue();
+    double amplitude = amplitudeSlider.getValue(); // Get the user's amplitude
+    double frequency = frequencySlider.getValue(); // Get the user's frequency
 
     userSineWave.getElements().add(new MoveTo(0, 150));
     for (int i = 0; i <= 480; i += 10) {
@@ -139,20 +159,26 @@ public class FrequencyGameController implements BaseController {
       userSineWave.getElements().add(new LineTo(i, y));
     }
 
-    if (wavesMatch()) {
+    if (wavesMatch()) { // If the user wave matches the other wave, the game is won.
       userSineWave.setOpacity(0);
       matched = true;
       gameOver("game_won");
     }
   }
 
+  /**
+   * Handles the back button being pressed. This method is called when the back button is pressed.
+   */
   @FXML
   private void onBackPressed() {
-    // Handle back button press here
-
     App.goToPreviousScene();
   }
 
+  /**
+   * Checks if the user's wave matches the other wave.
+   *
+   * @return true if the waves match, false otherwise.
+   */
   private boolean wavesMatch() {
     double amplitude = amplitudeSlider.getValue();
     double frequency = frequencySlider.getValue();
@@ -166,6 +192,11 @@ public class FrequencyGameController implements BaseController {
     return true;
   }
 
+  /**
+   * Handles the game being over.
+   *
+   * @param reason The reason for the game being over.
+   */
   private void gameOver(String reason) {
     guideBottom.setOpacity(0);
     guideTop.setOpacity(0);

@@ -23,8 +23,12 @@ import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.gpt.Ai;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/**
+ * Controller class for the memory game. This game unlocks the safe in the security room through a
+ * memory game. The game involves a series of lights flashing in a sequence that the player has to
+ * match
+ */
 public class MemoryGameController extends HackerUiToggler implements BaseController {
   private static double sequenceSeconds = 0.5;
   private static int maxSequenceLength = 6;
@@ -61,6 +65,10 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
   private int currentSequenceLength = 1;
   private boolean started = false;
 
+  /**
+   * Initializes the controller class. This method is automatically called after the fxml file has
+   * been loaded.
+   */
   @FXML
   public void initialize() {
     Timers mainTimer = Timers.getInstance();
@@ -69,11 +77,12 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     this.lights = new ArrayList<ImageView>();
     this.sequence = new ArrayList<ImageView>();
     this.lightsPressed = new ArrayList<ImageView>();
-    enableHackerPanel();
-    disableChat();
 
+    enableHackerPanel(); // enables the hacker panel
+    disableChat(); // disables the chat
     hackerTextArea.setEditable(false);
 
+    // Add all the lights to the lights array
     lights.add(lightOne);
     lights.add(lightTwo);
     lights.add(lightThree);
@@ -86,10 +95,15 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     lights.add(lightTen);
   }
 
+  /**
+   * This method chooses a random sequence of lights to flash.
+   *
+   * @param sequenceLength the length of the sequence to flash.
+   */
   private void chooseSequence(int sequenceLength) {
     Random random = new Random();
     for (int i = 0; i < sequenceLength; i++) {
-      ImageView chosen = lights.get(random.nextInt(lights.size()));
+      ImageView chosen = lights.get(random.nextInt(lights.size())); // Choose a random light
       while (sequence.contains(chosen)) {
         chosen = lights.get(random.nextInt(lights.size()));
       }
@@ -97,13 +111,18 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     }
   }
 
+  /**
+   * This method shows the sequence of lights to the user.
+   *
+   * @param sequenceLength the length of the sequence to show.
+   */
   private void showSequence(int sequenceLength) {
     showingSequence = true;
     Timeline timeline = new Timeline();
     timeline.setCycleCount(1);
     ArrayList<ImageView> lightsQueue = new ArrayList<ImageView>(sequence);
     System.out.println(lightsQueue.size());
-    for (int i = 0; i < sequenceLength; i++) {
+    for (int i = 0; i < sequenceLength; i++) { // For each light in the sequence
       ImageView light = lightsQueue.get(i);
       timeline
           .getKeyFrames()
@@ -111,7 +130,7 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
               new KeyFrame(
                   Duration.seconds((i + 1) * sequenceSeconds),
                   e -> {
-                    setLight(light, lightPressedImage);
+                    setLight(light, lightPressedImage); // Turn the light on
                   }));
       timeline
           .getKeyFrames()
@@ -119,7 +138,7 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
               new KeyFrame(
                   Duration.seconds((i + 2) * sequenceSeconds),
                   e -> {
-                    resetLight(light);
+                    resetLight(light); // Turn the light off
                   }));
     }
     timeline.play();
@@ -129,56 +148,79 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
         });
   }
 
+  /**
+   * This method sets the light to the specified image.
+   *
+   * @param light the light to set.
+   * @param lightImage the image to set the light to.
+   */
   private void setLight(ImageView light, Image lightImage) {
     light.setImage(lightImage);
   }
 
+  /**
+   * This method resets the light to the base image.
+   *
+   * @param light the light to reset.
+   */
   private void resetLight(ImageView light) {
     light.setImage(baseLightImage);
   }
 
+  /**
+   * This method sets all the lights.
+   *
+   * @param lightImage the image to set the lights to.
+   */
   private void setAllLights(Image lightImage) {
     for (ImageView light : this.lights) {
       setLight(light, lightImage);
     }
   }
 
+  /** This method resets all the lights. */
   private void resetAllLights() {
     for (ImageView light : this.lights) {
       resetLight(light);
     }
   }
 
+  /** This method checks the sequence of lights pressed by the user. */
   private void checkSequence() {
     // Disable user input
     showingSequence = true;
 
     for (int i = 0; i < currentSequenceLength; i++) {
-      if (!lightsPressed.get(i).equals(sequence.get(i))) {
-        Timeline timeline = flashLights(lightGlowRedImage);
+      if (!lightsPressed
+          .get(i)
+          .equals(sequence.get(i))) { // If the user pressed the wrong light sequence
+        Timeline timeline =
+            flashLights(lightGlowRedImage); // Flash the lights red to show incorrect sequence
         timeline.setOnFinished(e -> showSequence(currentSequenceLength));
         return;
       }
     }
 
-    Timeline timeline = flashLights(lightGlowGreenImage);
+    Timeline timeline =
+        flashLights(lightGlowGreenImage); // Flash the lights green to show correct sequence
     if (currentSequenceLength++ >= maxSequenceLength) {
-      GameState.openSafe();
+      GameState.openSafe(); // Open the safe
       PauseTransition pause = new PauseTransition(Duration.seconds(0.75));
       pause.setOnFinished(
           e -> {
-            App.switchScenes(AppUi.SECURITY_ROOM);
+            App.switchScenes(AppUi.SECURITY_ROOM); // Switch to the security room
           });
 
       System.out.println("WON");
       GameState.isKeycodeFound = true;
-      GameController.updateAllChecklists();
+      GameController.updateAllChecklists(); // Update the checklist to show the safe has been opened
       enableHackerPanel();
       Task<Void> task =
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
               disableHintChatAndExit();
+              // Runs the GPT-3 model to tell the user they opened the safe
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getMemoryGameSolved()),
                   hackerTextArea);
@@ -193,6 +235,12 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     }
   }
 
+  /**
+   * This method flashes the lights to the specified color.
+   *
+   * @param lightImage the image to flash the lights to.
+   * @return the timeline of the flashing lights.
+   */
   private Timeline flashLights(Image lightImage) {
 
     Timeline timeline = new Timeline();
@@ -215,6 +263,11 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     return timeline;
   }
 
+  /**
+   * This method starts the memory game.
+   *
+   * @throws IOException if the fxml file cannot be loaded.
+   */
   public void start() {
     if (!started) {
       getIntroduction();
@@ -229,6 +282,11 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     started = true;
   }
 
+  /**
+   * Runs when the user presses a light.
+   *
+   * @throws IOException if the input is incorrect.
+   */
   @FXML
   private void onLightPressed(MouseEvent event) throws IOException {
     if (showingSequence) {
@@ -236,21 +294,19 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     }
 
     ImageView pressed = (ImageView) event.getSource();
-    setLight(pressed, lightPressedImage);
+    setLight(pressed, lightPressedImage); // Turn the light on
     lightsPressed.add(pressed);
-    if (lightsPressed.size() == currentSequenceLength) {
+    if (lightsPressed.size()
+        == currentSequenceLength) { // If the user has pressed the correct number of lights
       checkSequence();
       lightsPressed.clear();
     }
   }
 
-  /**
-   * This method gives a hint to the user through the AI
-   *
-   * @throws ApiProxyException
-   */
+  /** Runs when the user asks for a hint for the memory game. */
   @Override
-  public void onHintPressed() {
+  @FXML
+  protected void onHintPressed() {
     enableHackerPanel();
     Task<Void> task =
         new Task<Void>() {
@@ -260,9 +316,11 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
             disableHintChatAndExit();
 
             if (GameState.isHard || (Integer.parseInt(GameState.getHintsLeft()) <= 0)) {
+              // Tells the user they cant get a hint
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getCantGiveHint()), hackerTextArea);
             } else {
+              // Tells the user the hint
               ai.runGpt(
                   new ChatMessage("user", GptPromptEngineering.getMemoryGameHint()),
                   hackerTextArea);
@@ -279,9 +337,9 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
   }
 
   /**
-   * This method returns the user to the main menu.
+   * This method is used to take the user back to the security room.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file cannot be loaded.
    */
   @FXML
   private void onBackPressed() throws IOException {
@@ -290,12 +348,14 @@ public class MemoryGameController extends HackerUiToggler implements BaseControl
     App.switchScenes(AppUi.SECURITY_ROOM);
   }
 
+  /** This method gets the introduction for the memory game. */
   public void getIntroduction() {
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
             disableHintChatAndExit();
+            // Runs the GPT-3 model to introduce the player to the game and tell them the aim
             ai.runGpt(
                 new ChatMessage("user", GptPromptEngineering.getMemoryGameIntroduction()),
                 hackerTextArea);

@@ -25,25 +25,36 @@ public class App extends Application {
     launch();
   }
 
+  /**
+   * This method sets the root of the scene to the given AppUi.
+   *
+   * @param appUi The AppUi to set the root to.
+   * @throws IOException If the FXML file for the given AppUi is not found.
+   */
   public static void setRoot(AppUi appUi) throws IOException {
     scene.setRoot(SceneManager.getUiRoot(appUi));
   }
 
+  /**
+   * This method returns a FXMLLoader for the given FXML file.
+   *
+   * @param fxml The name of the FXML file to load.
+   * @return The FXMLLoader for the given FXML file.
+   */
   public static FXMLLoader getFxmlLoader(final String fxml) {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
+   * This method switches the scene to the given AppUi.
    *
-   * @param stage The primary stage of the application.
-   * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
+   * @param ui The AppUi to switch to.
    */
   public static void switchScenes(AppUi ui) {
     Parent root = SceneManager.getUiRoot(ui);
     BaseController baseController = SceneManager.getUiController(ui);
     baseController.start();
-    if (baseController instanceof GameController) {
+    if (baseController instanceof GameController) { // If the controller is a GameController
       GameController gameController = (GameController) baseController;
       gameController.unpauseRoom();
     }
@@ -56,6 +67,7 @@ public class App extends Application {
     KeyState.resetKeys();
   }
 
+  /** This method switches the scene to the previous scene. */
   public static void goToPreviousScene() {
     AppUi previousScene = SceneManager.getLastScene();
     if (previousScene != null) {
@@ -66,9 +78,14 @@ public class App extends Application {
     }
   }
 
+  /**
+   * This method is called when the JavaFX application is started.
+   *
+   * @param stage The stage to set the scene to.
+   * @throws IOException If the FXML file for the main menu is not found.
+   */
   @Override
   public void start(final Stage stage) throws IOException {
-
     Parent loadingRoot = SceneManager.initializeLoadingScreen("loading");
     scene = new Scene(loadingRoot, 816, 585);
     stage.setScene(scene);
@@ -93,6 +110,7 @@ public class App extends Application {
     fxmlMap.put(AppUi.WIRES_GAME, "wires");
     fxmlMap.put(AppUi.MEMORY_GAME, "memorygame");
   }
+
 
   private static void initializeGameRooms() {
     gameRooms = Set.of(AppUi.DINOSAUR_ROOM, AppUi.SECURITY_ROOM, AppUi.EXIT_ROOM);

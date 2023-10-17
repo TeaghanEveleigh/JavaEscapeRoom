@@ -127,7 +127,7 @@
             <Font name="BM HANNA Air OTF" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnHelp" layoutX="318.0" layoutY="336.0" mnemonicParsing="false" onAction="#showHelpHint" prefHeight="35.0" prefWidth="96.0" style="-fx-border-radius: 20;" text="Forgot?" textFill="WHITE">
+      <Button fx:id="btnHelp" layoutX="318.0" layoutY="336.0" mnemonicParsing="false" onAction="#onShowHelpHint" prefHeight="35.0" prefWidth="96.0" style="-fx-border-radius: 20;" text="Forgot?" textFill="WHITE">
          <font>
             <Font name="BM HANNA Air OTF" size="19.0" />
          </font>
@@ -138,7 +138,7 @@
          </font>
       </Text>
       <Rectangle fx:id="rectangleText" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="43.0" layoutX="146.0" layoutY="274.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="546.0" />
-      <Button fx:id="exitBtn" layoutX="31.0" layoutY="68.0" mnemonicParsing="false" onAction="#hideComputer" text="Exit" textFill="WHITE">
+      <Button fx:id="exitBtn" layoutX="31.0" layoutY="68.0" mnemonicParsing="false" onAction="#onHideComputer" text="Exit" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>

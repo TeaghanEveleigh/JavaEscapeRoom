@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BaseController;
 
-/** Controller class for the game lost view. */
+/** Controller class for the game lost view. This runs when the user runs out of time. */
 public class GameLostController implements BaseController {
 
   /**
-   * Ends the game and exits the program
+   * Ends the game and exits the program.
    *
    * @param event the action event triggered by the go back button
    * @throws IOException

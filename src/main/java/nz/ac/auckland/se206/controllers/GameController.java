@@ -23,19 +23,24 @@ import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
 
+/**
+ * Controller class for the main rooms. This is where the player can move around the map and
+ * interact with the game world. Each main room extends this class as they all share the
+ * functionality in this class.
+ */
 public class GameController extends HackerUiToggler implements BaseController {
 
-  // Updates all checklists
+  /** Updates the checklist in the security room, laser room, and exit room. */
   public static void updateAllChecklists() {
-    SecurityRoomController securityRoomController =
-        (SecurityRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
-    securityRoomController.updateChecklist();
+    ExitRoomController securityRoomController =
+        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    securityRoomController.updateChecklist(); // Updates the checklist in the security room
     LaserRoomController laserRoomController =
         (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
-    laserRoomController.updateChecklist();
-    ExitRoomController exitRoomController =
-        (ExitRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-    exitRoomController.updateChecklist();
+    laserRoomController.updateChecklist(); // Updates the checklist in the dinosaur room
+    SecurityRoomController exitRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    exitRoomController.updateChecklist(); // Updates the checklist in the exit room
   }
 
   @FXML protected Canvas gameCanvas;
@@ -64,6 +69,10 @@ public class GameController extends HackerUiToggler implements BaseController {
   protected boolean started = false;
   private AnimationTimer timer;
 
+  /**
+   * Initializes the controller class. This method is automatically called after the fxml file has
+   * been loaded.
+   */
   public void initialize() {
     player = new Player(50, 100, 50, 50);
     boundsObjects = new ArrayList<BoundsObject>();
@@ -72,11 +81,10 @@ public class GameController extends HackerUiToggler implements BaseController {
 
     disbleObjectives();
     gameCanvas.requestFocus();
-    disableHackerPanel();
+    disableHackerPanel(); // Disables the hacker panel
     hackerTextArea.setEditable(false);
     graphicsContext = gameCanvas.getGraphicsContext2D();
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
-
     renderer.addEntity(player);
 
     timer =
@@ -97,46 +105,50 @@ public class GameController extends HackerUiToggler implements BaseController {
     pauseRoom();
   }
 
+  /** Pauses the room to prevent the player from moving when not appropriate. */
   public void pauseRoom() {
     paused = true;
     player.stopRunSounds();
   }
 
+  /** Unpauses the room to allow the player to move. */
   public void unpauseRoom() {
     paused = false;
   }
 
+  /**
+   * Adds a bounds object to the room.
+   *
+   * @param keyEvent the key event that triggered the bounds object.
+   */
   @FXML
   public void keyPressedHandler(KeyEvent keyEvent) {
     KeyState.keyPressed(keyEvent.getCode());
   }
 
+  /**
+   * Removes a bounds object from the room.
+   *
+   * @param keyEvent the key event that triggered the bounds object.
+   */
   @FXML
   public void keyReleasedHandler(KeyEvent keyEvent) {
     KeyState.keyReleased(keyEvent.getCode());
   }
 
-  @FXML
-  public void onTalkToHackerPressed() {
-    enableHackerPanel();
-  }
-
-  @FXML
-  public void onChatPressed() {
-    enableChat();
-  }
-
+  /** Runs when the player clicks the objectives exit cross. */
   @FXML
   public void onObjectiveExitClicked() {
     disbleObjectives();
   }
 
+  /** Runs when the player clicks the objectives button. */
   @FXML
   public void onObjectivePressed() {
     enableObjectives();
   }
 
-  // Disables the objectives panel
+  /** This method is used to disable the objectives panel. */
   public void disbleObjectives() {
     checklistRectangle.toBack();
     objectivesLabel.toBack();
@@ -153,10 +165,10 @@ public class GameController extends HackerUiToggler implements BaseController {
     exitObjectiveImage.toBack();
     objectivesButton.setVisible(true);
     objectivesButton.setDisable(false);
-    gameCanvas.requestFocus();
+    gameCanvas.requestFocus(); // Requests focus for the game canvas
   }
 
-  // Enbles the objectives panel
+  /** This method is used to enable the objectives panel. */
   public void enableObjectives() {
     checklistRectangle.toFront();
     objectivesLabel.toFront();
@@ -173,10 +185,10 @@ public class GameController extends HackerUiToggler implements BaseController {
     exitObjectiveImage.toFront();
     objectivesButton.setVisible(false);
     objectivesButton.setDisable(true);
-    gameCanvas.requestFocus();
+    gameCanvas.requestFocus(); // Requests focus for the game canvas
   }
 
-  // Updates the checklist based on what the player has completed
+  /** Updates the checklist in the security room, laser room, and exit room. */
   public void updateChecklist() {
     if (GameState.isLasersDisabled) { // lasers disabled
       Platform.runLater(
