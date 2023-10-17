@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -54,8 +53,6 @@ public class GameController extends HackerUiToggler implements BaseController {
         (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
     exitRoomController.resetChecklist();
   }
-
-  @FXML protected Canvas gameCanvas;
 
   // Checklist
   @FXML protected Rectangle checklistRectangle;
@@ -214,13 +211,14 @@ public class GameController extends HackerUiToggler implements BaseController {
     startSound.stop(); // Stop any currently playing sound
     startSound.seek(Duration.ZERO); // Reset the sound to the beginning
 
-    startSound.setOnEndOfMedia(new Runnable() { // Set an event handler to reset the media player when the sound ends
-        @Override
-        public void run() {
+    startSound.setOnEndOfMedia(
+        new Runnable() { // Set an event handler to reset the media player when the sound ends
+          @Override
+          public void run() {
             startSound.stop(); // Stop the sound
             startSound.seek(Duration.ZERO); // Reset the media player to the beginning
-        }
-    });
+          }
+        });
 
     startSound.play(); // Play the sound
     if (GameState.isLasersDisabled) { // lasers disabled
