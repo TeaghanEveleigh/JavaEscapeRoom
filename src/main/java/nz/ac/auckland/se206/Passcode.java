@@ -28,14 +28,14 @@ public class Passcode {
   private Passcode() {
     Random rand = new Random();
 
-    // Generate random centuries from 1 to 20
+    // Generate random numbers from 10 to 20
     int[] nums = new int[3];
-    nums[0] = rand.nextInt(20) + 1;
-    nums[1] = rand.nextInt(20) + 1;
-    nums[2] = rand.nextInt(20) + 1;
-    keyCode = rand.nextInt(90000) + 10000;
+    nums[0] = rand.nextInt(11) + 10; // Adjusted to generate numbers between 10 to 20
+    nums[1] = rand.nextInt(11) + 10; // Adjusted to generate numbers between 10 to 20
+    nums[2] = rand.nextInt(11) + 10; // Adjusted to generate numbers between 10 to 20
+    keyCode = rand.nextInt(900000) + 100000; // Adjusted to generate a 6-digit keycode
 
-    // Sort the random centuries in ascending order
+    // Sort the random numbers in ascending order
     Arrays.sort(nums);
 
     firstNum = nums[0];
@@ -43,7 +43,7 @@ public class Passcode {
     thirdNum = nums[2];
 
     System.out.println("Passcode: " + getFullNum());
-  }
+}
 
   /**
    * This method is used to get the first number of the passcode.

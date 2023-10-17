@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.BaseController;
 import nz.ac.auckland.se206.CanvasRenderer;
 import nz.ac.auckland.se206.GameState;
@@ -210,7 +211,18 @@ public class GameController extends HackerUiToggler implements BaseController {
 
   // Updates the checklist based on what the player has completed
   public void updateChecklist() {
-    startSound.play();
+    startSound.stop(); // Stop any currently playing sound
+    startSound.seek(Duration.ZERO); // Reset the sound to the beginning
+
+    startSound.setOnEndOfMedia(new Runnable() { // Set an event handler to reset the media player when the sound ends
+        @Override
+        public void run() {
+            startSound.stop(); // Stop the sound
+            startSound.seek(Duration.ZERO); // Reset the media player to the beginning
+        }
+    });
+
+    startSound.play(); // Play the sound
     if (GameState.isLasersDisabled) { // lasers disabled
       Platform.runLater(
           () -> {

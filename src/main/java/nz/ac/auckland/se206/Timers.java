@@ -142,6 +142,10 @@ public class Timers {
                 flashTimeline.play();
               }
               if (timeInMilliseconds == 0) { // If time is up
+                for (Label label : subscribedLabels) {
+                  Platform.runLater(
+                      () -> label.setStyle("-fx-text-fill: limegreen;")); // Change text color to limegreen
+              }
                 App.switchScenes(AppUi.GAME_LOST);
               }
               if (!is30SecondTriggered

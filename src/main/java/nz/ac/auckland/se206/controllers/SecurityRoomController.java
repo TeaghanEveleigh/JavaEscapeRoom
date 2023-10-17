@@ -100,6 +100,8 @@ public class SecurityRoomController extends GameController
   @FXML private Rectangle boundingBox8;
   @FXML private Rectangle boundingBox9;
   @FXML private Rectangle boundingBox10;
+  @FXML private Rectangle boundboxwall1;
+  @FXML private Rectangle boundboxwall2;
   @FXML private Rectangle boundingBox11;
   @FXML private Rectangle boundingBox12;
   @FXML private Rectangle boundingBox13;
@@ -213,6 +215,8 @@ public class SecurityRoomController extends GameController
     suspicion = new Suspicion(boundingBoxThree, this, suspicionProgressBar, suspicionRectangle);
     super.initialize();
     // Adds the bounding boxes to the list of bounding boxes
+    boundsObjects.add(new SolidBox(boundboxwall1));
+    boundsObjects.add(new SolidBox(boundboxwall2));
     boundsObjects.add(new SolidBox(boundingBox3));
     boundsObjects.add(new SolidBox(boundingBox4));
     boundsObjects.add(new SolidBox(boundingBox5));
@@ -371,10 +375,11 @@ public class SecurityRoomController extends GameController
     seven.toFront();
     eight.toFront();
     nine.toFront();
+    zeroKey.toFront(); 
     zero.toFront();
     clear.toFront();
     enter.toFront();
-    zeroKey.toFront(); 
+    
     numbers.setOpacity(1); // Reset the opacity of the numbers text
     // Enable interaction for the keys
     one.setDisable(false);
