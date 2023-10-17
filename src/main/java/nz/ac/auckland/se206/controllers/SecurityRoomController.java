@@ -209,6 +209,7 @@ public class SecurityRoomController extends GameController
     cameraTriangle.setOpacity(0.0);
     boundsObjects.remove(exitBlock);
     boundsObjects.remove(suspicion);
+    player.setBoundingBoxes(boundsObjects);
     // what you can do here is also remove obstacle preventing the player from moving into the
     // camera area
   }
