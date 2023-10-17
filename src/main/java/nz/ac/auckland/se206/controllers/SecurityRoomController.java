@@ -393,7 +393,7 @@ public class SecurityRoomController extends GameController
     nine.setDisable(false);
     zero.setDisable(false);
     clear.setDisable(false);
-    enter.setDisable(false);// This makes sure the numbers text is visible on the top
+    enter.setDisable(false); // This makes sure the numbers text is visible on the top
   }
 
   @FXML
