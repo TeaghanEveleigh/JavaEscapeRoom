@@ -105,7 +105,7 @@ public class ExitRoomController extends GameController
   void hideComputerLabel() {
     computerLabel.setOpacity(0);
     interractHint.setOpacity(0);
-    arrow2.toFront();
+    arrow1.toFront();
   }
 
   /** This method is used to open the computer when the user clicks on it. */
@@ -169,7 +169,7 @@ public class ExitRoomController extends GameController
   private void hideSafeLabel() {
     safeLabel.setOpacity(0);
     interractHint.setOpacity(0);
-    arrow2.toBack();
+    arrow2.toFront();
   }
 
   /** Shows the safe label to the user. */
@@ -209,14 +209,12 @@ public class ExitRoomController extends GameController
     mainTimerLabel.toFront();
   }
 
-
   public void closeSafe() {
     safeOpened = false;
     openedSafe.toBack();
     note.toBack();
     noteLabel.toBack();
   }
-
 
   /** Shows the keycode on a note to the user. */
   @FXML
@@ -391,20 +389,25 @@ public class ExitRoomController extends GameController
     translateTransition.play();
   }
 
+  /** This method is used to signal that the room hs started. */
   @Override
   public void start() {
     started = true;
   }
 
+  /** This method is used to reset the room to its original state. */
   @Override
   public void reset() {
     super.reset();
+    safeOpened = false;
+    computerOpened = false;
+    incorrectPassword = false;
     GameState value = GameState.getInstance();
-    value.subscribe(hintsLabel);
+    value.subscribe(hintsLabel); // reset the hints label
     passcode = Passcode.getInstance();
     password.setText(passcode.getKeyCode());
     this.player.setPosX(54);
     this.player.setPosY(450);
-    closeSafe();
+    closeSafe(); // reset the safe
   }
 }

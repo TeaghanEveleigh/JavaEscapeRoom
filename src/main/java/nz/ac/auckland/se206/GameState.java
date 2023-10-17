@@ -33,7 +33,12 @@ public class GameState {
   private static GameState instance = new GameState();
   private static List<Label> subscribers = new ArrayList<>();
 
+  /**
+   * This method is used to reset the game state to the default values. It is called when the user
+   * starts a new game.
+   */
   public static void resetGameState() {
+    // Reset all the variables to their default values
     isLasersDisabled = false;
     isCamerasDisabled = false;
     isTreasureStolen = false;
@@ -45,6 +50,7 @@ public class GameState {
     timeLimit = 2;
     textToSpeech = false;
     isDoorOpen = false;
+    // Generate another sequence of wires
     wiresSequence = generateWiresSequence();
     subscribers.clear();
   }

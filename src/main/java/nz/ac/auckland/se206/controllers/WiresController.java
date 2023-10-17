@@ -414,8 +414,9 @@ public class WiresController extends HackerUiToggler implements Initializable, B
 
   @Override
   public void start() {
-    if (started) return;
-
+    if (started) {
+      return;
+    }
     Timers mainTimer = Timers.getInstance();
     mainTimer.subscribeLabel(mainTimerLabel);
     getRiddle();

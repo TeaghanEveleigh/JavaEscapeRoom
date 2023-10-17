@@ -9,6 +9,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -23,26 +25,33 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Timers;
 import nz.ac.auckland.se206.game.BoundsObject;
 import nz.ac.auckland.se206.game.Player;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-/**
- * Controller class for the main rooms. This is where the player can move around the map and
- * interact with the game world. Each main room extends this class as they all share the
- * functionality in this class.
- */
+
 public class GameController extends HackerUiToggler implements BaseController {
 
-  /** Updates the checklist in the security room, laser room, and exit room. */
+  // Updates all checklists
   public static void updateAllChecklists() {
-    SecurityRoomController securityRoomController =
-        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
-    securityRoomController.updateChecklist(); // Updates the checklist in the security room
+    ExitRoomController securityRoomController =
+        (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
+    securityRoomController.updateChecklist();
     LaserRoomController laserRoomController =
         (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
-    laserRoomController.updateChecklist(); // Updates the checklist in the dinosaur room
-    ExitRoomController exitRoomController =
+    laserRoomController.updateChecklist();
+    SecurityRoomController exitRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    exitRoomController.updateChecklist();
+  }
+
+  /** This method resets all checklists. */
+  public static void resetAllChecklists() {
+    ExitRoomController securityRoomController =
         (ExitRoomController) SceneManager.getUiController(AppUi.SECURITY_ROOM);
-    exitRoomController.updateChecklist(); // Updates the checklist in the exit room
+    securityRoomController.resetChecklist();
+    LaserRoomController laserRoomController =
+        (LaserRoomController) SceneManager.getUiController(AppUi.DINOSAUR_ROOM);
+    laserRoomController.resetChecklist();
+    SecurityRoomController exitRoomController =
+        (SecurityRoomController) SceneManager.getUiController(AppUi.EXIT_ROOM);
+    exitRoomController.resetChecklist();
   }
 
   @FXML protected Canvas gameCanvas;
@@ -77,12 +86,10 @@ public class GameController extends HackerUiToggler implements BaseController {
   protected boolean started = false;
   private AnimationTimer timer;
 
-  /**
-   * Initializes the controller class. This method is automatically called after the fxml file has
-   * been loaded.
-   */
   public void initialize() {
-    Font font = Font.loadFont(getClass().getResource("/fonts/KgTenThousandReasons-R1ll.ttf").toExternalForm(), 12);
+    Font font =
+        Font.loadFont(
+            getClass().getResource("/fonts/KgTenThousandReasons-R1ll.ttf").toExternalForm(), 12);
     disabledCameraLabel.setFont(font);
     disabledLasersLabel.setFont(font);
     stolenTreasureLabel.setFont(font);
@@ -93,13 +100,14 @@ public class GameController extends HackerUiToggler implements BaseController {
     boundsObjects = new ArrayList<BoundsObject>();
 
     reset();
-
     disbleObjectives();
     gameCanvas.requestFocus();
-    disableHackerPanel(); // Disables the hacker panel
+    disableHackerPanel();
     hackerTextArea.setEditable(false);
     graphicsContext = gameCanvas.getGraphicsContext2D();
+    // Create a new renderer for the player
     renderer = new CanvasRenderer(gameCanvas, graphicsContext);
+
     renderer.addEntity(player);
 
     timer =
@@ -114,56 +122,51 @@ public class GameController extends HackerUiToggler implements BaseController {
             renderer.renderEntities();
           }
         };
-    System.out.println("dsadsadsa");
 
     timer.start();
     pauseRoom();
   }
 
-  /** Pauses the room to prevent the player from moving when not appropriate. */
   public void pauseRoom() {
     paused = true;
     player.stopRunSounds();
   }
 
-  /** Unpauses the room to allow the player to move. */
   public void unpauseRoom() {
     paused = false;
   }
 
-  /**
-   * Adds a bounds object to the room.
-   *
-   * @param keyEvent the key event that triggered the bounds object.
-   */
   @FXML
   public void keyPressedHandler(KeyEvent keyEvent) {
     KeyState.keyPressed(keyEvent.getCode());
   }
 
-  /**
-   * Removes a bounds object from the room.
-   *
-   * @param keyEvent the key event that triggered the bounds object.
-   */
   @FXML
   public void keyReleasedHandler(KeyEvent keyEvent) {
     KeyState.keyReleased(keyEvent.getCode());
   }
 
-  /** Runs when the player clicks the objectives exit cross. */
+  @FXML
+  public void onTalkToHackerPressed() {
+    enableHackerPanel();
+  }
+
+  @FXML
+  public void onChatPressed() {
+    enableChat();
+  }
+
   @FXML
   public void onObjectiveExitClicked() {
     disbleObjectives();
   }
 
-  /** Runs when the player clicks the objectives button. */
   @FXML
   public void onObjectivePressed() {
     enableObjectives();
   }
 
-  /** This method is used to disable the objectives panel. */
+  // Disables the objectives panel
   public void disbleObjectives() {
     planNote.toBack();
     checklistRectangle.toBack();
@@ -181,10 +184,10 @@ public class GameController extends HackerUiToggler implements BaseController {
     exitObjectiveImage.toBack();
     objectivesButton.setVisible(true);
     objectivesButton.setDisable(false);
-    gameCanvas.requestFocus(); // Requests focus for the game canvas
+    gameCanvas.requestFocus();
   }
 
-  /** This method is used to enable the objectives panel. */
+  // Enbles the objectives panel
   public void enableObjectives() {
     planNote.toFront();
     checklistRectangle.toFront();
@@ -202,10 +205,10 @@ public class GameController extends HackerUiToggler implements BaseController {
     exitObjectiveImage.toFront();
     objectivesButton.setVisible(false);
     objectivesButton.setDisable(true);
-    gameCanvas.requestFocus(); // Requests focus for the game canvas
+    gameCanvas.requestFocus();
   }
 
-  /** Updates the checklist in the security room, laser room, and exit room. */
+  // Updates the checklist based on what the player has completed
   public void updateChecklist() {
     startSound.play();
     if (GameState.isLasersDisabled) { // lasers disabled
@@ -240,10 +243,21 @@ public class GameController extends HackerUiToggler implements BaseController {
     }
   }
 
-  @Override
-  public void start() {
-    return;
+  /** This method is used to reset the checklist. */
+  public void resetChecklist() {
+    Platform.runLater(
+        () -> {
+          disabledLasersCircle.setFill(Color.WHITE);
+          stolenTreasureCircle.setFill(Color.WHITE);
+          disabledCameraCircle.setFill(Color.WHITE);
+          keycodeFoundCircle.setFill(Color.WHITE);
+          exitUnlockedCircle.setFill(Color.WHITE);
+        });
   }
+
+  /** This method is used to start the controller. */
+  @Override
+  public void start() {}
 
   public void reset() {
     Timers mainTimer = Timers.getInstance();
