@@ -14,7 +14,6 @@ Welcome to the Escape Room Java Desktop Application! This project was developed 
 - **Java:** Core programming language used for development.
 - **JavaFX** Used to create the graphical user intergace (GUI)
 - **MVC Architecture:** Follows the Model-View-Controller pattern for separating concerns.
-- **Observer Pattern:** Implements observer pattern for event handling.
 - **Factory Pattern:** Utilizes factory pattern for creating game elements.
 - **Singleton Pattern:** Uses singleton pattern for managing game state and resources.
 
