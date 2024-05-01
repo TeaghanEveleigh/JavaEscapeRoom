@@ -1,36 +1,27 @@
-# SOFTENG 206 - EscAIpe Room
+# Escape Room Java Desktop Application
 
-## To setup OpenAI's API
+Welcome to the Escape Room Java Desktop Application! This project was developed by a team of three, with a focus on frontend development and backend implementation. The application features a collection of mini-games for users to solve while navigating using WASD movement controls.
 
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `apiproxy.config`
-- put inside the credentials that you received from no-reply@digitaledu.ac.nz (put the quotes "")
+## Key Features
 
-  ```
-  email: "upi123@aucklanduni.ac.nz"
-  apiKey: "YOUR_KEY"
-  ```
-  these are your credentials to invoke the OpenAI GPT APIs
+- **Mini-games:** Includes various challenging puzzles and tasks for users to complete.
+- **Interactive Navigation:** Users can navigate through the game environment using WASD controls.
+- **Backend Logic:** Extensive backend logic to manage game state, interactions, and puzzle solving.
+- **Design Patterns:** Utilizes several design patterns to maintain code organization and scalability.
 
-## To setup codestyle's API
+## Technologies Used
 
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `codestyle.config`
-- put inside the credentials that you received from gradestyle@digitaledu.ac.nz (put the quotes "")
+- **Java:** Core programming language used for development.
+- **Swing Framework:** Java Swing for creating the graphical user interface (GUI).
+- **MVC Architecture:** Follows the Model-View-Controller pattern for separating concerns.
+- **Observer Pattern:** Implements observer pattern for event handling.
+- **Factory Pattern:** Utilizes factory pattern for creating game elements.
+- **Singleton Pattern:** Uses singleton pattern for managing game state and resources.
 
-  ```
-  email: "upi123@aucklanduni.ac.nz"
-  accessToken: "YOUR_KEY"
-  ```
+## Installation
 
- these are your credentials to invoke GradeStyle
+To run the Escape Room application locally:
 
-## To run the game
-
-`./mvnw clean javafx:run`
-
-## To debug the game
-
-`./mvnw clean javafx:run@debug` then in VS Code "Run & Debug", then run "Debug JavaFX"
-
-## To run codestyle
-
-`./mvnw clean compile exec:java@style`
+1. Clone the repository to your local machine.
+   ```bash
+   git clone https://github.com/your-username/escape-room.git
