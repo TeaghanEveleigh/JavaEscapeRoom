@@ -12,7 +12,7 @@ Welcome to the Escape Room Java Desktop Application! This project was developed 
 ## Technologies Used
 
 - **Java:** Core programming language used for development.
-- **Swing Framework:** Java Swing for creating the graphical user interface (GUI).
+- **JavaFX** Used to create the graphical user intergace (GUI)
 - **MVC Architecture:** Follows the Model-View-Controller pattern for separating concerns.
 - **Observer Pattern:** Implements observer pattern for event handling.
 - **Factory Pattern:** Utilizes factory pattern for creating game elements.
